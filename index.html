@@ -2,351 +2,688 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Mad Hat Communications - Performance-driven growth marketing, market expansion, and conversion optimization services.">
-    <title>Mad Hat Communications - Performance-Driven Growth Marketing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mad Hat Communications - Performance-driven growth marketing, market expansion, and conversion optimization services.">
+  <title>Mad Hat Communications - Performance-Driven Growth Marketing</title>
 
-    <!-- Load Configuration -->
-    <script src="config.js"></script>
-    <script>
-        // Add your Google PageSpeed Insights API Key here
-        const PAGE_SPEED_API_KEY = "AIzaSyDV6hDIo36biyqg1U3STsYq2MenYbSfdf8";
-    </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58883HVDTC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-58883HVDTC');
+  </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- PageSpeed Insights API Key -->
+  <script>
+    window.PAGE_SPEED_API_KEY = "AIzaSyDV6hDIo36biyqg1U3STsYq2MenYbSfdf8";
+  </script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
+  <!-- Load Configuration -->
+  <script src="config.js"></script>
 
-        :root {
-            --primary: #0F0F0F;
-            --accent: #E63027;
-            --secondary: #F5F5F0;
-            --text: #2C2C2C;
-            --text-light: #525252;
-            --border: #E0E0E0
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  </noscript>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--secondary);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box }
 
-        h1,
-        h2,
-        h3 {
-            font-family: Georgia, serif;
-            font-weight: 900;
-            line-height: 1.1
-        }
+    :root {
+      --primary: #0F0F0F;
+      --accent: #E63027;
+      --secondary: #F5F5F0;
+      --text: #2C2C2C;
+      --text-light: #525252;
+      --border: #E0E0E0
+    }
 
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(245, 245, 240, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1.5rem 0
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center
-        }
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+      font-weight: 900;
+      line-height: 1.1
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            font-family: Georgia, serif;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: -0.02em
-        }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none
-        }
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(245, 245, 240, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1.5rem 0
+    }
 
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s
-        }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
 
-        .nav-links a:hover {
-            color: var(--accent)
-        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em
+    }
 
-        .hero {
-            margin-top: 80px;
-            padding: 8rem 3rem 6rem;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto
-        }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none
+    }
 
-        .hero-content {
-            max-width: 900px
-        }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s
+    }
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6.5rem);
-            margin-bottom: 2rem;
-            color: var(--primary)
-        }
+    .nav-links a:hover { color: var(--accent) }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin-bottom: 3rem
-        }
+    /* HERO */
+    .hero {
+      padding: 12rem 3rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
 
-        .cta-button {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 2px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem
-        }
+    .hero-content { max-width: 900px }
 
-        .cta-button:hover,
-        .cta-button:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(230, 48, 39, 0.3);
-            outline: 2px solid var(--accent);
-            outline-offset: 2px
-        }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      margin-bottom: 2rem;
+      color: var(--primary)
+    }
 
-        .error-toast {
-            display: none;
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2C2C2C;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 2000;
-            max-width: 90%;
-            animation: slideDown 0.3s ease-out
-        }
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin-bottom: 3rem
+    }
 
-        .error-toast.active {
-            display: block
-        }
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 1.2rem 3rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem
+    }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -20px)
-            }
+    .cta-button:hover, .cta-button:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(230, 48, 39, 0.3);
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
 
-            to {
-                opacity: 1;
-                transform: translate(-50%, 0)
-            }
-        }
+    /* STATS */
+    .stats {
+      background: var(--primary);
+      padding: 4rem 3rem
+    }
 
-        @media (max-width:768px) {
-            .nav-container {
-                padding: 0 1.5rem
-            }
+    .stats-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem
+    }
 
-            .nav-links {
-                display: none
-            }
+    .stat-item { text-align: center }
 
-            .hero {
-                padding: 4rem 1.5rem 3rem
-            }
-        }
-    </style>
+    .stat-number {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--accent);
+      line-height: 1
+    }
 
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght:700;900&family=DM+Sans:wght@400;500;700&display=swap">
-    </noscript>
+    .stat-label {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em
+    }
+
+    /* CASE STUDIES */
+    .case-studies {
+      padding: 6rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--primary);
+      margin-bottom: 3rem
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem
+    }
+
+    .case-card {
+      background: white;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1)
+    }
+
+    .case-image {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .case-logo {
+      font-size: 2rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3)
+    }
+
+    .case-content { padding: 2rem }
+
+    .case-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 1rem
+    }
+
+    .case-description {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7
+    }
+
+    .case-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem
+    }
+
+    .metric { text-align: center }
+
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--accent)
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem
+    }
+
+    /* ANALYZER */
+    .analyzer-section {
+      background: var(--primary);
+      padding: 6rem 3rem
+    }
+
+    .analyzer-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center
+    }
+
+    .analyzer-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: white;
+      margin-bottom: 1rem
+    }
+
+    .analyzer-subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      margin-bottom: 3rem
+    }
+
+    .analyzer-form { text-align: left }
+
+    .input-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem
+    }
+
+    .url-input {
+      flex: 1;
+      padding: 1.2rem 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 2px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s
+    }
+
+    .url-input::placeholder { color: rgba(255,255,255,0.4) }
+
+    .url-input:focus { border-color: var(--accent) }
+
+    .analyze-button {
+      padding: 1.2rem 2.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 2px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      white-space: nowrap
+    }
+
+    .analyze-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(230,48,39,0.4)
+    }
+
+    .analyze-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+      color: rgba(255,255,255,0.7)
+    }
+
+    .loading.active { display: block }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem
+    }
+
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    .results { display: none }
+    .results.active { display: block }
+
+    .score-container {
+      text-align: center;
+      margin-bottom: 3rem
+    }
+
+    .score-circle {
+      position: relative;
+      display: inline-block;
+      width: 200px;
+      height: 200px
+    }
+
+    .score-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: white
+    }
+
+    .score-label {
+      color: rgba(255,255,255,0.7);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 1.5rem;
+      text-align: center
+    }
+
+    .metric-card-title {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem
+    }
+
+    .metric-card-value {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      margin-bottom: 0.25rem
+    }
+
+    .metric-card-score {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5)
+    }
+
+    .recommendations {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 2rem
+    }
+
+    .recommendations-title {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem
+    }
+
+    .recommendation-item {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,0.03)
+    }
+
+    .recommendation-title {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 0.5rem
+    }
+
+    .recommendation-description { color: rgba(255,255,255,0.6); font-size: 0.9rem }
+
+    /* FOOTER */
+    .footer {
+      background: #0a0a0a;
+      padding: 4rem 3rem 2rem
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem
+    }
+
+    .footer-section h3 {
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      font-family: Georgia, serif
+    }
+
+    .footer-section p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7 }
+
+    .footer-section a {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      transition: color 0.3s
+    }
+
+    .footer-section a:hover { color: var(--accent) }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem
+    }
+
+    /* ERROR TOAST */
+    .error-toast {
+      display: none;
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2C2C2C;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 2000;
+      max-width: 90%;
+      animation: slideDown 0.3s ease-out
+    }
+
+    .error-toast.active { display: block }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -20px) }
+      to { opacity: 1; transform: translate(-50%, 0) }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-container { padding: 0 1.5rem }
+      .nav-links { display: none }
+      .hero { padding: 8rem 1.5rem 3rem }
+      .stats-container { grid-template-columns: repeat(2, 1fr) }
+      .case-studies { padding: 4rem 1.5rem }
+      .analyzer-section { padding: 4rem 1.5rem }
+      .input-group { flex-direction: column }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr) }
+      .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem }
+      .footer { padding: 3rem 1.5rem 2rem }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="errorToast" class="error-toast" role="alert" aria-live="polite"></div>
+  <div id="errorToast" class="error-toast" role="alert" aria-live="polite"></div>
 
-    <header class="header">
-        <nav class="nav-container" aria-label="Main navigation">
-            <a href="#" class="logo" id="companyName">Mad Hat</a>
-            <ul class="nav-links">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#analyzer">Analyzer</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="#" class="logo" id="companyName">Mad Hat</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#analyzer">Analyzer</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1 id="heroHeadline">Performance-Driven Growth Marketing</h1>
-                <p class="hero-subtitle" id="heroSubtitle">Loading...</p>
-                <a href="#analyzer" class="cta-button" id="heroCTA">Analyze Your Website</a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 id="heroHeadline">Performance-Driven Growth Marketing</h1>
+        <p class="hero-subtitle" id="heroSubtitle">Loading...</p>
+        <a href="#analyzer" class="cta-button" id="heroCTA">Analyze Your Website</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-labelledby="stats-heading">
+      <h2 id="stats-heading" class="sr-only">Our Impact</h2>
+      <div class="stats-container" id="statsContainer"></div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="work" class="case-studies" aria-labelledby="case-studies-heading">
+      <h2 id="case-studies-heading" class="section-title">Success Stories</h2>
+      <div class="case-grid" id="caseStudiesContainer"></div>
+    </section>
+
+    <!-- ANALYZER -->
+    <section id="analyzer" class="analyzer-section" aria-labelledby="analyzerTitle">
+      <div class="analyzer-container">
+        <h2 id="analyzerTitle" class="analyzer-title">Website Performance Analyzer</h2>
+        <p class="analyzer-subtitle" id="analyzerSubtitle">Loading...</p>
+
+        <div class="analyzer-form">
+          <div class="input-group">
+            <label for="websiteUrl" class="sr-only">Website URL</label>
+            <input type="text" id="websiteUrl" class="url-input" placeholder="Enter website URL..." required aria-required="true">
+            <button class="analyze-button" onclick="analyzeWebsite()" aria-label="Analyze website performance">Analyze</button>
+          </div>
+
+          <div class="loading" id="loading" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <p>Analyzing your website performance...</p>
+          </div>
+
+          <div class="results" id="results" role="region" aria-live="polite">
+            <div class="score-container">
+              <div class="score-circle">
+                <svg width="200" height="200" aria-hidden="true">
+                  <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="12"/>
+                  <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="#E63027"
+                    stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48"
+                    transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 1s ease-out"/>
+                </svg>
+                <div class="score-value" id="overallScore" aria-label="Overall performance score">--</div>
+              </div>
+              <div class="score-label">Overall Performance Score</div>
             </div>
-        </section>
 
-        <section class="stats" aria-labelledby="stats-heading">
-            <h2 id="stats-heading" class="sr-only">Our Impact</h2>
-            <div class="stats-container" id="statsContainer">
-                <!-- Stats loaded from config.js -->
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-card-title">Load Time</div>
+                <div class="metric-card-value" id="loadTime">--</div>
+                <div class="metric-card-score" id="loadTimeLabel">Measuring...</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title">Page Size</div>
+                <div class="metric-card-value" id="pageSize">--</div>
+                <div class="metric-card-score" id="pageSizeLabel">Measuring...</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title">HTTP Requests</div>
+                <div class="metric-card-value" id="requests">--</div>
+                <div class="metric-card-score" id="requestsLabel">Measuring...</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title">DOM Size</div>
+                <div class="metric-card-value" id="images">--</div>
+                <div class="metric-card-score" id="imagesLabel">Measuring...</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title">JS Bootup Time</div>
+                <div class="metric-card-value" id="scripts">--</div>
+                <div class="metric-card-score" id="scriptsLabel">Measuring...</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title">Main Thread Work</div>
+                <div class="metric-card-value" id="styles">--</div>
+                <div class="metric-card-score" id="stylesLabel">Measuring...</div>
+              </div>
             </div>
-        </section>
 
-        <section id="work" class="case-studies" aria-labelledby="case-studies-heading">
-            <h2 id="case-studies-heading" class="section-title">Success Stories</h2>
-            <div class="case-grid" id="caseStudiesContainer">
-                <!-- Case studies loaded from config.js -->
+            <div class="recommendations">
+              <h3 class="recommendations-title">Optimization Opportunities</h3>
+              <div id="recommendationsList"></div>
             </div>
-        </section>
-
-        <section id="analyzer" class="analyzer-section" aria-labelledby="analyzer-heading">
-            <div class="analyzer-container">
-                <h2 id="analyzerTitle" class="analyzer-title" aria-labelledby="analyzerTitle">Website Performance Analyzer</h2>
-                <p class="analyzer-subtitle" id="analyzerSubtitle">Loading...</p>
-
-                <div class="analyzer-form">
-                    <div class="input-group">
-                        <label for="websiteUrl" class="sr-only">Website URL</label>
-                        <input type="text" id="websiteUrl" class="url-input" placeholder="Loading..." required
-                            aria-required="true">
-                        <button class="analyze-button" onclick="analyzeWebsite()"
-                            aria-label="Analyze website performance">Analyze</button>
-                    </div>
-
-                    <div class="loading" id="loading" role="status" aria-live="polite">
-                        <div class="spinner"></div>
-                        <p>Analyzing your website performance...</p>
-                    </div>
-
-                    <div class="results" id="results" role="region" aria-live="polite">
-                        <div class="score-container">
-                            <div class="score-circle">
-                                <svg width="200" height="200" aria-label="Performance score circle">
-                                    <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.2)"
-                                        stroke-width="12" />
-                                    <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="#E63027"
-                                        stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48"
-                                        transform="rotate(-90 100 100)"
-                                        style="transition:stroke-dashoffset 1s ease-out" />
-                                </svg>
-                                <div class="score-value" id="overallScore" aria-label="Overall performance score">--
-                                </div>
-                            </div>
-                            <div class="score-label">Overall Performance Score</div>
-                        </div>
-                        <div class="metrics-grid">
-                            <div class="metric-card">
-                                <div class="metric-card-title">Load Time</div>
-                                <div class="metric-card-value" id="loadTime">--</div>
-                                <div class="metric-card-score" id="loadTimeLabel">Measuring...</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-card-title">Page Size</div>
-                                <div class="metric-card-value" id="pageSize">--</div>
-                                <div class="metric-card-score" id="pageSizeLabel">Measuring...</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-card-title">HTTP Requests</div>
-                                <div class="metric-card-value" id="requests">--</div>
-                                <div class="metric-card-score" id="requestsLabel">Measuring...</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-card-title">Images</div>
-                                <div class="metric-card-value" id="images">--</div>
-                                <div class="metric-card-score" id="imagesLabel">Measuring...</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-card-title">Scripts</div>
-                                <div class="metric-card-value" id="scripts">--</div>
-                                <div class="metric-card-score" id="scriptsLabel">Measuring...</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-card-title">Stylesheets</div>
-                                <div class="metric-card-value" id="styles">--</div>
-                                <div class="metric-card-score" id="stylesLabel">Measuring...</div>
-                            </div>
-                        </div>
-                        <div class="recommendations">
-                            <h3 class="recommendations-title">Optimization Opportunities</h3>
-                            <div id="recommendationsList"></div>
-                        </div>
-                    </div>
-
-                    <iframe id="testFrame"
-                        style="position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none"
-                        aria-hidden="true"></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 id="footerCompanyName">Mad Hat Communications</h3>
-                <p id="footerDescription">Loading...</p>
-            </div>
-            <div class="footer-section">
-                <h3>Services</h3>
-                <div id="servicesContainer"></div>
-            </div>
-            <div class="footer-section">
-                <h3>Company</h3>
-                <div id="companyLinksContainer"></div>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <a href="mailto:hello@madhat.com" id="footerEmail">hello@madhat.com</a>
-                <a href="tel:+1234567890" id="footerPhone">+1 (234) 567-890</a>
-            </div>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span id="currentYear">2024</span> <span id="copyrightName">Mad Hat Communications</span>. All
-                rights reserved.</p>
-        </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js"></script>
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 id="footerCompanyName">Mad Hat Communications</h3>
+        <p id="footerDescription">Loading...</p>
+      </div>
+      <div class="footer-section">
+        <h3>Services</h3>
+        <div id="servicesContainer"></div>
+      </div>
+      <div class="footer-section">
+        <h3>Company</h3>
+        <div id="companyLinksContainer"></div>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <a href="mailto:hello@madhat.com" id="footerEmail">hello@madhat.com</a>
+        <a href="tel:+1234567890" id="footerPhone">+1 (234) 567-890</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear">2025</span> <span id="copyrightName">Mad Hat Communications</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
-
 </html>
