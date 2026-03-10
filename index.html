@@ -95,12 +95,12 @@
         <section id="analyzer" class="analyzer-section" aria-labelledby="analyzer-heading">
             <div class="analyzer-container">
                 <h2 id="analyzer-heading" class="analyzer-title">Website Performance Analyzer</h2>
-                <p class="analyzer-subtitle">Discover how your website performs and where improvements can be made</p>
+                <p class="analyzer-subtitle">Get instant insights into your website's speed, optimization, and user experience</p>
                 
                 <div class="analyzer-form">
                     <div class="input-group">
                         <label for="websiteUrl" class="sr-only">Website URL</label>
-                        <input type="url" id="websiteUrl" class="url-input" placeholder="Enter your website URL (e.g., https://example.com)" required aria-required="true">
+                        <input type="text" id="websiteUrl" class="url-input" placeholder="Enter website (e.g., madhatcomm.in or example.com)" required aria-required="true">
                         <button class="analyze-button" onclick="analyzeWebsite()" aria-label="Analyze website performance">Analyze</button>
                     </div>
 
@@ -121,18 +121,20 @@
                             <div class="score-label">Overall Performance Score</div>
                         </div>
                         <div class="metrics-grid">
-                            <div class="metric-card"><div class="metric-card-title">Performance</div><div class="metric-card-value" id="performanceScore">--</div><div class="metric-card-score" id="performanceLabel">Loading...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">First Contentful Paint</div><div class="metric-card-value" id="fcpValue">--</div><div class="metric-card-score" id="fcpLabel">Loading...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Largest Contentful Paint</div><div class="metric-card-value" id="lcpValue">--</div><div class="metric-card-score" id="lcpLabel">Loading...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Total Blocking Time</div><div class="metric-card-value" id="tbtValue">--</div><div class="metric-card-score" id="tbtLabel">Loading...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Cumulative Layout Shift</div><div class="metric-card-value" id="clsValue">--</div><div class="metric-card-score" id="clsLabel">Loading...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Speed Index</div><div class="metric-card-value" id="siValue">--</div><div class="metric-card-score" id="siLabel">Loading...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Load Time</div><div class="metric-card-value" id="loadTime">--</div><div class="metric-card-score" id="loadTimeLabel">Measuring...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Page Size</div><div class="metric-card-value" id="pageSize">--</div><div class="metric-card-score" id="pageSizeLabel">Measuring...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">HTTP Requests</div><div class="metric-card-value" id="requests">--</div><div class="metric-card-score" id="requestsLabel">Measuring...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Images</div><div class="metric-card-value" id="images">--</div><div class="metric-card-score" id="imagesLabel">Measuring...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Scripts</div><div class="metric-card-value" id="scripts">--</div><div class="metric-card-score" id="scriptsLabel">Measuring...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Stylesheets</div><div class="metric-card-value" id="styles">--</div><div class="metric-card-score" id="stylesLabel">Measuring...</div></div>
                         </div>
                         <div class="recommendations">
-                            <h3 class="recommendations-title">Key Opportunities</h3>
+                            <h3 class="recommendations-title">Optimization Opportunities</h3>
                             <div id="recommendationsList"></div>
                         </div>
                     </div>
+
+                    <iframe id="testFrame" style="position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none" aria-hidden="true"></iframe>
                 </div>
             </div>
         </section>
@@ -160,7 +162,7 @@
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <a href="mailto:hello@madhat.com">hello@madhat.com</a>
+                <a href="/cdn-cgi/l/email-protection#f9919c959596b994989d91988dd79a9694"><span class="__cf_email__" data-cfemail="345c5158585b745955505c55401a575b59">[email&#160;protected]</span></a>
                 <a href="tel:+1234567890">+1 (234) 567-890</a>
             </div>
         </div>
@@ -169,14 +171,164 @@
         </div>
     </footer>
 
-    <link rel="stylesheet" href="data:text/css;base64,LnNyLW9ubHl7cG9zaXRpb246YWJzb2x1dGU7d2lkdGg6MXB4O2hlaWdodDoxcHg7cGFkZGluZzowO21hcmdpbjotMXB4O292ZXJmbG93OmhpZGRlbjtjbGlwOnJlY3QoMCwwLDAsMCk7d2hpdGUtc3BhY2U6bm93cmFwO2JvcmRlci13aWR0aDowfS5zdGF0c3tiYWNrZ3JvdW5kOnZhcigtLXByaW1hcnkpO2NvbG9yOndoaXRlO3BhZGRpbmc6NXJlbSAzcmVtfS5zdGF0cy1jb250YWluZXJ7bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvO2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZml0LG1pbm1heCgyNTBweCwxZnIpKTtnYXA6NHJlbX0uc3RhdC1pdGVte3RleHQtYWxpZ246Y2VudGVyfS5zdGF0LW51bWJlcntmb250LXNpemU6NHJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZjtmb250LXdlaWdodDo5MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtjb2xvcjp2YXIoLS1hY2NlbnQpfS5zdGF0LWxhYmVse2ZvbnQtc2l6ZToxcmVtO29wYWNpdHk6Ljk7Zm9udC13ZWlnaHQ6NTAwfS5jYXNlLXN0dWRpZXN7cGFkZGluZzo4cmVtIDNyZW07bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvfS5zZWN0aW9uLXRpdGxle2ZvbnQtc2l6ZTpjbGFtcCgyLjVyZW0sNXZ3LDRyZW0pO21hcmdpbi1ib3R0b206NHJlbTtjb2xvcjp2YXIoLS1wcmltYXJ5KX0uY2FzZS1ncmlke2Rpc3BsYXk6Z3JpZDtnYXA6M3JlbX0uY2FzZS1jYXJke2JhY2tncm91bmQ6d2hpdGU7Ym9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpO292ZXJmbG93OmhpZGRlbjt0cmFuc2l0aW9uOnRyYW5zZm9ybSAuM3MsYm94LXNoYWRvdyAuM3N9LmNhc2UtY2FyZDpob3Zlcix7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTVweCk7Ym94LXNoYWRvdzowIDIwcHggNTBweCByZ2JhKDAsMCwwLC4xKX0uY2FzZS1pbWFnZXt3aWR0aDoxMDAlO2hlaWdodDo0MDBweDtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzY2N2VlYSAwJSwjNzY0YmEyIDEwMCUpO2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtwb3NpdGlvbjpyZWxhdGl2ZTtvdmVyZmxvdzpoaWRkZW59LmNhc2UtaW1hZ2U6OmJlZm9yZXtjb250ZW50OicnO3Bvc2l0aW9uOmFic29sdXRlO3RvcDowO2xlZnQ6MDtyaWdodDowO2JvdHRvbTowO2JhY2tncm91bmQ6cmVwZWF0aW5nLWxpbmVhci1ncmFkaWVudCg0NWRlZyx0cmFuc3BhcmVudCx0cmFuc3BhcmVudCAxMHB4LHJnYmEoMjU1LDI1NSwyNTUsLjA1KSAxMHB4LHJnYmEoMjU1LDI1NSwyNTUsLjA1KSAyMHB4KX0uY2FzZS1sb2dve2ZvbnQtc2l6ZTozcmVtO2NvbG9yOndoaXRlO2ZvbnQtd2VpZ2h0OjkwMDt6LWluZGV4OjE7Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9LmNhc2UtY29udGVudHtwYWRkaW5nOjIuNXJlbX0uY2FzZS10aXRsZXtmb250LXNpemU6MnJlbTttYXJnaW4tYm90dG9tOjFyZW07Y29sb3I6dmFyKC0tcHJpbWFyeSl9LmNhc2UtZGVzY3JpcHRpb257Y29sb3I6dmFyKC0tdGV4dC1saWdodCk7bWFyZ2luLWJvdHRvbToycmVtO2ZvbnQtc2l6ZToxLjFyZW19LmNhc2UtbWV0cmljc3tkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdCgzLDFmcik7Z2FwOjJyZW07cGFkZGluZy10b3A6MnJlbTtib3JkZXItdG9wOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpfS5tZXRyaWN7dGV4dC1hbGlnbjpjZW50ZXJ9Lm1ldHJpYy12YWx1ZXtmb250LXNpemU6Mi41cmVtO2ZvbnQtd2VpZ2h0OjkwMDtjb2xvcjp2YXIoLS1hY2NlbnQpO2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxHZW9yZ2lhLHNlcmlmfS5tZXRyaWMtbGFiZWx7Zm9udC1zaXplOi44NXJlbTtjb2xvcjp2YXIoLS10ZXh0LWxpZ2h0KTttYXJnaW4tdG9wOi41cmVtfS5hbmFseXplci1zZWN0aW9ue2JhY2tncm91bmQ6dmFyKC0tcHJpbWFyeSk7Y29sb3I6d2hpdGU7cGFkZGluZzo4cmVtIDNyZW19LmFuYWx5emVyLWNvbnRhaW5lcnttYXgtd2lkdGg6MTAwMHB4O21hcmdpbjowIGF1dG99LmFuYWx5emVyLXRpdGxle2ZvbnQtc2l6ZTpjbGFtcCgyLjVyZW0sNXZ3LDRyZW0pO21hcmdpbi1ib3R0b206MS41cmVtO3RleHQtYWxpZ246Y2VudGVyfS5hbmFseXplci1zdWJ0aXRsZXt0ZXh0LWFsaWduOmNlbnRlcjtmb250LXNpemU6MS4zcmVtO21hcmdpbi1ib3R0b206M3JlbTtvcGFjaXR5Oi45fS5hbmFseXplci1mb3Jte2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzozcmVtO2JvcmRlci1yYWRpdXM6NHB4O2JhY2tkcm9wLWZpbHRlcjpibHVyKDEwcHgpO2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMil9LmlucHV0LWdyb3Vwe2Rpc3BsYXk6ZmxleDtnYXA6MXJlbTttYXJnaW4tYm90dG9tOjJyZW19LnVybC1pbnB1dHtmbGV4OjE7cGFkZGluZzoxLjJyZW0gMS41cmVtO2JvcmRlcjoycHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMyk7YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xKTtjb2xvcjp3aGl0ZTtmb250LXNpemU6MS4xcmVtO2JvcmRlci1yYWRpdXM6MnB4O2ZvbnQtZmFtaWx5OidETSBTYW5zJyxzYW5zLXNlcmlmfS51cmwtaW5wdXQ6OnBsYWNlaG9sZGVye2NvbG9yOnJnYmEoMjU1LDI1NSwyNTUsLjYpfS51cmwtaW5wdXQ6Zm9jdXN7b3V0bGluZTpub25lO2JvcmRlci1jb2xvcjp2YXIoLS1hY2NlbnQpO2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMTUpfS5hbmFseXplLWJ1dHRvbntiYWNrZ3JvdW5kOnZhcigtLWFjY2VudCk7Y29sb3I6d2hpdGU7cGFkZGluZzoxLjJyZW0gM3JlbTtib3JkZXI6bm9uZTtmb250LXdlaWdodDo3MDA7Y3Vyc29yOnBvaW50ZXI7dHJhbnNpdGlvbjphbGwgLjNzO2ZvbnQtc2l6ZToxcmVtO2JvcmRlci1yYWRpdXM6MnB4O2ZvbnQtZmFtaWx5OidETSBTYW5zJyxzYW5zLXNlcmlmfS5hbmFseXplLWJ1dHRvbjpob3Zlcjpub3QoOmRpc2FibGVkKSwuYW5hbHl6ZS1idXR0b246Zm9jdXN7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTJweCk7Ym94LXNoYWRvdzowIDEwcHggMzBweCByZ2JhKDIzMCw0OCwzOSwuNCk7b3V0bGluZToycHggc29saWQgd2hpdGU7b3V0bGluZS1vZmZzZXQ6MnB4fS5hbmFseXplLWJ1dHRvbjpkaXNhYmxlZHtvcGFjaXR5Oi42O2N1cnNvcjpub3QtYWxsb3dlZH0ubG9hZGluZ3t0ZXh0LWFsaWduOmNlbnRlcjtwYWRkaW5nOjJyZW07ZGlzcGxheTpub25lfS5sb2FkaW5nLmFjdGl2ZXtkaXNwbGF5OmJsb2NrfS5zcGlubmVye2JvcmRlcjozcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMyk7Ym9yZGVyLXRvcDozcHggc29saWQgdmFyKC0tYWNjZW50KTtib3JkZXItcmFkaXVzOjUwJTt3aWR0aDo1MHB4O2hlaWdodDo1MHB4O2FuaW1hdGlvbjpzcGluIDFzIGxpbmVhciBpbmZpbml0ZTttYXJnaW46MCBhdXRvIDFyZW19LnJlc3VsdHN7ZGlzcGxheTpub25lO21hcmdpbi10b3A6M3JlbX0ucmVzdWx0cy5hY3RpdmV7ZGlzcGxheTpibG9ja30uc2NvcmUtY29udGFpbmVye2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzozcmVtO2JvcmRlci1yYWRpdXM6NHB4O3RleHQtYWxpZ246Y2VudGVyO21hcmdpbi1ib3R0b206MnJlbTtib3JkZXI6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIpfS5zY29yZS1jaXJjbGV7d2lkdGg6MjAwcHg7aGVpZ2h0OjIwMHB4O21hcmdpbjowIGF1dG8gMnJlbTtwb3NpdGlvbjpyZWxhdGl2ZX0uc2NvcmUtdmFsdWV7cG9zaXRpb246YWJzb2x1dGU7dG9wOjUwJTtsZWZ0OjUwJTt0cmFuc2Zvcm06dHJhbnNsYXRlKC01MCUsLTUwJSk7Zm9udC1zaXplOjRyZW07Zm9udC13ZWlnaHQ6OTAwO2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxHZW9yZ2lhLHNlcmlmfS5zY29yZS1sYWJlbHtmb250LXNpemU6MS4ycmVtO29wYWNpdHk6Ljl9Lm1ldHJpY3MtZ3JpZHtkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdChhdXRvLWZpdCxtaW5tYXgoMjAwcHgsMWZyKSk7Z2FwOjJyZW07bWFyZ2luLXRvcDoycmVtfS5tZXRyaWMtY2FyZHtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjEpO3BhZGRpbmc6MnJlbTtib3JkZXItcmFkaXVzOjRweDtib3JkZXI6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIpfS5tZXRyaWMtY2FyZC10aXRsZXtmb250LXNpemU6LjlyZW07b3BhY2l0eTouODttYXJnaW4tYm90dG9tOjFyZW19Lm1ldHJpYy1jYXJkLXZhbHVle2ZvbnQtc2l6ZToyLjVyZW07Zm9udC13ZWlnaHQ6OTAwO21hcmdpbi1ib3R0b206LjVyZW07Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9Lm1ldHJpYy1jYXJkLXNjb3Jle2ZvbnQtc2l6ZToxcmVtO29wYWNpdHk6Ljl9LnJlY29tbWVuZGF0aW9uc3ttYXJnaW4tdG9wOjNyZW19LnJlY29tbWVuZGF0aW9ucy10aXRsZXtmb250LXNpemU6MnJlbTttYXJnaW4tYm90dG9tOjEuNXJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZn0ucmVjb21tZW5kYXRpb24taXRlbXtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjEpO3BhZGRpbmc6MS41cmVtO2JvcmRlci1yYWRpdXM6NHB4O21hcmdpbi1ib3R0b206MXJlbTtib3JkZXItbGVmdDo0cHggc29saWQgdmFyKC0tYWNjZW50KX0ucmVjb21tZW5kYXRpb24tdGl0bGV7Zm9udC13ZWlnaHQ6NzAwO21hcmdpbi1ib3R0b206LjVyZW07Zm9udC1zaXplOjEuMXJlbX0ucmVjb21tZW5kYXRpb24tZGVzY3JpcHRpb257b3BhY2l0eTouOTtsaW5lLWhlaWdodDoxLjZ9LmZvb3RlcntiYWNrZ3JvdW5kOnZhcigtLXByaW1hcnkpO2NvbG9yOndoaXRlO3BhZGRpbmc6NXJlbSAzcmVtIDNyZW19LmZvb3Rlci1jb250ZW50e21heC13aWR0aDoxNDAwcHg7bWFyZ2luOjAgYXV0bzs7ZGlzcGxheTpncmlkO2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoYXV0by1maXQsbWlubWF4KDI1MHB4LDFmcikpO2dhcDo0cmVtO21hcmdpbi1ib3R0b206M3JlbX0uZm9vdGVyLXNlY3Rpb24gaDN7bWFyZ2luLWJvdHRvbToxLjVyZW07Zm9udC1zaXplOjEuM3JlbX0uZm9vdGVyLXNlY3Rpb24gcCwuZm9vdGVyLXNlY3Rpb24gYXtjb2xvcjpyZ2JhKDI1NSwyNTUsMjU1LC44KTt0ZXh0LWRlY29yYXRpb246bm9uZTtkaXNwbGF5OmJsb2NrO21hcmdpbi1ib3R0b206LjhyZW19LmZvb3Rlci1zZWN0aW9uIGE6aG92ZXJ7Y29sb3I6dmFyKC0tYWNjZW50KX0uZm9vdGVyLWJvdHRvbXttYXgtd2lkdGg6MTQwMHB4O21hcmdpbjowIGF1dG87cGFkZGluZy10b3A6MnJlbTtib3JkZXItdG9wOjFweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4yKTt0ZXh0LWFsaWduOmNlbnRlcjtvcGFjaXR5Oi43fUBrZXlmcmFtZXMgc3BpbntcdG97dHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpfX1AbWVkaWEgKG1heC13aWR0aDo3NjhweCl7LmNhc2Utc3R1ZGllcywuYW5hbHl6ZXItc2VjdGlvbntwYWRkaW5nOjRyZW0gMS41cmVtfS5jYXNlLW1ldHJpY3N7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjFmcn0uYW5hbHl6ZXItZm9ybXtwYWRkaW5nOjJyZW0gMS41cmVtfS5pbnB1dC1ncm91cHtmbGV4LWRpcmVjdGlvbjpjb2x1bW59Lm1ldHJpY3MtZ3JpZHtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyfX0uY29sb3ItMXtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzY2N2VlYSAwJSwjNzY0YmEyIDEwMCUpfS5jb2xvci0ye2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjZjA5M2ZiIDAlLCNmNTU3NmMgMTAwJSl9LmNvbG9yLTN7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCM0ZmFjZmUgMCUsIzAwZjJmZSAxMDAlKX0=">
+    <link rel="stylesheet" href="data:text/css;base64,LnNyLW9ubHl7cG9zaXRpb246YWJzb2x1dGU7d2lkdGg6MXB4O2hlaWdodDoxcHg7cGFkZGluZzowO21hcmdpbjotMXB4O292ZXJmbG93OmhpZGRlbjtjbGlwOnJlY3QoMCwwLDAsMCk7d2hpdGUtc3BhY2U6bm93cmFwO2JvcmRlci13aWR0aDowfS5zdGF0c3tiYWNrZ3JvdW5kOnZhcigtLXByaW1hcnkpO2NvbG9yOndoaXRlO3BhZGRpbmc6NXJlbSAzcmVtfS5zdGF0cy1jb250YWluZXJ7bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvO2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZml0LG1pbm1heCgyNTBweCwxZnIpKTtnYXA6NHJlbX0uc3RhdC1pdGVte3RleHQtYWxpZ246Y2VudGVyfS5zdGF0LW51bWJlcntmb250LXNpemU6NHJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZjtmb250LXdlaWdodDo5MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtjb2xvcjp2YXIoLS1hY2NlbnQpfS5zdGF0LWxhYmVse2ZvbnQtc2l6ZToxcmVtO29wYWNpdHk6Ljk7Zm9udC13ZWlnaHQ6NTAwfS5jYXNlLXN0dWRpZXN7cGFkZGluZzo4cmVtIDNyZW07bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvfS5zZWN0aW9uLXRpdGxle2ZvbnQtc2l6ZTpjbGFtcCgyLjVyZW0sNXZ3LDRyZW0pO21hcmdpbi1ib3R0b206NHJlbTtjb2xvcjp2YXIoLS1wcmltYXJ5KX0uY2FzZS1ncmlke2Rpc3BsYXk6Z3JpZDtnYXA6M3JlbX0uY2FzZS1jYXJke2JhY2tncm91bmQ6d2hpdGU7Ym9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpO292ZXJmbG93OmhpZGRlbjt0cmFuc2l0aW9uOnRyYW5zZm9ybSAuM3MsYm94LXNoYWRvdyAuM3N9LmNhc2UtY2FyZDpob3ZlcntjdXJzb3I6cG9pbnRlcjt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtNXB4KTtib3gtc2hhZG93OjAgMjBweCA1MHB4IHJnYmEoMCwwLDAsLjEpfS5jYXNlLWltYWdle3dpZHRoOjEwMCU7aGVpZ2h0OjQwMHB4O2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjNjY3ZWVhIDAlLCM3NjRiYTIgMTAwJSk7ZGlzcGxheTpmbGV4O2FsaWduLWl0ZW1zOmNlbnRlcjtqdXN0aWZ5LWNvbnRlbnQ6Y2VudGVyO3Bvc2l0aW9uOnJlbGF0aXZlO292ZXJmbG93OmhpZGRlbn0uY2FzZS1pbWFnZTo6YmVmb3Jle2NvbnRlbnQ6Jyc7cG9zaXRpb246YWJzb2x1dGU7dG9wOjA7bGVmdDowO3JpZ2h0OjA7Ym90dG9tOjA7YmFja2dyb3VuZDpyZXBlYXRpbmctbGluZWFyLWdyYWRpZW50KDQ1ZGVnLHRyYW5zcGFyZW50LHRyYW5zcGFyZW50IDEwcHgscmdiYSgyNTUsMjU1LDI1NSwuMDUpIDEwcHgscmdiYSgyNTUsMjU1LDI1NSwuMDUpIDIwcHgpfS5jYXNlLWxvZ297Zm9udC1zaXplOjNyZW07Y29sb3I6d2hpdGU7Zm9udC13ZWlnaHQ6OTAwO3otaW5kZXg6MTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZn0uY2FzZS1jb250ZW50e3BhZGRpbmc6Mi41cmVtfS5jYXNlLXRpdGxle2ZvbnQtc2l6ZToycmVtO21hcmdpbi1ib3R0b206MXJlbTtjb2xvcjp2YXIoLS1wcmltYXJ5KX0uY2FzZS1kZXNjcmlwdGlvbntjb2xvcjp2YXIoLS10ZXh0LWxpZ2h0KTttYXJnaW4tYm90dG9tOjJyZW07Zm9udC1zaXplOjEuMXJlbX0uY2FzZS1tZXRyaWNze2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDMsMWZyKTtnYXA6MnJlbTtwYWRkaW5nLXRvcDoycmVtO2JvcmRlci10b3A6MXB4IHNvbGlkIHZhcigtLWJvcmRlcil9Lm1ldHJpY3t0ZXh0LWFsaWduOmNlbnRlcn0ubWV0cmljLXZhbHVle2ZvbnQtc2l6ZToyLjVyZW07Zm9udC13ZWlnaHQ6OTAwO2NvbG9yOnZhcigtLWFjY2VudCk7Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9Lm1ldHJpYy1sYWJlbHtmb250LXNpemU6Ljg1cmVtO2NvbG9yOnZhcigtLXRleHQtbGlnaHQpO21hcmdpbi10b3A6LjVyZW19LmFuYWx5emVyLXNlY3Rpb257YmFja2dyb3VuZDp2YXIoLS1wcmltYXJ5KTtjb2xvcjp3aGl0ZTtwYWRkaW5nOjhyZW0gM3JlbX0uYW5hbHl6ZXItY29udGFpbmVye21heC13aWR0aDoxMDAwcHg7bWFyZ2luOjAgYXV0b30uYW5hbHl6ZXItdGl0bGV7Zm9udC1zaXplOmNsYW1wKDIuNXJlbSw1dncsNHJlbSk7bWFyZ2luLWJvdHRvbToxLjVyZW07dGV4dC1hbGlnbjpjZW50ZXJ9LmFuYWx5emVyLXN1YnRpdGxle3RleHQtYWxpZ246Y2VudGVyO2ZvbnQtc2l6ZToxLjNyZW07bWFyZ2luLWJvdHRvbTozcmVtO29wYWNpdHk6Ljl9LmFuYWx5emVyLWZvcm17YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xKTtwYWRkaW5nOjNyZW07Ym9yZGVyLXJhZGl1czo0cHg7YmFja2Ryb3AtZmlsdGVyOmJsdXIoMTBweCk7Ym9yZGVyOjFweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4yKX0uaW5wdXQtZ3JvdXB7ZGlzcGxheTpmbGV4O2dhcDoxcmVtO21hcmdpbi1ib3R0b206MnJlbX0udXJsLWlucHV0e2ZsZXg6MTtwYWRkaW5nOjEuMnJlbSAxLjVyZW07Ym9yZGVyOjJweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4zKTtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjEpO2NvbG9yOndoaXRlO2ZvbnQtc2l6ZToxLjFyZW07Ym9yZGVyLXJhZGl1czoycHg7Zm9udC1mYW1pbHk6J0RNIFNhbnMnLHNhbnMtc2VyaWZ9LnVybC1pbnB1dDo6cGxhY2Vob2xkZXJ7Y29sb3I6cmdiYSgyNTUsMjU1LDI1NSwuNil9LnVybC1pbnB1dDpmb2N1c3tvdXRsaW5lOm5vbmU7Ym9yZGVyLWNvbG9yOnZhcigtLWFjY2VudCk7YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xNSl9LmFuYWx5emUtYnV0dG9ue2JhY2tncm91bmQ6dmFyKC0tYWNjZW50KTtjb2xvcjp3aGl0ZTtwYWRkaW5nOjEuMnJlbSAzcmVtO2JvcmRlcjpub25lO2ZvbnQtd2VpZ2h0OjcwMDtjdXJzb3I6cG9pbnRlcjt0cmFuc2l0aW9uOmFsbCAuM3M7Zm9udC1zaXplOjFyZW07Ym9yZGVyLXJhZGl1czoycHg7Zm9udC1mYW1pbHk6J0RNIFNhbnMnLHNhbnMtc2VyaWZ9LmFuYWx5emUtYnV0dG9uOmhvdmVyOm5vdCg6ZGlzYWJsZWQpLC5hbmFseXplLWJ1dHRvbjpmb2N1c3t0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMnB4KTtib3gtc2hhZG93OjAgMTBweCAzMHB4IHJnYmEoMjMwLDQ4LDM5LC40KTtvdXRsaW5lOjJweCBzb2xpZCB3aGl0ZTtvdXRsaW5lLW9mZnNldDoycHh9LmFuYWx5emUtYnV0dG9uOmRpc2FibGVke29wYWNpdHk6LjY7Y3Vyc29yOm5vdC1hbGxvd2VkfS5sb2FkaW5ne3RleHQtYWxpZ246Y2VudGVyO3BhZGRpbmc6MnJlbTtkaXNwbGF5Om5vbmV9LmxvYWRpbmcuYWN0aXZle2Rpc3BsYXk6YmxvY2t9LnNwaW5uZXJ7Ym9yZGVyOjNweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4zKTtib3JkZXItdG9wOjNweCBzb2xpZCB2YXIoLS1hY2NlbnQpO2JvcmRlci1yYWRpdXM6NTAlO3dpZHRoOjUwcHg7aGVpZ2h0OjUwcHg7YW5pbWF0aW9uOnNwaW4gMXMgbGluZWFyIGluZmluaXRlO21hcmdpbjowIGF1dG8gMXJlbX0ucmVzdWx0c3tkaXNwbGF5Om5vbmU7bWFyZ2luLXRvcDozcmVtfS5yZXN1bHRzLmFjdGl2ZXtkaXNwbGF5OmJsb2NrfS5zY29yZS1jb250YWluZXJ7YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xKTtwYWRkaW5nOjNyZW07Ym9yZGVyLXJhZGl1czo0cHg7dGV4dC1hbGlnbjpjZW50ZXI7bWFyZ2luLWJvdHRvbToycmVtO2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMil9LnNjb3JlLWNpcmNsZXt3aWR0aDoyMDBweDtoZWlnaHQ6MjAwcHg7bWFyZ2luOjAgYXV0byAycmVtO3Bvc2l0aW9uOnJlbGF0aXZlfS5zY29yZS12YWx1ZXtwb3NpdGlvbjphYnNvbHV0ZTt0b3A6NTAlO2xlZnQ6NTAlO3RyYW5zZm9ybTp0cmFuc2xhdGUoLTUwJSwtNTAlKTtmb250LXNpemU6NHJlbTtmb250LXdlaWdodDo5MDA7Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9LnNjb3JlLWxhYmVse2ZvbnQtc2l6ZToxLjJyZW07b3BhY2l0eTouOX0ubWV0cmljcy1ncmlke2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZml0LG1pbm1heCgyMDBweCwxZnIpKTtnYXA6MnJlbTttYXJnaW4tdG9wOjJyZW19Lm1ldHJpYy1jYXJke2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzoycmVtO2JvcmRlci1yYWRpdXM6NHB4O2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMil9Lm1ldHJpYy1jYXJkLXRpdGxle2ZvbnQtc2l6ZTouOXJlbTtvcGFjaXR5Oi44O21hcmdpbi1ib3R0b206MXJlbX0ubWV0cmljLWNhcmQtdmFsdWV7Zm9udC1zaXplOjIuNXJlbTtmb250LXdlaWdodDo5MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZn0ubWV0cmljLWNhcmQtc2NvcmV7Zm9udC1zaXplOjFyZW07b3BhY2l0eTouOX0ucmVjb21tZW5kYXRpb25ze21hcmdpbi10b3A6M3JlbX0ucmVjb21tZW5kYXRpb25zLXRpdGxle2ZvbnQtc2l6ZToycmVtO21hcmdpbi1ib3R0b206MS41cmVtO2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxHZW9yZ2lhLHNlcmlmfS5yZWNvbW1lbmRhdGlvbi1pdGVte2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzoxLjVyZW07Ym9yZGVyLXJhZGl1czo0cHg7bWFyZ2luLWJvdHRvbToxcmVtO2JvcmRlci1sZWZ0OjRweCBzb2xpZCB2YXIoLS1hY2NlbnQpfS5yZWNvbW1lbmRhdGlvbi10aXRsZXtmb250LXdlaWdodDo3MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtmb250LXNpemU6MS4xcmVtfS5yZWNvbW1lbmRhdGlvbi1kZXNjcmlwdGlvbntvcGFjaXR5Oi45O2xpbmUtaGVpZ2h0OjEuNn0uZm9vdGVye2JhY2tncm91bmQ6dmFyKC0tcHJpbWFyeSk7Y29sb3I6d2hpdGU7cGFkZGluZzo1cmVtIDNyZW0gM3JlbX0uZm9vdGVyLWNvbnRlbnR7bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvOztkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdChhdXRvLWZpdCxtaW5tYXgoMjUwcHgsMWZyKSk7Z2FwOjRyZW07bWFyZ2luLWJvdHRvbTozcmVtfS5mb290ZXItc2VjdGlvbiBoM3ttYXJnaW4tYm90dG9tOjEuNXJlbTtmb250LXNpemU6MS4zcmVtfS5mb290ZXItc2VjdGlvbiBwLC5mb290ZXItc2VjdGlvbiBhe2NvbG9yOnJnYmEoMjU1LDI1NSwyNTUsLjgpO3RleHQtZGVjb3JhdGlvbjpub25lO2Rpc3BsYXk6YmxvY2s7bWFyZ2luLWJvdHRvbTouOHJlbX0uZm9vdGVyLXNlY3Rpb24gYTpob3Zlcntjb2xvcjp2YXIoLS1hY2NlbnQpfS5mb290ZXItYm90dG9te21heC13aWR0aDoxNDAwcHg7bWFyZ2luOjAgYXV0bztwYWRkaW5nLXRvcDoycmVtO2JvcmRlci10b3A6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIpO3RleHQtYWxpZ246Y2VudGVyO29wYWNpdHk6Ljd9QGtleWZyYW1lcyBzcGlue3x0b3t0cmFuc2Zvcm06cm90YXRlKDM2MGRlZyl9fUBtZWRpYSAobWF4LXdpZHRoOjc2OHB4KXsuY2FzZS1zdHVkaWVzLC5hbmFseXplci1zZWN0aW9ue3BhZGRpbmc6NHJlbSAxLjVyZW19LmNhc2UtbWV0cmljc3tncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyfS5hbmFseXplci1mb3Jte3BhZGRpbmc6MnJlbSAxLjVyZW19LmlucHV0LWdyb3Vwe2ZsZXgtZGlyZWN0aW9uOmNvbHVtbn0ubWV0cmljcy1ncmlke2dyaWQtdGVtcGxhdGUtY29sdW1uczoxZnJ9fS5jb2xvci0xe2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjNjY3ZWVhIDAlLCM3NjRiYTIgMTAwJSl9LmNvbG9yLTJ7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCNmMDkzZmIgMCUsI2Y1NTc2YyAxMDAlKX0uY29sb3ItM3tiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzRmYWNmZSAwJSwjMDBmMmZlIDEwMCUpfQ==">
 
-    <script>
-function showToast(msg){const t=document.getElementById('errorToast');t.textContent=msg;t.classList.add('active');setTimeout(()=>t.classList.remove('active'),4000)}
-window.addEventListener('load',function(){document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})})});
-async function analyzeWebsite(){const i=document.getElementById('websiteUrl'),u=i.value.trim();if(!u){showToast('Please enter a website URL');return}try{new URL(u)}catch(e){showToast('Please enter a valid URL (e.g., https://example.com)');return}const l=document.getElementById('loading'),r=document.getElementById('results'),b=document.querySelector('.analyze-button');l.classList.add('active');r.classList.remove('active');b.disabled=true;try{const res=await fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(u)}&strategy=mobile`),d=await res.json();if(d.error)throw new Error(d.error.message||'API Error');const lh=d.lighthouseResult,cat=lh.categories,aud=lh.audits,ps=Math.round(cat.performance.score*100);document.getElementById('overallScore').textContent=ps;document.getElementById('performanceScore').textContent=ps;document.getElementById('performanceLabel').textContent=getScoreLabel(ps);document.getElementById('fcpValue').textContent=aud['first-contentful-paint'].displayValue;document.getElementById('fcpLabel').textContent=getMetricLabel(aud['first-contentful-paint'].score);document.getElementById('lcpValue').textContent=aud['largest-contentful-paint'].displayValue;document.getElementById('lcpLabel').textContent=getMetricLabel(aud['largest-contentful-paint'].score);document.getElementById('tbtValue').textContent=aud['total-blocking-time'].displayValue;document.getElementById('tbtLabel').textContent=getMetricLabel(aud['total-blocking-time'].score);document.getElementById('clsValue').textContent=aud['cumulative-layout-shift'].displayValue;document.getElementById('clsLabel').textContent=getMetricLabel(aud['cumulative-layout-shift'].score);document.getElementById('siValue').textContent=aud['speed-index'].displayValue;document.getElementById('siLabel').textContent=getMetricLabel(aud['speed-index'].score);const c=2*Math.PI*90,o=c-(ps/100)*c;document.getElementById('scoreCircle').style.strokeDashoffset=o;const ops=lh.audits,rec=[];if(ops['uses-optimized-images']&&ops['uses-optimized-images'].score<1)rec.push({title:'Optimize Images',description:ops['uses-optimized-images'].description});if(ops['unused-css-rules']&&ops['unused-css-rules'].score<1)rec.push({title:'Remove Unused CSS',description:ops['unused-css-rules'].description});if(ops['render-blocking-resources']&&ops['render-blocking-resources'].score<1)rec.push({title:'Eliminate Render-Blocking Resources',description:ops['render-blocking-resources'].description});if(ops['unminified-javascript']&&ops['unminified-javascript'].score<1)rec.push({title:'Minify JavaScript',description:ops['unminified-javascript'].description});if(ops['server-response-time']&&ops['server-response-time'].score<1)rec.push({title:'Improve Server Response Time',description:ops['server-response-time'].description});const rl=document.getElementById('recommendationsList');rl.innerHTML='';if(rec.length===0)rl.innerHTML='<div class="recommendation-item"><div class="recommendation-title">Excellent!</div><div class="recommendation-description">Your website is well-optimized. Keep up the great work!</div></div>';else rec.forEach(rc=>{const it=document.createElement('div');it.className='recommendation-item';it.innerHTML=`<div class="recommendation-title">${rc.title}</div><div class="recommendation-description">${rc.description}</div>`;rl.appendChild(it)});l.classList.remove('active');r.classList.add('active')}catch(err){console.error('Error:',err);l.classList.remove('active');r.classList.add('active');const rl=document.getElementById('recommendationsList'),isQ=err.message.includes('quota')||err.message.includes('Quota')||err.message.includes('exceeded');if(isQ){document.getElementById('overallScore').textContent='⚠️';document.getElementById('performanceScore').textContent='--';document.getElementById('performanceLabel').textContent='API Limit';rl.innerHTML='<div class="recommendation-item" style="border-left-color:#FF9500"><div class="recommendation-title">📊 API Quota Exceeded</div><div class="recommendation-description">The free PageSpeed Insights API has daily usage limits. You can still analyze your website using:<br><br><a href="https://pagespeed.web.dev/analysis?url='+encodeURIComponent(u)+'" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline;font-size:1.1rem">→ Analyze on PageSpeed Insights (Official Tool) ←</a><br><br>The API quota resets daily. Check back tomorrow or contact us for a premium analysis!</div></div>'}else{document.getElementById('overallScore').textContent='❌';document.getElementById('performanceScore').textContent='--';document.getElementById('performanceLabel').textContent='Error';rl.innerHTML='<div class="recommendation-item"><div class="recommendation-title">⚠️ Analysis Error</div><div class="recommendation-description">'+err.message+'<br><br>Try analyzing directly:<br><a href="https://pagespeed.web.dev/analysis?url='+encodeURIComponent(u)+'" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">→ PageSpeed Insights ←</a></div></div>'}}finally{b.disabled=false}}
-function getScoreLabel(s){return s>=90?'Excellent':s>=50?'Needs Improvement':'Poor'}
-function getMetricLabel(s){return s===null?'N/A':s>=0.9?'Good':s>=0.5?'Needs Improvement':'Poor'}
-    </script>
-</body>
-</html>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function showToast(m){const t=document.getElementById('errorToast');t.textContent=m;t.classList.add('active');setTimeout(()=>t.classList.remove('active'),4000)}
+window.addEventListener('load',()=>{document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})})});
+
+async function analyzeWebsite(){
+  const i=document.getElementById('websiteUrl');
+  let u=i.value.trim();
+  if(!u){showToast('Please enter a website URL');return}
+  if(!u.startsWith('http://')&&!u.startsWith('https://'))u='https://'+u;
+  try{new URL(u)}catch(e){showToast('Please enter a valid website (e.g., example.com)');return}
+  
+  const l=document.getElementById('loading'),r=document.getElementById('results'),b=document.querySelector('.analyze-button'),f=document.getElementById('testFrame');
+  l.classList.add('active');r.classList.remove('active');b.disabled=true;
+  
+  const startTime=performance.now();
+  let resources={},metrics={totalSize:0,requests:0,images:0,scripts:0,styles:0};
+  
+  f.onload=()=>{
+    try{
+      const loadTime=((performance.now()-startTime)/1000).toFixed(2);
+      const doc=f.contentDocument||f.contentWindow.document;
+      
+      // Count resources
+      const imgs=doc.querySelectorAll('img');
+      const scrpts=doc.querySelectorAll('script');
+      const stls=doc.querySelectorAll('link[rel="stylesheet"]');
+      
+      // Analyze images
+      let jpgCount=0,pngCount=0,webpCount=0,gifCount=0,svgCount=0,noAltCount=0,lazyCount=0;
+      imgs.forEach(img=>{
+        const src=(img.src||img.dataset.src||'').toLowerCase();
+        if(src.includes('.jpg')||src.includes('.jpeg'))jpgCount++;
+        else if(src.includes('.png'))pngCount++;
+        else if(src.includes('.webp'))webpCount++;
+        else if(src.includes('.gif'))gifCount++;
+        else if(src.includes('.svg'))svgCount++;
+        if(!img.alt||img.alt.trim()==='')noAltCount++;
+        if(img.loading==='lazy'||img.dataset.src)lazyCount++;
+      });
+      
+      // Analyze scripts
+      let deferredScripts=0,asyncScripts=0,inlineScripts=0;
+      scrpts.forEach(s=>{
+        if(s.defer)deferredScripts++;
+        if(s.async)asyncScripts++;
+        if(!s.src)inlineScripts++;
+      });
+      
+      // Analyze stylesheets
+      let deferredStyles=0,inlineStyles=0,preloadStyles=0;
+      stls.forEach(s=>{
+        if(s.media==='print'||s.media.includes('print'))deferredStyles++;
+        if(s.rel==='preload')preloadStyles++;
+      });
+      const styleElements=doc.querySelectorAll('style');
+      inlineStyles=styleElements.length;
+      
+      // Check for common optimizations
+      const hasMinifiedCSS=Array.from(stls).some(s=>s.href&&s.href.includes('.min.css'));
+      const hasMinifiedJS=Array.from(scrpts).some(s=>s.src&&s.src.includes('.min.js'));
+      const hasFontPreconnect=!!doc.querySelector('link[rel="preconnect"]');
+      const hasViewport=!!doc.querySelector('meta[name="viewport"]');
+      const hasCompression=doc.querySelector('meta[http-equiv*="encoding"]');
+      
+      // Estimate page size
+      const htmlSize=new Blob([doc.documentElement.outerHTML]).size;
+      const estimatedSize=(htmlSize/1024).toFixed(0);
+      
+      // Calculate score
+      let score=100;
+      if(parseFloat(loadTime)>3)score-=20;
+      else if(parseFloat(loadTime)>2)score-=10;
+      if(estimatedSize>500)score-=15;
+      if(imgs.length>20)score-=10;
+      if(scrpts.length>10)score-=10;
+      if(stls.length>5)score-=10;
+      if(jpgCount+pngCount>5&&webpCount===0)score-=10;
+      if(deferredScripts===0&&scrpts.length>0)score-=5;
+      if(deferredStyles===0&&stls.length>0)score-=5;
+      if(lazyCount<imgs.length&&imgs.length>3)score-=5;
+      score=Math.max(0,Math.min(100,score));
+      
+      // Update UI
+      document.getElementById('overallScore').textContent=score;
+      document.getElementById('loadTime').textContent=loadTime+'s';
+      document.getElementById('loadTimeLabel').textContent=loadTime<2?'Excellent':loadTime<3?'Good':'Needs Work';
+      document.getElementById('pageSize').textContent=estimatedSize+'KB';
+      document.getElementById('pageSizeLabel').textContent=estimatedSize<300?'Excellent':estimatedSize<500?'Good':'Large';
+      document.getElementById('requests').textContent=(imgs.length+scrpts.length+stls.length);
+      document.getElementById('requestsLabel').textContent=(imgs.length+scrpts.length+stls.length)<30?'Good':'Many';
+      document.getElementById('images').textContent=imgs.length;
+      document.getElementById('imagesLabel').textContent=imgs.length<15?'Good':'Many';
+      document.getElementById('scripts').textContent=scrpts.length;
+      document.getElementById('scriptsLabel').textContent=scrpts.length<8?'Good':'Many';
+      document.getElementById('styles').textContent=stls.length;
+      document.getElementById('stylesLabel').textContent=stls.length<4?'Good':'Many';
+      
+      // Animate circle
+      const c=2*Math.PI*90,o=c-(score/100)*c;
+      document.getElementById('scoreCircle').style.strokeDashoffset=o;
+      
+      // Recommendations
+      const recs=[];
+      if(parseFloat(loadTime)>2)recs.push({t:'⚡ Reduce Load Time',d:'Your site loads in '+loadTime+' seconds. Aim for under 2 seconds. Consider optimizing images, minifying code, using a CDN, and enabling compression.'});
+      if(estimatedSize>400)recs.push({t:'📦 Reduce Page Size',d:'Page size is '+estimatedSize+'KB. Compress images, minify CSS/JS, remove unused resources, and enable gzip/brotli compression.'});
+      if(jpgCount+pngCount>0)recs.push({t:'🖼️ Convert Images to WebP',d:`Found ${jpgCount} JPEG and ${pngCount} PNG images. Convert to WebP format for 25-35% smaller file sizes with same quality. WebP is supported by 95%+ of browsers.`});
+      if(lazyCount<imgs.length&&imgs.length>3)recs.push({t:'🔄 Implement Lazy Loading',d:`Only ${lazyCount} of ${imgs.length} images use lazy loading. Add loading="lazy" to images below the fold to improve initial page load.`});
+      if(noAltCount>0)recs.push({t:'♿ Add Alt Text to Images',d:`${noAltCount} images missing alt text. This hurts accessibility and SEO. Add descriptive alt attributes to all images.`});
+      if(deferredStyles===0&&stls.length>0)recs.push({t:'🎨 Defer Non-Critical CSS',d:`${stls.length} stylesheet(s) are render-blocking. Use media="print" onload trick or inline critical CSS to improve First Contentful Paint.`});
+      if(deferredScripts===0&&asyncScripts===0&&scrpts.length>0)recs.push({t:'⚙️ Defer/Async JavaScript',d:`${scrpts.length} scripts found with no defer/async. Add defer or async attributes to non-critical scripts to prevent render blocking.`});
+      if(imgs.length>15)recs.push({t:'🎯 Optimize Image Count',d:'Found '+imgs.length+' images. Consider using CSS sprites, icon fonts, or SVG sprites to reduce HTTP requests.'});
+      if(scrpts.length>8)recs.push({t:'📜 Reduce JavaScript Files',d:'Found '+scrpts.length+' scripts. Bundle and minify JS files to reduce requests and improve load time.'});
+      if(stls.length>4)recs.push({t:'💅 Consolidate CSS',d:'Found '+stls.length+' stylesheets. Combine into fewer files and remove unused CSS for better performance.'});
+      if(!hasMinifiedJS&&scrpts.length>0)recs.push({t:'🗜️ Minify JavaScript',d:'JavaScript files don\'t appear to be minified. Use tools like Terser or UglifyJS to reduce file size by 30-40%.'});
+      if(!hasMinifiedCSS&&stls.length>0)recs.push({t:'🗜️ Minify CSS',d:'CSS files don\'t appear to be minified. Minify your stylesheets to remove whitespace and comments.'});
+      if(!hasFontPreconnect)recs.push({t:'🔗 Add Font Preconnect',d:'Add <link rel="preconnect"> tags for external fonts (Google Fonts, etc.) to reduce DNS lookup time.'});
+      if(inlineScripts>3)recs.push({t:'📝 Reduce Inline Scripts',d:`Found ${inlineScripts} inline scripts. Move to external files for better caching and separation of concerns.`});
+      
+      const rl=document.getElementById('recommendationsList');
+      rl.innerHTML='';
+      if(recs.length===0){
+        rl.innerHTML='<div class="recommendation-item"><div class="recommendation-title">🎉 Excellent Performance!</div><div class="recommendation-description">Your website is well-optimized with modern best practices. Keep maintaining these standards for the best user experience.</div></div>';
+      }else{
+        recs.forEach(rc=>{
+          rl.innerHTML+=`<div class="recommendation-item"><div class="recommendation-title">${rc.t}</div><div class="recommendation-description">${rc.d}</div></div>`;
+        });
+      }
+      
+      l.classList.remove('active');
+      r.classList.add('active');
+    }catch(err){
+      console.error(err);
+      showLoadError('Unable to analyze this website. It may block embedding or use special security settings.');
+    }finally{
+      b.disabled=false;
+    }
+  };
+  
+  f.onerror=()=>{
+    showLoadError('Unable to load this website. It may block embedding (X-Frame-Options) or require authentication.');
+  };
+  
+  function showLoadError(msg){
+    l.classList.remove('active');
+    r.classList.add('active');
+    document.getElementById('overallScore').textContent='⚠️';
+    document.getElementById('loadTime').textContent='--';
+    document.getElementById('loadTimeLabel').textContent='Cannot measure';
+    document.getElementById('pageSize').textContent='--';
+    document.getElementById('pageSizeLabel').textContent='Cannot measure';
+    document.getElementById('requests').textContent='--';
+    document.getElementById('requestsLabel').textContent='Cannot measure';
+    document.getElementById('images').textContent='--';
+    document.getElementById('imagesLabel').textContent='Cannot measure';
+    document.getElementById('scripts').textContent='--';
+    document.getElementById('scriptsLabel').textContent='Cannot measure';
+    document.getElementById('styles').textContent='--';
+    document.getElementById('stylesLabel').textContent='Cannot measure';
+    document.getElementById('recommendationsList').innerHTML=`<div class="recommendation-item" style="border-left-color:#FF9500"><div class="recommendation-title">⚠️ Analysis Unavailable</div><div class="recommendation-description">${msg}<br><br>Try these alternatives:<br>• Use <a href="https://pagespeed.web.dev/analysis?url=${encodeURIComponent(u)}" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">PageSpeed Insights</a><br>• Use <a href="https://gtmetrix.com/?url=${encodeURIComponent(u)}" target="_blank" rel="noopener" st
