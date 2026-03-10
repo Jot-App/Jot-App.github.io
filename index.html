@@ -1,27 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mad Hat Communications - Performance-driven growth marketing, market expansion, and conversion optimization services.">
+    <meta name="description"
+        content="Mad Hat Communications - Performance-driven growth marketing, market expansion, and conversion optimization services.">
     <title>Mad Hat Communications - Performance-Driven Growth Marketing</title>
-    
+
+    <!-- Load Configuration -->
+    <script src="config.js"></script>
+    <script>
+        // Add your Google PageSpeed Insights API Key here
+        const PAGE_SPEED_API_KEY = "AIzaSyDV6hDIo36biyqg1U3STsYq2MenYbSfdf8";
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#0F0F0F;--accent:#E63027;--secondary:#F5F5F0;--text:#2C2C2C;--text-light:#525252;--border:#E0E0E0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--secondary);color:var(--text);line-height:1.6;overflow-x:hidden}h1,h2,h3{font-family:Georgia,serif;font-weight:900;line-height:1.1}.header{position:fixed;top:0;left:0;right:0;background:rgba(245,245,240,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:1000;padding:1.5rem 0}.nav-container{max-width:1400px;margin:0 auto;padding:0 3rem;display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.5rem;font-weight:900;font-family:Georgia,serif;color:var(--primary);text-decoration:none;letter-spacing:-0.02em}.nav-links{display:flex;gap:2.5rem;list-style:none}.nav-links a{color:var(--text);text-decoration:none;font-weight:500;font-size:0.95rem;transition:color 0.3s}.nav-links a:hover{color:var(--accent)}.hero{margin-top:80px;padding:8rem 3rem 6rem;max-width:1400px;margin-left:auto;margin-right:auto}.hero-content{max-width:900px}.hero h1{font-size:clamp(3rem,8vw,6.5rem);margin-bottom:2rem;color:var(--primary)}.hero-subtitle{font-size:1.5rem;color:var(--text-light);max-width:600px;margin-bottom:3rem}.cta-button{display:inline-block;background:var(--accent);color:white;padding:1.2rem 3rem;text-decoration:none;font-weight:700;border-radius:2px;transition:transform 0.3s,box-shadow 0.3s;border:none;cursor:pointer;font-size:1rem}.cta-button:hover,.cta-button:focus{transform:translateY(-2px);box-shadow:0 10px 30px rgba(230,48,39,0.3);outline:2px solid var(--accent);outline-offset:2px}.error-toast{display:none;position:fixed;top:100px;left:50%;transform:translateX(-50%);background:#2C2C2C;color:white;padding:1rem 2rem;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:2000;max-width:90%;animation:slideDown 0.3s ease-out}.error-toast.active{display:block}@keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}@media (max-width:768px){.nav-container{padding:0 1.5rem}.nav-links{display:none}.hero{padding:4rem 1.5rem 3rem}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --primary: #0F0F0F;
+            --accent: #E63027;
+            --secondary: #F5F5F0;
+            --text: #2C2C2C;
+            --text-light: #525252;
+            --border: #E0E0E0
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: Georgia, serif;
+            font-weight: 900;
+            line-height: 1.1
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(245, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.5rem 0
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            font-family: Georgia, serif;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.02em
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s
+        }
+
+        .nav-links a:hover {
+            color: var(--accent)
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 3rem 6rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .hero-content {
+            max-width: 900px
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            margin-bottom: 2rem;
+            color: var(--primary)
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 3rem
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(230, 48, 39, 0.3);
+            outline: 2px solid var(--accent);
+            outline-offset: 2px
+        }
+
+        .error-toast {
+            display: none;
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2C2C2C;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+            max-width: 90%;
+            animation: slideDown 0.3s ease-out
+        }
+
+        .error-toast.active {
+            display: block
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0)
+            }
+        }
+
+        @media (max-width:768px) {
+            .nav-container {
+                padding: 0 1.5rem
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .hero {
+                padding: 4rem 1.5rem 3rem
+            }
+        }
     </style>
-    
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght:700;900&family=DM+Sans:wght@400;500;700&display=swap"></noscript>
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght:700;900&family=DM+Sans:wght@400;500;700&display=swap">
+    </noscript>
 </head>
+
 <body>
     <div id="errorToast" class="error-toast" role="alert" aria-live="polite"></div>
-    
+
     <header class="header">
         <nav class="nav-container" aria-label="Main navigation">
-            <a href="#" class="logo">Mad Hat</a>
+            <a href="#" class="logo" id="companyName">Mad Hat</a>
             <ul class="nav-links">
                 <li><a href="#work">Work</a></li>
                 <li><a href="#analyzer">Analyzer</a></li>
@@ -34,74 +218,38 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>Performance-Driven Growth Marketing</h1>
-                <p class="hero-subtitle">From market expansion to conversion optimization, we deliver measurable results through strategic digital marketing, content production, and performance analytics.</p>
-                <a href="#analyzer" class="cta-button">Analyze Your Website</a>
+                <h1 id="heroHeadline">Performance-Driven Growth Marketing</h1>
+                <p class="hero-subtitle" id="heroSubtitle">Loading...</p>
+                <a href="#analyzer" class="cta-button" id="heroCTA">Analyze Your Website</a>
             </div>
         </section>
 
         <section class="stats" aria-labelledby="stats-heading">
             <h2 id="stats-heading" class="sr-only">Our Impact</h2>
-            <div class="stats-container">
-                <div class="stat-item"><div class="stat-number">750+</div><div class="stat-label">Customers Acquired</div></div>
-                <div class="stat-item"><div class="stat-number">4.2x</div><div class="stat-label">Average ROAS Improvement</div></div>
-                <div class="stat-item"><div class="stat-number">64%</div><div class="stat-label">Average CAC Reduction</div></div>
-                <div class="stat-item"><div class="stat-number">7+</div><div class="stat-label">Markets Launched</div></div>
+            <div class="stats-container" id="statsContainer">
+                <!-- Stats loaded from config.js -->
             </div>
         </section>
 
         <section id="work" class="case-studies" aria-labelledby="case-studies-heading">
             <h2 id="case-studies-heading" class="section-title">Success Stories</h2>
-            <div class="case-grid">
-                <article class="case-card">
-                    <div class="case-image color-1"><div class="case-logo">Alankari</div></div>
-                    <div class="case-content">
-                        <h3 class="case-title">Alankari.com</h3>
-                        <p class="case-description">Reduced customer acquisition costs for India's leading handloom saree brand through strategic conversion rate optimization and targeted performance marketing campaigns.</p>
-                        <div class="case-metrics">
-                            <div class="metric"><div class="metric-value">64%</div><div class="metric-label">CAC Reduction</div></div>
-                            <div class="metric"><div class="metric-value">4.2x</div><div class="metric-label">ROAS Increase</div></div>
-                            <div class="metric"><div class="metric-value">127%</div><div class="metric-label">Conversion Rate</div></div>
-                        </div>
-                    </div>
-                </article>
-                <article class="case-card">
-                    <div class="case-image color-2"><div class="case-logo">DronaHQ</div></div>
-                    <div class="case-content">
-                        <h3 class="case-title">DronaHQ - Africa & Middle East Expansion</h3>
-                        <p class="case-description">Spearheaded market entry strategy for low-code B2B SaaS platform, scaling from zero to 750+ customers across Africa and Middle East through localized demand generation and strategic partnerships.</p>
-                        <div class="case-metrics">
-                            <div class="metric"><div class="metric-value">750+</div><div class="metric-label">New Customers</div></div>
-                            <div class="metric"><div class="metric-value">0→7</div><div class="metric-label">Markets Opened</div></div>
-                            <div class="metric"><div class="metric-value">2 Yrs</div><div class="metric-label">Market Launch</div></div>
-                        </div>
-                    </div>
-                </article>
-                <article class="case-card">
-                    <div class="case-image color-3"><div class="case-logo">Q-SYS</div></div>
-                    <div class="case-content">
-                        <h3 class="case-title">QSC/Q-SYS - Exclusive Agency Partnership</h3>
-                        <p class="case-description">Multi-year exclusive partnership covering India market launch, headquarters opening, 3 InfoComm events, PlayOutLoud podcast production, music videos, and testimonial content creation.</p>
-                        <div class="case-metrics">
-                            <div class="metric"><div class="metric-value">5+</div><div class="metric-label">Years Partnership</div></div>
-                            <div class="metric"><div class="metric-value">50+</div><div class="metric-label">Content Pieces</div></div>
-                            <div class="metric"><div class="metric-value">3</div><div class="metric-label">Major Events</div></div>
-                        </div>
-                    </div>
-                </article>
+            <div class="case-grid" id="caseStudiesContainer">
+                <!-- Case studies loaded from config.js -->
             </div>
         </section>
 
         <section id="analyzer" class="analyzer-section" aria-labelledby="analyzer-heading">
             <div class="analyzer-container">
-                <h2 id="analyzer-heading" class="analyzer-title">Website Performance Analyzer</h2>
-                <p class="analyzer-subtitle">Get instant insights into your website's speed, optimization, and user experience</p>
-                
+                <h2 id="analyzer-heading" class="analyzer-title" id="analyzerTitle">Website Performance Analyzer</h2>
+                <p class="analyzer-subtitle" id="analyzerSubtitle">Loading...</p>
+
                 <div class="analyzer-form">
                     <div class="input-group">
                         <label for="websiteUrl" class="sr-only">Website URL</label>
-                        <input type="text" id="websiteUrl" class="url-input" placeholder="Enter website (e.g., madhatcomm.in or example.com)" required aria-required="true">
-                        <button class="analyze-button" onclick="analyzeWebsite()" aria-label="Analyze website performance">Analyze</button>
+                        <input type="text" id="websiteUrl" class="url-input" placeholder="Loading..." required
+                            aria-required="true">
+                        <button class="analyze-button" onclick="analyzeWebsite()"
+                            aria-label="Analyze website performance">Analyze</button>
                     </div>
 
                     <div class="loading" id="loading" role="status" aria-live="polite">
@@ -113,20 +261,49 @@
                         <div class="score-container">
                             <div class="score-circle">
                                 <svg width="200" height="200" aria-label="Performance score circle">
-                                    <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="12"/>
-                                    <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="#E63027" stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 1s ease-out"/>
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.2)"
+                                        stroke-width="12" />
+                                    <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="#E63027"
+                                        stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48"
+                                        transform="rotate(-90 100 100)"
+                                        style="transition:stroke-dashoffset 1s ease-out" />
                                 </svg>
-                                <div class="score-value" id="overallScore" aria-label="Overall performance score">--</div>
+                                <div class="score-value" id="overallScore" aria-label="Overall performance score">--
+                                </div>
                             </div>
                             <div class="score-label">Overall Performance Score</div>
                         </div>
                         <div class="metrics-grid">
-                            <div class="metric-card"><div class="metric-card-title">Load Time</div><div class="metric-card-value" id="loadTime">--</div><div class="metric-card-score" id="loadTimeLabel">Measuring...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Page Size</div><div class="metric-card-value" id="pageSize">--</div><div class="metric-card-score" id="pageSizeLabel">Measuring...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">HTTP Requests</div><div class="metric-card-value" id="requests">--</div><div class="metric-card-score" id="requestsLabel">Measuring...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Images</div><div class="metric-card-value" id="images">--</div><div class="metric-card-score" id="imagesLabel">Measuring...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Scripts</div><div class="metric-card-value" id="scripts">--</div><div class="metric-card-score" id="scriptsLabel">Measuring...</div></div>
-                            <div class="metric-card"><div class="metric-card-title">Stylesheets</div><div class="metric-card-value" id="styles">--</div><div class="metric-card-score" id="stylesLabel">Measuring...</div></div>
+                            <div class="metric-card">
+                                <div class="metric-card-title">Load Time</div>
+                                <div class="metric-card-value" id="loadTime">--</div>
+                                <div class="metric-card-score" id="loadTimeLabel">Measuring...</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-card-title">Page Size</div>
+                                <div class="metric-card-value" id="pageSize">--</div>
+                                <div class="metric-card-score" id="pageSizeLabel">Measuring...</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-card-title">HTTP Requests</div>
+                                <div class="metric-card-value" id="requests">--</div>
+                                <div class="metric-card-score" id="requestsLabel">Measuring...</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-card-title">Images</div>
+                                <div class="metric-card-value" id="images">--</div>
+                                <div class="metric-card-score" id="imagesLabel">Measuring...</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-card-title">Scripts</div>
+                                <div class="metric-card-value" id="scripts">--</div>
+                                <div class="metric-card-score" id="scriptsLabel">Measuring...</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-card-title">Stylesheets</div>
+                                <div class="metric-card-value" id="styles">--</div>
+                                <div class="metric-card-score" id="stylesLabel">Measuring...</div>
+                            </div>
                         </div>
                         <div class="recommendations">
                             <h3 class="recommendations-title">Optimization Opportunities</h3>
@@ -134,7 +311,9 @@
                         </div>
                     </div>
 
-                    <iframe id="testFrame" style="position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none" aria-hidden="true"></iframe>
+                    <iframe id="testFrame"
+                        style="position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none"
+                        aria-hidden="true"></iframe>
                 </div>
             </div>
         </section>
@@ -143,192 +322,31 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Mad Hat Communications</h3>
-                <p>Driving measurable growth through strategic marketing, market expansion, and performance-driven campaigns.</p>
+                <h3 id="footerCompanyName">Mad Hat Communications</h3>
+                <p id="footerDescription">Loading...</p>
             </div>
             <div class="footer-section">
                 <h3>Services</h3>
-                <a href="#">Market Expansion Strategy</a>
-                <a href="#">Conversion Rate Optimization</a>
-                <a href="#">Performance Marketing</a>
-                <a href="#">Content Production & Events</a>
+                <div id="servicesContainer"></div>
             </div>
             <div class="footer-section">
                 <h3>Company</h3>
-                <a href="#">About Us</a>
-                <a href="#">Case Studies</a>
-                <a href="#">Blog</a>
-                <a href="#">Careers</a>
+                <div id="companyLinksContainer"></div>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <a href="/cdn-cgi/l/email-protection#f9919c959596b994989d91988dd79a9694"><span class="__cf_email__" data-cfemail="345c5158585b745955505c55401a575b59">[email&#160;protected]</span></a>
-                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                <a href="mailto:hello@madhat.com" id="footerEmail">hello@madhat.com</a>
+                <a href="tel:+1234567890" id="footerPhone">+1 (234) 567-890</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Mad Hat Communications. All rights reserved.</p>
+            <p>&copy; <span id="currentYear">2024</span> <span id="copyrightName">Mad Hat Communications</span>. All
+                rights reserved.</p>
         </div>
     </footer>
 
-    <link rel="stylesheet" href="data:text/css;base64,LnNyLW9ubHl7cG9zaXRpb246YWJzb2x1dGU7d2lkdGg6MXB4O2hlaWdodDoxcHg7cGFkZGluZzowO21hcmdpbjotMXB4O292ZXJmbG93OmhpZGRlbjtjbGlwOnJlY3QoMCwwLDAsMCk7d2hpdGUtc3BhY2U6bm93cmFwO2JvcmRlci13aWR0aDowfS5zdGF0c3tiYWNrZ3JvdW5kOnZhcigtLXByaW1hcnkpO2NvbG9yOndoaXRlO3BhZGRpbmc6NXJlbSAzcmVtfS5zdGF0cy1jb250YWluZXJ7bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvO2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZml0LG1pbm1heCgyNTBweCwxZnIpKTtnYXA6NHJlbX0uc3RhdC1pdGVte3RleHQtYWxpZ246Y2VudGVyfS5zdGF0LW51bWJlcntmb250LXNpemU6NHJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZjtmb250LXdlaWdodDo5MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtjb2xvcjp2YXIoLS1hY2NlbnQpfS5zdGF0LWxhYmVse2ZvbnQtc2l6ZToxcmVtO29wYWNpdHk6Ljk7Zm9udC13ZWlnaHQ6NTAwfS5jYXNlLXN0dWRpZXN7cGFkZGluZzo4cmVtIDNyZW07bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvfS5zZWN0aW9uLXRpdGxle2ZvbnQtc2l6ZTpjbGFtcCgyLjVyZW0sNXZ3LDRyZW0pO21hcmdpbi1ib3R0b206NHJlbTtjb2xvcjp2YXIoLS1wcmltYXJ5KX0uY2FzZS1ncmlke2Rpc3BsYXk6Z3JpZDtnYXA6M3JlbX0uY2FzZS1jYXJke2JhY2tncm91bmQ6d2hpdGU7Ym9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpO292ZXJmbG93OmhpZGRlbjt0cmFuc2l0aW9uOnRyYW5zZm9ybSAuM3MsYm94LXNoYWRvdyAuM3N9LmNhc2UtY2FyZDpob3ZlcntjdXJzb3I6cG9pbnRlcjt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtNXB4KTtib3gtc2hhZG93OjAgMjBweCA1MHB4IHJnYmEoMCwwLDAsLjEpfS5jYXNlLWltYWdle3dpZHRoOjEwMCU7aGVpZ2h0OjQwMHB4O2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjNjY3ZWVhIDAlLCM3NjRiYTIgMTAwJSk7ZGlzcGxheTpmbGV4O2FsaWduLWl0ZW1zOmNlbnRlcjtqdXN0aWZ5LWNvbnRlbnQ6Y2VudGVyO3Bvc2l0aW9uOnJlbGF0aXZlO292ZXJmbG93OmhpZGRlbn0uY2FzZS1pbWFnZTo6YmVmb3Jle2NvbnRlbnQ6Jyc7cG9zaXRpb246YWJzb2x1dGU7dG9wOjA7bGVmdDowO3JpZ2h0OjA7Ym90dG9tOjA7YmFja2dyb3VuZDpyZXBlYXRpbmctbGluZWFyLWdyYWRpZW50KDQ1ZGVnLHRyYW5zcGFyZW50LHRyYW5zcGFyZW50IDEwcHgscmdiYSgyNTUsMjU1LDI1NSwuMDUpIDEwcHgscmdiYSgyNTUsMjU1LDI1NSwuMDUpIDIwcHgpfS5jYXNlLWxvZ297Zm9udC1zaXplOjNyZW07Y29sb3I6d2hpdGU7Zm9udC13ZWlnaHQ6OTAwO3otaW5kZXg6MTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZn0uY2FzZS1jb250ZW50e3BhZGRpbmc6Mi41cmVtfS5jYXNlLXRpdGxle2ZvbnQtc2l6ZToycmVtO21hcmdpbi1ib3R0b206MXJlbTtjb2xvcjp2YXIoLS1wcmltYXJ5KX0uY2FzZS1kZXNjcmlwdGlvbntjb2xvcjp2YXIoLS10ZXh0LWxpZ2h0KTttYXJnaW4tYm90dG9tOjJyZW07Zm9udC1zaXplOjEuMXJlbX0uY2FzZS1tZXRyaWNze2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDMsMWZyKTtnYXA6MnJlbTtwYWRkaW5nLXRvcDoycmVtO2JvcmRlci10b3A6MXB4IHNvbGlkIHZhcigtLWJvcmRlcil9Lm1ldHJpY3t0ZXh0LWFsaWduOmNlbnRlcn0ubWV0cmljLXZhbHVle2ZvbnQtc2l6ZToyLjVyZW07Zm9udC13ZWlnaHQ6OTAwO2NvbG9yOnZhcigtLWFjY2VudCk7Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9Lm1ldHJpYy1sYWJlbHtmb250LXNpemU6Ljg1cmVtO2NvbG9yOnZhcigtLXRleHQtbGlnaHQpO21hcmdpbi10b3A6LjVyZW19LmFuYWx5emVyLXNlY3Rpb257YmFja2dyb3VuZDp2YXIoLS1wcmltYXJ5KTtjb2xvcjp3aGl0ZTtwYWRkaW5nOjhyZW0gM3JlbX0uYW5hbHl6ZXItY29udGFpbmVye21heC13aWR0aDoxMDAwcHg7bWFyZ2luOjAgYXV0b30uYW5hbHl6ZXItdGl0bGV7Zm9udC1zaXplOmNsYW1wKDIuNXJlbSw1dncsNHJlbSk7bWFyZ2luLWJvdHRvbToxLjVyZW07dGV4dC1hbGlnbjpjZW50ZXJ9LmFuYWx5emVyLXN1YnRpdGxle3RleHQtYWxpZ246Y2VudGVyO2ZvbnQtc2l6ZToxLjNyZW07bWFyZ2luLWJvdHRvbTozcmVtO29wYWNpdHk6Ljl9LmFuYWx5emVyLWZvcm17YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xKTtwYWRkaW5nOjNyZW07Ym9yZGVyLXJhZGl1czo0cHg7YmFja2Ryb3AtZmlsdGVyOmJsdXIoMTBweCk7Ym9yZGVyOjFweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4yKX0uaW5wdXQtZ3JvdXB7ZGlzcGxheTpmbGV4O2dhcDoxcmVtO21hcmdpbi1ib3R0b206MnJlbX0udXJsLWlucHV0e2ZsZXg6MTtwYWRkaW5nOjEuMnJlbSAxLjVyZW07Ym9yZGVyOjJweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4zKTtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjEpO2NvbG9yOndoaXRlO2ZvbnQtc2l6ZToxLjFyZW07Ym9yZGVyLXJhZGl1czoycHg7Zm9udC1mYW1pbHk6J0RNIFNhbnMnLHNhbnMtc2VyaWZ9LnVybC1pbnB1dDo6cGxhY2Vob2xkZXJ7Y29sb3I6cmdiYSgyNTUsMjU1LDI1NSwuNil9LnVybC1pbnB1dDpmb2N1c3tvdXRsaW5lOm5vbmU7Ym9yZGVyLWNvbG9yOnZhcigtLWFjY2VudCk7YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xNSl9LmFuYWx5emUtYnV0dG9ue2JhY2tncm91bmQ6dmFyKC0tYWNjZW50KTtjb2xvcjp3aGl0ZTtwYWRkaW5nOjEuMnJlbSAzcmVtO2JvcmRlcjpub25lO2ZvbnQtd2VpZ2h0OjcwMDtjdXJzb3I6cG9pbnRlcjt0cmFuc2l0aW9uOmFsbCAuM3M7Zm9udC1zaXplOjFyZW07Ym9yZGVyLXJhZGl1czoycHg7Zm9udC1mYW1pbHk6J0RNIFNhbnMnLHNhbnMtc2VyaWZ9LmFuYWx5emUtYnV0dG9uOmhvdmVyOm5vdCg6ZGlzYWJsZWQpLC5hbmFseXplLWJ1dHRvbjpmb2N1c3t0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMnB4KTtib3gtc2hhZG93OjAgMTBweCAzMHB4IHJnYmEoMjMwLDQ4LDM5LC40KTtvdXRsaW5lOjJweCBzb2xpZCB3aGl0ZTtvdXRsaW5lLW9mZnNldDoycHh9LmFuYWx5emUtYnV0dG9uOmRpc2FibGVke29wYWNpdHk6LjY7Y3Vyc29yOm5vdC1hbGxvd2VkfS5sb2FkaW5ne3RleHQtYWxpZ246Y2VudGVyO3BhZGRpbmc6MnJlbTtkaXNwbGF5Om5vbmV9LmxvYWRpbmcuYWN0aXZle2Rpc3BsYXk6YmxvY2t9LnNwaW5uZXJ7Ym9yZGVyOjNweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4zKTtib3JkZXItdG9wOjNweCBzb2xpZCB2YXIoLS1hY2NlbnQpO2JvcmRlci1yYWRpdXM6NTAlO3dpZHRoOjUwcHg7aGVpZ2h0OjUwcHg7YW5pbWF0aW9uOnNwaW4gMXMgbGluZWFyIGluZmluaXRlO21hcmdpbjowIGF1dG8gMXJlbX0ucmVzdWx0c3tkaXNwbGF5Om5vbmU7bWFyZ2luLXRvcDozcmVtfS5yZXN1bHRzLmFjdGl2ZXtkaXNwbGF5OmJsb2NrfS5zY29yZS1jb250YWluZXJ7YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xKTtwYWRkaW5nOjNyZW07Ym9yZGVyLXJhZGl1czo0cHg7dGV4dC1hbGlnbjpjZW50ZXI7bWFyZ2luLWJvdHRvbToycmVtO2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMil9LnNjb3JlLWNpcmNsZXt3aWR0aDoyMDBweDtoZWlnaHQ6MjAwcHg7bWFyZ2luOjAgYXV0byAycmVtO3Bvc2l0aW9uOnJlbGF0aXZlfS5zY29yZS12YWx1ZXtwb3NpdGlvbjphYnNvbHV0ZTt0b3A6NTAlO2xlZnQ6NTAlO3RyYW5zZm9ybTp0cmFuc2xhdGUoLTUwJSwtNTAlKTtmb250LXNpemU6NHJlbTtmb250LXdlaWdodDo5MDA7Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9LnNjb3JlLWxhYmVse2ZvbnQtc2l6ZToxLjJyZW07b3BhY2l0eTouOX0ubWV0cmljcy1ncmlke2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZml0LG1pbm1heCgyMDBweCwxZnIpKTtnYXA6MnJlbTttYXJnaW4tdG9wOjJyZW19Lm1ldHJpYy1jYXJke2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzoycmVtO2JvcmRlci1yYWRpdXM6NHB4O2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMil9Lm1ldHJpYy1jYXJkLXRpdGxle2ZvbnQtc2l6ZTouOXJlbTtvcGFjaXR5Oi44O21hcmdpbi1ib3R0b206MXJlbX0ubWV0cmljLWNhcmQtdmFsdWV7Zm9udC1zaXplOjIuNXJlbTtmb250LXdlaWdodDo5MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZn0ubWV0cmljLWNhcmQtc2NvcmV7Zm9udC1zaXplOjFyZW07b3BhY2l0eTouOX0ucmVjb21tZW5kYXRpb25ze21hcmdpbi10b3A6M3JlbX0ucmVjb21tZW5kYXRpb25zLXRpdGxle2ZvbnQtc2l6ZToycmVtO21hcmdpbi1ib3R0b206MS41cmVtO2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxHZW9yZ2lhLHNlcmlmfS5yZWNvbW1lbmRhdGlvbi1pdGVte2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzoxLjVyZW07Ym9yZGVyLXJhZGl1czo0cHg7bWFyZ2luLWJvdHRvbToxcmVtO2JvcmRlci1sZWZ0OjRweCBzb2xpZCB2YXIoLS1hY2NlbnQpfS5yZWNvbW1lbmRhdGlvbi10aXRsZXtmb250LXdlaWdodDo3MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtmb250LXNpemU6MS4xcmVtfS5yZWNvbW1lbmRhdGlvbi1kZXNjcmlwdGlvbntvcGFjaXR5Oi45O2xpbmUtaGVpZ2h0OjEuNn0uZm9vdGVye2JhY2tncm91bmQ6dmFyKC0tcHJpbWFyeSk7Y29sb3I6d2hpdGU7cGFkZGluZzo1cmVtIDNyZW0gM3JlbX0uZm9vdGVyLWNvbnRlbnR7bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvOztkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdChhdXRvLWZpdCxtaW5tYXgoMjUwcHgsMWZyKSk7Z2FwOjRyZW07bWFyZ2luLWJvdHRvbTozcmVtfS5mb290ZXItc2VjdGlvbiBoM3ttYXJnaW4tYm90dG9tOjEuNXJlbTtmb250LXNpemU6MS4zcmVtfS5mb290ZXItc2VjdGlvbiBwLC5mb290ZXItc2VjdGlvbiBhe2NvbG9yOnJnYmEoMjU1LDI1NSwyNTUsLjgpO3RleHQtZGVjb3JhdGlvbjpub25lO2Rpc3BsYXk6YmxvY2s7bWFyZ2luLWJvdHRvbTouOHJlbX0uZm9vdGVyLXNlY3Rpb24gYTpob3Zlcntjb2xvcjp2YXIoLS1hY2NlbnQpfS5mb290ZXItYm90dG9te21heC13aWR0aDoxNDAwcHg7bWFyZ2luOjAgYXV0bztwYWRkaW5nLXRvcDoycmVtO2JvcmRlci10b3A6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIpO3RleHQtYWxpZ246Y2VudGVyO29wYWNpdHk6Ljd9QGtleWZyYW1lcyBzcGlue3x0b3t0cmFuc2Zvcm06cm90YXRlKDM2MGRlZyl9fUBtZWRpYSAobWF4LXdpZHRoOjc2OHB4KXsuY2FzZS1zdHVkaWVzLC5hbmFseXplci1zZWN0aW9ue3BhZGRpbmc6NHJlbSAxLjVyZW19LmNhc2UtbWV0cmljc3tncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyfS5hbmFseXplci1mb3Jte3BhZGRpbmc6MnJlbSAxLjVyZW19LmlucHV0LWdyb3Vwe2ZsZXgtZGlyZWN0aW9uOmNvbHVtbn0ubWV0cmljcy1ncmlke2dyaWQtdGVtcGxhdGUtY29sdW1uczoxZnJ9fS5jb2xvci0xe2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjNjY3ZWVhIDAlLCM3NjRiYTIgMTAwJSl9LmNvbG9yLTJ7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCNmMDkzZmIgMCUsI2Y1NTc2YyAxMDAlKX0uY29sb3ItM3tiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzRmYWNmZSAwJSwjMDBmMmZlIDEwMCUpfQ==">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+</body>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function showToast(m){const t=document.getElementById('errorToast');t.textContent=m;t.classList.add('active');setTimeout(()=>t.classList.remove('active'),4000)}
-window.addEventListener('load',()=>{document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})})});
-
-async function analyzeWebsite(){
-  const i=document.getElementById('websiteUrl');
-  let u=i.value.trim();
-  if(!u){showToast('Please enter a website URL');return}
-  if(!u.startsWith('http://')&&!u.startsWith('https://'))u='https://'+u;
-  try{new URL(u)}catch(e){showToast('Please enter a valid website (e.g., example.com)');return}
-  
-  const l=document.getElementById('loading'),r=document.getElementById('results'),b=document.querySelector('.analyze-button'),f=document.getElementById('testFrame');
-  l.classList.add('active');r.classList.remove('active');b.disabled=true;
-  
-  const startTime=performance.now();
-  let resources={},metrics={totalSize:0,requests:0,images:0,scripts:0,styles:0};
-  
-  f.onload=()=>{
-    try{
-      const loadTime=((performance.now()-startTime)/1000).toFixed(2);
-      const doc=f.contentDocument||f.contentWindow.document;
-      
-      // Count resources
-      const imgs=doc.querySelectorAll('img');
-      const scrpts=doc.querySelectorAll('script');
-      const stls=doc.querySelectorAll('link[rel="stylesheet"]');
-      
-      // Analyze images
-      let jpgCount=0,pngCount=0,webpCount=0,gifCount=0,svgCount=0,noAltCount=0,lazyCount=0;
-      imgs.forEach(img=>{
-        const src=(img.src||img.dataset.src||'').toLowerCase();
-        if(src.includes('.jpg')||src.includes('.jpeg'))jpgCount++;
-        else if(src.includes('.png'))pngCount++;
-        else if(src.includes('.webp'))webpCount++;
-        else if(src.includes('.gif'))gifCount++;
-        else if(src.includes('.svg'))svgCount++;
-        if(!img.alt||img.alt.trim()==='')noAltCount++;
-        if(img.loading==='lazy'||img.dataset.src)lazyCount++;
-      });
-      
-      // Analyze scripts
-      let deferredScripts=0,asyncScripts=0,inlineScripts=0;
-      scrpts.forEach(s=>{
-        if(s.defer)deferredScripts++;
-        if(s.async)asyncScripts++;
-        if(!s.src)inlineScripts++;
-      });
-      
-      // Analyze stylesheets
-      let deferredStyles=0,inlineStyles=0,preloadStyles=0;
-      stls.forEach(s=>{
-        if(s.media==='print'||s.media.includes('print'))deferredStyles++;
-        if(s.rel==='preload')preloadStyles++;
-      });
-      const styleElements=doc.querySelectorAll('style');
-      inlineStyles=styleElements.length;
-      
-      // Check for common optimizations
-      const hasMinifiedCSS=Array.from(stls).some(s=>s.href&&s.href.includes('.min.css'));
-      const hasMinifiedJS=Array.from(scrpts).some(s=>s.src&&s.src.includes('.min.js'));
-      const hasFontPreconnect=!!doc.querySelector('link[rel="preconnect"]');
-      const hasViewport=!!doc.querySelector('meta[name="viewport"]');
-      const hasCompression=doc.querySelector('meta[http-equiv*="encoding"]');
-      
-      // Estimate page size
-      const htmlSize=new Blob([doc.documentElement.outerHTML]).size;
-      const estimatedSize=(htmlSize/1024).toFixed(0);
-      
-      // Calculate score
-      let score=100;
-      if(parseFloat(loadTime)>3)score-=20;
-      else if(parseFloat(loadTime)>2)score-=10;
-      if(estimatedSize>500)score-=15;
-      if(imgs.length>20)score-=10;
-      if(scrpts.length>10)score-=10;
-      if(stls.length>5)score-=10;
-      if(jpgCount+pngCount>5&&webpCount===0)score-=10;
-      if(deferredScripts===0&&scrpts.length>0)score-=5;
-      if(deferredStyles===0&&stls.length>0)score-=5;
-      if(lazyCount<imgs.length&&imgs.length>3)score-=5;
-      score=Math.max(0,Math.min(100,score));
-      
-      // Update UI
-      document.getElementById('overallScore').textContent=score;
-      document.getElementById('loadTime').textContent=loadTime+'s';
-      document.getElementById('loadTimeLabel').textContent=loadTime<2?'Excellent':loadTime<3?'Good':'Needs Work';
-      document.getElementById('pageSize').textContent=estimatedSize+'KB';
-      document.getElementById('pageSizeLabel').textContent=estimatedSize<300?'Excellent':estimatedSize<500?'Good':'Large';
-      document.getElementById('requests').textContent=(imgs.length+scrpts.length+stls.length);
-      document.getElementById('requestsLabel').textContent=(imgs.length+scrpts.length+stls.length)<30?'Good':'Many';
-      document.getElementById('images').textContent=imgs.length;
-      document.getElementById('imagesLabel').textContent=imgs.length<15?'Good':'Many';
-      document.getElementById('scripts').textContent=scrpts.length;
-      document.getElementById('scriptsLabel').textContent=scrpts.length<8?'Good':'Many';
-      document.getElementById('styles').textContent=stls.length;
-      document.getElementById('stylesLabel').textContent=stls.length<4?'Good':'Many';
-      
-      // Animate circle
-      const c=2*Math.PI*90,o=c-(score/100)*c;
-      document.getElementById('scoreCircle').style.strokeDashoffset=o;
-      
-      // Recommendations
-      const recs=[];
-      if(parseFloat(loadTime)>2)recs.push({t:'⚡ Reduce Load Time',d:'Your site loads in '+loadTime+' seconds. Aim for under 2 seconds. Consider optimizing images, minifying code, using a CDN, and enabling compression.'});
-      if(estimatedSize>400)recs.push({t:'📦 Reduce Page Size',d:'Page size is '+estimatedSize+'KB. Compress images, minify CSS/JS, remove unused resources, and enable gzip/brotli compression.'});
-      if(jpgCount+pngCount>0)recs.push({t:'🖼️ Convert Images to WebP',d:`Found ${jpgCount} JPEG and ${pngCount} PNG images. Convert to WebP format for 25-35% smaller file sizes with same quality. WebP is supported by 95%+ of browsers.`});
-      if(lazyCount<imgs.length&&imgs.length>3)recs.push({t:'🔄 Implement Lazy Loading',d:`Only ${lazyCount} of ${imgs.length} images use lazy loading. Add loading="lazy" to images below the fold to improve initial page load.`});
-      if(noAltCount>0)recs.push({t:'♿ Add Alt Text to Images',d:`${noAltCount} images missing alt text. This hurts accessibility and SEO. Add descriptive alt attributes to all images.`});
-      if(deferredStyles===0&&stls.length>0)recs.push({t:'🎨 Defer Non-Critical CSS',d:`${stls.length} stylesheet(s) are render-blocking. Use media="print" onload trick or inline critical CSS to improve First Contentful Paint.`});
-      if(deferredScripts===0&&asyncScripts===0&&scrpts.length>0)recs.push({t:'⚙️ Defer/Async JavaScript',d:`${scrpts.length} scripts found with no defer/async. Add defer or async attributes to non-critical scripts to prevent render blocking.`});
-      if(imgs.length>15)recs.push({t:'🎯 Optimize Image Count',d:'Found '+imgs.length+' images. Consider using CSS sprites, icon fonts, or SVG sprites to reduce HTTP requests.'});
-      if(scrpts.length>8)recs.push({t:'📜 Reduce JavaScript Files',d:'Found '+scrpts.length+' scripts. Bundle and minify JS files to reduce requests and improve load time.'});
-      if(stls.length>4)recs.push({t:'💅 Consolidate CSS',d:'Found '+stls.length+' stylesheets. Combine into fewer files and remove unused CSS for better performance.'});
-      if(!hasMinifiedJS&&scrpts.length>0)recs.push({t:'🗜️ Minify JavaScript',d:'JavaScript files don\'t appear to be minified. Use tools like Terser or UglifyJS to reduce file size by 30-40%.'});
-      if(!hasMinifiedCSS&&stls.length>0)recs.push({t:'🗜️ Minify CSS',d:'CSS files don\'t appear to be minified. Minify your stylesheets to remove whitespace and comments.'});
-      if(!hasFontPreconnect)recs.push({t:'🔗 Add Font Preconnect',d:'Add <link rel="preconnect"> tags for external fonts (Google Fonts, etc.) to reduce DNS lookup time.'});
-      if(inlineScripts>3)recs.push({t:'📝 Reduce Inline Scripts',d:`Found ${inlineScripts} inline scripts. Move to external files for better caching and separation of concerns.`});
-      
-      const rl=document.getElementById('recommendationsList');
-      rl.innerHTML='';
-      if(recs.length===0){
-        rl.innerHTML='<div class="recommendation-item"><div class="recommendation-title">🎉 Excellent Performance!</div><div class="recommendation-description">Your website is well-optimized with modern best practices. Keep maintaining these standards for the best user experience.</div></div>';
-      }else{
-        recs.forEach(rc=>{
-          rl.innerHTML+=`<div class="recommendation-item"><div class="recommendation-title">${rc.t}</div><div class="recommendation-description">${rc.d}</div></div>`;
-        });
-      }
-      
-      l.classList.remove('active');
-      r.classList.add('active');
-    }catch(err){
-      console.error(err);
-      showLoadError('Unable to analyze this website. It may block embedding or use special security settings.');
-    }finally{
-      b.disabled=false;
-    }
-  };
-  
-  f.onerror=()=>{
-    showLoadError('Unable to load this website. It may block embedding (X-Frame-Options) or require authentication.');
-  };
-  
-  function showLoadError(msg){
-    l.classList.remove('active');
-    r.classList.add('active');
-    document.getElementById('overallScore').textContent='⚠️';
-    document.getElementById('loadTime').textContent='--';
-    document.getElementById('loadTimeLabel').textContent='Cannot measure';
-    document.getElementById('pageSize').textContent='--';
-    document.getElementById('pageSizeLabel').textContent='Cannot measure';
-    document.getElementById('requests').textContent='--';
-    document.getElementById('requestsLabel').textContent='Cannot measure';
-    document.getElementById('images').textContent='--';
-    document.getElementById('imagesLabel').textContent='Cannot measure';
-    document.getElementById('scripts').textContent='--';
-    document.getElementById('scriptsLabel').textContent='Cannot measure';
-    document.getElementById('styles').textContent='--';
-    document.getElementById('stylesLabel').textContent='Cannot measure';
-    document.getElementById('recommendationsList').innerHTML=`<div class="recommendation-item" style="border-left-color:#FF9500"><div class="recommendation-title">⚠️ Analysis Unavailable</div><div class="recommendation-description">${msg}<br><br>Try these alternatives:<br>• Use <a href="https://pagespeed.web.dev/analysis?url=${encodeURIComponent(u)}" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">PageSpeed Insights</a><br>• Use <a href="https://gtmetrix.com/?url=${encodeURIComponent(u)}" target="_blank" rel="noopener" st
+</html>
