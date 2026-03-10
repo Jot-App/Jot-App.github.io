@@ -9,27 +9,27 @@ const CONFIG = {
     // Google Analytics 4
     googleAnalytics: {
       enabled: true,
-      measurementId: 'G-XXXXXXXXXX' // Replace with your GA4 ID
+      measurementId: 'G-58883HVDTC'
     },
-    
+
     // Facebook Pixel
     facebookPixel: {
-      enabled: true,
+      enabled: false,
       pixelId: '1234567890' // Replace with your Facebook Pixel ID
     },
-    
+
     // Google Tag Manager (Alternative to GA)
     googleTagManager: {
       enabled: false,
       containerId: 'GTM-XXXXXXX' // Replace with your GTM ID
     },
-    
+
     // LinkedIn Insight Tag
     linkedinInsight: {
       enabled: false,
       partnerId: '12345' // Replace with your LinkedIn Partner ID
     },
-    
+
     // Hotjar
     hotjar: {
       enabled: false,
