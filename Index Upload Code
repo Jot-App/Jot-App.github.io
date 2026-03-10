@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mad Hat Communications - Performance-driven growth marketing, market expansion, and conversion optimization services.">
+    <title>Mad Hat Communications - Performance-Driven Growth Marketing</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#0F0F0F;--accent:#E63027;--secondary:#F5F5F0;--text:#2C2C2C;--text-light:#525252;--border:#E0E0E0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--secondary);color:var(--text);line-height:1.6;overflow-x:hidden}h1,h2,h3{font-family:Georgia,serif;font-weight:900;line-height:1.1}.header{position:fixed;top:0;left:0;right:0;background:rgba(245,245,240,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:1000;padding:1.5rem 0}.nav-container{max-width:1400px;margin:0 auto;padding:0 3rem;display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.5rem;font-weight:900;font-family:Georgia,serif;color:var(--primary);text-decoration:none;letter-spacing:-0.02em}.nav-links{display:flex;gap:2.5rem;list-style:none}.nav-links a{color:var(--text);text-decoration:none;font-weight:500;font-size:0.95rem;transition:color 0.3s}.nav-links a:hover{color:var(--accent)}.hero{margin-top:80px;padding:8rem 3rem 6rem;max-width:1400px;margin-left:auto;margin-right:auto}.hero-content{max-width:900px}.hero h1{font-size:clamp(3rem,8vw,6.5rem);margin-bottom:2rem;color:var(--primary)}.hero-subtitle{font-size:1.5rem;color:var(--text-light);max-width:600px;margin-bottom:3rem}.cta-button{display:inline-block;background:var(--accent);color:white;padding:1.2rem 3rem;text-decoration:none;font-weight:700;border-radius:2px;transition:transform 0.3s,box-shadow 0.3s;border:none;cursor:pointer;font-size:1rem}.cta-button:hover,.cta-button:focus{transform:translateY(-2px);box-shadow:0 10px 30px rgba(230,48,39,0.3);outline:2px solid var(--accent);outline-offset:2px}.error-toast{display:none;position:fixed;top:100px;left:50%;transform:translateX(-50%);background:#2C2C2C;color:white;padding:1rem 2rem;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:2000;max-width:90%;animation:slideDown 0.3s ease-out}.error-toast.active{display:block}@keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}@media (max-width:768px){.nav-container{padding:0 1.5rem}.nav-links{display:none}.hero{padding:4rem 1.5rem 3rem}}
+    </style>
+    
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght:700;900&family=DM+Sans:wght@400;500;700&display=swap"></noscript>
+</head>
+<body>
+    <div id="errorToast" class="error-toast" role="alert" aria-live="polite"></div>
+    
+    <header class="header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="#" class="logo">Mad Hat</a>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#analyzer">Analyzer</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Performance-Driven Growth Marketing</h1>
+                <p class="hero-subtitle">From market expansion to conversion optimization, we deliver measurable results through strategic digital marketing, content production, and performance analytics.</p>
+                <a href="#analyzer" class="cta-button">Analyze Your Website</a>
+            </div>
+        </section>
+
+        <section class="stats" aria-labelledby="stats-heading">
+            <h2 id="stats-heading" class="sr-only">Our Impact</h2>
+            <div class="stats-container">
+                <div class="stat-item"><div class="stat-number">750+</div><div class="stat-label">Customers Acquired</div></div>
+                <div class="stat-item"><div class="stat-number">4.2x</div><div class="stat-label">Average ROAS Improvement</div></div>
+                <div class="stat-item"><div class="stat-number">64%</div><div class="stat-label">Average CAC Reduction</div></div>
+                <div class="stat-item"><div class="stat-number">7+</div><div class="stat-label">Markets Launched</div></div>
+            </div>
+        </section>
+
+        <section id="work" class="case-studies" aria-labelledby="case-studies-heading">
+            <h2 id="case-studies-heading" class="section-title">Success Stories</h2>
+            <div class="case-grid">
+                <article class="case-card">
+                    <div class="case-image color-1"><div class="case-logo">Alankari</div></div>
+                    <div class="case-content">
+                        <h3 class="case-title">Alankari.com</h3>
+                        <p class="case-description">Reduced customer acquisition costs for India's leading handloom saree brand through strategic conversion rate optimization and targeted performance marketing campaigns.</p>
+                        <div class="case-metrics">
+                            <div class="metric"><div class="metric-value">64%</div><div class="metric-label">CAC Reduction</div></div>
+                            <div class="metric"><div class="metric-value">4.2x</div><div class="metric-label">ROAS Increase</div></div>
+                            <div class="metric"><div class="metric-value">127%</div><div class="metric-label">Conversion Rate</div></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-image color-2"><div class="case-logo">DronaHQ</div></div>
+                    <div class="case-content">
+                        <h3 class="case-title">DronaHQ - Africa & Middle East Expansion</h3>
+                        <p class="case-description">Spearheaded market entry strategy for low-code B2B SaaS platform, scaling from zero to 750+ customers across Africa and Middle East through localized demand generation and strategic partnerships.</p>
+                        <div class="case-metrics">
+                            <div class="metric"><div class="metric-value">750+</div><div class="metric-label">New Customers</div></div>
+                            <div class="metric"><div class="metric-value">0→7</div><div class="metric-label">Markets Opened</div></div>
+                            <div class="metric"><div class="metric-value">2 Yrs</div><div class="metric-label">Market Launch</div></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="case-card">
+                    <div class="case-image color-3"><div class="case-logo">Q-SYS</div></div>
+                    <div class="case-content">
+                        <h3 class="case-title">QSC/Q-SYS - Exclusive Agency Partnership</h3>
+                        <p class="case-description">Multi-year exclusive partnership covering India market launch, headquarters opening, 3 InfoComm events, PlayOutLoud podcast production, music videos, and testimonial content creation.</p>
+                        <div class="case-metrics">
+                            <div class="metric"><div class="metric-value">5+</div><div class="metric-label">Years Partnership</div></div>
+                            <div class="metric"><div class="metric-value">50+</div><div class="metric-label">Content Pieces</div></div>
+                            <div class="metric"><div class="metric-value">3</div><div class="metric-label">Major Events</div></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="analyzer" class="analyzer-section" aria-labelledby="analyzer-heading">
+            <div class="analyzer-container">
+                <h2 id="analyzer-heading" class="analyzer-title">Website Performance Analyzer</h2>
+                <p class="analyzer-subtitle">Discover how your website performs and where improvements can be made</p>
+                
+                <div class="analyzer-form">
+                    <div class="input-group">
+                        <label for="websiteUrl" class="sr-only">Website URL</label>
+                        <input type="url" id="websiteUrl" class="url-input" placeholder="Enter your website URL (e.g., https://example.com)" required aria-required="true">
+                        <button class="analyze-button" onclick="analyzeWebsite()" aria-label="Analyze website performance">Analyze</button>
+                    </div>
+
+                    <div class="loading" id="loading" role="status" aria-live="polite">
+                        <div class="spinner"></div>
+                        <p>Analyzing your website performance...</p>
+                    </div>
+
+                    <div class="results" id="results" role="region" aria-live="polite">
+                        <div class="score-container">
+                            <div class="score-circle">
+                                <svg width="200" height="200" aria-label="Performance score circle">
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="12"/>
+                                    <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="#E63027" stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 1s ease-out"/>
+                                </svg>
+                                <div class="score-value" id="overallScore" aria-label="Overall performance score">--</div>
+                            </div>
+                            <div class="score-label">Overall Performance Score</div>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric-card"><div class="metric-card-title">Performance</div><div class="metric-card-value" id="performanceScore">--</div><div class="metric-card-score" id="performanceLabel">Loading...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">First Contentful Paint</div><div class="metric-card-value" id="fcpValue">--</div><div class="metric-card-score" id="fcpLabel">Loading...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Largest Contentful Paint</div><div class="metric-card-value" id="lcpValue">--</div><div class="metric-card-score" id="lcpLabel">Loading...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Total Blocking Time</div><div class="metric-card-value" id="tbtValue">--</div><div class="metric-card-score" id="tbtLabel">Loading...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Cumulative Layout Shift</div><div class="metric-card-value" id="clsValue">--</div><div class="metric-card-score" id="clsLabel">Loading...</div></div>
+                            <div class="metric-card"><div class="metric-card-title">Speed Index</div><div class="metric-card-value" id="siValue">--</div><div class="metric-card-score" id="siLabel">Loading...</div></div>
+                        </div>
+                        <div class="recommendations">
+                            <h3 class="recommendations-title">Key Opportunities</h3>
+                            <div id="recommendationsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Mad Hat Communications</h3>
+                <p>Driving measurable growth through strategic marketing, market expansion, and performance-driven campaigns.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#">Market Expansion Strategy</a>
+                <a href="#">Conversion Rate Optimization</a>
+                <a href="#">Performance Marketing</a>
+                <a href="#">Content Production & Events</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="#">About Us</a>
+                <a href="#">Case Studies</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <a href="mailto:hello@madhat.com">hello@madhat.com</a>
+                <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mad Hat Communications. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="data:text/css;base64,LnNyLW9ubHl7cG9zaXRpb246YWJzb2x1dGU7d2lkdGg6MXB4O2hlaWdodDoxcHg7cGFkZGluZzowO21hcmdpbjotMXB4O292ZXJmbG93OmhpZGRlbjtjbGlwOnJlY3QoMCwwLDAsMCk7d2hpdGUtc3BhY2U6bm93cmFwO2JvcmRlci13aWR0aDowfS5zdGF0c3tiYWNrZ3JvdW5kOnZhcigtLXByaW1hcnkpO2NvbG9yOndoaXRlO3BhZGRpbmc6NXJlbSAzcmVtfS5zdGF0cy1jb250YWluZXJ7bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvO2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZml0LG1pbm1heCgyNTBweCwxZnIpKTtnYXA6NHJlbX0uc3RhdC1pdGVte3RleHQtYWxpZ246Y2VudGVyfS5zdGF0LW51bWJlcntmb250LXNpemU6NHJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZjtmb250LXdlaWdodDo5MDA7bWFyZ2luLWJvdHRvbTouNXJlbTtjb2xvcjp2YXIoLS1hY2NlbnQpfS5zdGF0LWxhYmVse2ZvbnQtc2l6ZToxcmVtO29wYWNpdHk6Ljk7Zm9udC13ZWlnaHQ6NTAwfS5jYXNlLXN0dWRpZXN7cGFkZGluZzo4cmVtIDNyZW07bWF4LXdpZHRoOjE0MDBweDttYXJnaW46MCBhdXRvfS5zZWN0aW9uLXRpdGxle2ZvbnQtc2l6ZTpjbGFtcCgyLjVyZW0sNXZ3LDRyZW0pO21hcmdpbi1ib3R0b206NHJlbTtjb2xvcjp2YXIoLS1wcmltYXJ5KX0uY2FzZS1ncmlke2Rpc3BsYXk6Z3JpZDtnYXA6M3JlbX0uY2FzZS1jYXJke2JhY2tncm91bmQ6d2hpdGU7Ym9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpO292ZXJmbG93OmhpZGRlbjt0cmFuc2l0aW9uOnRyYW5zZm9ybSAuM3MsYm94LXNoYWRvdyAuM3N9LmNhc2UtY2FyZDpob3Zlcix7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTVweCk7Ym94LXNoYWRvdzowIDIwcHggNTBweCByZ2JhKDAsMCwwLC4xKX0uY2FzZS1pbWFnZXt3aWR0aDoxMDAlO2hlaWdodDo0MDBweDtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzY2N2VlYSAwJSwjNzY0YmEyIDEwMCUpO2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtwb3NpdGlvbjpyZWxhdGl2ZTtvdmVyZmxvdzpoaWRkZW59LmNhc2UtaW1hZ2U6OmJlZm9yZXtjb250ZW50OicnO3Bvc2l0aW9uOmFic29sdXRlO3RvcDowO2xlZnQ6MDtyaWdodDowO2JvdHRvbTowO2JhY2tncm91bmQ6cmVwZWF0aW5nLWxpbmVhci1ncmFkaWVudCg0NWRlZyx0cmFuc3BhcmVudCx0cmFuc3BhcmVudCAxMHB4LHJnYmEoMjU1LDI1NSwyNTUsLjA1KSAxMHB4LHJnYmEoMjU1LDI1NSwyNTUsLjA1KSAyMHB4KX0uY2FzZS1sb2dve2ZvbnQtc2l6ZTozcmVtO2NvbG9yOndoaXRlO2ZvbnQtd2VpZ2h0OjkwMDt6LWluZGV4OjE7Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9LmNhc2UtY29udGVudHtwYWRkaW5nOjIuNXJlbX0uY2FzZS10aXRsZXtmb250LXNpemU6MnJlbTttYXJnaW4tYm90dG9tOjFyZW07Y29sb3I6dmFyKC0tcHJpbWFyeSl9LmNhc2UtZGVzY3JpcHRpb257Y29sb3I6dmFyKC0tdGV4dC1saWdodCk7bWFyZ2luLWJvdHRvbToycmVtO2ZvbnQtc2l6ZToxLjFyZW19LmNhc2UtbWV0cmljc3tkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdCgzLDFmcik7Z2FwOjJyZW07cGFkZGluZy10b3A6MnJlbTtib3JkZXItdG9wOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpfS5tZXRyaWN7dGV4dC1hbGlnbjpjZW50ZXJ9Lm1ldHJpYy12YWx1ZXtmb250LXNpemU6Mi41cmVtO2ZvbnQtd2VpZ2h0OjkwMDtjb2xvcjp2YXIoLS1hY2NlbnQpO2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxHZW9yZ2lhLHNlcmlmfS5tZXRyaWMtbGFiZWx7Zm9udC1zaXplOi44NXJlbTtjb2xvcjp2YXIoLS10ZXh0LWxpZ2h0KTttYXJnaW4tdG9wOi41cmVtfS5hbmFseXplci1zZWN0aW9ue2JhY2tncm91bmQ6dmFyKC0tcHJpbWFyeSk7Y29sb3I6d2hpdGU7cGFkZGluZzo4cmVtIDNyZW19LmFuYWx5emVyLWNvbnRhaW5lcnttYXgtd2lkdGg6MTAwMHB4O21hcmdpbjowIGF1dG99LmFuYWx5emVyLXRpdGxle2ZvbnQtc2l6ZTpjbGFtcCgyLjVyZW0sNXZ3LDRyZW0pO21hcmdpbi1ib3R0b206MS41cmVtO3RleHQtYWxpZ246Y2VudGVyfS5hbmFseXplci1zdWJ0aXRsZXt0ZXh0LWFsaWduOmNlbnRlcjtmb250LXNpemU6MS4zcmVtO21hcmdpbi1ib3R0b206M3JlbTtvcGFjaXR5Oi45fS5hbmFseXplci1mb3Jte2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzozcmVtO2JvcmRlci1yYWRpdXM6NHB4O2JhY2tkcm9wLWZpbHRlcjpibHVyKDEwcHgpO2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMil9LmlucHV0LWdyb3Vwe2Rpc3BsYXk6ZmxleDtnYXA6MXJlbTttYXJnaW4tYm90dG9tOjJyZW19LnVybC1pbnB1dHtmbGV4OjE7cGFkZGluZzoxLjJyZW0gMS41cmVtO2JvcmRlcjoycHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMyk7YmFja2dyb3VuZDpyZ2JhKDI1NSwyNTUsMjU1LC4xKTtjb2xvcjp3aGl0ZTtmb250LXNpemU6MS4xcmVtO2JvcmRlci1yYWRpdXM6MnB4O2ZvbnQtZmFtaWx5OidETSBTYW5zJyxzYW5zLXNlcmlmfS51cmwtaW5wdXQ6OnBsYWNlaG9sZGVye2NvbG9yOnJnYmEoMjU1LDI1NSwyNTUsLjYpfS51cmwtaW5wdXQ6Zm9jdXN7b3V0bGluZTpub25lO2JvcmRlci1jb2xvcjp2YXIoLS1hY2NlbnQpO2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMTUpfS5hbmFseXplLWJ1dHRvbntiYWNrZ3JvdW5kOnZhcigtLWFjY2VudCk7Y29sb3I6d2hpdGU7cGFkZGluZzoxLjJyZW0gM3JlbTtib3JkZXI6bm9uZTtmb250LXdlaWdodDo3MDA7Y3Vyc29yOnBvaW50ZXI7dHJhbnNpdGlvbjphbGwgLjNzO2ZvbnQtc2l6ZToxcmVtO2JvcmRlci1yYWRpdXM6MnB4O2ZvbnQtZmFtaWx5OidETSBTYW5zJyxzYW5zLXNlcmlmfS5hbmFseXplLWJ1dHRvbjpob3Zlcjpub3QoOmRpc2FibGVkKSwuYW5hbHl6ZS1idXR0b246Zm9jdXN7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTJweCk7Ym94LXNoYWRvdzowIDEwcHggMzBweCByZ2JhKDIzMCw0OCwzOSwuNCk7b3V0bGluZToycHggc29saWQgd2hpdGU7b3V0bGluZS1vZmZzZXQ6MnB4fS5hbmFseXplLWJ1dHRvbjpkaXNhYmxlZHtvcGFjaXR5Oi42O2N1cnNvcjpub3QtYWxsb3dlZH0ubG9hZGluZ3t0ZXh0LWFsaWduOmNlbnRlcjtwYWRkaW5nOjJyZW07ZGlzcGxheTpub25lfS5sb2FkaW5nLmFjdGl2ZXtkaXNwbGF5OmJsb2NrfS5zcGlubmVye2JvcmRlcjozcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwuMyk7Ym9yZGVyLXRvcDozcHggc29saWQgdmFyKC0tYWNjZW50KTtib3JkZXItcmFkaXVzOjUwJTt3aWR0aDo1MHB4O2hlaWdodDo1MHB4O2FuaW1hdGlvbjpzcGluIDFzIGxpbmVhciBpbmZpbml0ZTttYXJnaW46MCBhdXRvIDFyZW19LnJlc3VsdHN7ZGlzcGxheTpub25lO21hcmdpbi10b3A6M3JlbX0ucmVzdWx0cy5hY3RpdmV7ZGlzcGxheTpibG9ja30uc2NvcmUtY29udGFpbmVye2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuMSk7cGFkZGluZzozcmVtO2JvcmRlci1yYWRpdXM6NHB4O3RleHQtYWxpZ246Y2VudGVyO21hcmdpbi1ib3R0b206MnJlbTtib3JkZXI6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIpfS5zY29yZS1jaXJjbGV7d2lkdGg6MjAwcHg7aGVpZ2h0OjIwMHB4O21hcmdpbjowIGF1dG8gMnJlbTtwb3NpdGlvbjpyZWxhdGl2ZX0uc2NvcmUtdmFsdWV7cG9zaXRpb246YWJzb2x1dGU7dG9wOjUwJTtsZWZ0OjUwJTt0cmFuc2Zvcm06dHJhbnNsYXRlKC01MCUsLTUwJSk7Zm9udC1zaXplOjRyZW07Zm9udC13ZWlnaHQ6OTAwO2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxHZW9yZ2lhLHNlcmlmfS5zY29yZS1sYWJlbHtmb250LXNpemU6MS4ycmVtO29wYWNpdHk6Ljl9Lm1ldHJpY3MtZ3JpZHtkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdChhdXRvLWZpdCxtaW5tYXgoMjAwcHgsMWZyKSk7Z2FwOjJyZW07bWFyZ2luLXRvcDoycmVtfS5tZXRyaWMtY2FyZHtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjEpO3BhZGRpbmc6MnJlbTtib3JkZXItcmFkaXVzOjRweDtib3JkZXI6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjIpfS5tZXRyaWMtY2FyZC10aXRsZXtmb250LXNpemU6LjlyZW07b3BhY2l0eTouODttYXJnaW4tYm90dG9tOjFyZW19Lm1ldHJpYy1jYXJkLXZhbHVle2ZvbnQtc2l6ZToyLjVyZW07Zm9udC13ZWlnaHQ6OTAwO21hcmdpbi1ib3R0b206LjVyZW07Zm9udC1mYW1pbHk6J1BsYXlmYWlyIERpc3BsYXknLEdlb3JnaWEsc2VyaWZ9Lm1ldHJpYy1jYXJkLXNjb3Jle2ZvbnQtc2l6ZToxcmVtO29wYWNpdHk6Ljl9LnJlY29tbWVuZGF0aW9uc3ttYXJnaW4tdG9wOjNyZW19LnJlY29tbWVuZGF0aW9ucy10aXRsZXtmb250LXNpemU6MnJlbTttYXJnaW4tYm90dG9tOjEuNXJlbTtmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsR2VvcmdpYSxzZXJpZn0ucmVjb21tZW5kYXRpb24taXRlbXtiYWNrZ3JvdW5kOnJnYmEoMjU1LDI1NSwyNTUsLjEpO3BhZGRpbmc6MS41cmVtO2JvcmRlci1yYWRpdXM6NHB4O21hcmdpbi1ib3R0b206MXJlbTtib3JkZXItbGVmdDo0cHggc29saWQgdmFyKC0tYWNjZW50KX0ucmVjb21tZW5kYXRpb24tdGl0bGV7Zm9udC13ZWlnaHQ6NzAwO21hcmdpbi1ib3R0b206LjVyZW07Zm9udC1zaXplOjEuMXJlbX0ucmVjb21tZW5kYXRpb24tZGVzY3JpcHRpb257b3BhY2l0eTouOTtsaW5lLWhlaWdodDoxLjZ9LmZvb3RlcntiYWNrZ3JvdW5kOnZhcigtLXByaW1hcnkpO2NvbG9yOndoaXRlO3BhZGRpbmc6NXJlbSAzcmVtIDNyZW19LmZvb3Rlci1jb250ZW50e21heC13aWR0aDoxNDAwcHg7bWFyZ2luOjAgYXV0bzs7ZGlzcGxheTpncmlkO2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoYXV0by1maXQsbWlubWF4KDI1MHB4LDFmcikpO2dhcDo0cmVtO21hcmdpbi1ib3R0b206M3JlbX0uZm9vdGVyLXNlY3Rpb24gaDN7bWFyZ2luLWJvdHRvbToxLjVyZW07Zm9udC1zaXplOjEuM3JlbX0uZm9vdGVyLXNlY3Rpb24gcCwuZm9vdGVyLXNlY3Rpb24gYXtjb2xvcjpyZ2JhKDI1NSwyNTUsMjU1LC44KTt0ZXh0LWRlY29yYXRpb246bm9uZTtkaXNwbGF5OmJsb2NrO21hcmdpbi1ib3R0b206LjhyZW19LmZvb3Rlci1zZWN0aW9uIGE6aG92ZXJ7Y29sb3I6dmFyKC0tYWNjZW50KX0uZm9vdGVyLWJvdHRvbXttYXgtd2lkdGg6MTQwMHB4O21hcmdpbjowIGF1dG87cGFkZGluZy10b3A6MnJlbTtib3JkZXItdG9wOjFweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4yKTt0ZXh0LWFsaWduOmNlbnRlcjtvcGFjaXR5Oi43fUBrZXlmcmFtZXMgc3BpbntcdG97dHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpfX1AbWVkaWEgKG1heC13aWR0aDo3NjhweCl7LmNhc2Utc3R1ZGllcywuYW5hbHl6ZXItc2VjdGlvbntwYWRkaW5nOjRyZW0gMS41cmVtfS5jYXNlLW1ldHJpY3N7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjFmcn0uYW5hbHl6ZXItZm9ybXtwYWRkaW5nOjJyZW0gMS41cmVtfS5pbnB1dC1ncm91cHtmbGV4LWRpcmVjdGlvbjpjb2x1bW59Lm1ldHJpY3MtZ3JpZHtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyfX0uY29sb3ItMXtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzY2N2VlYSAwJSwjNzY0YmEyIDEwMCUpfS5jb2xvci0ye2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjZjA5M2ZiIDAlLCNmNTU3NmMgMTAwJSl9LmNvbG9yLTN7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCM0ZmFjZmUgMCUsIzAwZjJmZSAxMDAlKX0=">
+
+    <script>
+function showToast(msg){const t=document.getElementById('errorToast');t.textContent=msg;t.classList.add('active');setTimeout(()=>t.classList.remove('active'),4000)}
+window.addEventListener('load',function(){document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})})});
+async function analyzeWebsite(){const i=document.getElementById('websiteUrl'),u=i.value.trim();if(!u){showToast('Please enter a website URL');return}try{new URL(u)}catch(e){showToast('Please enter a valid URL (e.g., https://example.com)');return}const l=document.getElementById('loading'),r=document.getElementById('results'),b=document.querySelector('.analyze-button');l.classList.add('active');r.classList.remove('active');b.disabled=true;try{const res=await fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(u)}&strategy=mobile`),d=await res.json();if(d.error)throw new Error(d.error.message||'API Error');const lh=d.lighthouseResult,cat=lh.categories,aud=lh.audits,ps=Math.round(cat.performance.score*100);document.getElementById('overallScore').textContent=ps;document.getElementById('performanceScore').textContent=ps;document.getElementById('performanceLabel').textContent=getScoreLabel(ps);document.getElementById('fcpValue').textContent=aud['first-contentful-paint'].displayValue;document.getElementById('fcpLabel').textContent=getMetricLabel(aud['first-contentful-paint'].score);document.getElementById('lcpValue').textContent=aud['largest-contentful-paint'].displayValue;document.getElementById('lcpLabel').textContent=getMetricLabel(aud['largest-contentful-paint'].score);document.getElementById('tbtValue').textContent=aud['total-blocking-time'].displayValue;document.getElementById('tbtLabel').textContent=getMetricLabel(aud['total-blocking-time'].score);document.getElementById('clsValue').textContent=aud['cumulative-layout-shift'].displayValue;document.getElementById('clsLabel').textContent=getMetricLabel(aud['cumulative-layout-shift'].score);document.getElementById('siValue').textContent=aud['speed-index'].displayValue;document.getElementById('siLabel').textContent=getMetricLabel(aud['speed-index'].score);const c=2*Math.PI*90,o=c-(ps/100)*c;document.getElementById('scoreCircle').style.strokeDashoffset=o;const ops=lh.audits,rec=[];if(ops['uses-optimized-images']&&ops['uses-optimized-images'].score<1)rec.push({title:'Optimize Images',description:ops['uses-optimized-images'].description});if(ops['unused-css-rules']&&ops['unused-css-rules'].score<1)rec.push({title:'Remove Unused CSS',description:ops['unused-css-rules'].description});if(ops['render-blocking-resources']&&ops['render-blocking-resources'].score<1)rec.push({title:'Eliminate Render-Blocking Resources',description:ops['render-blocking-resources'].description});if(ops['unminified-javascript']&&ops['unminified-javascript'].score<1)rec.push({title:'Minify JavaScript',description:ops['unminified-javascript'].description});if(ops['server-response-time']&&ops['server-response-time'].score<1)rec.push({title:'Improve Server Response Time',description:ops['server-response-time'].description});const rl=document.getElementById('recommendationsList');rl.innerHTML='';if(rec.length===0)rl.innerHTML='<div class="recommendation-item"><div class="recommendation-title">Excellent!</div><div class="recommendation-description">Your website is well-optimized. Keep up the great work!</div></div>';else rec.forEach(rc=>{const it=document.createElement('div');it.className='recommendation-item';it.innerHTML=`<div class="recommendation-title">${rc.title}</div><div class="recommendation-description">${rc.description}</div>`;rl.appendChild(it)});l.classList.remove('active');r.classList.add('active')}catch(err){console.error('Error:',err);l.classList.remove('active');r.classList.add('active');const rl=document.getElementById('recommendationsList'),isQ=err.message.includes('quota')||err.message.includes('Quota')||err.message.includes('exceeded');if(isQ){document.getElementById('overallScore').textContent='⚠️';document.getElementById('performanceScore').textContent='--';document.getElementById('performanceLabel').textContent='API Limit';rl.innerHTML='<div class="recommendation-item" style="border-left-color:#FF9500"><div class="recommendation-title">📊 API Quota Exceeded</div><div class="recommendation-description">The free PageSpeed Insights API has daily usage limits. You can still analyze your website using:<br><br><a href="https://pagespeed.web.dev/analysis?url='+encodeURIComponent(u)+'" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline;font-size:1.1rem">→ Analyze on PageSpeed Insights (Official Tool) ←</a><br><br>The API quota resets daily. Check back tomorrow or contact us for a premium analysis!</div></div>'}else{document.getElementById('overallScore').textContent='❌';document.getElementById('performanceScore').textContent='--';document.getElementById('performanceLabel').textContent='Error';rl.innerHTML='<div class="recommendation-item"><div class="recommendation-title">⚠️ Analysis Error</div><div class="recommendation-description">'+err.message+'<br><br>Try analyzing directly:<br><a href="https://pagespeed.web.dev/analysis?url='+encodeURIComponent(u)+'" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">→ PageSpeed Insights ←</a></div></div>'}}finally{b.disabled=false}}
+function getScoreLabel(s){return s>=90?'Excellent':s>=50?'Needs Improvement':'Poor'}
+function getMetricLabel(s){return s===null?'N/A':s>=0.9?'Good':s>=0.5?'Needs Improvement':'Poor'}
+    </script>
+</body>
+</html>
