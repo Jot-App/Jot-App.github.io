@@ -2,8 +2,8 @@
 function initTracking() {
   // Google Analytics 4
   if (CONFIG.tracking.googleAnalytics.enabled && CONFIG.tracking.googleAnalytics.measurementId) {
-    // Note: GA is already loaded via the hardcoded gtag snippet in index.html
-    // This just ensures config-based GA also fires if measurementId differs
+    // GA is already loaded via the hardcoded gtag snippet in index.html for G-58883HVDTC
+    // Only load again if a different ID is configured
     if (CONFIG.tracking.googleAnalytics.measurementId !== 'G-58883HVDTC') {
       const gaScript = document.createElement('script');
       gaScript.async = true;
@@ -46,7 +46,7 @@ function initTracking() {
     window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
     (function(l) {
       if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-      window.lintrk.q=[]}
+      window.lintrk.q=[];}
       var s = document.getElementsByTagName("script")[0];
       var b = document.createElement("script");
       b.type = "text/javascript"; b.async = true;
@@ -68,9 +68,8 @@ function initTracking() {
   }
 }
 
-// Load content from config into the page
+// Load all content from config.js into the page
 function loadContent() {
-  // Company info
   document.getElementById('companyName').textContent = CONFIG.company.name;
   document.getElementById('footerCompanyName').textContent = CONFIG.company.name;
   document.getElementById('copyrightName').textContent = CONFIG.company.name;
@@ -81,24 +80,19 @@ function loadContent() {
   document.getElementById('footerPhone').textContent = CONFIG.company.phone;
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-  // Hero section
   document.getElementById('heroHeadline').textContent = CONFIG.hero.headline;
   document.getElementById('heroSubtitle').textContent = CONFIG.hero.subtitle;
   document.getElementById('heroCTA').textContent = CONFIG.hero.ctaText;
   document.getElementById('heroCTA').href = CONFIG.hero.ctaLink;
 
-  // Stats
-  const statsContainer = document.getElementById('statsContainer');
-  statsContainer.innerHTML = CONFIG.stats.map(stat => `
+  document.getElementById('statsContainer').innerHTML = CONFIG.stats.map(stat => `
     <div class="stat-item">
       <div class="stat-number">${stat.number}</div>
       <div class="stat-label">${stat.label}</div>
     </div>
   `).join('');
 
-  // Case Studies
-  const caseStudiesContainer = document.getElementById('caseStudiesContainer');
-  caseStudiesContainer.innerHTML = CONFIG.caseStudies.map(cs => `
+  document.getElementById('caseStudiesContainer').innerHTML = CONFIG.caseStudies.map(cs => `
     <article class="case-card">
       <div class="case-image" style="background: ${cs.gradient}">
         <div class="case-logo">${cs.name}</div>
@@ -118,28 +112,23 @@ function loadContent() {
     </article>
   `).join('');
 
-  // Services
-  const servicesContainer = document.getElementById('servicesContainer');
-  servicesContainer.innerHTML = CONFIG.services.map(service =>
-    `<a href="#">${service}</a>`
+  document.getElementById('servicesContainer').innerHTML = CONFIG.services.map(s =>
+    `<a href="#">${s}</a>`
   ).join('');
 
-  // Company links
-  const companyLinksContainer = document.getElementById('companyLinksContainer');
-  companyLinksContainer.innerHTML = CONFIG.footer.company.map(link =>
+  document.getElementById('companyLinksContainer').innerHTML = CONFIG.footer.company.map(link =>
     `<a href="${link.link}">${link.text}</a>`
   ).join('');
 
-  // Analyzer
   document.getElementById('analyzerTitle').textContent = CONFIG.analyzer.title;
   document.getElementById('analyzerSubtitle').textContent = CONFIG.analyzer.subtitle;
   document.getElementById('websiteUrl').placeholder = CONFIG.analyzer.placeholder;
 }
 
 // Toast notification
-function showToast(m) {
+function showToast(msg) {
   const t = document.getElementById('errorToast');
-  t.textContent = m;
+  t.textContent = msg;
   t.classList.add('active');
   setTimeout(() => t.classList.remove('active'), 4000);
 }
@@ -148,7 +137,6 @@ function showToast(m) {
 window.addEventListener('load', () => {
   initTracking();
   loadContent();
-
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
@@ -158,12 +146,27 @@ window.addEventListener('load', () => {
   });
 });
 
-// Helper label
-function getMetricLabel(s) {
-  return s === null ? 'N/A' : s >= 0.9 ? 'Good' : s >= 0.5 ? 'Needs Improvement' : 'Poor';
+// ─── Safe audit helpers ───────────────────────────────────────────────────────
+// Prevent crashes when PageSpeed API omits an audit for certain sites
+
+function getMetricLabel(score) {
+  if (score === null || score === undefined) return 'N/A';
+  return score >= 0.9 ? 'Good' : score >= 0.5 ? 'Needs Improvement' : 'Poor';
 }
 
-// Website Analyzer
+function safeDisplay(aud, key) {
+  return (aud[key] && aud[key].displayValue) ? aud[key].displayValue : 'N/A';
+}
+
+function safeNumeric(aud, key) {
+  return (aud[key] && aud[key].numericValue != null) ? aud[key].numericValue : null;
+}
+
+function safeScore(aud, key) {
+  return (aud[key] != null) ? aud[key].score : null;
+}
+
+// ─── Website Analyzer ────────────────────────────────────────────────────────
 async function analyzeWebsite() {
   const input = document.getElementById('websiteUrl');
   let url = input.value.trim();
@@ -181,9 +184,8 @@ async function analyzeWebsite() {
   btn.disabled = true;
 
   try {
-    // Read API key set in index.html
     const apiKey = window.PAGE_SPEED_API_KEY || '';
-    const keyParam = apiKey && apiKey !== 'YOUR_API_KEY_HERE' ? `&key=${apiKey}` : '';
+    const keyParam = (apiKey && apiKey !== 'YOUR_API_KEY_HERE') ? `&key=${apiKey}` : '';
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile${keyParam}`;
 
     const res = await fetch(apiUrl);
@@ -192,40 +194,43 @@ async function analyzeWebsite() {
     if (data.error) throw new Error(data.error.message || 'API Error');
 
     const lh = data.lighthouseResult;
-    const cat = lh.categories;
     const aud = lh.audits;
-    const score = Math.round(cat.performance.score * 100);
+    const score = Math.round(lh.categories.performance.score * 100);
 
-    // Overall score
+    // Overall score + circle animation
     document.getElementById('overallScore').textContent = score;
-
-    // Animate circle
     const circumference = 2 * Math.PI * 90;
     document.getElementById('scoreCircle').style.strokeDashoffset = circumference - (score / 100) * circumference;
 
-    // Metrics
-    document.getElementById('loadTime').textContent = (aud['speed-index'].numericValue / 1000).toFixed(1) + 's';
-    document.getElementById('loadTimeLabel').textContent = getMetricLabel(aud['speed-index'].score);
+    // Load Time (Speed Index)
+    const speedIndex = safeNumeric(aud, 'speed-index');
+    document.getElementById('loadTime').textContent = speedIndex !== null ? (speedIndex / 1000).toFixed(1) + 's' : 'N/A';
+    document.getElementById('loadTimeLabel').textContent = getMetricLabel(safeScore(aud, 'speed-index'));
 
-    const sizeMB = (aud['total-byte-weight'].numericValue / (1024 * 1024)).toFixed(1);
-    document.getElementById('pageSize').textContent = sizeMB + ' MB';
-    document.getElementById('pageSizeLabel').textContent = getMetricLabel(aud['total-byte-weight'].score);
+    // Page Size (Total Byte Weight)
+    const byteWeight = safeNumeric(aud, 'total-byte-weight');
+    document.getElementById('pageSize').textContent = byteWeight !== null ? (byteWeight / (1024 * 1024)).toFixed(1) + ' MB' : 'N/A';
+    document.getElementById('pageSizeLabel').textContent = getMetricLabel(safeScore(aud, 'total-byte-weight'));
 
-    const reqCount = aud['network-requests'].details.items.length;
-    document.getElementById('requests').textContent = reqCount;
-    document.getElementById('requestsLabel').textContent = reqCount < 50 ? 'Good' : 'Needs Work';
+    // HTTP Requests
+    const reqItems = aud['network-requests'] && aud['network-requests'].details && aud['network-requests'].details.items;
+    const reqCount = reqItems ? reqItems.length : null;
+    document.getElementById('requests').textContent = reqCount !== null ? reqCount : 'N/A';
+    document.getElementById('requestsLabel').textContent = reqCount !== null ? (reqCount < 50 ? 'Good' : 'Needs Work') : 'N/A';
 
-    document.getElementById('images').textContent = aud['dom-size'].displayValue;
-    document.getElementById('imagesLabel').textContent = getMetricLabel(aud['dom-size'].score);
+    // DOM Size
+    document.getElementById('images').textContent = safeDisplay(aud, 'dom-size');
+    document.getElementById('imagesLabel').textContent = getMetricLabel(safeScore(aud, 'dom-size'));
 
-    document.getElementById('scripts').textContent = aud['bootup-time'].displayValue;
-    document.getElementById('scriptsLabel').textContent = getMetricLabel(aud['bootup-time'].score);
+    // JS Bootup Time
+    document.getElementById('scripts').textContent = safeDisplay(aud, 'bootup-time');
+    document.getElementById('scriptsLabel').textContent = getMetricLabel(safeScore(aud, 'bootup-time'));
 
-    document.getElementById('styles').textContent = aud['mainthread-work-breakdown'].displayValue;
-    document.getElementById('stylesLabel').textContent = getMetricLabel(aud['mainthread-work-breakdown'].score);
+    // Main Thread Work
+    document.getElementById('styles').textContent = safeDisplay(aud, 'mainthread-work-breakdown');
+    document.getElementById('stylesLabel').textContent = getMetricLabel(safeScore(aud, 'mainthread-work-breakdown'));
 
     // Recommendations
-    const recList = document.getElementById('recommendationsList');
     const checks = [
       ['uses-optimized-images', 'Optimize Images'],
       ['unused-css-rules', 'Remove Unused CSS'],
@@ -234,7 +239,8 @@ async function analyzeWebsite() {
       ['server-response-time', 'Improve Server Response Time']
     ];
 
-    const recs = checks.filter(([key]) => aud[key] && aud[key].score < 1);
+    const recs = checks.filter(([key]) => aud[key] && aud[key].score !== null && aud[key].score < 1);
+    const recList = document.getElementById('recommendationsList');
 
     if (recs.length === 0) {
       recList.innerHTML = '<div class="recommendation-item"><div class="recommendation-title">🎉 Excellent Performance!</div><div class="recommendation-description">Your website is well-optimized. Keep up the great work!</div></div>';
@@ -242,7 +248,7 @@ async function analyzeWebsite() {
       recList.innerHTML = recs.map(([key, title]) => `
         <div class="recommendation-item">
           <div class="recommendation-title">${title}</div>
-          <div class="recommendation-description">${aud[key].description}</div>
+          <div class="recommendation-description">${aud[key].description || ''}</div>
         </div>
       `).join('');
     }
@@ -255,44 +261,42 @@ async function analyzeWebsite() {
     loading.classList.remove('active');
     results.classList.add('active');
 
-    const recList = document.getElementById('recommendationsList');
     const isQuota = err.message.toLowerCase().includes('quota') || err.message.toLowerCase().includes('exceeded');
 
-    document.getElementById('overallScore').textContent = isQuota ? '⚠️' : '❌';
-    document.getElementById('loadTime').textContent = '--';
-    document.getElementById('loadTimeLabel').textContent = isQuota ? 'API Limit' : 'Error';
-    document.getElementById('pageSize').textContent = '--';
-    document.getElementById('pageSizeLabel').textContent = '--';
-    document.getElementById('requests').textContent = '--';
-    document.getElementById('requestsLabel').textContent = '--';
-    document.getElementById('images').textContent = '--';
-    document.getElementById('imagesLabel').textContent = '--';
-    document.getElementById('scripts').textContent = '--';
-    document.getElementById('scriptsLabel').textContent = '--';
-    document.getElementById('styles').textContent = '--';
-    document.getElementById('stylesLabel').textContent = '--';
+    // Reset all metric cards
+    ['loadTime','pageSize','requests','images','scripts','styles'].forEach(id => {
+      document.getElementById(id).textContent = '--';
+    });
+    ['loadTimeLabel','pageSizeLabel','requestsLabel','imagesLabel','scriptsLabel','stylesLabel'].forEach(id => {
+      document.getElementById(id).textContent = isQuota ? 'API Limit' : 'Error';
+    });
 
+    document.getElementById('overallScore').textContent = isQuota ? '⚠️' : '❌';
+
+    const recList = document.getElementById('recommendationsList');
     if (isQuota) {
-      recList.innerHTML = `<div class="recommendation-item" style="border-left-color:#FF9500">
-        <div class="recommendation-title">📊 API Quota Exceeded</div>
-        <div class="recommendation-description">
-          The PageSpeed API quota has been exceeded. Please try again later, or analyze directly:<br><br>
-          <a href="https://pagespeed.web.dev/analysis?url=${encodeURIComponent(url)}" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">
-            → Analyze on PageSpeed Insights ←
-          </a>
-        </div>
-      </div>`;
+      recList.innerHTML = `
+        <div class="recommendation-item" style="border-left-color:#FF9500">
+          <div class="recommendation-title">📊 API Quota Exceeded</div>
+          <div class="recommendation-description">
+            The PageSpeed API quota has been exceeded. Please try again later, or:<br><br>
+            <a href="https://pagespeed.web.dev/analysis?url=${encodeURIComponent(url)}" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">
+              → Analyze on PageSpeed Insights ←
+            </a>
+          </div>
+        </div>`;
     } else {
-      recList.innerHTML = `<div class="recommendation-item">
-        <div class="recommendation-title">⚠️ Analysis Error</div>
-        <div class="recommendation-description">
-          ${err.message}<br><br>
-          Try analyzing directly:<br>
-          <a href="https://pagespeed.web.dev/analysis?url=${encodeURIComponent(url)}" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">
-            → PageSpeed Insights ←
-          </a>
-        </div>
-      </div>`;
+      recList.innerHTML = `
+        <div class="recommendation-item">
+          <div class="recommendation-title">⚠️ Analysis Error</div>
+          <div class="recommendation-description">
+            ${err.message}<br><br>
+            Try analyzing directly:<br>
+            <a href="https://pagespeed.web.dev/analysis?url=${encodeURIComponent(url)}" target="_blank" rel="noopener" style="color:#E63027;font-weight:700;text-decoration:underline">
+              → PageSpeed Insights ←
+            </a>
+          </div>
+        </div>`;
     }
   } finally {
     btn.disabled = false;
