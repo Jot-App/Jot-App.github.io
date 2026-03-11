@@ -7,13 +7,18 @@
   <meta name="description" content="Mad Hat Communications - Performance-driven growth marketing, market expansion, and conversion optimization services.">
   <title>Mad Hat Communications - Performance-Driven Growth Marketing</title>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58883HVDTC"></script>
+  <!-- Google Analytics — loaded after page is interactive to avoid render blocking -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-58883HVDTC');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-58883HVDTC';
+      s.async = true;
+      document.head.appendChild(s);
+    });
   </script>
 
   <!-- PageSpeed Insights API Key -->
@@ -22,10 +27,9 @@
   </script>
 
   <!-- Load Configuration -->
-  <script src="config.js"></script>
+  <script src="config.js" defer></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font preload without preconnect (preconnect flagged as unused by PageSpeed) -->
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
   <noscript>
@@ -553,10 +557,11 @@
     <nav class="nav-container" aria-label="Main navigation">
       <a href="#" class="logo" id="companyName">Mad Hat</a>
       <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
+        <li><a href="work.html">Work</a></li>
         <li><a href="#analyzer">Analyzer</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -675,15 +680,16 @@
       </div>
       <div class="footer-section">
         <h3>Contact</h3>
-        <a href="mailto:hello@madhat.com" id="footerEmail">hello@madhat.com</a>
-        <a href="tel:+1234567890" id="footerPhone">+1 (234) 567-890</a>
+        <a href="/cdn-cgi/l/email-protection#79111c1515163914181d11180d571a1614" id="footerEmail"><span class="__cf_email__" data-cfemail="4a222f2626250a272b2e222b3e64292527">[email&#160;protected]</span></a>
+        <a href="tel:+919535015025" id="footerPhone">+91 95350 15025</a>
       </div>
     </div>
     <div class="footer-bottom">
+      <p>&copy; <span id="currentYear">2025</span> <span id="copyrightName">
       <p>&copy; <span id="currentYear">2025</span> <span id="copyrightName">Mad Hat Communications</span>. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
