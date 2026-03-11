@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Mad Hat Communications - Our journey from 2015, evolving from creative services to performance-driven growth marketing.">
+  <title>About Us — Mad Hat Communications</title>
+
+  <!-- Google Analytics -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-58883HVDTC');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-58883HVDTC';
+      s.async = true;
+      document.head.appendChild(s);
+    });
+  </script>
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  </noscript>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box }
+
+    :root {
+      --primary: #0F0F0F;
+      --accent: #E63027;
+      --secondary: #F5F5F0;
+      --text: #2C2C2C;
+      --text-light: #525252;
+      --border: #E0E0E0
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    h1, h2, h3 { font-family: Georgia, serif; font-weight: 900; line-height: 1.1 }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(245, 245, 240, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1.5rem 0
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--accent) }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 12rem 3rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .page-hero-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1.5rem
+    }
+
+    .page-hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: var(--primary);
+      max-width: 800px;
+      margin-bottom: 2rem
+    }
+
+    .page-hero p {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      max-width: 600px;
+      line-height: 1.8
+    }
+
+    /* JOURNEY / TIMELINE */
+    .journey {
+      padding: 6rem 3rem;
+      background: var(--primary)
+    }
+
+    .journey-inner {
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem
+    }
+
+    .journey-inner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: white;
+      margin-bottom: 1.5rem
+    }
+
+    .journey-intro {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-bottom: 5rem;
+      line-height: 1.8
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), rgba(230,48,39,0.1))
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 4rem 3rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInLeft 0.6s ease forwards
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.1s }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s }
+    .timeline-item:nth-child(5) { animation-delay: 0.5s }
+
+    @keyframes fadeInLeft {
+      to { opacity: 1; transform: translateX(0) }
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.45rem;
+      top: 0.4rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--primary)
+    }
+
+    .timeline-year {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem
+    }
+
+    .timeline-title {
+      font-size: 1.4rem;
+      color: white;
+      font-family: Georgia, serif;
+      margin-bottom: 0.75rem
+    }
+
+    .timeline-desc {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 600px
+    }
+
+    /* BRANDS WE BUILT */
+    .brands {
+      padding: 6rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .brands h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--primary);
+      margin-bottom: 1rem
+    }
+
+    .brands-intro {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.8
+    }
+
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem
+    }
+
+    .brand-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.5rem;
+      background: white;
+      transition: transform 0.3s, box-shadow 0.3s
+    }
+
+    .brand-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08)
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: white
+    }
+
+    .brand-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem
+    }
+
+    .brand-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7
+    }
+
+    /* MISSION */
+    .mission {
+      padding: 6rem 3rem;
+      background: var(--primary)
+    }
+
+    .mission-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center
+    }
+
+    .mission-text h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: white;
+      margin-bottom: 2rem
+    }
+
+    .mission-text p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem
+    }
+
+    .mission-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem
+    }
+
+    .value-item {
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px
+    }
+
+    .value-item h4 {
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      font-family: Georgia, serif
+    }
+
+    .value-item p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.88rem;
+      line-height: 1.6
+    }
+
+    /* CTA STRIP */
+    .cta-strip {
+      padding: 5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta-strip h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--primary)
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 1.2rem 3rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      white-space: nowrap
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(230,48,39,0.3)
+    }
+
+    /* FOOTER */
+    .footer { background: #0a0a0a; padding: 3rem; text-align: center }
+    .footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem }
+    .footer a { color: rgba(255,255,255,0.3); text-decoration: none }
+    .footer a:hover { color: var(--accent) }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-container { padding: 0 1.5rem }
+      .nav-links { display: none }
+      .page-hero { padding: 8rem 1.5rem 3rem }
+      .journey { padding: 4rem 1.5rem }
+      .brands { padding: 4rem 1.5rem }
+      .brands-grid { grid-template-columns: 1fr }
+      .mission { padding: 4rem 1.5rem }
+      .mission-inner { grid-template-columns: 1fr; gap: 3rem }
+      .cta-strip { flex-direction: column; gap: 2rem; text-align: center; padding: 3rem 1.5rem }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="index.html" class="logo">Mad Hat</a>
+      <ul class="nav-links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <p class="page-hero-label">Our Story</p>
+      <h1>A Decade of Building Brands That Grow</h1>
+      <p>From a creative studio in 2015 to a full-stack growth marketing agency — we've evolved alongside every brand we've built.</p>
+    </section>
+
+    <!-- JOURNEY TIMELINE -->
+    <section class="journey">
+      <div class="journey-inner">
+        <p class="section-label">Our Journey</p>
+        <h2>Ten Years of Evolution</h2>
+        <p class="journey-intro">Mad Hat began as a creative services studio and has since grown into a performance-driven growth marketing agency. Every phase of our evolution was shaped by the brands we partnered with and the results we delivered.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2015 — The Beginning</div>
+            <h3 class="timeline-title">Creative Services & Brand Identity</h3>
+            <p class="timeline-desc">Mad Hat was founded with a focus on creative services — visual identity, copywriting, and brand storytelling. We believed great brands start with great creative.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2017 — Expanding the Craft</div>
+            <h3 class="timeline-title">Brand Building & Market Strategy</h3>
+            <p class="timeline-desc">We expanded beyond creative into full brand-building — market positioning, launch strategy, and audience development. This is when we began partnering with brands entering new markets.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2019 — Going Performance</div>
+            <h3 class="timeline-title">Performance Marketing & CRO</h3>
+            <p class="timeline-desc">We added performance marketing to our arsenal. Paid media, conversion rate optimization, and data-driven campaigns became central to everything we did. Results — not just reach — became our currency.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2021 — Growth Frameworks</div>
+            <h3 class="timeline-title">Systematic Growth Marketing</h3>
+            <p class="timeline-desc">We formalized our approach into repeatable growth frameworks — combining creative, performance, and analytics into a single integrated system. The results spoke for themselves: 64% CAC reduction, 4.2x ROAS improvements, and 7+ new markets launched.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024 — Today</div>
+            <h3 class="timeline-title">Full-Stack Growth Partner</h3>
+            <p class="timeline-desc">Mad Hat Communications is today a full-stack growth agency — a partner from brand discovery through scale. We work with ambitious brands ready to grow with precision, not just ambition.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANDS WE'VE BUILT -->
+    <section class="brands">
+      <p class="section-label">Our Impact</p>
+      <h2>Brands We've Been Instrumental In</h2>
+      <p class="brands-intro">Over a decade, we've been privileged to help launch and scale brands across industries, geographies, and growth stages.</p>
+
+      <div class="brands-grid">
+        <div class="brand-card">
+          <div class="brand-icon" style="background: linear-gradient(135deg, #667eea, #764ba2)">A</div>
+          <h3>Alankari.com</h3>
+          <p>India's leading handloom saree brand. We drove a 64% reduction in customer acquisition costs and a 4.2x improvement in ROAS through targeted performance marketing and conversion optimization.</p>
+        </div>
+
+        <div class="brand-card">
+          <div class="brand-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe)">Q</div>
+          <h3>QSC / Q-SYS India</h3>
+          <p>A multi-year exclusive agency partnership covering the India market launch, headquarters opening, 3 InfoComm events, podcast production, music videos, and brand content creation.</p>
+        </div>
+
+        <div class="brand-card">
+          <div class="brand-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7)">R</div>
+          <h3>Rotary Theatre Club</h3>
+          <p>We helped bring the Rotary Theatre Club to life — from brand identity and audience development to event marketing and community building. A labour of love and creative pride.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION & VALUES -->
+    <section class="mission">
+      <div class="mission-inner">
+        <div class="mission-text">
+          <h2>What We Stand For</h2>
+          <p>We believe marketing should be measurable. Every campaign, every piece of content, every dollar spent should move the needle in a direction you can see and prove.</p>
+          <p>Our approach blends the rigour of performance marketing with the soul of genuine creative — because numbers without story don't last, and story without numbers doesn't scale.</p>
+        </div>
+
+        <div class="mission-values">
+          <div class="value-item">
+            <h4>Results First</h4>
+            <p>We measure everything. If it can't be tracked, we build the tracking. If it doesn't perform, we iterate.</p>
+          </div>
+          <div class="value-item">
+            <h4>Creative Rigour</h4>
+            <p>Great creative isn't decoration. It's the difference between a campaign that converts and one that's ignored.</p>
+          </div>
+          <div class="value-item">
+            <h4>Long Partnerships</h4>
+            <p>Our best results come from deep relationships. We don't just execute — we become part of your team.</p>
+          </div>
+          <div class="value-item">
+            <h4>Honest Growth</h4>
+            <p>We'll tell you what's working and what isn't. No vanity metrics. No inflated reports. Just the truth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-strip">
+      <h2>Ready to grow together?</h2>
+      <a href="contact.html" class="cta-button">Start a Conversation</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="work.html">Work</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></p>
+  </footer>
+</body>
+</html>
