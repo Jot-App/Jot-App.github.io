@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mad Hat Communications — Our work, process, and case studies in growth marketing, market expansion, and conversion optimization.">
+  <title>Our Work — Mad Hat Communications</title>
+
+  <!-- Google Analytics -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-58883HVDTC');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-58883HVDTC';
+      s.async = true;
+      document.head.appendChild(s);
+    });
+  </script>
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  </noscript>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box }
+
+    :root {
+      --primary: #0F0F0F;
+      --accent: #E63027;
+      --secondary: #F5F5F0;
+      --text: #2C2C2C;
+      --text-light: #525252;
+      --border: #E0E0E0
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    h1, h2, h3 { font-family: Georgia, serif; font-weight: 900; line-height: 1.1 }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(245, 245, 240, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1.5rem 0
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--accent) }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 12rem 3rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .page-hero-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1.5rem
+    }
+
+    .page-hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: var(--primary);
+      max-width: 800px;
+      margin-bottom: 2rem
+    }
+
+    .page-hero p {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      max-width: 600px;
+      line-height: 1.8
+    }
+
+    /* PROCESS FRAMEWORK */
+    .process {
+      background: var(--primary);
+      padding: 7rem 3rem
+    }
+
+    .process-inner {
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem
+    }
+
+    .process-inner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: white;
+      margin-bottom: 1rem
+    }
+
+    .process-intro {
+      color: rgba(255,255,255,0.55);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 5rem;
+      line-height: 1.8
+    }
+
+    .framework-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative
+    }
+
+    .framework-steps::before {
+      content: '';
+      position: absolute;
+      top: 2.2rem;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), rgba(230,48,39,0.2));
+      z-index: 0
+    }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      padding: 0 1rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards
+    }
+
+    .step:nth-child(1) { animation-delay: 0.1s }
+    .step:nth-child(2) { animation-delay: 0.2s }
+    .step:nth-child(3) { animation-delay: 0.3s }
+    .step:nth-child(4) { animation-delay: 0.4s }
+    .step:nth-child(5) { animation-delay: 0.5s }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    .step-number {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      border: 4px solid var(--primary)
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      color: white;
+      font-family: Georgia, serif;
+      margin-bottom: 1rem
+    }
+
+    .step-tasks {
+      list-style: none;
+      margin-bottom: 1.5rem
+    }
+
+    .step-tasks li {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.8rem;
+      padding: 0.2rem 0;
+      line-height: 1.5
+    }
+
+    .step-outcome {
+      background: rgba(230,48,39,0.12);
+      border: 1px solid rgba(230,48,39,0.3);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5
+    }
+
+    .step-outcome strong {
+      color: var(--accent);
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem
+    }
+
+    /* CASE STUDIES */
+    .case-studies {
+      padding: 6rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .case-studies h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--primary);
+      margin-bottom: 1rem
+    }
+
+    .case-intro {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 4rem;
+      line-height: 1.8
+    }
+
+    .case-list { display: flex; flex-direction: column; gap: 4rem }
+
+    .case-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .case-item:last-child { border-bottom: none }
+
+    .case-visual {
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: white;
+      letter-spacing: -0.02em
+    }
+
+    .case-content { padding-top: 0.5rem }
+
+    .case-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 1rem
+    }
+
+    .case-content h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      color: var(--primary);
+      margin-bottom: 1rem
+    }
+
+    .case-content p {
+      color: var(--text-light);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem
+    }
+
+    .case-metrics-row {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 2rem
+    }
+
+    .case-metric .value {
+      font-size: 2rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--accent)
+    }
+
+    .case-metric .label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light)
+    }
+
+    .services-used {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem
+    }
+
+    .service-tag {
+      padding: 0.4rem 1rem;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: var(--text-light)
+    }
+
+    /* CTA */
+    .cta-strip {
+      padding: 5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border)
+    }
+
+    .cta-strip h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--primary)
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 1.2rem 3rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      white-space: nowrap
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(230,48,39,0.3)
+    }
+
+    /* FOOTER */
+    .footer { background: #0a0a0a; padding: 3rem; text-align: center }
+    .footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem }
+    .footer a { color: rgba(255,255,255,0.3); text-decoration: none }
+    .footer a:hover { color: var(--accent) }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .framework-steps { grid-template-columns: repeat(3, 1fr); gap: 2rem }
+      .framework-steps::before { display: none }
+      .step:nth-child(4), .step:nth-child(5) { grid-column: span 1 }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { padding: 0 1.5rem }
+      .nav-links { display: none }
+      .page-hero { padding: 8rem 1.5rem 3rem }
+      .process { padding: 4rem 1.5rem }
+      .framework-steps { grid-template-columns: 1fr 1fr }
+      .case-studies { padding: 4rem 1.5rem }
+      .case-item { grid-template-columns: 1fr }
+      .case-metrics-row { gap: 1.5rem }
+      .cta-strip { flex-direction: column; gap: 2rem; text-align: center; padding: 3rem 1.5rem }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="index.html" class="logo">Mad Hat</a>
+      <ul class="nav-links">
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <p class="page-hero-label">Our Work</p>
+      <h1>How We Grow Brands That Mean Business</h1>
+      <p>A proven framework, real results, and the case studies to back it up.</p>
+    </section>
+
+    <!-- PROCESS FRAMEWORK -->
+    <section class="process">
+      <div class="process-inner">
+        <p class="section-label">Our Framework</p>
+        <h2>Your Growth Framework</h2>
+        <p class="process-intro">We follow a repeatable 5-stage process built to deliver measurable outcomes at every step — from the first brand audit to a sustainable growth system.</p>
+
+        <div class="framework-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Discovery</h3>
+            <ul class="step-tasks">
+              <li>Brand audit</li>
+              <li>Audience research</li>
+              <li>Offer mapping</li>
+            </ul>
+            <div class="step-outcome">
+              <strong>Outcome</strong>
+              Clarity on where the growth opportunities truly are.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Foundation</h3>
+            <ul class="step-tasks">
+              <li>Messaging strategy</li>
+              <li>Website UX & CRO</li>
+              <li>Analytics set-up</li>
+            </ul>
+            <div class="step-outcome">
+              <strong>Outcome</strong>
+              Higher conversion & reliable insights.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Performance</h3>
+            <ul class="step-tasks">
+              <li>Paid media</li>
+              <li>SEO strategy</li>
+              <li>Content strategy</li>
+            </ul>
+            <div class="step-outcome">
+              <strong>Outcome</strong>
+              Lower CAC and higher ROI.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Optimization</h3>
+            <ul class="step-tasks">
+              <li>A/B testing</li>
+              <li>Creative iteration</li>
+              <li>Funnel refinement</li>
+            </ul>
+            <div class="step-outcome">
+              <strong>Outcome</strong>
+              Better performance month after month.
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">5</div>
+            <h3 class="step-title">Scale</h3>
+            <ul class="step-tasks">
+              <li>Budget scaling</li>
+              <li>Automation</li>
+              <li>Retention loops</li>
+            </ul>
+            <div class="step-outcome">
+              <strong>Outcome</strong>
+              Sustainable growth system.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="case-studies">
+      <p class="section-label">Case Studies</p>
+      <h2>Results We're Proud Of</h2>
+      <p class="case-intro">Every engagement is built around a clear growth objective. Here's what happens when our framework meets ambition.</p>
+
+      <div class="case-list">
+
+        <!-- ALANKARI -->
+        <div class="case-item">
+          <div class="case-visual" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">A</div>
+          <div class="case-content">
+            <p class="case-tag">E-Commerce · Performance Marketing · CRO</p>
+            <h3>Alankari.com — Turning Craft into Commerce</h3>
+            <p>India's leading handloom saree brand had a powerful product and a loyal customer base — but their digital acquisition costs were eating into margins. We rebuilt their funnel from the ground up: tightening messaging, redesigning key landing pages, and restructuring their paid media campaigns around high-intent audiences.</p>
+            <p>The result was a dramatic reduction in what it cost them to acquire each customer, alongside a significant lift in return on ad spend — achieved without increasing their total media budget.</p>
+            <div class="case-metrics-row">
+              <div class="case-metric"><div class="value">64%</div><div class="label">CAC Reduction</div></div>
+              <div class="case-metric"><div class="value">4.2x</div><div class="label">ROAS Increase</div></div>
+              <div class="case-metric"><div class="value">127%</div><div class="label">Conversion Rate Lift</div></div>
+            </div>
+            <div class="services-used">
+              <span class="service-tag">Performance Marketing</span>
+              <span class="service-tag">CRO</span>
+              <span class="service-tag">Landing Page Design</span>
+              <span class="service-tag">Audience Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DRONAHQ -->
+        <div class="case-item">
+          <div class="case-visual" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">D</div>
+          <div class="case-content">
+            <p class="case-tag">B2B SaaS · Market Expansion · Demand Generation</p>
+            <h3>DronaHQ — Zero to 750 Customers Across 7 Markets</h3>
+            <p>DronaHQ, a low-code B2B SaaS platform, needed to expand into Africa and the Middle East — markets where they had zero presence, zero brand equity, and zero existing pipeline. We built the entire go-to-market strategy from scratch: market mapping, localised messaging, demand generation campaigns, and strategic channel partnerships.</p>
+            <p>Within two years, DronaHQ had 750+ customers and a foothold across 7 new markets — a growth story built on strategy, not just spend.</p>
+            <div class="case-metrics-row">
+              <div class="case-metric"><div class="value">750+</div><div class="label">New Customers</div></div>
+              <div class="case-metric"><div class="value">7</div><div class="label">Markets Opened</div></div>
+              <div class="case-metric"><div class="value">2 Yrs</div><div class="label">To Full Expansion</div></div>
+            </div>
+            <div class="services-used">
+              <span class="service-tag">Market Expansion Strategy</span>
+              <span class="service-tag">Demand Generation</span>
+              <span class="service-tag">Content Marketing</span>
+              <span class="service-tag">Partnership Development</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- QSC -->
+        <div class="case-item">
+          <div class="case-visual" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Q</div>
+          <div class="case-content">
+            <p class="case-tag">Enterprise · Brand Launch · Content Production</p>
+            <h3>QSC / Q-SYS — Building a Brand Presence in India</h3>
+            <p>QSC needed an exclusive agency partner to manage their India market launch and ongoing brand presence. Over 5+ years, we became the creative and marketing engine behind everything they produced in India — from their headquarters opening and major InfoComm trade events to an ongoing podcast series, music video productions, and a full library of testimonial and product content.</p>
+            <p>This partnership is a testament to what long-term, embedded agency relationships can produce: consistency, depth, and a brand that feels genuinely local.</p>
+            <div class="case-metrics-row">
+              <div class="case-metric"><div class="value">5+</div><div class="label">Years Partnership</div></div>
+              <div class="case-metric"><div class="value">50+</div><div class="label">Content Pieces</div></div>
+              <div class="case-metric"><div class="value">3</div><div class="label">Major Events</div></div>
+            </div>
+            <div class="services-used">
+              <span class="service-tag">Brand Strategy</span>
+              <span class="service-tag">Event Marketing</span>
+              <span class="service-tag">Content Production</span>
+              <span class="service-tag">Podcast Production</span>
+              <span class="service-tag">Video Production</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-strip">
+      <h2>Want results like these?</h2>
+      <a href="contact.html" class="cta-button">Let's Talk</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="about.html">About</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></p>
+  </footer>
+</body>
+</html>

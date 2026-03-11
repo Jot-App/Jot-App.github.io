@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mad Hat Communications Blog — Insights on growth marketing, market expansion, and performance optimization.">
+  <title>Blog — Mad Hat Communications</title>
+
+  <!-- Google Analytics -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-58883HVDTC');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-58883HVDTC';
+      s.async = true;
+      document.head.appendChild(s);
+    });
+  </script>
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
+  </noscript>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box }
+
+    :root {
+      --primary: #0F0F0F;
+      --accent: #E63027;
+      --secondary: #F5F5F0;
+      --text: #2C2C2C;
+      --text-light: #525252;
+      --border: #E0E0E0
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    h1, h2, h3 { font-family: Georgia, serif; font-weight: 900; line-height: 1.1 }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(245, 245, 240, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1.5rem 0
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--accent) }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 12rem 3rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .page-hero-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1.5rem
+    }
+
+    .page-hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: var(--primary);
+      max-width: 700px;
+      margin-bottom: 2rem
+    }
+
+    .page-hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 550px;
+      line-height: 1.8
+    }
+
+    /* COMING SOON */
+    .coming-soon {
+      padding: 6rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 5rem
+    }
+
+    .placeholder-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      opacity: 0.6
+    }
+
+    .placeholder-thumb {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem
+    }
+
+    .placeholder-body { padding: 1.5rem }
+
+    .placeholder-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.75rem
+    }
+
+    .placeholder-title {
+      font-size: 1.2rem;
+      color: var(--primary);
+      font-family: Georgia, serif;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      line-height: 1.3
+    }
+
+    .placeholder-excerpt {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      line-height: 1.7
+    }
+
+    .placeholder-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border)
+    }
+
+    .placeholder-date {
+      font-size: 0.78rem;
+      color: var(--text-light)
+    }
+
+    .placeholder-read {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-left: auto
+    }
+
+    /* NOTIFY */
+    .notify {
+      background: var(--primary);
+      padding: 5rem 3rem;
+      text-align: center
+    }
+
+    .notify-inner { max-width: 500px; margin: 0 auto }
+
+    .notify h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: white;
+      margin-bottom: 1rem
+    }
+
+    .notify p {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2.5rem;
+      line-height: 1.7
+    }
+
+    .notify-form {
+      display: flex;
+      gap: 0;
+      max-width: 420px;
+      margin: 0 auto
+    }
+
+    .notify-input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-right: none;
+      border-radius: 2px 0 0 2px;
+      color: white;
+      font-size: 0.95rem;
+      outline: none
+    }
+
+    .notify-input::placeholder { color: rgba(255,255,255,0.3) }
+    .notify-input:focus { border-color: var(--accent) }
+
+    .notify-btn {
+      padding: 1rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 0 2px 2px 0;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.3s
+    }
+
+    .notify-btn:hover { opacity: 0.9 }
+
+    .notify-success {
+      display: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      margin-top: 1rem
+    }
+
+    .notify-success.visible { display: block }
+
+    /* FOOTER */
+    .footer { background: #0a0a0a; padding: 3rem; text-align: center }
+    .footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem }
+    .footer a { color: rgba(255,255,255,0.3); text-decoration: none }
+    .footer a:hover { color: var(--accent) }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-container { padding: 0 1.5rem }
+      .nav-links { display: none }
+      .page-hero { padding: 8rem 1.5rem 3rem }
+      .coming-soon { padding: 4rem 1.5rem }
+      .coming-soon-grid { grid-template-columns: 1fr }
+      .notify { padding: 4rem 1.5rem }
+      .notify-form { flex-direction: column }
+      .notify-input { border-right: 1px solid rgba(255,255,255,0.2); border-bottom: none; border-radius: 2px 2px 0 0 }
+      .notify-btn { border-radius: 0 0 2px 2px }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="index.html" class="logo">Mad Hat</a>
+      <ul class="nav-links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="page-hero-label">Insights & Ideas</p>
+      <h1>Growth Marketing, Straight Talking</h1>
+      <p>Practical insights on performance marketing, market expansion, and building brands that scale. Coming soon.</p>
+    </section>
+
+    <!-- PLACEHOLDER POSTS -->
+    <section class="coming-soon">
+      <div class="coming-soon-grid">
+        <div class="placeholder-card">
+          <div class="placeholder-thumb" style="background: linear-gradient(135deg, #667eea20, #764ba220)">✍️</div>
+          <div class="placeholder-body">
+            <p class="placeholder-tag">Performance Marketing</p>
+            <h3 class="placeholder-title">Why Your CAC Is High (And How to Fix It Without Cutting Budget)</h3>
+            <p class="placeholder-excerpt">Most brands focus on media spend when CAC rises. The real culprit is usually further up the funnel...</p>
+            <div class="placeholder-meta">
+              <span class="placeholder-date">Coming Soon</span>
+              <span class="placeholder-read">5 min read</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="placeholder-card">
+          <div class="placeholder-thumb" style="background: linear-gradient(135deg, #f093fb20, #f5576c20)">🌍</div>
+          <div class="placeholder-body">
+            <p class="placeholder-tag">Market Expansion</p>
+            <h3 class="placeholder-title">The Africa & Middle East Playbook: Lessons from Launching 7 Markets</h3>
+            <p class="placeholder-excerpt">What we learned taking DronaHQ from zero presence to 750+ customers across two continents...</p>
+            <div class="placeholder-meta">
+              <span class="placeholder-date">Coming Soon</span>
+              <span class="placeholder-read">8 min read</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="placeholder-card">
+          <div class="placeholder-thumb" style="background: linear-gradient(135deg, #4facfe20, #00f2fe20)">📊</div>
+          <div class="placeholder-body">
+            <p class="placeholder-tag">CRO</p>
+            <h3 class="placeholder-title">5 Landing Page Fixes That Moved Our Client's Conversion Rate by 127%</h3>
+            <p class="placeholder-excerpt">None of them required a full redesign. Here's exactly what we changed and why it worked...</p>
+            <div class="placeholder-meta">
+              <span class="placeholder-date">Coming Soon</span>
+              <span class="placeholder-read">6 min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTIFY -->
+    <section class="notify">
+      <div class="notify-inner">
+        <h2>Be First to Read</h2>
+        <p>We're writing about the stuff that actually moves growth metrics. No fluff, no recycled takes. Drop your email and we'll let you know when we publish.</p>
+        <div class="notify-form">
+          <input type="email" class="notify-input" id="notifyEmail" placeholder="your@email.com">
+          <button class="notify-btn" onclick="subscribeNotify()">Notify Me</button>
+        </div>
+        <p class="notify-success" id="notifySuccess">✓ You're on the list. We'll be in touch soon.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="work.html">Work</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></p>
+  </footer>
+
+  <script>
+    function subscribeNotify() {
+      const email = document.getElementById('notifyEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      document.querySelector('.notify-form').style.display = 'none';
+      document.getElementById('notifySuccess').classList.add('visible');
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'blog_subscribe', { event_category: 'Blog', event_label: email });
+      }
+    }
+  </script>
+</body>
+</html>
