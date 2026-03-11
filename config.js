@@ -44,8 +44,8 @@ const CONFIG = {
     name: 'Mad Hat Communications',
     tagline: 'Performance-Driven Growth Marketing',
     description: 'From market expansion to conversion optimization, we deliver measurable results through strategic digital marketing, content production, and performance analytics.',
-    email: 'hello@madhat.com',
-    phone: '+1 (234) 567-890',
+    email: 'amit@madhatcomm.in',
+    phone: '+91 95350 15025',
     address: 'Your Address Here'
   },
 
