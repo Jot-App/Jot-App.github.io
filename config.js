@@ -125,13 +125,13 @@ const CONFIG = {
     company: [
       { text: 'About Us', link: '#' },
       { text: 'Case Studies', link: '#work' },
-      { text: 'Blog', link: '#' },
+      { text: 'Blog', link: 'blog.html' },
       { text: 'Careers', link: '#' }
     ],
     social: {
-      linkedin: 'https://linkedin.com/company/madhat',
-      twitter: 'https://twitter.com/madhat',
-      facebook: 'https://facebook.com/madhat'
+      linkedin: 'https://www.linkedin.com/company/madhatcommunications/',
+      facebook: 'https://www.facebook.com/MadHatComm/',
+      instagram: 'https://www.instagram.com/madhatcommunications/'
     }
   },
 
