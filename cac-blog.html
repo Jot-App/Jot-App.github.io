@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Your CAC Is High (And How to Fix It) | Mad Hat Communications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0F0F0F;
+      --accent: #E63027;
+      --secondary: #F5F5F0;
+      --muted: #888;
+      --border: #222;
+      --card: #161616;
+      --card2: #1c1c1c;
+      --cosmetic: #C9956A;
+      --cosmetic-bg: #1e130b;
+      --b2b: #4A8FB5;
+      --b2b-bg: #0b1a24;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--primary);
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(15,15,15,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--secondary);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-tag {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 40px 60px;
+      max-width: 860px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(230,48,39,0.1);
+      border: 1px solid rgba(230,48,39,0.2);
+      border-radius: 999px;
+      padding: 5px 14px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero-sub {
+      font-size: 17px;
+      color: #aaa;
+      max-width: 600px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+    .hero-meta span::before { content: '— '; }
+
+    /* ── LAYOUT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .section-desc {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.7;
+      max-width: 620px;
+      margin-bottom: 40px;
+    }
+
+    /* ── CASE TOGGLE ── */
+    .case-toggle {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .toggle-btn {
+      padding: 12px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: #aaa;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .toggle-btn:hover { border-color: #444; color: var(--secondary); }
+    .toggle-btn.active-cosmetic {
+      background: var(--cosmetic-bg);
+      border-color: var(--cosmetic);
+      color: var(--cosmetic);
+    }
+    .toggle-btn.active-b2b {
+      background: var(--b2b-bg);
+      border-color: var(--b2b);
+      color: var(--b2b);
+    }
+    .toggle-sub { display: block; font-size: 11px; font-weight: 400; opacity: 0.7; margin-top: 2px; }
+
+    /* ── CASE CARD ── */
+    .case-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+      display: none;
+    }
+    .case-card.visible { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* card header */
+    .case-header {
+      padding: 36px 40px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .case-header::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      opacity: 0.12;
+    }
+    .case-cosmetic .case-header { background: var(--cosmetic-bg); }
+    .case-cosmetic .case-header::after { background: var(--cosmetic); }
+    .case-b2b .case-header { background: var(--b2b-bg); }
+    .case-b2b .case-header::after { background: var(--b2b); }
+
+    .case-type-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .case-cosmetic .case-type-tag { color: var(--cosmetic); }
+    .case-b2b .case-type-tag { color: var(--b2b); }
+
+    .case-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--secondary);
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+    .case-type { font-size: 13px; color: rgba(245,245,240,0.5); margin-bottom: 18px; }
+
+    .case-problem {
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(245,245,240,0.8);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+    .case-cosmetic .case-problem {
+      background: rgba(201,149,106,0.08);
+      border-left: 3px solid var(--cosmetic);
+    }
+    .case-b2b .case-problem {
+      background: rgba(74,143,181,0.08);
+      border-left: 3px solid var(--b2b);
+    }
+
+    .snapshot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .snap-item .snap-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(245,245,240,0.4);
+      margin-bottom: 3px;
+    }
+    .snap-item .snap-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+    .snap-item .snap-val.warn { color: var(--danger); }
+    .case-cosmetic .snap-item .snap-val.hi { color: var(--cosmetic); }
+    .case-b2b .snap-item .snap-val.hi { color: var(--b2b); }
+
+    /* root causes */
+    .case-body { background: #111; padding: 32px 40px; }
+    .body-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .cause-list { display: flex; flex-direction: column; gap: 8px; }
+    .cause-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .cause-item:hover { border-color: #444; }
+    .cause-item.open { border-color: var(--accent); }
+
+    .cause-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--card);
+      user-select: none;
+    }
+    .cause-left { display: flex; align-items: center; gap: 14px; }
+    .cause-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .case-cosmetic .cause-num { background: rgba(201,149,106,0.15); color: var(--cosmetic); }
+    .case-b2b .cause-num { background: rgba(74,143,181,0.15); color: var(--b2b); }
+
+    .cause-title { font-size: 14px; font-weight: 700; color: var(--secondary); }
+    .cause-toggle { font-size: 20px; font-weight: 700; color: var(--muted); transition: color 0.2s; }
+    .cause-item.open .cause-toggle { color: var(--accent); }
+
+    .cause-body {
+      display: none;
+      padding: 0 20px 18px 62px;
+      background: var(--card);
+    }
+    .cause-item.open .cause-body { display: block; }
+    .cause-detail {
+      font-size: 14px;
+      color: #999;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .cause-fix {
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+    .case-cosmetic .cause-fix {
+      background: rgba(201,149,106,0.08);
+      border-left: 3px solid var(--cosmetic);
+      color: #d4a882;
+    }
+    .case-b2b .cause-fix {
+      background: rgba(74,143,181,0.08);
+      border-left: 3px solid var(--b2b);
+      color: #89c0d8;
+    }
+    .fix-label { font-weight: 800; margin-right: 4px; }
+    .case-cosmetic .fix-label { color: var(--cosmetic); }
+    .case-b2b .fix-label { color: var(--b2b); }
+
+    /* results */
+    .case-results {
+      background: var(--card2);
+      padding: 28px 40px 32px;
+      border-top: 1px solid var(--border);
+    }
+    .metrics-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .metric-pill {
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      flex: 1 1 140px;
+      min-width: 130px;
+    }
+    .metric-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .metric-vals { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
+    .metric-before { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+    .metric-after { font-size: 18px; font-weight: 800; color: var(--secondary); }
+    .metric-change {
+      display: inline-block;
+      font-size: 12px; font-weight: 700;
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+    .change-good { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .change-bad { background: rgba(239,68,68,0.15); color: #f87171; }
+    .results-note {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+    }
+
+    /* ── B2C vs B2B COMPARE ── */
+    .compare-grid {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 48px;
+    }
+    .compare-col { flex: 1 1 260px; }
+    .compare-heading {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+    }
+    .cosmetic-heading { color: var(--cosmetic); border-bottom: 2px solid rgba(201,149,106,0.2); }
+    .b2b-heading { color: var(--b2b); border-bottom: 2px solid rgba(74,143,181,0.2); }
+    .compare-list { list-style: none; }
+    .compare-list li {
+      font-size: 13.5px;
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 9px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .compare-list li::before { content: '›'; position: absolute; left: 0; font-weight: 900; }
+    .cosmetic-col li::before { color: var(--cosmetic); }
+    .b2b-col li::before { color: var(--b2b); }
+
+    /* ── 2026 TIPS ── */
+    .tips-block {
+      background: #080808;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .tips-header {
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tips-year-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .tips-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 6px;
+    }
+    .tips-sub { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .tip-item {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .tip-item:last-child { border-bottom: none; }
+    .tip-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 36px;
+      transition: background 0.15s;
+    }
+    .tip-row:hover { background: #0f0f0f; }
+    .tip-item.open .tip-row { background: #0f0f0f; }
+    .tip-left { display: flex; align-items: center; gap: 16px; }
+    .tip-icon { font-size: 20px; flex-shrink: 0; }
+    .tip-cat {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .tip-headline { font-size: 15px; font-weight: 700; color: var(--secondary); }
+    .tip-chevron { color: var(--muted); font-size: 18px; font-weight: 700; transition: color 0.2s; }
+    .tip-item.open .tip-chevron { color: var(--accent); }
+    .tip-body {
+      display: none;
+      padding: 0 36px 22px 72px;
+      background: #0f0f0f;
+    }
+    .tip-item.open .tip-body { display: block; }
+    .tip-text { font-size: 14px; color: #888; line-height: 1.75; margin-bottom: 12px; }
+    .tip-action {
+      background: rgba(230,48,39,0.07);
+      border: 1px solid rgba(230,48,39,0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #ccc;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .tip-action strong { color: var(--accent); }
+
+    .sources-note {
+      padding: 16px 36px;
+      font-size: 12px;
+      color: #555;
+      background: #080808;
+      border-top: 1px solid var(--border);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-block {
+      text-align: center;
+      padding: 56px 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 60px;
+    }
+    .cta-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+    .cta-block p { font-size: 15px; color: #888; margin-bottom: 28px; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .cta-btn:hover { background: #c41f17; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #444;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .hero, .content { padding-left: 20px; padding-right: 20px; }
+      .case-header, .case-body, .case-results, .compare-grid { padding-left: 20px; padding-right: 20px; }
+      .tip-row { padding: 16px 20px; }
+      .tip-body { padding-left: 20px; padding-right: 20px; }
+      .tips-header { padding: 24px 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Mad Hat<span>.</span></a>
+  <span class="nav-tag">Growth Marketing</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">📊 CAC Deep Dive</div>
+  <h1>Why Your CAC Is High<br><em>And How to Fix It</em><br>Without Cutting Budget</h1>
+  <p class="hero-sub">Most brands diagnose high CAC as a spend problem. It's almost never that. Below are two real-world examples — a cosmetics brand and a B2B SaaS company — with the exact root causes, the fixes applied, and the 2026 market shifts that make this harder to ignore.</p>
+  <div class="hero-meta">
+    <span>Mad Hat Communications</span>
+    <span>March 2026</span>
+    <span>8 min read</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- Case Studies -->
+  <div class="section-label">Real-World Examples</div>
+  <div class="section-title">CAC in the Wild</div>
+  <p class="section-desc">Two businesses. Different categories. Same underlying problem: spending money without understanding where value actually comes from. Click any root cause to see the diagnosis and fix.</p>
+
+  <div class="case-toggle">
+    <button class="toggle-btn active-cosmetic" onclick="switchCase('cosmetic', this)" id="btn-cosmetic">
+      🧴 Cosmetics Brand
+      <span class="toggle-sub">Lumière Skin — DTC</span>
+    </button>
+    <button class="toggle-btn" onclick="switchCase('b2b', this)" id="btn-b2b">
+      💼 B2B SaaS
+      <span class="toggle-sub">Nexflow Analytics</span>
+    </button>
+  </div>
+
+  <!-- COSMETIC CASE -->
+  <div class="case-card case-cosmetic visible" id="case-cosmetic">
+    <div class="case-header">
+      <div class="case-type-tag">🧴 Cosmetic Brand Case Study</div>
+      <div class="case-brand">Lumière Skin</div>
+      <div class="case-type">Direct-to-Consumer Skincare</div>
+      <div class="case-problem">"CAC ballooned from £18 to £54 in 18 months — without any budget increase."</div>
+      <div class="snapshot">
+        <div class="snap-item"><div class="snap-label">Monthly Spend</div><div class="snap-val">£40,000</div></div>
+        <div class="snap-item"><div class="snap-label">New Customers/Mo</div><div class="snap-val">740</div></div>
+        <div class="snap-item"><div class="snap-label">CAC</div><div class="snap-val warn">£54</div></div>
+        <div class="snap-item"><div class="snap-label">LTV:CAC</div><div class="snap-val warn">2.2:1</div></div>
+        <div class="snap-item"><div class="snap-label">Target Ratio</div><div class="snap-val hi">3:1</div></div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="body-label">Root Causes & Fixes</div>
+      <div class="cause-list">
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">1</div>
+              <div class="cause-title">Meta Advantage+ Over-Automation</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">Meta's Advantage+ campaigns were bidding aggressively on broad audiences that looked like buyers but had low intent. The algorithm prioritised volume over quality, inflating CPMs by 38% YoY while delivering customers with half the LTV of manually targeted segments.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Restrict Advantage+ audience signals to purchasers and high-value email lists. Layer in manual CBO campaigns for top SKUs with tighter creative rotation every 10–14 days.</div>
+          </div>
+        </div>
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">2</div>
+              <div class="cause-title">Zero SEO / GEO Presence</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">When a potential customer typed "best vitamin C serum for sensitive skin" into ChatGPT or searched Google, Lumière didn't appear. Competitors with structured ingredient FAQ pages and earned press coverage dominated both. Organic was contributing less than 8% of acquisitions.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Publish ingredient-led editorial content with FAQ schema markup. Submit to beauty press for GEO citations. Add an llms.txt file to guide AI crawlers. Target 'best [ingredient] for [concern]' question clusters.</div>
+          </div>
+        </div>
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">3</div>
+              <div class="cause-title">Last-Touch Attribution Lie</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">Their GA4 setup credited 80% of conversions to paid social (last touch). In reality, 60% of those customers had first discovered them via TikTok organic or a skincare subreddit thread. Paid was closing, not opening — and they were about to cut the channels doing the real work.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Implement data-driven multi-touch attribution. Re-invest in TikTok organic and community seeding — they were doing heavy lifting for free. Add post-purchase surveys asking "where did you first hear about us?"</div>
+          </div>
+        </div>
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">4</div>
+              <div class="cause-title">No Post-Purchase Retention Loop</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">With a 2.2:1 LTV:CAC ratio, every new customer barely broke even on acquisition cost alone. There was no subscription nudge, no replenishment reminder, and email sequences stopped after day 14. The brand was endlessly filling a leaking bucket.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Introduce a 90-day replenishment flow, a subscription SKU for hero products (serum, moisturiser), and a referral programme seeded at the 60-day mark when satisfaction is highest.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-results">
+      <div class="body-label">Results After Optimisation</div>
+      <div class="metrics-grid">
+        <div class="metric-pill">
+          <div class="metric-label">CAC</div>
+          <div class="metric-vals"><span class="metric-before">£54</span><span class="metric-after">£31</span></div>
+          <span class="metric-change change-good">−43%</span>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-label">LTV:CAC Ratio</div>
+          <div class="metric-vals"><span class="metric-before">2.2:1</span><span class="metric-after">3.9:1</span></div>
+          <span class="metric-change change-good">+77%</span>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-label">Organic % of Acquis.</div>
+          <div class="metric-vals"><span class="metric-before">8%</span><span class="metric-after">29%</span></div>
+          <span class="metric-change change-good">+263%</span>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-label">Repeat Purchase (90d)</div>
+          <div class="metric-vals"><span class="metric-before">18%</span><span class="metric-after">34%</span></div>
+          <span class="metric-change change-good">+89%</span>
+        </div>
+      </div>
+      <p class="results-note">⏱ Results achieved over 6 months. No budget increase.</p>
+    </div>
+  </div>
+
+  <!-- B2B CASE -->
+  <div class="case-card case-b2b" id="case-b2b">
+    <div class="case-header">
+      <div class="case-type-tag">💼 B2B SaaS Case Study</div>
+      <div class="case-brand">Nexflow Analytics</div>
+      <div class="case-type">B2B SaaS — Revenue Intelligence</div>
+      <div class="case-problem">"CAC rose from $1,200 to $3,100 per customer despite consistent pipeline volume."</div>
+      <div class="snapshot">
+        <div class="snap-item"><div class="snap-label">Monthly Spend</div><div class="snap-val">$85,000</div></div>
+        <div class="snap-item"><div class="snap-label">New Customers/Mo</div><div class="snap-val">27</div></div>
+        <div class="snap-item"><div class="snap-label">CAC</div><div class="snap-val warn">$3,100</div></div>
+        <div class="snap-item"><div class="snap-label">LTV:CAC</div><div class="snap-val hi">4.5:1</div></div>
+        <div class="snap-item"><div class="snap-label">Target Ratio</div><div class="snap-val hi">5:1</div></div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="body-label">Root Causes & Fixes</div>
+      <div class="cause-list">
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">1</div>
+              <div class="cause-title">Outbound Chasing the Wrong ICP</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">SDR sequences were targeting VP-level contacts at 200–500 employee firms — a segment that required 14+ touchpoints before a demo. Data showed their closed-won customers were actually 50–200 employee RevOps-led companies at Series B–C stage, where the pain was immediate and decision speed was 3x faster.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Rebuild ICP scoring in CRM. Shift outbound sequencing to RevOps Directors at Series B–C companies. Reduce volume, increase signal quality. Fewer, better conversations beat spray-and-pray every time.</div>
+          </div>
+        </div>
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">2</div>
+              <div class="cause-title">No AI Search / LLM Presence</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">By 2026, 50% of B2B buyers begin their research with AI tools. When a CFO asked Perplexity "best revenue intelligence tools for mid-market," Nexflow never appeared. Gong, Clari, and three smaller competitors did — because they had structured comparison content, transparent pricing pages, and strong G2/Capterra review presence.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Publish structured comparison and alternative pages. Make pricing publicly visible. Actively solicit G2 and Capterra reviews — these are the sources LLMs preferentially cite when generating B2B software recommendations.</div>
+          </div>
+        </div>
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">3</div>
+              <div class="cause-title">Demo-to-Close Friction</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">The sales cycle averaged 67 days with 4 stakeholders involved. Each handoff added a week of silence. The champion in RevOps wanted to close but couldn't get sign-off from Finance and Legal without materials that answered their specific objections — and marketing had never built those assets.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Build a champion enablement pack: an ROI calculator, an exec-facing one-pager, a security and compliance brief, and a competitor comparison sheet. Champions need to sell internally without an SDR in every meeting.</div>
+          </div>
+        </div>
+        <div class="cause-item" onclick="toggleCause(this)">
+          <div class="cause-header">
+            <div class="cause-left">
+              <div class="cause-num">4</div>
+              <div class="cause-title">Paid Search Bidding on Wrong Funnel Stage</div>
+            </div>
+            <div class="cause-toggle">+</div>
+          </div>
+          <div class="cause-body">
+            <p class="cause-detail">Google Ads was burning $22K/month on broad "revenue analytics" terms at $180 CPL with a 0.8% demo conversion rate. High-intent terms like "Gong alternative," "Clari pricing," and "[competitor] vs [competitor]" had a $6 CPL and 9% demo conversion — and were being ignored entirely.</p>
+            <div class="cause-fix"><span class="fix-label">✓ Fix:</span> Shift 60% of paid search budget to competitor, alternative, and comparison intent keywords. These cost far less and convert 11x better because the buyer is already category-aware and actively evaluating options.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-results">
+      <div class="body-label">Results After Optimisation</div>
+      <div class="metrics-grid">
+        <div class="metric-pill">
+          <div class="metric-label">CAC</div>
+          <div class="metric-vals"><span class="metric-before">$3,100</span><span class="metric-after">$1,640</span></div>
+          <span class="metric-change change-good">−47%</span>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-label">Sales Cycle (Days)</div>
+          <div class="metric-vals"><span class="metric-before">67</span><span class="metric-after">41</span></div>
+          <span class="metric-change change-good">−39%</span>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-label">LLM Visibility Score</div>
+          <div class="metric-vals"><span class="metric-before">12%</span><span class="metric-after">58%</span></div>
+          <span class="metric-change change-good">+383%</span>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-label">Demo-to-Close Rate</div>
+          <div class="metric-vals"><span class="metric-before">14%</span><span class="metric-after">24%</span></div>
+          <span class="metric-change change-good">+71%</span>
+        </div>
+      </div>
+      <p class="results-note">⏱ Results achieved over 9 months. Budget reallocated, not increased.</p>
+    </div>
+  </div>
+
+  <!-- B2C vs B2B Compare -->
+  <div class="section-label">The Key Difference</div>
+  <div class="section-title">B2C vs B2B: How CAC Thinking Differs</div>
+  <p class="section-desc">The levers are different even when the problem looks the same.</p>
+  <div class="compare-grid">
+    <div class="compare-col cosmetic-col">
+      <div class="compare-heading cosmetic-heading">🧴 Cosmetics (B2C)</div>
+      <ul class="compare-list">
+        <li>Shorter purchase cycle — minutes to days</li>
+        <li>Emotion and identity drive conversion, not logic</li>
+        <li>Social proof and UGC are acquisition assets in themselves</li>
+        <li>Retention loops (subscription, replenishment) directly reduce effective CAC</li>
+        <li>Meta and TikTok are primary paid channels — heavily algorithmic</li>
+        <li>GEO matters for ingredient-led discovery queries in AI tools</li>
+      </ul>
+    </div>
+    <div class="compare-col b2b-col">
+      <div class="compare-heading b2b-heading">💼 B2B SaaS</div>
+      <ul class="compare-list">
+        <li>Longer sales cycle — weeks to months, multiple stakeholders</li>
+        <li>Champion enablement is a major lever often ignored by marketing</li>
+        <li>Comparison and alternative intent keywords outperform awareness terms</li>
+        <li>G2, Capterra, and Reddit are major LLM citation sources</li>
+        <li>50% of B2B buyers now start research with AI tools (2026)</li>
+        <li>ICP accuracy has outsized impact — wrong segment means wasted pipeline</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2026 Tips -->
+  <div class="section-label">2026 Market Intelligence</div>
+  <div class="section-title">What's Changed — and What It Means for Your CAC</div>
+  <p class="section-desc">SEO, LLMs, and ad algorithms have all shifted significantly. These changes affect acquisition costs whether you've noticed them yet or not.</p>
+
+  <div class="tips-block">
+    <div class="tips-header">
+      <div class="tips-year-tag">2026 Updates</div>
+      <div class="tips-title">Five Shifts Driving CAC Up (and How to Fight Back)</div>
+      <p class="tips-sub">Tap each to expand the implications and the action to take.</p>
+    </div>
+
+    <div class="tip-item" onclick="toggleTip(this)">
+      <div class="tip-row">
+        <div class="tip-left">
+          <div class="tip-icon">🤖</div>
+          <div>
+            <div class="tip-cat">LLMs & GEO</div>
+            <div class="tip-headline">Your website is no longer the first touchpoint</div>
+          </div>
+        </div>
+        <div class="tip-chevron">+</div>
+      </div>
+      <div class="tip-body">
+        <p class="tip-text">AI-driven traffic to ecommerce sites grew 8x year-over-year in 2025, and 93% of AI searches end without a click to a website. If your brand isn't cited in ChatGPT, Perplexity, or Google AI Overviews, you effectively don't exist for a fast-growing segment of buyers. The goal shifts from ranking to being the authoritative source LLMs pull from. There is no #1 spot in a language model — only mentioned or not mentioned.</p>
+        <div class="tip-action"><strong>→ Action:</strong> Create an llms.txt file, enable AI bot crawling in robots.txt, and publish structured FAQ content with schema markup. Earn third-party press and review mentions — LLMs weight external citations heavily over self-authored claims.</div>
+      </div>
+    </div>
+
+    <div class="tip-item" onclick="toggleTip(this)">
+      <div class="tip-row">
+        <div class="tip-left">
+          <div class="tip-icon">📉</div>
+          <div>
+            <div class="tip-cat">SEO in 2026</div>
+            <div class="tip-headline">Zero-click is now the default — optimise for citation, not rank</div>
+          </div>
+        </div>
+        <div class="tip-chevron">+</div>
+      </div>
+      <div class="tip-body">
+        <p class="tip-text">Over 65% of all Google searches now end without a click, and 40%+ trigger an AI Overview at the top of results. Traditional traffic-based SEO is losing ground to citation-based SEO. Brands obsessing over position 1 rankings are missing the point — what matters is whether your content is the source Google's AI pulls from when generating the answer.</p>
+        <div class="tip-action"><strong>→ Action:</strong> Structure all content around questions your customers actually ask AI assistants. Answer with specificity — vague brand content is not cited. Earn authoritative press mentions, as LLMs lean heavily on external validation over brand-owned pages.</div>
+      </div>
+    </div>
+
+    <div class="tip-item" onclick="toggleTip(this)">
+      <div class="tip-row">
+        <div class="tip-left">
+          <div class="tip-icon">⚡</div>
+          <div>
+            <div class="tip-cat">Ad Algorithm Changes</div>
+            <div class="tip-headline">Automation is eating your targeting precision</div>
+          </div>
+        </div>
+        <div class="tip-chevron">+</div>
+      </div>
+      <div class="tip-body">
+        <p class="tip-text">Meta's Advantage+ and Google's Performance Max are taking creative and audience control away from advertisers at an accelerating pace, optimising for volume signals rather than quality conversions. Google Ads CPL increased over 5% in 2025 alone, and increasing competition continues to inflate CPMs across all categories. The brands winning aren't fighting the automation — they're feeding it better data.</p>
+        <div class="tip-action"><strong>→ Action:</strong> Invest in CRM data quality. Feed your paid platforms with purchaser lists, high-LTV customer segments, and robust suppression lists. Constrain automation with signal quality — not manual overrides that the algorithm will route around anyway.</div>
+      </div>
+    </div>
+
+    <div class="tip-item" onclick="toggleTip(this)">
+      <div class="tip-row">
+        <div class="tip-left">
+          <div class="tip-icon">🎯</div>
+          <div>
+            <div class="tip-cat">Attribution Reality Check</div>
+            <div class="tip-headline">Last-touch attribution is actively lying to your budget decisions</div>
+          </div>
+        </div>
+        <div class="tip-chevron">+</div>
+      </div>
+      <div class="tip-body">
+        <p class="tip-text">With customers interacting across 6–8 touchpoints before converting, single-touch models misattribute budget to closers (retargeting, branded search) rather than openers (organic content, community, influencer). Companies running data-driven multi-touch attribution consistently find that 20–40% of their "high CAC" paid channels are actually assisted heavily by low-cost channels they were about to cut.</p>
+        <div class="tip-action"><strong>→ Action:</strong> Audit your attribution model before making any budget reallocation decisions. Upgrade to data-driven or W-shaped attribution in GA4. Layer in post-purchase surveys asking "where did you first hear about us?" — the answers routinely contradict the platform data.</div>
+      </div>
+    </div>
+
+    <div class="tip-item" onclick="toggleTip(this)">
+      <div class="tip-row">
+        <div class="tip-left">
+          <div class="tip-icon">🔄</div>
+          <div>
+            <div class="tip-cat">Creator & Community</div>
+            <div class="tip-headline">Creator partnerships now outperform traditional display by 30–40%</div>
+          </div>
+        </div>
+        <div class="tip-chevron">+</div>
+      </div>
+      <div class="tip-body">
+        <p class="tip-text">Creator and influencer collaborations now deliver 30–40% lower CPL than traditional advertising, driven by authentic audience alignment and UGC signals that ad algorithms trust and amplify. The shift toward "infrastructure-based marketing" means building community assets that compound in value over time — rather than campaign spend that resets to zero every month when the budget stops.</p>
+        <div class="tip-action"><strong>→ Action:</strong> Identify 10–20 micro-creators in your niche whose audiences overlap closely with your ICP. Treat them as long-term partners with recurring content relationships — not one-off paid posts. The compounding effect is where the CAC reduction lives.</div>
+      </div>
+    </div>
+
+    <div class="sources-note">
+      <strong>Sources:</strong> First Page Sage GEO CAC Benchmarks 2026 · Shopify Enterprise GEO Playbook · Conductor AEO/GEO Benchmarks Report · WordStream 2025 Google Ads Benchmarks · eAmped CAC Guide 2026 · LLMrefs GEO Best Practices
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Not Sure Where Your CAC Is Leaking?</h3>
+    <p>We run a free 30-minute CAC audit for growth-stage brands. No pitch — just a diagnosis.</p>
+    <a class="cta-btn" href="mailto:hello@madhat.com">Request a Free CAC Audit →</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Mad Hat Communications · All rights reserved
+</footer>
+
+<script>
+  function switchCase(id, btn) {
+    document.querySelectorAll('.case-card').forEach(c => c.classList.remove('visible'));
+    document.querySelectorAll('.toggle-btn').forEach(b => b.className = 'toggle-btn');
+    document.getElementById('case-' + id).classList.add('visible');
+    btn.classList.add('active-' + id);
+  }
+
+  function toggleCause(el) {
+    const isOpen = el.classList.contains('open');
+    // close siblings
+    el.closest('.cause-list').querySelectorAll('.cause-item').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.cause-toggle').textContent = '+';
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+      el.querySelector('.cause-toggle').textContent = '−';
+    }
+  }
+
+  function toggleTip(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.tip-item').forEach(t => {
+      t.classList.remove('open');
+      t.querySelector('.tip-chevron').textContent = '+';
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+      el.querySelector('.tip-chevron').textContent = '−';
+    }
+  }
+</script>
+</body>
+</html>
