@@ -129,9 +129,9 @@ const CONFIG = {
       { text: 'Careers', link: '#' }
     ],
     social: {
-      linkedin: 'https://linkedin.com/company/madhat',
+      linkedin: 'https://www.linkedin.com/company/madhatcommunications/',
       twitter: 'https://twitter.com/madhat',
-      facebook: 'https://facebook.com/madhat'
+      facebook: 'https://www.facebook.com/MadHatComm'
     }
   },
 
