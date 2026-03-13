@@ -8,7 +8,7 @@
   <meta name="keywords" content="GEO, Generative Engine Optimization, AI citations, LLM SEO, get cited by AI, brand visibility AI, ChatGPT SEO, Perplexity optimization 2026" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://madhatcomm.in/geo-blog-2026.html" />
-  <meta property="og:title" content="GEO in 2026: How to Get Your Brand Cited by AI" />
+  <meta property="og:title" content="GEO in 2026: How to Get Your Brand Cited by AI | Mad Hat Communications" />
   <meta property="og:description" content="The definitive guide to Generative Engine Optimization — free checklist included." />
   <meta property="og:type" content="article" />
 
@@ -19,7 +19,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── SITE VARIABLES (matches madhatcomm.in) ── */
     :root {
       --primary:    #0F0F0F;
       --accent:     #E63027;
@@ -27,192 +26,55 @@
       --text:       #2C2C2C;
       --text-light: #525252;
       --border:     #E0E0E0;
-
-      /* Blog-specific */
-      --ink:   #0d0d12;
-      --paper: #f7f4ee;
-      --red:   #E63027;
-      --blue:  #1850c8;
-      --muted: #6d6a62;
-      --card:  #fefcf7;
-      --cream: #f0ece3;
+      --ink:        #0d0d12;
+      --paper:      #f7f4ee;
+      --red:        #E63027;
+      --blue:       #1850c8;
+      --muted:      #6d6a62;
+      --card:       #fefcf7;
+      --cream:      #f0ece3;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--secondary);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 16px;
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { background: var(--secondary); color: var(--text); font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
 
-    /* ══════════════════════════════════════
-       MAD HAT SITE HEADER (matches site nav)
-       ══════════════════════════════════════ */
-    .header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(245, 245, 240, 0.97);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      padding: 1.5rem 0;
-    }
+    #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--red); width: 0; z-index: 1001; transition: width .08s linear; }
 
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      font-family: Georgia, serif;
-      color: var(--primary);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-      flex-shrink: 0;
-      display: block;
-      line-height: 1;
-      transition: color 0.2s;
-    }
+    /* ══ SITE HEADER ══ */
+    .site-header { position: fixed; top: 0; left: 0; right: 0; background: rgba(245,245,240,0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 1.5rem 0; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 900; font-family: Georgia, serif; color: var(--primary); text-decoration: none; flex-shrink: 0; line-height: 1; transition: color 0.2s; }
     .logo:hover { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s; font-family: 'Manrope', sans-serif; }
     .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active {
-      color: var(--accent);
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 2px;
-    }
-
-    /* Hamburger — hidden on desktop */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      z-index: 1100;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
-      transition: all 0.25s ease;
-    }
+    .nav-links a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1100; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; transition: all 0.25s ease; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Mobile drawer */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(245, 245, 240, 0.98);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      list-style: none;
-    }
+    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(245,245,240,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; list-style: none; }
     .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 1.6rem;
-      font-family: Georgia, serif;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      transition: color 0.2s;
-    }
-    .mobile-nav a:hover,
-    .mobile-nav a.active { color: var(--accent); }
+    .mobile-nav a { color: var(--primary); text-decoration: none; font-size: 1.6rem; font-family: Georgia, serif; font-weight: 900; transition: color 0.2s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--accent); }
 
-    /* ══════════════════════════════════════
-       READING PROGRESS BAR
-       ══════════════════════════════════════ */
-    #bar {
-      position: fixed; top: 0; left: 0;
-      height: 3px; background: var(--red);
-      width: 0; z-index: 1001;
-      transition: width .08s linear;
-    }
-
-    /* ══════════════════════════════════════
-       BLOG HEADER HERO
-       ══════════════════════════════════════ */
-    .blog-hero {
-      background: var(--ink);
-      color: var(--paper);
-      overflow: hidden;
-      position: relative;
-      margin-top: 73px; /* offset for fixed header */
-    }
-    .hbg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 55% at 75% 50%, rgba(230,48,39,.14) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    /* ══ BLOG HERO ══ */
+    .blog-hero { background: var(--ink); color: var(--paper); overflow: hidden; position: relative; margin-top: 73px; }
+    .hbg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 75% 50%, rgba(230,48,39,.14) 0%, transparent 70%); pointer-events: none; }
     .h-inner { max-width: 800px; margin: 0 auto; padding: 64px 24px 52px; position: relative; }
     .h-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
     .htag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: .14em; text-transform: uppercase; padding: 4px 11px; border-radius: 2px; }
     .htag-fill { background: var(--red); color: #fff; }
     .htag-line { border: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.5); }
-
-    .blog-hero h1 {
-      font-family: 'Lora', Georgia, serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -.02em;
-      margin-bottom: 18px;
-    }
+    .blog-hero h1 { font-family: 'Lora', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 18px; }
     .blog-hero h1 em { font-style: italic; color: var(--red); }
-    .deck {
-      font-size: 1.04rem; font-weight: 300;
-      color: rgba(247,244,238,.68); max-width: 520px;
-      line-height: 1.65; margin-bottom: 28px;
-    }
-    .byline {
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-      font-size: 0.79rem; color: rgba(255,255,255,.38);
-      border-top: 1px solid rgba(255,255,255,.1); padding-top: 18px;
-    }
+    .deck { font-size: 1.04rem; font-weight: 300; color: rgba(247,244,238,.68); max-width: 520px; line-height: 1.65; margin-bottom: 28px; }
+    .byline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.79rem; color: rgba(255,255,255,.38); border-top: 1px solid rgba(255,255,255,.1); padding-top: 18px; }
     .byline strong { color: rgba(255,255,255,.72); }
 
-    /* ══════════════════════════════════════
-       BLOG BODY LAYOUT
-       ══════════════════════════════════════ */
+    /* ══ CONTENT ══ */
     .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-
-    /* TOC */
     .toc { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 20px 24px; margin: 48px 0 38px; }
     .toc-lbl { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .toc ol { list-style: none; counter-reset: t; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 6px 22px; }
@@ -220,8 +82,6 @@
     .toc a { color: var(--ink); text-decoration: none; font-size: 0.88rem; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: color .18s; }
     .toc a::before { content: counter(t,decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--red); min-width: 20px; }
     .toc a:hover { color: var(--red); }
-
-    /* Prose */
     .prose { padding-bottom: 72px; }
     .prose section { margin-bottom: 48px; }
     .prose h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin: 52px 0 14px; letter-spacing: -.01em; }
@@ -229,44 +89,32 @@
     .prose p { margin-bottom: 15px; }
     .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     .prose strong { font-weight: 600; }
-
-    /* Anecdote */
     .anecdote { background: var(--ink); color: var(--paper); padding: 34px 38px 30px; margin: 36px 0; border-radius: 3px; position: relative; overflow: hidden; }
     .anecdote::before { content: "\201C"; font-family: 'Lora', serif; font-size: 9rem; color: var(--red); position: absolute; top: -18px; left: 14px; opacity: 0.18; line-height: 1; pointer-events: none; }
     .anecdote p { position: relative; font-size: 1.01rem; line-height: 1.78; color: rgba(247,244,238,.88); margin-bottom: 13px; }
     .anecdote p:last-child { margin-bottom: 0; }
     .aha { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 0.78rem; padding: 1px 8px; border-radius: 2px; vertical-align: middle; letter-spacing: .04em; }
-
-    /* Stats */
     .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin: 28px 0; background: var(--border); }
     .stat { background: var(--ink); color: var(--paper); padding: 22px 14px; text-align: center; }
     .stat-n { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--red); display: block; line-height: 1; margin-bottom: 5px; }
     .stat-l { font-size: 0.72rem; color: rgba(247,244,238,.5); line-height: 1.4; }
-
-    /* Table */
     .tbl-wrap { overflow-x: auto; margin: 22px 0; }
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     th { background: var(--ink); color: var(--paper); padding: 10px 14px; text-align: left; font-size: 0.77rem; letter-spacing: .04em; font-weight: 600; }
     td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
     tr:nth-child(even) td { background: var(--card); }
-
-    /* Callouts */
     .tip { background: #ebf1ff; border-left: 3px solid var(--blue); color: #1a3574; padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
     .tip b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
     .warn { background: #fffbeb; border-left: 3px solid #d97706; color: #7c4800; padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
     .warn b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
-
-    /* Steps */
     .steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 16px; margin: 22px 0; }
     .step { counter-increment: s; display: grid; grid-template-columns: 42px 1fr; gap: 15px; }
     .sn { width: 42px; height: 42px; background: var(--red); color: #fff; font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 2px; flex-shrink: 0; }
     .sb h3 { margin: 7px 0 5px; font-size: 0.96rem; }
     .sb p { margin: 0; font-size: 0.88rem; color: #2e2c27; line-height: 1.6; }
-
-    /* Tools */
     .tools-hint { display: flex; align-items: center; gap: 9px; font-size: 0.81rem; color: var(--blue); margin-bottom: 16px; font-weight: 500; }
     .tools-hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--blue); color: #fff; border-radius: 50%; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px,1fr)); gap: 13px; margin: 0; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px,1fr)); gap: 13px; }
     a.tool-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--card); border: 1.5px solid var(--border); border-radius: 4px; padding: 18px; transition: transform .18s, box-shadow .18s, border-color .18s; }
     a.tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(0,0,0,.09); border-color: var(--blue); }
     .tc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -277,19 +125,6 @@
     .tc-url { font-family: 'DM Mono', monospace; font-size: 0.69rem; color: var(--blue); margin-bottom: 8px; text-decoration: underline; text-underline-offset: 2px; }
     .tc-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: 10px; }
     .tc-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; color: var(--muted); align-self: flex-start; }
-
-    /* Checklist */
-    .cl { list-style: none; margin: 18px 0; display: flex; flex-direction: column; gap: 8px; }
-    .cl li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; line-height: 1.55; }
-    .cl li::before { content: "✓"; display: flex; align-items: center; justify-content: center; width: 19px; height: 19px; min-width: 19px; background: var(--red); color: #fff; font-size: 0.68rem; font-weight: 700; border-radius: 2px; margin-top: 2px; }
-
-    /* FAQ */
-    .faq { border-top: 1px solid var(--border); }
-    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
-    .fq { font-weight: 600; font-size: 0.97rem; margin-bottom: 7px; }
-    .fa { font-size: 0.9rem; color: #2e2c27; line-height: 1.65; }
-
-    /* Gate banner */
     .gate { background: var(--ink); color: var(--paper); border-radius: 4px; padding: 30px 34px; margin: 48px 0; display: flex; align-items: center; gap: 28px; position: relative; overflow: hidden; }
     .gate::after { content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(230,48,39,.22) 0%, transparent 70%); pointer-events: none; }
     .gate-icon { font-size: 2.6rem; flex-shrink: 0; }
@@ -297,20 +132,22 @@
     .gate-copy p { font-size: 0.86rem; color: rgba(247,244,238,.58); line-height: 1.5; margin-bottom: 14px; }
     .gate-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--red); color: #fff; font-weight: 700; font-size: 0.86rem; padding: 11px 20px; border-radius: 2px; border: none; cursor: pointer; font-family: inherit; transition: opacity .18s, transform .18s; letter-spacing: .02em; }
     .gate-btn:hover { opacity: .88; transform: translateY(-1px); }
+    .faq { border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
+    .fq { font-weight: 600; font-size: 0.97rem; margin-bottom: 7px; }
+    .fa { font-size: 0.9rem; color: #2e2c27; line-height: 1.65; }
 
-    /* CTA section */
-    .cta { background: var(--ink); color: var(--paper); text-align: center; padding: 68px 24px; position: relative; overflow: hidden; }
+    /* ══ CTA ══ */
+    .cta-section { background: var(--ink); color: var(--paper); text-align: center; padding: 68px 24px; position: relative; overflow: hidden; }
     .cta-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(230,48,39,.13) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
-    .cta h2 { font-family: 'Lora', serif; font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 700; margin-bottom: 11px; position: relative; }
-    .cta p { color: rgba(247,244,238,.58); max-width: 400px; margin: 0 auto 26px; font-size: 1rem; position: relative; }
-    .cta-btn { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 1rem; padding: 15px 38px; border-radius: 2px; text-decoration: none; position: relative; letter-spacing: .02em; box-shadow: 0 4px 20px rgba(230,48,39,.36); transition: transform .18s, box-shadow .18s; }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(230,48,39,.48); }
+    .cta-section h2 { font-family: 'Lora', serif; font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 700; margin-bottom: 11px; position: relative; }
+    .cta-section p { color: rgba(247,244,238,.58); max-width: 400px; margin: 0 auto 26px; font-size: 1rem; position: relative; }
+    .cta-main-btn { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 1rem; padding: 15px 38px; border-radius: 2px; position: relative; letter-spacing: .02em; box-shadow: 0 4px 20px rgba(230,48,39,.36); transition: transform .18s, box-shadow .18s; border: none; cursor: pointer; font-family: inherit; }
+    .cta-main-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(230,48,39,.48); }
     .cta-fine { display: block; font-size: 0.74rem; color: rgba(247,244,238,.32); margin-top: 13px; position: relative; }
 
-    /* ══════════════════════════════════════
-       SITE FOOTER (matches madhatcomm.in)
-       ══════════════════════════════════════ */
-    .footer { background: #0a0a0a; padding: 4rem 3rem 2rem; }
+    /* ══ SITE FOOTER ══ */
+    .site-footer { background: #0a0a0a; padding: 4rem 3rem 2rem; }
     .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-section h3 { color: white; font-size: 1rem; margin-bottom: 1.5rem; font-family: Georgia, serif; }
     .footer-section p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7; }
@@ -318,34 +155,29 @@
     .footer-section a:hover { color: var(--accent); }
     .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); font-size: 0.85rem; }
 
-    /* ══════════════════════════════════════
-       MODAL
-       ══════════════════════════════════════ */
-    .overlay { position: fixed; inset: 0; background: rgba(13,13,18,.72); backdrop-filter: blur(4px); z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px; }
+    /* ══ MODALS ══ */
+    .overlay { position: fixed; inset: 0; background: rgba(13,13,18,.75); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
     .overlay.open { display: flex; }
-    .modal { background: var(--paper); border-radius: 4px; padding: 38px 34px; max-width: 400px; width: 100%; position: relative; animation: rise .22s ease; }
-    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .modal { background: var(--paper); border-radius: 4px; padding: 38px 34px; max-width: 420px; width: 100%; position: relative; animation: rise .22s ease; }
+    @keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
     .modal-x { position: absolute; top: 13px; right: 15px; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--muted); line-height: 1; }
-    .modal h3 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
-    .modal > p { font-size: 0.86rem; color: var(--muted); margin-bottom: 20px; line-height: 1.55; }
+    .modal h3 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
+    .modal-sub { font-size: 0.86rem; color: var(--muted); margin-bottom: 20px; line-height: 1.55; }
     .field { margin-bottom: 13px; }
-    .field label { display: block; font-size: 0.77rem; font-weight: 600; margin-bottom: 5px; letter-spacing: .03em; }
-    .field input { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 2px; font-family: inherit; font-size: 0.9rem; background: var(--card); color: var(--ink); transition: border-color .18s; }
-    .field input:focus { outline: none; border-color: var(--blue); }
+    .field label { display: block; font-size: 0.77rem; font-weight: 600; margin-bottom: 5px; letter-spacing: .03em; color: var(--ink); }
+    .field input, .field textarea { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 2px; font-family: 'Manrope', sans-serif; font-size: 0.9rem; background: var(--card); color: var(--ink); transition: border-color .18s; resize: vertical; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--blue); }
     .field input.err { border-color: var(--red); }
-    .submit-btn { width: 100%; padding: 13px; background: var(--red); color: #fff; font-family: inherit; font-weight: 700; font-size: 0.93rem; border: none; border-radius: 2px; cursor: pointer; letter-spacing: .02em; transition: opacity .18s; margin-top: 2px; }
-    .submit-btn:hover { opacity: .88; }
+    .modal-submit { width: 100%; padding: 13px; background: var(--red); color: #fff; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.93rem; border: none; border-radius: 2px; cursor: pointer; letter-spacing: .02em; transition: opacity .18s; margin-top: 4px; }
+    .modal-submit:hover { opacity: .88; }
+    .modal-submit:disabled { opacity: .5; cursor: not-allowed; }
     .m-fine { font-size: 0.71rem; color: var(--muted); text-align: center; margin-top: 10px; }
-    .success { text-align: center; padding: 8px 0; display: none; }
-    .s-em { font-size: 2.6rem; margin-bottom: 10px; }
-    .success h3 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 7px; }
-    .success p { font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
-    .dl-btn { display: inline-block; margin-top: 16px; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 0.86rem; padding: 11px 24px; border-radius: 2px; text-decoration: none; letter-spacing: .02em; transition: opacity .18s; }
-    .dl-btn:hover { opacity: .8; }
+    .form-error { font-size: 0.8rem; color: var(--red); margin-top: 8px; text-align: center; display: none; }
+    .success-view { text-align: center; padding: 8px 0; display: none; }
+    .success-view .s-em { font-size: 2.6rem; margin-bottom: 10px; }
+    .success-view h3 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 7px; color: var(--ink); }
+    .success-view p { font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
 
-    /* ══════════════════════════════════════
-       RESPONSIVE
-       ══════════════════════════════════════ */
     @media (max-width: 768px) {
       .nav-container { padding: 0 1.5rem; }
       .nav-links { display: none; }
@@ -354,7 +186,7 @@
       .gate { flex-direction: column; gap: 18px; padding: 24px 20px; }
       .gate-icon { display: none; }
       .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .footer { padding: 3rem 1.5rem 2rem; }
+      .site-footer { padding: 3rem 1.5rem 2rem; }
     }
   </style>
 </head>
@@ -362,10 +194,10 @@
 
 <div id="bar"></div>
 
-<!-- ══════ MAD HAT SITE HEADER ══════ -->
-<header class="header">
+<!-- ══ SITE HEADER ══ -->
+<header class="site-header">
   <nav class="nav-container" aria-label="Main navigation">
-    <a href="index.html" class="logo" aria-label="Mad Hat Communications — go to homepage">Mad Hat</a>
+    <a href="index.html" class="logo" aria-label="Mad Hat Communications — homepage">Mad Hat</a>
     <ul class="nav-links">
       <li><a href="work.html">Work</a></li>
       <li><a href="index.html#analyzer">Analyzer</a></li>
@@ -378,9 +210,7 @@
     </button>
   </nav>
 </header>
-
-<!-- Mobile nav drawer -->
-<ul class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+<ul class="mobile-nav" id="mobileNav">
   <li><a href="work.html" onclick="closeMenu()">Work</a></li>
   <li><a href="index.html#analyzer" onclick="closeMenu()">Analyzer</a></li>
   <li><a href="about.html" onclick="closeMenu()">About</a></li>
@@ -388,7 +218,7 @@
   <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
 </ul>
 
-<!-- ══════ BLOG HERO ══════ -->
+<!-- ══ BLOG HERO ══ -->
 <div class="blog-hero">
   <div class="hbg"></div>
   <div class="h-inner">
@@ -409,9 +239,8 @@
   </div>
 </div>
 
-<!-- ══════ BLOG BODY ══════ -->
+<!-- ══ BODY ══ -->
 <div class="wrap">
-
   <nav class="toc" aria-label="Table of contents">
     <div class="toc-lbl">Contents</div>
     <ol>
@@ -437,7 +266,7 @@
       </div>
       <p><strong>Generative Engine Optimization (GEO)</strong> is the practice of structuring and distributing your content so that large language models — ChatGPT, Claude, Gemini, Perplexity — are more likely to cite your brand when answering user queries.</p>
       <p>In AI search, there is no page two. The model gives one answer, cites two or three sources, and moves on. If your brand isn't in that answer, you're invisible — regardless of how strong your SEO is.</p>
-      <div class="stats" role="region" aria-label="GEO key stats">
+      <div class="stats">
         <div class="stat"><span class="stat-n">40%</span><span class="stat-l">of queries now start inside AI interfaces</span></div>
         <div class="stat"><span class="stat-n">1–3</span><span class="stat-l">sources cited per AI answer — no "page 2"</span></div>
         <div class="stat"><span class="stat-n">3×</span><span class="stat-l">higher conversion from AI-referred traffic</span></div>
@@ -490,7 +319,7 @@
       <div class="gate-copy">
         <h3>Free GEO Checklist — All 6 Steps</h3>
         <p>Get the full printable checklist so your team can run through every step without missing a thing.</p>
-        <button class="gate-btn" onclick="openModal()">↓ Download Free Checklist</button>
+        <button class="gate-btn" onclick="openChecklist()">↓ Download Free Checklist</button>
       </div>
     </div>
 
@@ -578,21 +407,19 @@
         </div>
       </div>
     </section>
-
   </article>
 
-  <div class="cta">
+  <div class="cta-section">
     <div class="cta-glow"></div>
     <h2>Get Discovered on AI</h2>
     <p>Stop hoping AI mentions you. Let's build the strategy that makes it inevitable.</p>
-    <a href="contact.html" class="cta-btn">Get Discovered on AI →</a>
+    <button class="cta-main-btn" onclick="openContact()">Get Discovered on AI →</button>
     <span class="cta-fine">Free 30-minute GEO audit · No commitment required</span>
   </div>
-
 </div>
 
-<!-- ══════ SITE FOOTER ══════ -->
-<footer class="footer">
+<!-- ══ SITE FOOTER ══ -->
+<footer class="site-footer">
   <div class="footer-content">
     <div class="footer-section">
       <h3>Mad Hat Communications</h3>
@@ -623,140 +450,162 @@
   </div>
 </footer>
 
-<!-- ══════ MODAL ══════ -->
-<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Download GEO Checklist">
+<!-- ══ CHECKLIST MODAL ══ -->
+<div class="overlay" id="checklistOverlay">
   <div class="modal">
-    <button class="modal-x" onclick="closeModal()" aria-label="Close">✕</button>
-    <div id="form-view">
+    <button class="modal-x" onclick="closeChecklist()">✕</button>
+    <div id="checklist-form">
       <h3>📋 Get the Free GEO Checklist</h3>
-      <p>Drop your email and we'll send the checklist straight to you — plus occasional GEO insights you won't find elsewhere.</p>
-      <div class="field"><label for="m-name">First name</label><input type="text" id="m-name" placeholder="Alex" autocomplete="given-name" /></div>
-      <div class="field"><label for="m-email">Work email</label><input type="email" id="m-email" placeholder="alex@company.com" autocomplete="email" /></div>
-      <button class="submit-btn" onclick="submitGate()">Send Me the Checklist →</button>
+      <p class="modal-sub">Drop your details and we'll send the checklist straight to you — plus occasional GEO insights you won't find elsewhere.</p>
+      <div class="field"><label for="cl-name">First name</label><input type="text" id="cl-name" placeholder="Alex" /></div>
+      <div class="field"><label for="cl-email">Work email</label><input type="email" id="cl-email" placeholder="alex@company.com" /></div>
+      <button class="modal-submit" id="cl-submit" onclick="submitChecklist()">Send Me the Checklist →</button>
+      <div class="form-error" id="cl-error">Please enter your name and a valid email.</div>
       <p class="m-fine">No spam. Unsubscribe any time.</p>
     </div>
-    <div class="success" id="success-view">
+    <div class="success-view" id="checklist-success">
       <div class="s-em">🎉</div>
       <h3>You're in!</h3>
-      <p>The checklist is heading to your inbox now. You can also grab it directly below.</p>
-      <a href="#" class="dl-btn" onclick="downloadChecklist(); return false;">↓ Download Checklist</a>
+      <p>The checklist is heading to your inbox. You can also download it directly below.</p>
+      <button class="modal-submit" style="margin-top:16px;" onclick="downloadChecklist()">↓ Download Checklist</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT / CTA MODAL ══ -->
+<div class="overlay" id="contactOverlay">
+  <div class="modal">
+    <button class="modal-x" onclick="closeContact()">✕</button>
+    <div id="contact-form">
+      <h3>👋 Let's talk GEO</h3>
+      <p class="modal-sub">Tell us about your brand and we'll come back with a free 30-minute audit — no pitch, just a diagnosis.</p>
+      <div class="field"><label for="ct-name">Your name</label><input type="text" id="ct-name" placeholder="Alex Kumar" /></div>
+      <div class="field"><label for="ct-email">Work email</label><input type="email" id="ct-email" placeholder="alex@company.com" /></div>
+      <div class="field"><label for="ct-msg">What's your biggest AI visibility challenge?</label><textarea id="ct-msg" rows="3" placeholder="We're invisible on Perplexity even though we rank on Google…"></textarea></div>
+      <button class="modal-submit" id="ct-submit" onclick="submitContact()">Send Message →</button>
+      <div class="form-error" id="ct-error">Please enter your name and a valid email.</div>
+      <p class="m-fine">We respond within 1 business day.</p>
+    </div>
+    <div class="success-view" id="contact-success">
+      <div class="s-em">✅</div>
+      <h3>Message received!</h3>
+      <p>Amit will be in touch within 1 business day with your GEO audit findings.</p>
     </div>
   </div>
 </div>
 
 <script>
-  // Reading progress
+  // ── HubSpot config ──
+  const HS_PORTAL_ID = '245523464';
+  const HS_GEO_FORM  = 'ec8a8199-0910-4841-a01a-43e59e0cb1c4';
+
+  async function submitToHubSpot(formId, fields) {
+    const res = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${formId}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields,
+          context: {
+            pageUri: 'https://madhatcomm.in/geo-blog-2026.html',
+            pageName: 'GEO in 2026: How to Get Your Brand Cited by AI'
+          }
+        })
+      }
+    );
+    return res.ok;
+  }
+
+  // ── Reading progress ──
   window.addEventListener('scroll', () => {
     const d = document.documentElement;
     const p = d.scrollHeight - d.clientHeight;
     document.getElementById('bar').style.width = (p > 0 ? (d.scrollTop / p) * 100 : 0) + '%';
   });
 
-  // Mobile nav
+  // ── Mobile nav ──
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   hamburger.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const open = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
   function closeMenu() {
-    mobileNav.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    mobileNav.classList.remove('open'); hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow = '';
   }
 
-  // Modal
-  function openModal() {
-    document.getElementById('overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => document.getElementById('m-name').focus(), 180);
-  }
-  function closeModal() {
-    document.getElementById('overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('overlay').addEventListener('click', e => {
-    if (e.target === document.getElementById('overlay')) closeModal();
+  // ── Overlay helpers ──
+  function openOverlay(id)  { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeOverlay(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.overlay').forEach(o => {
+    o.addEventListener('click', e => { if (e.target === o) closeOverlay(o.id); });
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeMenu(); } });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeOverlay('checklistOverlay'); closeOverlay('contactOverlay'); closeMenu(); }
+  });
+  function openChecklist()  { openOverlay('checklistOverlay'); }
+  function closeChecklist() { closeOverlay('checklistOverlay'); }
+  function openContact()    { openOverlay('contactOverlay'); }
+  function closeContact()   { closeOverlay('contactOverlay'); }
 
-  // Gate submit
-  function submitGate() {
-    const name = document.getElementById('m-name').value.trim();
-    const emailEl = document.getElementById('m-email');
-    const email = emailEl.value.trim();
-    emailEl.classList.remove('err');
-    if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailEl.classList.add('err');
-      emailEl.focus();
-      return;
+  // ── Checklist form → HubSpot ──
+  async function submitChecklist() {
+    const name  = document.getElementById('cl-name').value.trim();
+    const email = document.getElementById('cl-email').value.trim();
+    const errEl = document.getElementById('cl-error');
+    errEl.style.display = 'none';
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.style.display = 'block'; return; }
+    const btn = document.getElementById('cl-submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    const ok = await submitToHubSpot(HS_GEO_FORM, [
+      { name: 'firstname', value: name },
+      { name: 'email',     value: email },
+      { name: 'message',   value: 'GEO in 2026 Blog — Checklist Download Request' }
+    ]);
+    if (ok) {
+      document.getElementById('checklist-form').style.display = 'none';
+      document.getElementById('checklist-success').style.display = 'block';
+    } else {
+      btn.disabled = false; btn.textContent = 'Send Me the Checklist →';
+      errEl.textContent = 'Something went wrong — please try again.'; errEl.style.display = 'block';
     }
-    // In production: POST { name, email } to your email platform here
-    document.getElementById('form-view').style.display = 'none';
-    document.getElementById('success-view').style.display = 'block';
   }
 
-  // Checklist download
+  // ── CTA contact form → HubSpot ──
+  async function submitContact() {
+    const name  = document.getElementById('ct-name').value.trim();
+    const email = document.getElementById('ct-email').value.trim();
+    const msg   = document.getElementById('ct-msg').value.trim();
+    const errEl = document.getElementById('ct-error');
+    errEl.style.display = 'none';
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.style.display = 'block'; return; }
+    const btn = document.getElementById('ct-submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    const ok = await submitToHubSpot(HS_GEO_FORM, [
+      { name: 'firstname', value: name },
+      { name: 'email',     value: email },
+      { name: 'message',   value: msg || 'GEO in 2026 Blog — CTA Contact Form' }
+    ]);
+    if (ok) {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    } else {
+      btn.disabled = false; btn.textContent = 'Send Message →';
+      errEl.textContent = 'Something went wrong — please try again.'; errEl.style.display = 'block';
+    }
+  }
+
+  // ── Checklist download ──
   function downloadChecklist() {
-    const txt = `GEO CHECKLIST 2026 — Get Your Brand Cited by AI
-=================================================
-madhatcomm.in · Updated March 2026
-
-STEP 1 — AUDIT YOUR AI CITATION LANDSCAPE
-  □ Query ChatGPT, Claude, Perplexity & Gemini with 20–30 niche questions
-  □ Record who gets cited, in what format, and why
-  □ Identify your top 5 "unclaimed" question opportunities
-
-STEP 2 — WRITE IN CITABLE UNITS
-  □ Define the key term within the first 200 words of every article
-  □ Use H1 → H2 → H3 hierarchy (one clear answer per section)
-  □ Include at least one comparison table per pillar page
-  □ Add a FAQ block with 5–8 Q&A pairs per article
-
-STEP 3 — DEPLOY SCHEMA MARKUP
-  □ Article JSON-LD on every blog post
-  □ FAQPage JSON-LD on every FAQ section
-  □ HowTo schema on step-by-step guides
-  □ Validate with Google's Rich Results Test
-
-STEP 4 — PUBLISH ORIGINAL RESEARCH
-  □ Run at least 2 original surveys or data studies per quarter
-  □ Create a dedicated landing page for each data asset
-  □ Pitch findings to 5+ relevant publications for coverage
-
-STEP 5 — DISTRIBUTE TO AI-NATIVE PLATFORMS
-  □ Cross-publish to Perplexity Pages
-  □ Cross-publish to LinkedIn Articles
-  □ Cross-publish to Substack
-  □ Share technical content on GitHub
-
-STEP 6 — MONITOR YOUR AI CITATION RATE
-  □ Set up Profound or AthenaHQ for citation tracking
-  □ Review AI citation metrics monthly
-  □ Refresh your top 10 pages every quarter
-  □ Track competitor citation changes weekly
-
-TOOLS
-  Perplexity Pages  → perplexity.ai/pages
-  AthenaHQ          → athenahq.ai
-  Profound          → profound.io
-  AlsoAsked         → alsoasked.com
-  Schema App        → schemaapp.com
-  Goodie AI         → goodie.ai
-  Clearscope        → clearscope.io
-  Search Response   → searchresponse.io
-
-madhatcomm.in · March 2026`;
-    const blob = new Blob([txt], { type: 'text/plain' });
+    const txt = `GEO CHECKLIST 2026 — Get Your Brand Cited by AI\nmadhatcomm.in\n\nSTEP 1 — AUDIT\n  □ Query ChatGPT, Claude, Perplexity & Gemini with 20–30 niche questions\n  □ Record who gets cited and why\n  □ Identify your top 5 unclaimed question opportunities\n\nSTEP 2 — WRITE IN CITABLE UNITS\n  □ Define the key term in the first 200 words\n  □ H1 → H2 → H3 hierarchy\n  □ Comparison table on every pillar page\n  □ FAQ block with 5–8 Q&A pairs\n\nSTEP 3 — SCHEMA MARKUP\n  □ Article JSON-LD on every post\n  □ FAQPage JSON-LD on every FAQ section\n  □ Validate with Google Rich Results Test\n\nSTEP 4 — ORIGINAL RESEARCH\n  □ 2 data studies per quarter minimum\n  □ Pitch to 5+ publications\n\nSTEP 5 — AI-NATIVE DISTRIBUTION\n  □ Perplexity Pages  □ LinkedIn Articles  □ Substack\n\nSTEP 6 — MONITOR MONTHLY\n  □ Set up AthenaHQ or Profound\n  □ Refresh top 10 pages every quarter`;
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
+    a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'}));
     a.download = 'GEO-Checklist-2026-MadHat.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
   }
 </script>
 </body>
