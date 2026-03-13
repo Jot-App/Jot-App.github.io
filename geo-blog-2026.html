@@ -3,55 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GEO in 2026: How to Get Your Brand Cited by AI</title>
+  <title>GEO in 2026: How to Get Your Brand Cited by AI | Mad Hat Communications</title>
   <meta name="description" content="Generative Engine Optimization (GEO) is the new SEO. Learn how to get your brand cited by ChatGPT, Claude, Gemini, and Perplexity in 2026 — with a free downloadable checklist." />
   <meta name="keywords" content="GEO, Generative Engine Optimization, AI citations, LLM SEO, get cited by AI, brand visibility AI, ChatGPT SEO, Perplexity optimization 2026" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://yourdomain.com/geo-2026-get-brand-cited-by-ai" />
+  <link rel="canonical" href="https://madhatcomm.in/geo-blog-2026.html" />
   <meta property="og:title" content="GEO in 2026: How to Get Your Brand Cited by AI" />
   <meta property="og:description" content="The definitive guide to Generative Engine Optimization — free checklist included." />
   <meta property="og:type" content="article" />
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GEO in 2026: How to Get Your Brand Cited by AI","datePublished":"2026-03-12","dateModified":"2026-03-12","author":{"@type":"Organization","name":"Your Brand"},"keywords":"GEO, Generative Engine Optimization, LLM citations, AI brand visibility"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GEO in 2026: How to Get Your Brand Cited by AI","datePublished":"2026-03-12","dateModified":"2026-03-12","author":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in"},"publisher":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in"},"keywords":"GEO, Generative Engine Optimization, LLM citations, AI brand visibility"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Generative Engine Optimization (GEO)?","acceptedAnswer":{"@type":"Answer","text":"GEO is the practice of structuring and distributing content so that LLMs like ChatGPT, Claude, Gemini, and Perplexity are more likely to cite your brand in their responses."}},{"@type":"Question","name":"How is GEO different from SEO?","acceptedAnswer":{"@type":"Answer","text":"SEO optimizes for ranking algorithms. GEO optimizes for LLM training pipelines and RAG systems, prioritizing factual density, authority, and semantic clarity."}},{"@type":"Question","name":"What are the best GEO tools in 2026?","acceptedAnswer":{"@type":"Answer","text":"Leading GEO tools include Perplexity Pages, AthenaHQ, Profound, AlsoAsked, Schema App, and Goodie AI."}}]}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── SITE VARIABLES (matches madhatcomm.in) ── */
     :root {
-      --ink:    #0d0d12;
-      --paper:  #f7f4ee;
-      --red:    #d63a10;
-      --blue:   #1850c8;
-      --muted:  #6d6a62;
-      --border: #ddd9ce;
-      --card:   #fefcf7;
-      --cream:  #f0ece3;
+      --primary:    #0F0F0F;
+      --accent:     #E63027;
+      --secondary:  #F5F5F0;
+      --text:       #2C2C2C;
+      --text-light: #525252;
+      --border:     #E0E0E0;
+
+      /* Blog-specific */
+      --ink:   #0d0d12;
+      --paper: #f7f4ee;
+      --red:   #E63027;
+      --blue:  #1850c8;
+      --muted: #6d6a62;
+      --card:  #fefcf7;
+      --cream: #f0ece3;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--ink); font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--secondary);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* PROGRESS */
-    #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--red); width: 0; z-index: 999; transition: width .08s linear; }
+    /* ══════════════════════════════════════
+       MAD HAT SITE HEADER (matches site nav)
+       ══════════════════════════════════════ */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(245, 245, 240, 0.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1.5rem 0;
+    }
 
-    /* HEADER */
-    header { background: var(--ink); color: var(--paper); overflow: hidden; position: relative; }
-    .hbg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 75% 50%, rgba(214,58,16,.14) 0%, transparent 70%); pointer-events: none; }
-    .h-inner { max-width: 740px; margin: 0 auto; padding: 68px 24px 52px; position: relative; }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+      display: block;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .logo:hover { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* Hamburger — hidden on desktop */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1100;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: all 0.25s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(245, 245, 240, 0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 1.6rem;
+      font-family: Georgia, serif;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a.active { color: var(--accent); }
+
+    /* ══════════════════════════════════════
+       READING PROGRESS BAR
+       ══════════════════════════════════════ */
+    #bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; background: var(--red);
+      width: 0; z-index: 1001;
+      transition: width .08s linear;
+    }
+
+    /* ══════════════════════════════════════
+       BLOG HEADER HERO
+       ══════════════════════════════════════ */
+    .blog-hero {
+      background: var(--ink);
+      color: var(--paper);
+      overflow: hidden;
+      position: relative;
+      margin-top: 73px; /* offset for fixed header */
+    }
+    .hbg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 75% 50%, rgba(230,48,39,.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .h-inner { max-width: 800px; margin: 0 auto; padding: 64px 24px 52px; position: relative; }
     .h-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
     .htag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: .14em; text-transform: uppercase; padding: 4px 11px; border-radius: 2px; }
     .htag-fill { background: var(--red); color: #fff; }
     .htag-line { border: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.5); }
-    h1 { font-family: 'Lora', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 18px; }
-    h1 em { font-style: italic; color: var(--red); }
-    .deck { font-size: 1.04rem; font-weight: 300; color: rgba(247,244,238,.68); max-width: 520px; line-height: 1.65; margin-bottom: 28px; }
-    .byline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.79rem; color: rgba(255,255,255,.38); border-top: 1px solid rgba(255,255,255,.1); padding-top: 18px; }
+
+    .blog-hero h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      margin-bottom: 18px;
+    }
+    .blog-hero h1 em { font-style: italic; color: var(--red); }
+    .deck {
+      font-size: 1.04rem; font-weight: 300;
+      color: rgba(247,244,238,.68); max-width: 520px;
+      line-height: 1.65; margin-bottom: 28px;
+    }
+    .byline {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      font-size: 0.79rem; color: rgba(255,255,255,.38);
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 18px;
+    }
     .byline strong { color: rgba(255,255,255,.72); }
 
-    /* LAYOUT */
-    .wrap { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+    /* ══════════════════════════════════════
+       BLOG BODY LAYOUT
+       ══════════════════════════════════════ */
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
     /* TOC */
     .toc { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 20px 24px; margin: 48px 0 38px; }
@@ -62,7 +221,7 @@
     .toc a::before { content: counter(t,decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--red); min-width: 20px; }
     .toc a:hover { color: var(--red); }
 
-    /* PROSE */
+    /* Prose */
     .prose { padding-bottom: 72px; }
     .prose section { margin-bottom: 48px; }
     .prose h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin: 52px 0 14px; letter-spacing: -.01em; }
@@ -71,53 +230,44 @@
     .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     .prose strong { font-weight: 600; }
 
-    /* ANECDOTE */
+    /* Anecdote */
     .anecdote { background: var(--ink); color: var(--paper); padding: 34px 38px 30px; margin: 36px 0; border-radius: 3px; position: relative; overflow: hidden; }
     .anecdote::before { content: "\201C"; font-family: 'Lora', serif; font-size: 9rem; color: var(--red); position: absolute; top: -18px; left: 14px; opacity: 0.18; line-height: 1; pointer-events: none; }
     .anecdote p { position: relative; font-size: 1.01rem; line-height: 1.78; color: rgba(247,244,238,.88); margin-bottom: 13px; }
     .anecdote p:last-child { margin-bottom: 0; }
     .aha { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 0.78rem; padding: 1px 8px; border-radius: 2px; vertical-align: middle; letter-spacing: .04em; }
 
-    /* STATS */
+    /* Stats */
     .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin: 28px 0; background: var(--border); }
     .stat { background: var(--ink); color: var(--paper); padding: 22px 14px; text-align: center; }
     .stat-n { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--red); display: block; line-height: 1; margin-bottom: 5px; }
     .stat-l { font-size: 0.72rem; color: rgba(247,244,238,.5); line-height: 1.4; }
 
-    /* TABLE */
+    /* Table */
     .tbl-wrap { overflow-x: auto; margin: 22px 0; }
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     th { background: var(--ink); color: var(--paper); padding: 10px 14px; text-align: left; font-size: 0.77rem; letter-spacing: .04em; font-weight: 600; }
     td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
     tr:nth-child(even) td { background: var(--card); }
 
-    /* CALLOUTS */
+    /* Callouts */
     .tip { background: #ebf1ff; border-left: 3px solid var(--blue); color: #1a3574; padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
     .tip b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
     .warn { background: #fffbeb; border-left: 3px solid #d97706; color: #7c4800; padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
     .warn b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
 
-    /* STEPS */
+    /* Steps */
     .steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 16px; margin: 22px 0; }
     .step { counter-increment: s; display: grid; grid-template-columns: 42px 1fr; gap: 15px; }
     .sn { width: 42px; height: 42px; background: var(--red); color: #fff; font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 2px; flex-shrink: 0; }
     .sb h3 { margin: 7px 0 5px; font-size: 0.96rem; }
     .sb p { margin: 0; font-size: 0.88rem; color: #2e2c27; line-height: 1.6; }
 
-    /* TOOLS */
+    /* Tools */
     .tools-hint { display: flex; align-items: center; gap: 9px; font-size: 0.81rem; color: var(--blue); margin-bottom: 16px; font-weight: 500; }
     .tools-hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--blue); color: #fff; border-radius: 50%; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
-
     .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px,1fr)); gap: 13px; margin: 0; }
-
-    a.tool-card {
-      display: flex; flex-direction: column;
-      text-decoration: none; color: inherit;
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 4px; padding: 18px;
-      transition: transform .18s, box-shadow .18s, border-color .18s;
-    }
+    a.tool-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--card); border: 1.5px solid var(--border); border-radius: 4px; padding: 18px; transition: transform .18s, box-shadow .18s, border-color .18s; }
     a.tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(0,0,0,.09); border-color: var(--blue); }
     .tc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     .tc-icon { font-size: 1.25rem; }
@@ -128,7 +278,7 @@
     .tc-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: 10px; }
     .tc-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; color: var(--muted); align-self: flex-start; }
 
-    /* CHECKLIST */
+    /* Checklist */
     .cl { list-style: none; margin: 18px 0; display: flex; flex-direction: column; gap: 8px; }
     .cl li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; line-height: 1.55; }
     .cl li::before { content: "✓"; display: flex; align-items: center; justify-content: center; width: 19px; height: 19px; min-width: 19px; background: var(--red); color: #fff; font-size: 0.68rem; font-weight: 700; border-radius: 2px; margin-top: 2px; }
@@ -139,29 +289,38 @@
     .fq { font-weight: 600; font-size: 0.97rem; margin-bottom: 7px; }
     .fa { font-size: 0.9rem; color: #2e2c27; line-height: 1.65; }
 
-    /* GATE BANNER */
+    /* Gate banner */
     .gate { background: var(--ink); color: var(--paper); border-radius: 4px; padding: 30px 34px; margin: 48px 0; display: flex; align-items: center; gap: 28px; position: relative; overflow: hidden; }
-    .gate::after { content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(214,58,16,.22) 0%, transparent 70%); pointer-events: none; }
+    .gate::after { content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(230,48,39,.22) 0%, transparent 70%); pointer-events: none; }
     .gate-icon { font-size: 2.6rem; flex-shrink: 0; }
     .gate-copy h3 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 5px; }
     .gate-copy p { font-size: 0.86rem; color: rgba(247,244,238,.58); line-height: 1.5; margin-bottom: 14px; }
-    .gate-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--red); color: #fff; font-weight: 700; font-size: 0.86rem; padding: 11px 20px; border-radius: 2px; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; transition: opacity .18s, transform .18s; letter-spacing: .02em; }
+    .gate-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--red); color: #fff; font-weight: 700; font-size: 0.86rem; padding: 11px 20px; border-radius: 2px; border: none; cursor: pointer; font-family: inherit; transition: opacity .18s, transform .18s; letter-spacing: .02em; }
     .gate-btn:hover { opacity: .88; transform: translateY(-1px); }
 
-    /* CTA */
+    /* CTA section */
     .cta { background: var(--ink); color: var(--paper); text-align: center; padding: 68px 24px; position: relative; overflow: hidden; }
-    .cta-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(214,58,16,.13) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+    .cta-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(230,48,39,.13) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
     .cta h2 { font-family: 'Lora', serif; font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 700; margin-bottom: 11px; position: relative; }
     .cta p { color: rgba(247,244,238,.58); max-width: 400px; margin: 0 auto 26px; font-size: 1rem; position: relative; }
-    .cta-btn { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 1rem; padding: 15px 38px; border-radius: 2px; text-decoration: none; position: relative; letter-spacing: .02em; box-shadow: 0 4px 20px rgba(214,58,16,.36); transition: transform .18s, box-shadow .18s; }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(214,58,16,.48); }
+    .cta-btn { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 1rem; padding: 15px 38px; border-radius: 2px; text-decoration: none; position: relative; letter-spacing: .02em; box-shadow: 0 4px 20px rgba(230,48,39,.36); transition: transform .18s, box-shadow .18s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(230,48,39,.48); }
     .cta-fine { display: block; font-size: 0.74rem; color: rgba(247,244,238,.32); margin-top: 13px; position: relative; }
 
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 30px 24px; text-align: center; font-size: 0.77rem; color: var(--muted); }
-    footer a { color: var(--muted); }
+    /* ══════════════════════════════════════
+       SITE FOOTER (matches madhatcomm.in)
+       ══════════════════════════════════════ */
+    .footer { background: #0a0a0a; padding: 4rem 3rem 2rem; }
+    .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-section h3 { color: white; font-size: 1rem; margin-bottom: 1.5rem; font-family: Georgia, serif; }
+    .footer-section p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7; }
+    .footer-section a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.9rem; margin-bottom: 0.75rem; transition: color 0.3s; }
+    .footer-section a:hover { color: var(--accent); }
+    .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); font-size: 0.85rem; }
 
-    /* MODAL */
+    /* ══════════════════════════════════════
+       MODAL
+       ══════════════════════════════════════ */
     .overlay { position: fixed; inset: 0; background: rgba(13,13,18,.72); backdrop-filter: blur(4px); z-index: 500; display: none; align-items: center; justify-content: center; padding: 20px; }
     .overlay.open { display: flex; }
     .modal { background: var(--paper); border-radius: 4px; padding: 38px 34px; max-width: 400px; width: 100%; position: relative; animation: rise .22s ease; }
@@ -171,10 +330,10 @@
     .modal > p { font-size: 0.86rem; color: var(--muted); margin-bottom: 20px; line-height: 1.55; }
     .field { margin-bottom: 13px; }
     .field label { display: block; font-size: 0.77rem; font-weight: 600; margin-bottom: 5px; letter-spacing: .03em; }
-    .field input { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 2px; font-family: 'Manrope', sans-serif; font-size: 0.9rem; background: var(--card); color: var(--ink); transition: border-color .18s; }
+    .field input { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 2px; font-family: inherit; font-size: 0.9rem; background: var(--card); color: var(--ink); transition: border-color .18s; }
     .field input:focus { outline: none; border-color: var(--blue); }
     .field input.err { border-color: var(--red); }
-    .submit-btn { width: 100%; padding: 13px; background: var(--red); color: #fff; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.93rem; border: none; border-radius: 2px; cursor: pointer; letter-spacing: .02em; transition: opacity .18s; margin-top: 2px; }
+    .submit-btn { width: 100%; padding: 13px; background: var(--red); color: #fff; font-family: inherit; font-weight: 700; font-size: 0.93rem; border: none; border-radius: 2px; cursor: pointer; letter-spacing: .02em; transition: opacity .18s; margin-top: 2px; }
     .submit-btn:hover { opacity: .88; }
     .m-fine { font-size: 0.71rem; color: var(--muted); text-align: center; margin-top: 10px; }
     .success { text-align: center; padding: 8px 0; display: none; }
@@ -184,11 +343,18 @@
     .dl-btn { display: inline-block; margin-top: 16px; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 0.86rem; padding: 11px 24px; border-radius: 2px; text-decoration: none; letter-spacing: .02em; transition: opacity .18s; }
     .dl-btn:hover { opacity: .8; }
 
-    /* RESPONSIVE */
-    @media (max-width: 580px) {
+    /* ══════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-container { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
       .stats { grid-template-columns: repeat(2,1fr); }
       .gate { flex-direction: column; gap: 18px; padding: 24px 20px; }
       .gate-icon { display: none; }
+      .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer { padding: 3rem 1.5rem 2rem; }
     }
   </style>
 </head>
@@ -196,8 +362,34 @@
 
 <div id="bar"></div>
 
-<!-- ══════ HEADER ══════ -->
-<header>
+<!-- ══════ MAD HAT SITE HEADER ══════ -->
+<header class="header">
+  <nav class="nav-container" aria-label="Main navigation">
+    <a href="index.html" class="logo" aria-label="Mad Hat Communications — go to homepage">Mad Hat</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="index.html#analyzer">Analyzer</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile nav drawer -->
+<ul class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <li><a href="work.html" onclick="closeMenu()">Work</a></li>
+  <li><a href="index.html#analyzer" onclick="closeMenu()">Analyzer</a></li>
+  <li><a href="about.html" onclick="closeMenu()">About</a></li>
+  <li><a href="blog.html" class="active" onclick="closeMenu()">Blog</a></li>
+  <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+</ul>
+
+<!-- ══════ BLOG HERO ══════ -->
+<div class="blog-hero">
   <div class="hbg"></div>
   <div class="h-inner">
     <div class="h-tags">
@@ -208,16 +400,16 @@
     <h1>GEO in 2026:<br/><em>How to Get Your Brand<br/>Cited by AI</em></h1>
     <p class="deck">The playbook for making ChatGPT, Claude, Gemini, and Perplexity recommend your brand — not your competitor's.</p>
     <div class="byline">
-      <strong>Your Brand</strong>
+      <strong>Mad Hat Communications</strong>
       <span style="opacity:.3">·</span>
       <span>March 12, 2026</span>
       <span style="opacity:.3">·</span>
       <span>Strategy · AI Marketing</span>
     </div>
   </div>
-</header>
+</div>
 
-<!-- ══════ BODY ══════ -->
+<!-- ══════ BLOG BODY ══════ -->
 <div class="wrap">
 
   <nav class="toc" aria-label="Table of contents">
@@ -236,20 +428,15 @@
     <meta itemprop="datePublished" content="2026-03-12" />
     <meta itemprop="headline" content="GEO in 2026: How to Get Your Brand Cited by AI" />
 
-    <!-- ── 1. WHAT IS GEO ── -->
     <section id="what">
       <h2>What Is Generative Engine Optimization?</h2>
-
       <div class="anecdote">
         <p>I scrolled back through my last ten searches the other day. Every single one of them — a flight question, a software comparison, a recipe substitution, a legal grey area — I had typed into an LLM. Not Google.</p>
         <p>The honest reason is that the experience is just <em>richer</em>. It doesn't hand you ten blue links and wish you luck. It answers. With context. With nuance. With follow-up you didn't know you needed. It feels like the difference between being handed a library card and having a conversation with someone who's read every book in the building.</p>
         <p>I imagine this is exactly what people felt 25 years ago, the first time Google returned a result in under a second. That <span class="aha">AH-HA</span> moment — the quiet realisation that something had fundamentally changed. We're inside that same moment right now. And most brands haven't noticed yet.</p>
       </div>
-
       <p><strong>Generative Engine Optimization (GEO)</strong> is the practice of structuring and distributing your content so that large language models — ChatGPT, Claude, Gemini, Perplexity — are more likely to cite your brand when answering user queries.</p>
-
       <p>In AI search, there is no page two. The model gives one answer, cites two or three sources, and moves on. If your brand isn't in that answer, you're invisible — regardless of how strong your SEO is.</p>
-
       <div class="stats" role="region" aria-label="GEO key stats">
         <div class="stat"><span class="stat-n">40%</span><span class="stat-l">of queries now start inside AI interfaces</span></div>
         <div class="stat"><span class="stat-n">1–3</span><span class="stat-l">sources cited per AI answer — no "page 2"</span></div>
@@ -258,10 +445,8 @@
       </div>
     </section>
 
-    <!-- ── 2. GEO VS SEO ── -->
     <section id="geo-vs-seo">
       <h2>GEO vs. SEO — What's Actually Different?</h2>
-
       <div class="tbl-wrap">
         <table>
           <thead><tr><th>Dimension</th><th>Traditional SEO</th><th>GEO (2026)</th></tr></thead>
@@ -274,28 +459,21 @@
           </tbody>
         </table>
       </div>
-
       <div class="tip"><b>💡 Key Insight</b>GEO doesn't replace SEO — high-ranking pages are more likely to be ingested into LLM training data. Think of GEO as a layer built on top of your existing SEO foundation.</div>
     </section>
 
-    <!-- ── 3. HOW LLMS CITE ── -->
     <section id="how">
       <h2>How LLMs Decide What to Cite</h2>
-
       <h3>Training data</h3>
       <p>Models like GPT-4 and Claude are trained on vast text corpora. Content that defines terms clearly, makes verifiable claims, and reads like a reference source is disproportionately represented. Well-indexed, factually dense pages stand the best chance of making the next training run.</p>
-
       <h3>Retrieval-Augmented Generation (RAG)</h3>
       <p>AI products like Perplexity and ChatGPT Browse retrieve live documents before generating answers. For RAG, your content needs to be indexed, returned for the right queries, and answer the question more precisely than anything else out there.</p>
-
       <h3>Entity association</h3>
       <p>LLMs build internal maps of named entities. The more consistently your brand is mentioned alongside a specific topic across the web, the more strongly the model connects you with authority on that topic — the GEO equivalent of topical authority in SEO.</p>
     </section>
 
-    <!-- ── 4. STEPS ── -->
     <section id="steps">
       <h2>The 6-Step GEO Framework</h2>
-
       <ol class="steps">
         <li class="step"><div class="sn">1</div><div class="sb"><h3>Audit your AI citation landscape</h3><p>Query ChatGPT, Claude, Perplexity, and Gemini with 20–30 niche questions. Record who gets cited, in what format, and why. You can't optimise what you haven't measured.</p></div></li>
         <li class="step"><div class="sn">2</div><div class="sb"><h3>Write in citable units</h3><p>The ideal citable block is 2–4 sentences that answer exactly one question. Use H1→H2→H3 hierarchy, comparison tables, and definition blocks. LLMs learn from structured patterns.</p></div></li>
@@ -304,11 +482,9 @@
         <li class="step"><div class="sn">5</div><div class="sb"><h3>Distribute to AI-native platforms</h3><p>Perplexity Pages, Substack, LinkedIn Articles, and Reddit all have strong AI crawl coverage. Cross-publishing multiplies the probability of your content being ingested into various LLMs' knowledge bases.</p></div></li>
         <li class="step"><div class="sn">6</div><div class="sb"><h3>Monitor your citation rate — monthly</h3><p>Use citation tracking tools to watch how often your brand appears in AI answers. Track which queries you own, which competitors are displacing you, and refresh your top pages quarterly.</p></div></li>
       </ol>
-
       <div class="warn"><b>⚠️ Avoid</b>Keyword stuffing, thin content, and AI-generated filler. Shallow content doesn't just fail in GEO — it can actively damage your brand's authority signal with the model.</div>
     </section>
 
-    <!-- ── CHECKLIST GATE ── -->
     <div class="gate">
       <div class="gate-icon">📋</div>
       <div class="gate-copy">
@@ -318,158 +494,147 @@
       </div>
     </div>
 
-    <!-- ── 5. TOOLS ── -->
     <section id="tools">
       <h2>Essential GEO Tools in 2026</h2>
-
-      <p class="tools-hint">
-        <span class="tools-hint-icon">↗</span>
-        Every card below is a live link — click any of them to open the tool in a new tab.
-      </p>
-
+      <p class="tools-hint"><span class="tools-hint-icon">↗</span>Every card below is a live link — click any of them to open the tool in a new tab.</p>
       <div class="tools-grid">
-
         <a class="tool-card" href="https://www.perplexity.ai/pages" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">🔍</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Perplexity Pages</div>
-          <div class="tc-url">perplexity.ai/pages</div>
+          <div class="tc-name">Perplexity Pages</div><div class="tc-url">perplexity.ai/pages</div>
           <div class="tc-desc">Publish directly on one of the most AI-crawled platforms. Ideal for thought leadership and glossary content.</div>
           <span class="tc-tag">Publishing</span>
         </a>
-
         <a class="tool-card" href="https://www.athenahq.ai" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">📊</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">AthenaHQ</div>
-          <div class="tc-url">athenahq.ai</div>
+          <div class="tc-name">AthenaHQ</div><div class="tc-url">athenahq.ai</div>
           <div class="tc-desc">Tracks how often your brand is cited across major LLMs. Benchmarks by industry and alerts on competitor movements.</div>
           <span class="tc-tag">Monitoring</span>
         </a>
-
         <a class="tool-card" href="https://www.profound.io" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">📈</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Profound</div>
-          <div class="tc-url">profound.io</div>
+          <div class="tc-name">Profound</div><div class="tc-url">profound.io</div>
           <div class="tc-desc">AI search analytics showing which AI-generated answers your brand appears in and how visibility compares to competitors.</div>
           <span class="tc-tag">Analytics</span>
         </a>
-
         <a class="tool-card" href="https://alsoasked.com" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">❓</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">AlsoAsked</div>
-          <div class="tc-url">alsoasked.com</div>
+          <div class="tc-name">AlsoAsked</div><div class="tc-url">alsoasked.com</div>
           <div class="tc-desc">Maps the full question graph around any topic. Use it to build comprehensive FAQ content that LLMs consistently cite.</div>
           <span class="tc-tag">Research</span>
         </a>
-
         <a class="tool-card" href="https://www.schemaapp.com" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">🏷️</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Schema App</div>
-          <div class="tc-url">schemaapp.com</div>
+          <div class="tc-name">Schema App</div><div class="tc-url">schemaapp.com</div>
           <div class="tc-desc">Enterprise-grade structured data for deploying JSON-LD schema at scale — FAQPage, HowTo, Article, and more.</div>
           <span class="tc-tag">Technical</span>
         </a>
-
         <a class="tool-card" href="https://www.goodie.ai" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">🤖</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Goodie AI</div>
-          <div class="tc-url">goodie.ai</div>
+          <div class="tc-name">Goodie AI</div><div class="tc-url">goodie.ai</div>
           <div class="tc-desc">GEO-specific content optimisation — analyses your pages against LLM citation patterns and recommends structural improvements.</div>
           <span class="tc-tag">Optimisation</span>
         </a>
-
         <a class="tool-card" href="https://www.clearscope.io" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">✍️</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Clearscope</div>
-          <div class="tc-url">clearscope.io</div>
+          <div class="tc-name">Clearscope</div><div class="tc-url">clearscope.io</div>
           <div class="tc-desc">Semantic content optimisation ensuring full topical coverage. Comprehensive topic coverage correlates strongly with AI citation rates.</div>
           <span class="tc-tag">Content</span>
         </a>
-
         <a class="tool-card" href="https://searchresponse.io" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">🗺️</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Search Response</div>
-          <div class="tc-url">searchresponse.io</div>
+          <div class="tc-name">Search Response</div><div class="tc-url">searchresponse.io</div>
           <div class="tc-desc">Real-time monitoring of branded AI-generated answers across Perplexity, ChatGPT Search, and Bing Copilot.</div>
           <span class="tc-tag">Monitoring</span>
         </a>
-
       </div>
     </section>
 
-    <!-- ── 6. FAQ ── -->
     <section id="faq" itemscope itemtype="https://schema.org/FAQPage">
       <h2>Frequently Asked Questions</h2>
       <div class="faq">
-
         <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <p class="fq" itemprop="name">What is Generative Engine Optimization (GEO)?</p>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p class="fa" itemprop="text">GEO is the practice of structuring and distributing your content so that large language models — ChatGPT, Claude, Gemini, Perplexity — are more likely to cite your brand in their responses. Unlike SEO, which targets ranking algorithms, GEO targets LLM training pipelines and retrieval-augmented generation (RAG) systems.</p>
           </div>
         </div>
-
         <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <p class="fq" itemprop="name">How long does it take to see GEO results?</p>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p class="fa" itemprop="text">For RAG-based tools like Perplexity and Bing Copilot, optimised content can appear in citations within days to weeks. For models relying on training data, changes may take months to reflect. Most brands see measurable improvements within 60–90 days of implementing a full GEO strategy.</p>
           </div>
         </div>
-
         <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <p class="fq" itemprop="name">Do I need a large website to benefit from GEO?</p>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p class="fa" itemprop="text">No. A smaller site with 10–20 well-structured, authoritative articles can outperform a large site with hundreds of shallow pages. LLMs optimise for quality and specificity, not volume.</p>
           </div>
         </div>
-
         <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <p class="fq" itemprop="name">Which AI platforms should I prioritise first?</p>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p class="fa" itemprop="text">Start with Perplexity AI — it shows its sources explicitly, making it the best platform for measuring GEO impact. Then prioritise ChatGPT Browse, Microsoft Copilot, and Google's AI Overviews. Secondary targets: Claude, Gemini Advanced, and Meta AI.</p>
           </div>
         </div>
-
       </div>
     </section>
 
   </article>
 
-  <!-- CTA -->
   <div class="cta">
     <div class="cta-glow"></div>
     <h2>Get Discovered on AI</h2>
     <p>Stop hoping AI mentions you. Let's build the strategy that makes it inevitable.</p>
-    <a href="#" class="cta-btn" onclick="openModal(); return false;">Get Discovered on AI →</a>
+    <a href="contact.html" class="cta-btn">Get Discovered on AI →</a>
     <span class="cta-fine">Free 30-minute GEO audit · No commitment required</span>
   </div>
 
-</div><!-- /wrap -->
+</div>
 
-<footer>
-  <p>© 2026 Your Brand · <a href="#">Privacy</a> · <a href="#">Contact</a> · <a href="#">Subscribe</a></p>
-  <p style="margin-top:6px;">Published March 12, 2026 · Updated regularly to reflect developments in GEO.</p>
+<!-- ══════ SITE FOOTER ══════ -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Mad Hat Communications</h3>
+      <p>Performance-driven growth marketing for brands that want to scale without wasting budget.</p>
+    </div>
+    <div class="footer-section">
+      <h3>Services</h3>
+      <a href="index.html">Market Expansion</a>
+      <a href="index.html">Conversion Optimisation</a>
+      <a href="index.html">Paid Media Strategy</a>
+      <a href="index.html">SEO &amp; GEO</a>
+    </div>
+    <div class="footer-section">
+      <h3>Company</h3>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <a href="mailto:amit@madhatcomm.in">amit@madhatcomm.in</a>
+      <a href="tel:+919535015025">+91 95350 15025</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Mad Hat Communications. All rights reserved.</p>
+  </div>
 </footer>
 
 <!-- ══════ MODAL ══════ -->
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Download GEO Checklist">
   <div class="modal">
     <button class="modal-x" onclick="closeModal()" aria-label="Close">✕</button>
-
     <div id="form-view">
       <h3>📋 Get the Free GEO Checklist</h3>
       <p>Drop your email and we'll send the checklist straight to you — plus occasional GEO insights you won't find elsewhere.</p>
-      <div class="field">
-        <label for="m-name">First name</label>
-        <input type="text" id="m-name" placeholder="Alex" autocomplete="given-name" />
-      </div>
-      <div class="field">
-        <label for="m-email">Work email</label>
-        <input type="email" id="m-email" placeholder="alex@company.com" autocomplete="email" />
-      </div>
+      <div class="field"><label for="m-name">First name</label><input type="text" id="m-name" placeholder="Alex" autocomplete="given-name" /></div>
+      <div class="field"><label for="m-email">Work email</label><input type="email" id="m-email" placeholder="alex@company.com" autocomplete="email" /></div>
       <button class="submit-btn" onclick="submitGate()">Send Me the Checklist →</button>
       <p class="m-fine">No spam. Unsubscribe any time.</p>
     </div>
-
     <div class="success" id="success-view">
       <div class="s-em">🎉</div>
       <h3>You're in!</h3>
@@ -487,7 +652,23 @@
     document.getElementById('bar').style.width = (p > 0 ? (d.scrollTop / p) * 100 : 0) + '%';
   });
 
-  // Modal open/close
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  function closeMenu() {
+    mobileNav.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  // Modal
   function openModal() {
     document.getElementById('overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -500,7 +681,7 @@
   document.getElementById('overlay').addEventListener('click', e => {
     if (e.target === document.getElementById('overlay')) closeModal();
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeMenu(); } });
 
   // Gate submit
   function submitGate() {
@@ -513,16 +694,16 @@
       emailEl.focus();
       return;
     }
-    // In production: POST { name, email } to your email capture endpoint here
+    // In production: POST { name, email } to your email platform here
     document.getElementById('form-view').style.display = 'none';
     document.getElementById('success-view').style.display = 'block';
   }
 
-  // Checklist download (generates a text file; swap for a real PDF URL in production)
+  // Checklist download
   function downloadChecklist() {
     const txt = `GEO CHECKLIST 2026 — Get Your Brand Cited by AI
 =================================================
-yourdomain.com · Updated March 2026
+madhatcomm.in · Updated March 2026
 
 STEP 1 — AUDIT YOUR AI CITATION LANDSCAPE
   □ Query ChatGPT, Claude, Perplexity & Gemini with 20–30 niche questions
@@ -567,11 +748,12 @@ TOOLS
   Goodie AI         → goodie.ai
   Clearscope        → clearscope.io
   Search Response   → searchresponse.io
-`;
+
+madhatcomm.in · March 2026`;
     const blob = new Blob([txt], { type: 'text/plain' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'GEO-Checklist-2026.txt';
+    a.download = 'GEO-Checklist-2026-MadHat.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
