@@ -48,7 +48,6 @@
 
     h1, h2, h3 { font-family: Georgia, serif; font-weight: 900; line-height: 1.1 }
 
-    /* ── HEADER ── */
     .header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -82,7 +81,6 @@
     .logo:hover { color: var(--accent) }
 
     .nav-links { display: flex; gap: 2.5rem; list-style: none }
-
     .nav-links a {
       color: var(--text);
       text-decoration: none;
@@ -97,7 +95,6 @@
       padding-bottom: 2px
     }
 
-    /* Hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -121,7 +118,6 @@
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0) }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) }
 
-    /* Mobile drawer */
     .mobile-nav {
       display: none;
       position: fixed;
@@ -146,14 +142,12 @@
     .mobile-nav a:hover,
     .mobile-nav a.active { color: var(--accent) }
 
-    /* ── CONTACT LAYOUT ── */
     .contact-wrapper {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr
     }
 
-    /* LEFT PANEL */
     .contact-left {
       background: var(--primary);
       padding: 12rem 5rem 5rem;
@@ -241,7 +235,6 @@
       color: white
     }
 
-    /* RIGHT PANEL — FORM */
     .contact-right {
       padding: 12rem 5rem 5rem;
       background: var(--secondary)
@@ -286,7 +279,6 @@
       font-family: inherit
     }
 
-    /* Remove placeholder on name/email/company fields */
     #firstName::placeholder,
     #lastName::placeholder,
     #email::placeholder,
@@ -343,13 +335,11 @@
     .form-success h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem }
     .form-success p { color: var(--text-light); font-size: 0.95rem }
 
-    /* ── FOOTER ── */
     .footer { background: #0a0a0a; padding: 3rem; text-align: center }
     .footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem }
     .footer a { color: rgba(255,255,255,0.3); text-decoration: none }
     .footer a:hover { color: var(--accent) }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .contact-wrapper { grid-template-columns: 1fr }
       .contact-left { padding: 10rem 2rem 4rem }
@@ -367,7 +357,6 @@
 
 <body>
 
-  <!-- ── HEADER ── -->
   <header class="header">
     <nav class="nav-container" aria-label="Main navigation">
       <a href="index.html" class="logo">Mad Hat</a>
@@ -384,7 +373,6 @@
     </nav>
   </header>
 
-  <!-- Mobile nav drawer -->
   <ul class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
     <li><a href="work.html" onclick="closeMenu()">Work</a></li>
     <li><a href="index.html#analyzer" onclick="closeMenu()">Analyzer</a></li>
@@ -396,7 +384,6 @@
   <main>
     <div class="contact-wrapper">
 
-      <!-- LEFT: Info -->
       <div class="contact-left">
         <div>
           <p class="contact-label">Get In Touch</p>
@@ -435,7 +422,6 @@
         </div>
       </div>
 
-      <!-- RIGHT: Form -->
       <div class="contact-right">
         <h2>Send Us a Message</h2>
         <p class="form-subtitle">Tell us about your brand and what you're looking to achieve.</p>
@@ -480,12 +466,12 @@
             <textarea id="message" placeholder="What are you trying to achieve? What's your timeline? Any context helps..." required></textarea>
           </div>
 
-          <button class="submit-btn" id="submitBtn" onclick="submitForm()">Send Message →</button>
+          <button class="submit-btn" id="submitBtn" onclick="submitForm()">Send Message &#8594;</button>
           <p class="form-error-msg" id="formError">Please fill in your name, email, and message before submitting.</p>
         </div>
 
         <div class="form-success" id="formSuccess">
-          <h3>Message Received! 🎉</h3>
+          <h3>Message Received! &#x1F389;</h3>
           <p>Thanks for reaching out. We'll be back in touch within 1 working day.</p>
         </div>
       </div>
@@ -498,94 +484,96 @@
   </footer>
 
   <script>
-    // ── HubSpot config ──
-    const HS_PORTAL_ID   = '245523464';
-    const HS_CONTACT_FORM = 'da809b0e-fc69-4682-aa3a-410ef828b8b8';
+    var HS_PORTAL  = '245523464';
+    var HS_FORM    = 'da809b0e-fc69-4682-aa3a-410ef828b8b8';
+    var HS_REGION  = 'na2';
 
-    async function submitForm() {
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName  = document.getElementById('lastName').value.trim();
-      const email     = document.getElementById('email').value.trim();
-      const company   = document.getElementById('company').value.trim();
-      const service   = document.getElementById('service').value;
-      const message   = document.getElementById('message').value.trim();
-      const errEl     = document.getElementById('formError');
-      const btn       = document.getElementById('submitBtn');
+    function submitForm() {
+      var firstName = document.getElementById('firstName').value.trim();
+      var lastName  = document.getElementById('lastName').value.trim();
+      var email     = document.getElementById('email').value.trim();
+      var company   = document.getElementById('company').value.trim();
+      var service   = document.getElementById('service').value;
+      var message   = document.getElementById('message').value.trim();
+      var errEl     = document.getElementById('formError');
+      var btn       = document.getElementById('submitBtn');
 
-      // Clear previous errors
       errEl.style.display = 'none';
-      ['firstName','email','message'].forEach(id => {
+      ['firstName','email','message'].forEach(function(id) {
         document.getElementById(id).classList.remove('err');
       });
 
-      // Validate required fields
-      let hasError = false;
+      var hasError = false;
       if (!firstName) { document.getElementById('firstName').classList.add('err'); hasError = true; }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('email').classList.add('err'); hasError = true; }
-      if (!message) { document.getElementById('message').classList.add('err'); hasError = true; }
+      if (!message)   { document.getElementById('message').classList.add('err');   hasError = true; }
 
       if (hasError) {
+        errEl.textContent = 'Please fill in your name, email, and message before submitting.';
         errEl.style.display = 'block';
         return;
       }
 
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
+      btn.disabled    = true;
+      btn.textContent = 'Sending\u2026';
 
-      // Build HubSpot fields array — all fields including service dropdown
-      const fields = [
-        { name: 'firstname', value: firstName },
-        { name: 'lastname',  value: lastName },
-        { name: 'email',     value: email },
-        { name: 'company',   value: company },
-        { name: 'message',   value: `Service of interest: ${service || 'Not specified'}\n\n${message}` }
-      ];
-
-      try {
-        const res = await fetch(
-          `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${HS_CONTACT_FORM}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              fields,
-              context: {
-                pageUri: 'https://madhatcomm.in/contact.html',
-                pageName: 'Mad Hat Communications — Contact Page'
-              }
-            })
-          }
-        );
-
-        if (res.ok) {
-          // Hide form, show success
-          document.getElementById('contactForm').style.display = 'none';
-          document.getElementById('formSuccess').classList.add('visible');
-
-          // Fire GA event
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_submit', {
-              event_category: 'Contact',
-              event_label: 'Main Contact Page Form'
-            });
-          }
-        } else {
-          throw new Error('HubSpot submission failed');
+      var payload = {
+        fields: [
+          { name: 'firstname', value: firstName },
+          { name: 'lastname',  value: lastName  },
+          { name: 'email',     value: email     },
+          { name: 'company',   value: company   },
+          { name: 'service',   value: service   },
+          { name: 'message',   value: message   }
+        ],
+        context: {
+          pageUri:  'https://madhatcomm.in/contact.html',
+          pageName: 'Mad Hat Communications \u2014 Contact Page'
         }
-      } catch (err) {
-        btn.disabled = false;
-        btn.textContent = 'Send Message →';
-        errEl.textContent = 'Something went wrong — please try again or email us directly at amit@madhatcomm.in';
+      };
+
+      var endpoint = 'https://api.hsforms.com/submissions/v3/integration/submit/'
+                   + HS_PORTAL + '/' + HS_FORM;
+
+      fetch(endpoint, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+      .then(function(res) {
+        if (!res.ok) {
+          return res.text().then(function(t) {
+            console.error('HubSpot error', res.status, t);
+            throw new Error(res.status + ': ' + t);
+          });
+        }
+        return res;
+      })
+      .then(function() {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('visible');
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', {
+            event_category: 'Contact',
+            event_label:    'Main Contact Page Form'
+          });
+        }
+      })
+      .catch(function(err) {
+        console.error('Submission failed:', err);
+        btn.disabled    = false;
+        btn.textContent = 'Send Message \u2192';
+        errEl.textContent = 'Something went wrong \u2014 please try again or email amit@madhatcomm.in directly.';
         errEl.style.display = 'block';
-      }
+      });
     }
 
-    // ── Mobile nav ──
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
+    // Mobile nav
+    var hamburger = document.getElementById('hamburger');
+    var mobileNav = document.getElementById('mobileNav');
 
-    hamburger.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
+    hamburger.addEventListener('click', function() {
+      var open = mobileNav.classList.toggle('open');
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
@@ -598,7 +586,7 @@
       document.body.style.overflow = '';
     }
 
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeMenu();
     });
   </script>
