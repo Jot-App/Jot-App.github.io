@@ -544,7 +544,7 @@
         if (!res.ok) {
           return res.text().then(function(t) {
             console.error('HubSpot error', res.status, t);
-            throw new Error(res.status + ': ' + t);
+            throw new Error('HubSpot ' + res.status + ': ' + t);
           });
         }
         return res;
@@ -563,7 +563,9 @@
         console.error('Submission failed:', err);
         btn.disabled    = false;
         btn.textContent = 'Send Message \u2192';
-        errEl.textContent = 'Something went wrong \u2014 please try again or email amit@madhatcomm.in directly.';
+        errEl.textContent = err.message.length < 300
+          ? 'Error: ' + err.message
+          : 'Something went wrong \u2014 please try again or email amit@madhatcomm.in directly.';
         errEl.style.display = 'block';
       });
     }
