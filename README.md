@@ -1,5 +1,12 @@
 # Mad Hat Communications Website
 
+#Versions
+V1.0 (Testing) : 
+ ---
+
+ TBD/Fixed :
+ ---
+
 ## 📁 File Structure
 
 ```

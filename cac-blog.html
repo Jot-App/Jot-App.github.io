@@ -403,7 +403,7 @@
     </div>
     <div class="footer-section">
       <h3>Contact</h3>
-      <a href="/cdn-cgi/l/email-protection#a7c6caced3e7cac6c3cfc6d3c4c8caca89cec9"><span class="__cf_email__" data-cfemail="5534383c21153834313d3421363a38387b3c3b">[email&#160;protected]</span></a>
+      <a href="mailto:amit@madhatcomm.in">amit@madhatcomm.in</a>
       <a href="tel:+919535015025">+91 95350 15025</a>
     </div>
   </div>
@@ -434,7 +434,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ── HubSpot config ──
   const HS_PORTAL_ID = '245523464';
   const HS_CAC_FORM  = '64d9de91-525f-4eff-90ac-da7c4f7f3586';
@@ -447,18 +447,13 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           fields,
-          skipValidation: true,
           context: {
-            pageUri: window.location.href,
+            pageUri: 'https://madhatcomm.in/cac-blog.html',
             pageName: 'Why Your CAC Is High (And How to Fix It Without Cutting Budget)'
           }
         })
       }
     );
-    if (!res.ok) {
-      const errBody = await res.text();
-      console.error('HubSpot error:', res.status, errBody);
-    }
     return res.ok;
   }
 
@@ -517,4 +512,12 @@
     ]);
     if (ok) {
       document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('contact-success').st
+      document.getElementById('contact-success').style.display = 'block';
+    } else {
+      btn.disabled = false; btn.textContent = 'Send Message →';
+      errEl.textContent = 'Something went wrong — please try again.'; errEl.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>

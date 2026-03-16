@@ -408,7 +408,7 @@
               <div class="detail-icon">✉</div>
               <div>
                 <div class="detail-label">Email</div>
-                <div class="detail-value"><a href="/cdn-cgi/l/email-protection#7d1c1014093d101c19151c091e121010531413"><span class="__cf_email__" data-cfemail="aecfc3c7daeec3cfcac6cfdacdc1c3c380c7c0">[email&#160;protected]</span></a></div>
+                <div class="detail-value"><a href="mailto:amit@madhatcomm.in">amit@madhatcomm.in</a></div>
               </div>
             </div>
             <div class="contact-detail">
@@ -422,7 +422,7 @@
               <div class="detail-icon">⏱</div>
               <div>
                 <div class="detail-label">Response Time</div>
-                <div class="detail-value">Within 24 hours</div>
+                <div class="detail-value">Within 1 Working Day</div>
               </div>
             </div>
           </div>
@@ -486,7 +486,7 @@
 
         <div class="form-success" id="formSuccess">
           <h3>Message Received! 🎉</h3>
-          <p>Thanks for reaching out. We'll be back in touch within 24 hours.</p>
+          <p>Thanks for reaching out. We'll be back in touch within 1 working day.</p>
         </div>
       </div>
 
@@ -494,7 +494,7 @@
   </main>
 
   <footer class="footer">
-    <p>&copy; <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear())</script> Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="work.html">Work</a> &nbsp;|&nbsp; <a href="about.html">About</a></p>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="work.html">Work</a> &nbsp;|&nbsp; <a href="about.html">About</a></p>
   </footer>
 
   <script>
@@ -549,9 +549,8 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               fields,
-              skipValidation: true,
               context: {
-                pageUri: window.location.href,
+                pageUri: 'https://madhatcomm.in/contact.html',
                 pageName: 'Mad Hat Communications — Contact Page'
               }
             })
@@ -571,16 +570,13 @@
             });
           }
         } else {
-          const errBody = await res.text();
-          console.error('HubSpot error response:', res.status, errBody);
-          throw new Error(`HubSpot ${res.status}: ${errBody}`);
+          throw new Error('HubSpot submission failed');
         }
       } catch (err) {
         btn.disabled = false;
         btn.textContent = 'Send Message →';
         errEl.textContent = 'Something went wrong — please try again or email us directly at amit@madhatcomm.in';
         errEl.style.display = 'block';
-        console.error('HubSpot submission error:', err);
       }
     }
 
@@ -597,4 +593,15 @@
 
     function closeMenu() {
       mobileNav.classList.remove('open');
-      hamburger.classList.remove(
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  </script>
+
+</body>
+</html>
