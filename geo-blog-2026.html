@@ -44,7 +44,6 @@
     .site-header { position: fixed; top: 0; left: 0; right: 0; background: rgba(245,245,240,0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 1.5rem 0; }
     .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; }
     
-    .logo:hover { color: var(--accent); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s; font-family: 'Manrope', sans-serif; }
     .nav-links a:hover { color: var(--accent); }
@@ -197,11 +196,8 @@
 <!-- ══ SITE HEADER ══ -->
 <header class="site-header">
   <nav class="nav-container" aria-label="Main navigation">
-    <a href="index.html" class="logo" aria-label="Mad Hat Communications">
-        <div class="logo-row1">
-          <span class="logo-mad">Mad</span><span class="logo-hat">Hat</span><span class="logo-dot"></span>
-        </div>
-        <span class="logo-comm" id="logoComm">Communications</span>
+    <a href="index.html" class="logo-link" aria-label="Mad Hat Communications">
+        <img src="logo.svg" alt="Mad Hat Communications" class="logo-svg">
       </a>
     <ul class="nav-links">
       <li><a href="work.html">Work</a></li>
@@ -613,38 +609,5 @@
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
   }
 </script>
-
-  <script>
-    (function fitComm() {
-      var logo = document.querySelector('.logo');
-      if (!logo) return;
-      var row1 = logo.querySelector('.logo-row1');
-      var comm = logo.querySelector('.logo-comm');
-      if (!row1 || !comm) return;
-      function run() {
-        var targetW = row1.getBoundingClientRect().width;
-        if (!targetW) return;
-        var lo = 4, hi = 20;
-        for (var i = 0; i < 30; i++) {
-          var mid = (lo + hi) / 2;
-          comm.style.fontSize = mid + 'px';
-          if (comm.getBoundingClientRect().width < targetW) lo = mid; else hi = mid;
-        }
-        comm.style.fontSize = lo + 'px';
-        var gap = targetW - comm.getBoundingClientRect().width;
-        var chars = comm.textContent.length - 1;
-        if (chars > 0) {
-          var base = parseFloat(getComputedStyle(comm).letterSpacing) || 0;
-          comm.style.letterSpacing = (base + gap / chars) + 'px';
-        }
-        comm.style.visibility = 'visible';
-      }
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(run);
-      } else {
-        window.addEventListener('load', run);
-      }
-    })();
-  </script>
 </body>
 </html>
