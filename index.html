@@ -30,26 +30,25 @@
   <script src="config.js" defer></script>
 
   <!-- Font preload without preconnect (preconnect flagged as unused by PageSpeed) -->
-  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap">
-  </noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box }
 
     :root {
-      --primary: #0F0F0F;
-      --accent: #E63027;
-      --secondary: #F5F5F0;
+      --primary: #0D0A1A;
+      --accent: #9333EA;
+      --secondary: #F7F4FF;
       --text: #2C2C2C;
       --text-light: #525252;
       --border: #E0E0E0
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Outfit', sans-serif;
       background: var(--secondary);
       color: var(--text);
       line-height: 1.6;
@@ -57,8 +56,8 @@
     }
 
     h1, h2, h3 {
-      font-family: Georgia, serif;
-      font-weight: 900;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
       line-height: 1.1
     }
 
@@ -74,13 +73,63 @@
       border: 0
     }
 
+
+    /* ── Mad Hat stacked logo ── */
+    .logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1;
+      gap: 5px;
+      text-decoration: none;
+    }
+    .logo-row1 {
+      display: flex;
+      align-items: baseline;
+      white-space: nowrap;
+    }
+    .logo-mad {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: #7C5CC4;
+    }
+    .logo-hat {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #EDE8FF;
+    }
+    .logo-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #9333EA;
+      margin-left: 2px;
+      margin-bottom: 3px;
+      flex-shrink: 0;
+      align-self: flex-end;
+    }
+    .logo-comm {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: 0.27em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #7C5CC4;
+      visibility: hidden;
+    }
+
     /* HEADER */
     .header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: rgba(245, 245, 240, 0.95);
+      background: rgba(13, 10, 26, 0.97);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(147, 51, 234, 0.2);
       z-index: 1000;
       padding: 1.5rem 0
     }
@@ -94,14 +143,7 @@
       align-items: center
     }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      font-family: Georgia, serif;
-      color: var(--primary);
-      text-decoration: none;
-      letter-spacing: -0.02em
-    }
+
 
     .nav-links {
       display: flex;
@@ -110,14 +152,15 @@
     }
 
     .nav-links a {
-      color: var(--text);
+      color: rgba(200, 185, 240, 0.75);
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
       transition: color 0.3s
     }
 
-    .nav-links a:hover { color: var(--accent) }
+    .nav-links a:hover { color: #EDE8FF }
 
     /* HERO */
     .hero {
@@ -157,7 +200,7 @@
 
     .cta-button:hover, .cta-button:focus {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(230, 48, 39, 0.3);
+      box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
       outline: 2px solid var(--accent);
       outline-offset: 2px
     }
@@ -181,7 +224,7 @@
     .stat-number {
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 900;
-      font-family: Georgia, serif;
+      font-family: 'Outfit', sans-serif;
       color: var(--accent);
       line-height: 1
     }
@@ -236,7 +279,7 @@
     .case-logo {
       font-size: 2rem;
       font-weight: 900;
-      font-family: Georgia, serif;
+      font-family: 'Outfit', sans-serif;
       color: white;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3)
     }
@@ -267,7 +310,7 @@
     .metric-value {
       font-size: 1.5rem;
       font-weight: 900;
-      font-family: Georgia, serif;
+      font-family: 'Outfit', sans-serif;
       color: var(--accent)
     }
 
@@ -390,7 +433,7 @@
       transform: translate(-50%, -50%);
       font-size: 3rem;
       font-weight: 900;
-      font-family: Georgia, serif;
+      font-family: 'Outfit', sans-serif;
       color: white
     }
 
@@ -429,7 +472,7 @@
       color: white;
       font-size: 1.8rem;
       font-weight: 900;
-      font-family: Georgia, serif;
+      font-family: 'Outfit', sans-serif;
       margin-bottom: 0.25rem
     }
 
@@ -485,7 +528,7 @@
       color: white;
       font-size: 1rem;
       margin-bottom: 1.5rem;
-      font-family: Georgia, serif
+      font-family: 'Outfit', sans-serif
     }
 
     .footer-section p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7 }
@@ -555,7 +598,12 @@
 
   <header class="header">
     <nav class="nav-container" aria-label="Main navigation">
-      <a href="#" class="logo" id="companyName">Mad Hat</a>
+      <a href="#" class="logo" aria-label="Mad Hat Communications">
+        <div class="logo-row1">
+          <span class="logo-mad">Mad</span><span class="logo-hat">Hat</span><span class="logo-dot"></span>
+        </div>
+        <span class="logo-comm" id="logoComm">Communications</span>
+      </a>
       <ul class="nav-links">
         <li><a href="work.html">Work</a></li>
         <li><a href="#analyzer">Analyzer</a></li>
@@ -685,11 +733,43 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="currentYear">2025</span> <span id="copyrightName">
-      <p>&copy; <span id="currentYear">2025</span> <span id="copyrightName">Mad Hat Communications</span>. All rights reserved.</p>
+      <p>&copy; <span id="currentYear">2026</span> <span id="copyrightName">Mad Hat Communications</span>. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="app.js" defer></script>
+
+  <script>
+    (function fitComm() {
+      var logo = document.querySelector('.logo');
+      if (!logo) return;
+      var row1 = logo.querySelector('.logo-row1');
+      var comm = logo.querySelector('.logo-comm');
+      if (!row1 || !comm) return;
+      function run() {
+        var targetW = row1.getBoundingClientRect().width;
+        if (!targetW) return;
+        var lo = 4, hi = 20;
+        for (var i = 0; i < 30; i++) {
+          var mid = (lo + hi) / 2;
+          comm.style.fontSize = mid + 'px';
+          if (comm.getBoundingClientRect().width < targetW) lo = mid; else hi = mid;
+        }
+        comm.style.fontSize = lo + 'px';
+        var gap = targetW - comm.getBoundingClientRect().width;
+        var chars = comm.textContent.length - 1;
+        if (chars > 0) {
+          var base = parseFloat(getComputedStyle(comm).letterSpacing) || 0;
+          comm.style.letterSpacing = (base + gap / chars) + 'px';
+        }
+        comm.style.visibility = 'visible';
+      }
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(run);
+      } else {
+        window.addEventListener('load', run);
+      }
+    })();
+  </script>
 </body>
 </html>
