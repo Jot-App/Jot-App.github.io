@@ -115,12 +115,11 @@
     .logo-comm {
       font-family: 'Outfit', sans-serif;
       font-weight: 300;
-      font-size: 9px;
-      letter-spacing: 0.27em;
+      font-size: 8.5px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       white-space: nowrap;
       color: #7C5CC4;
-      visibility: hidden;
     }
 
     /* HEADER */
@@ -762,7 +761,6 @@
           var base = parseFloat(getComputedStyle(comm).letterSpacing) || 0;
           comm.style.letterSpacing = (base + gap / chars) + 'px';
         }
-        comm.style.visibility = 'visible';
       }
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(run);
