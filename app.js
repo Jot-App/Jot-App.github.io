@@ -70,7 +70,7 @@ function initTracking() {
 
 // Load all content from config.js into the page
 function loadContent() {
-  document.getElementById('companyName').textContent = CONFIG.company.name;
+  // Logo is a structured HTML element — don't overwrite its inner markup
   document.getElementById('footerCompanyName').textContent = CONFIG.company.name;
   document.getElementById('copyrightName').textContent = CONFIG.company.name;
   document.getElementById('footerDescription').textContent = CONFIG.company.description;
