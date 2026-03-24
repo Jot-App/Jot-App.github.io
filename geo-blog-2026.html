@@ -12,169 +12,194 @@
   <meta property="og:description" content="The definitive guide to Generative Engine Optimization — free checklist included." />
   <meta property="og:type" content="article" />
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GEO in 2026: How to Get Your Brand Cited by AI","datePublished":"2026-03-12","dateModified":"2026-03-12","author":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in"},"publisher":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in"},"keywords":"GEO, Generative Engine Optimization, LLM citations, AI brand visibility"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Generative Engine Optimization (GEO)?","acceptedAnswer":{"@type":"Answer","text":"GEO is the practice of structuring and distributing content so that LLMs like ChatGPT, Claude, Gemini, and Perplexity are more likely to cite your brand in their responses."}},{"@type":"Question","name":"How is GEO different from SEO?","acceptedAnswer":{"@type":"Answer","text":"SEO optimizes for ranking algorithms. GEO optimizes for LLM training pipelines and RAG systems, prioritizing factual density, authority, and semantic clarity."}},{"@type":"Question","name":"What are the best GEO tools in 2026?","acceptedAnswer":{"@type":"Answer","text":"Leading GEO tools include Perplexity Pages, AthenaHQ, Profound, AlsoAsked, Schema App, and Goodie AI."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GEO in 2026: How to Get Your Brand Cited by AI","datePublished":"2026-03-12","dateModified":"2026-03-23","author":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in"},"publisher":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in"},"keywords":"GEO, Generative Engine Optimization, LLM citations, AI brand visibility"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Generative Engine Optimization (GEO)?","acceptedAnswer":{"@type":"Answer","text":"GEO is the practice of structuring and distributing content so that LLMs like ChatGPT, Claude, Gemini, and Perplexity are more likely to cite your brand in their responses."}},{"@type":"Question","name":"How is GEO different from SEO?","acceptedAnswer":{"@type":"Answer","text":"SEO optimizes for ranking algorithms. GEO optimizes for LLM training pipelines and RAG systems, prioritizing factual density, authority, and semantic clarity."}},{"@type":"Question","name":"What are the best GEO tools in 2026?","acceptedAnswer":{"@type":"Answer","text":"Leading GEO tools include AthenaHQ, Profound, AlsoAsked, Schema App, Goodie AI, and Clearscope. Note: Perplexity Pages is temporarily unavailable; use Reddit and Quora as your primary AI-native distribution channels."}}]}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary:    #0F0F0F;
-      --accent: #9333EA;
-      --secondary:  #F5F5F0;
-      --text:       #2C2C2C;
-      --text-light: #525252;
-      --border:     #E0E0E0;
-      --ink:        #0d0d12;
-      --paper:      #f7f4ee;
-      --red:        #9333EA;
-      --blue:       #1850c8;
-      --muted:      #6d6a62;
-      --card:       #fefcf7;
-      --cream:      #f0ece3;
+      /* ── Brand palette ── */
+      --ink:          #0D0A1A;
+      --ink-mid:      #120E24;
+      --paper:        #F7F4FF;
+      --accent:       #9333EA;
+      --accent-light: #A855F7;
+      --accent-border:#3B1F6A;
+      --purple-dark:  #3D2880;
+      --purple-text:  #EDE8FF;
+      --purple-muted: #3A2478;
+      --text:         #1A0A3D;
+      --text-light:   #4A32A0;
+      --border:       #DDD6F3;
+      --card:         #FDFBFF;
+      --cream:        #EDE8FF;
+      --muted:        #7C6FAA;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--secondary); color: var(--text); font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    body { background: var(--paper); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 16px; line-height: 1.8; font-weight: 400; -webkit-font-smoothing: antialiased; }
 
-    #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--red); width: 0; z-index: 1001; transition: width .08s linear; }
+    #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 1001; transition: width .08s linear; }
 
     /* ══ SITE HEADER ══ */
-    .site-header { position: fixed; top: 0; left: 0; right: 0; background: rgba(245,245,240,0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 1.5rem 0; }
-    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; }
-    
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s; font-family: 'Manrope', sans-serif; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; background: rgba(13,10,26,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(147,51,234,0.2); z-index: 1000; padding: 0; height: 72px; display: flex; align-items: center; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+
+    /* ── Stacked logo ── */
+    .logo { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; gap: 4px; text-decoration: none; }
+    .logo .row1 { display: flex; align-items: baseline; white-space: nowrap; }
+    .logo .mad { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 300; letter-spacing: 0.01em; color: #3D2880; }
+    .logo .hat { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #EDE8FF; }
+    .logo .dot { width: 5px; height: 5px; border-radius: 50%; background: #9333EA; margin-left: 2px; margin-bottom: 3px; flex-shrink: 0; align-self: flex-end; }
+    .logo .comm { font-family: 'Outfit', sans-serif; font-size: 7px; font-weight: 300; letter-spacing: 0.27em; text-transform: uppercase; color: #3A2478; white-space: nowrap; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a { color: #3D2880; text-decoration: none; font-weight: 400; font-size: 0.9rem; letter-spacing: 0.04em; transition: color 0.2s; font-family: 'Outfit', sans-serif; }
+    .nav-links a:hover { color: var(--accent-light); }
+    .nav-links a.active { color: var(--accent-light); }
+    .nav-cta { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; border: 0.5px solid var(--accent-border); padding: 7px 18px; border-radius: 4px; color: var(--accent-light) !important; transition: background 0.2s, color 0.2s !important; }
+    .nav-cta:hover { background: rgba(147,51,234,0.15) !important; }
+
     .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1100; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; transition: all 0.25s ease; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--purple-text); border-radius: 2px; transition: all 0.25s ease; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(245,245,240,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; list-style: none; }
+    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,10,26,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; list-style: none; }
     .mobile-nav.open { display: flex; }
-    .mobile-nav a { color: var(--primary); text-decoration: none; font-size: 1.6rem; font-family: 'Outfit', sans-serif; font-weight: 900; transition: color 0.2s; }
-    .mobile-nav a:hover, .mobile-nav a.active { color: var(--accent); }
+    .mobile-nav a { color: var(--purple-text); text-decoration: none; font-size: 1.6rem; font-family: 'Outfit', sans-serif; font-weight: 800; transition: color 0.2s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--accent-light); }
 
     /* ══ BLOG HERO ══ */
-    .blog-hero { background: var(--ink); color: var(--paper); overflow: hidden; position: relative; margin-top: 73px; }
-    .hbg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 75% 50%, rgba(147,51,234,.14) 0%, transparent 70%); pointer-events: none; }
+    .blog-hero { background: var(--ink); color: var(--purple-text); overflow: hidden; position: relative; margin-top: 72px; }
+    .hbg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 75% 50%, rgba(147,51,234,.18) 0%, transparent 70%); pointer-events: none; }
     .h-inner { max-width: 800px; margin: 0 auto; padding: 64px 24px 52px; position: relative; }
     .h-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
     .htag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: .14em; text-transform: uppercase; padding: 4px 11px; border-radius: 2px; }
-    .htag-fill { background: var(--red); color: #fff; }
-    .htag-line { border: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.5); }
-    .blog-hero h1 { font-family: 'Lora', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 18px; }
-    .blog-hero h1 em { font-style: italic; color: var(--red); }
-    .deck { font-size: 1.04rem; font-weight: 300; color: rgba(247,244,238,.68); max-width: 520px; line-height: 1.65; margin-bottom: 28px; }
-    .byline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.79rem; color: rgba(255,255,255,.38); border-top: 1px solid rgba(255,255,255,.1); padding-top: 18px; }
-    .byline strong { color: rgba(255,255,255,.72); }
+    .htag-fill { background: var(--accent); color: #fff; }
+    .htag-line { border: 1px solid rgba(147,51,234,.35); color: rgba(237,232,255,.5); }
+    .blog-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 18px; color: var(--purple-text); }
+    .blog-hero h1 em { font-style: italic; font-weight: 300; color: var(--accent-light); }
+    .deck { font-size: 1.04rem; font-weight: 300; color: rgba(237,232,255,.65); max-width: 520px; line-height: 1.65; margin-bottom: 28px; }
+    .byline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.79rem; color: rgba(237,232,255,.35); border-top: 1px solid rgba(147,51,234,.2); padding-top: 18px; }
+    .byline strong { color: rgba(237,232,255,.7); }
 
     /* ══ CONTENT ══ */
     .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .toc { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 20px 24px; margin: 48px 0 38px; }
+    .toc { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 20px 24px; margin: 48px 0 38px; }
     .toc-lbl { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .toc ol { list-style: none; counter-reset: t; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 6px 22px; }
     .toc li { counter-increment: t; }
-    .toc a { color: var(--ink); text-decoration: none; font-size: 0.88rem; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: color .18s; }
-    .toc a::before { content: counter(t,decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--red); min-width: 20px; }
-    .toc a:hover { color: var(--red); }
+    .toc a { color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: color .18s; }
+    .toc a::before { content: counter(t,decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent); min-width: 20px; }
+    .toc a:hover { color: var(--accent); }
     .prose { padding-bottom: 72px; }
     .prose section { margin-bottom: 48px; }
-    .prose h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin: 52px 0 14px; letter-spacing: -.01em; }
-    .prose h3 { font-size: 0.97rem; font-weight: 700; margin: 24px 0 7px; }
-    .prose p { margin-bottom: 15px; }
-    .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    .prose h2 { font-family: 'Outfit', sans-serif; font-size: 1.7rem; font-weight: 800; line-height: 1.15; margin: 52px 0 14px; letter-spacing: -.02em; color: var(--ink); }
+    .prose h3 { font-size: 0.97rem; font-weight: 600; margin: 24px 0 7px; color: var(--text); }
+    .prose p { margin-bottom: 15px; font-weight: 400; }
+    .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
     .prose strong { font-weight: 600; }
-    .anecdote { background: var(--ink); color: var(--paper); padding: 34px 38px 30px; margin: 36px 0; border-radius: 3px; position: relative; overflow: hidden; }
-    .anecdote::before { content: "\201C"; font-family: 'Lora', serif; font-size: 9rem; color: var(--red); position: absolute; top: -18px; left: 14px; opacity: 0.18; line-height: 1; pointer-events: none; }
-    .anecdote p { position: relative; font-size: 1.01rem; line-height: 1.78; color: rgba(247,244,238,.88); margin-bottom: 13px; }
+    .anecdote { background: var(--ink-mid); color: var(--purple-text); padding: 34px 38px 30px; margin: 36px 0; border-radius: 3px; position: relative; overflow: hidden; border-left: 3px solid var(--accent); }
+    .anecdote::before { content: "\201C"; font-family: 'Outfit', sans-serif; font-size: 9rem; color: var(--accent); position: absolute; top: -18px; left: 14px; opacity: 0.15; line-height: 1; pointer-events: none; font-weight: 800; }
+    .anecdote p { position: relative; font-size: 1.01rem; line-height: 1.78; color: rgba(237,232,255,.85); margin-bottom: 13px; font-weight: 300; }
     .anecdote p:last-child { margin-bottom: 0; }
-    .aha { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 0.78rem; padding: 1px 8px; border-radius: 2px; vertical-align: middle; letter-spacing: .04em; }
+    .aha { display: inline-block; background: var(--accent); color: #fff; font-weight: 800; font-size: 0.78rem; padding: 1px 8px; border-radius: 2px; vertical-align: middle; letter-spacing: .04em; }
     .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin: 28px 0; background: var(--border); }
-    .stat { background: var(--ink); color: var(--paper); padding: 22px 14px; text-align: center; }
-    .stat-n { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--red); display: block; line-height: 1; margin-bottom: 5px; }
-    .stat-l { font-size: 0.72rem; color: rgba(247,244,238,.5); line-height: 1.4; }
+    .stat { background: var(--ink); color: var(--purple-text); padding: 22px 14px; text-align: center; }
+    .stat-n { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent-light); display: block; line-height: 1; margin-bottom: 5px; }
+    .stat-l { font-size: 0.72rem; color: rgba(237,232,255,.5); line-height: 1.4; font-weight: 300; }
     .tbl-wrap { overflow-x: auto; margin: 22px 0; }
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    th { background: var(--ink); color: var(--paper); padding: 10px 14px; text-align: left; font-size: 0.77rem; letter-spacing: .04em; font-weight: 600; }
+    th { background: var(--ink); color: var(--purple-text); padding: 10px 14px; text-align: left; font-size: 0.77rem; letter-spacing: .04em; font-weight: 600; font-family: 'Outfit', sans-serif; }
     td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
     tr:nth-child(even) td { background: var(--card); }
-    .tip { background: #ebf1ff; border-left: 3px solid var(--blue); color: #1a3574; padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
-    .tip b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+    .tip { background: rgba(147,51,234,.07); border-left: 3px solid var(--accent); color: var(--purple-dark); padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
+    .tip b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; font-family: 'DM Mono', monospace; }
     .warn { background: #fffbeb; border-left: 3px solid #d97706; color: #7c4800; padding: 15px 20px; margin: 22px 0; font-size: 0.9rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
-    .warn b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; }
+    .warn b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; font-family: 'DM Mono', monospace; }
+    .notice { background: #fff8e6; border-left: 3px solid #d97706; color: #7c4800; padding: 15px 20px; margin: 22px 0; font-size: 0.88rem; line-height: 1.65; border-radius: 0 2px 2px 0; }
+    .notice b { display: block; font-size: 0.71rem; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4px; font-family: 'DM Mono', monospace; }
     .steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 16px; margin: 22px 0; }
     .step { counter-increment: s; display: grid; grid-template-columns: 42px 1fr; gap: 15px; }
-    .sn { width: 42px; height: 42px; background: var(--red); color: #fff; font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 2px; flex-shrink: 0; }
-    .sb h3 { margin: 7px 0 5px; font-size: 0.96rem; }
-    .sb p { margin: 0; font-size: 0.88rem; color: #2e2c27; line-height: 1.6; }
-    .tools-hint { display: flex; align-items: center; gap: 9px; font-size: 0.81rem; color: var(--blue); margin-bottom: 16px; font-weight: 500; }
-    .tools-hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--blue); color: #fff; border-radius: 50%; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
+    .sn { width: 42px; height: 42px; background: var(--accent); color: #fff; font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; border-radius: 2px; flex-shrink: 0; }
+    .sb h3 { margin: 7px 0 5px; font-size: 0.96rem; font-weight: 600; }
+    .sb p { margin: 0; font-size: 0.88rem; color: #3A2060; line-height: 1.6; font-weight: 400; }
+    .tools-hint { display: flex; align-items: center; gap: 9px; font-size: 0.81rem; color: var(--accent); margin-bottom: 16px; font-weight: 500; }
+    .tools-hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
     .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px,1fr)); gap: 13px; }
     a.tool-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--card); border: 1.5px solid var(--border); border-radius: 4px; padding: 18px; transition: transform .18s, box-shadow .18s, border-color .18s; }
-    a.tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(0,0,0,.09); border-color: var(--blue); }
+    a.tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(147,51,234,.12); border-color: var(--accent); }
+    a.tool-card.unavailable { opacity: 0.55; cursor: not-allowed; pointer-events: none; filter: grayscale(0.4); }
     .tc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     .tc-icon { font-size: 1.25rem; }
-    .tc-arrow { width: 24px; height: 24px; background: #ebf1ff; color: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; transition: background .18s, color .18s; }
-    a.tool-card:hover .tc-arrow { background: var(--blue); color: #fff; }
-    .tc-name { font-weight: 700; font-size: 0.94rem; margin-bottom: 1px; }
-    .tc-url { font-family: 'DM Mono', monospace; font-size: 0.69rem; color: var(--blue); margin-bottom: 8px; text-decoration: underline; text-underline-offset: 2px; }
-    .tc-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: 10px; }
+    .tc-arrow { width: 24px; height: 24px; background: rgba(147,51,234,.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; transition: background .18s, color .18s; }
+    a.tool-card:hover .tc-arrow { background: var(--accent); color: #fff; }
+    .tc-name { font-weight: 700; font-size: 0.94rem; margin-bottom: 1px; color: var(--text); }
+    .tc-url { font-family: 'DM Mono', monospace; font-size: 0.69rem; color: var(--accent); margin-bottom: 8px; text-decoration: underline; text-underline-offset: 2px; }
+    .tc-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: 10px; font-weight: 400; }
     .tc-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; background: var(--cream); border: 1px solid var(--border); border-radius: 2px; color: var(--muted); align-self: flex-start; }
-    .gate { background: var(--ink); color: var(--paper); border-radius: 4px; padding: 30px 34px; margin: 48px 0; display: flex; align-items: center; gap: 28px; position: relative; overflow: hidden; }
+    .tc-tag.paused { background: #fff3cd; border-color: #d97706; color: #7c4800; }
+    .gate { background: var(--ink); color: var(--purple-text); border-radius: 4px; padding: 30px 34px; margin: 48px 0; display: flex; align-items: center; gap: 28px; position: relative; overflow: hidden; border: 1px solid var(--accent-border); }
     .gate::after { content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(147,51,234,.22) 0%, transparent 70%); pointer-events: none; }
     .gate-icon { font-size: 2.6rem; flex-shrink: 0; }
-    .gate-copy h3 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 5px; }
-    .gate-copy p { font-size: 0.86rem; color: rgba(247,244,238,.58); line-height: 1.5; margin-bottom: 14px; }
-    .gate-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--red); color: #fff; font-weight: 700; font-size: 0.86rem; padding: 11px 20px; border-radius: 2px; border: none; cursor: pointer; font-family: inherit; transition: opacity .18s, transform .18s; letter-spacing: .02em; }
+    .gate-copy h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 5px; }
+    .gate-copy p { font-size: 0.86rem; color: rgba(237,232,255,.55); line-height: 1.5; margin-bottom: 14px; font-weight: 300; }
+    .gate-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.86rem; padding: 11px 20px; border-radius: 4px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; transition: opacity .18s, transform .18s; letter-spacing: .02em; }
     .gate-btn:hover { opacity: .88; transform: translateY(-1px); }
     .faq { border-top: 1px solid var(--border); }
     .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
-    .fq { font-weight: 600; font-size: 0.97rem; margin-bottom: 7px; }
-    .fa { font-size: 0.9rem; color: #2e2c27; line-height: 1.65; }
+    .fq { font-weight: 600; font-size: 0.97rem; margin-bottom: 7px; color: var(--text); }
+    .fa { font-size: 0.9rem; color: #3A2060; line-height: 1.65; font-weight: 400; }
 
     /* ══ CTA ══ */
-    .cta-section { background: var(--ink); color: var(--paper); text-align: center; padding: 68px 24px; position: relative; overflow: hidden; }
-    .cta-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(147,51,234,.13) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
-    .cta-section h2 { font-family: 'Lora', serif; font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 700; margin-bottom: 11px; position: relative; }
-    .cta-section p { color: rgba(247,244,238,.58); max-width: 400px; margin: 0 auto 26px; font-size: 1rem; position: relative; }
-    .cta-main-btn { display: inline-block; background: var(--red); color: #fff; font-weight: 700; font-size: 1rem; padding: 15px 38px; border-radius: 2px; position: relative; letter-spacing: .02em; box-shadow: 0 4px 20px rgba(147,51,234,.36); transition: transform .18s, box-shadow .18s; border: none; cursor: pointer; font-family: inherit; }
+    .cta-section { background: var(--ink); color: var(--purple-text); text-align: center; padding: 68px 24px; position: relative; overflow: hidden; }
+    .cta-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(147,51,234,.15) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+    .cta-section h2 { font-family: 'Outfit', sans-serif; font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 800; margin-bottom: 11px; position: relative; color: var(--purple-text); }
+    .cta-section p { color: rgba(237,232,255,.55); max-width: 400px; margin: 0 auto 26px; font-size: 1rem; position: relative; font-weight: 300; }
+    .cta-main-btn { display: inline-block; background: var(--accent); color: #fff; font-weight: 700; font-size: 1rem; padding: 15px 38px; border-radius: 4px; position: relative; letter-spacing: .02em; box-shadow: 0 4px 20px rgba(147,51,234,.36); transition: transform .18s, box-shadow .18s; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; }
     .cta-main-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(147,51,234,.48); }
-    .cta-fine { display: block; font-size: 0.74rem; color: rgba(247,244,238,.32); margin-top: 13px; position: relative; }
+    .cta-fine { display: block; font-size: 0.74rem; color: rgba(237,232,255,.3); margin-top: 13px; position: relative; }
 
     /* ══ SITE FOOTER ══ */
-    .site-footer { background: #0a0a0a; padding: 4rem 3rem 2rem; }
+    .site-footer { background: var(--ink); padding: 4rem 3rem 2rem; border-top: 1px solid rgba(147,51,234,.15); }
     .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-section h3 { color: white; font-size: 1rem; margin-bottom: 1.5rem; font-family: 'Outfit', sans-serif; }
-    .footer-section p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7; }
-    .footer-section a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.9rem; margin-bottom: 0.75rem; transition: color 0.3s; }
-    .footer-section a:hover { color: var(--accent); }
-    .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); font-size: 0.85rem; }
+    .footer-logo { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; gap: 5px; margin-bottom: 1rem; }
+    .footer-logo .row1 { display: flex; align-items: baseline; }
+    .footer-logo .mad { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 300; color: #3D2880; }
+    .footer-logo .hat { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: #EDE8FF; }
+    .footer-logo .dot { width: 4px; height: 4px; border-radius: 50%; background: #9333EA; margin-left: 2px; margin-bottom: 2px; flex-shrink: 0; align-self: flex-end; }
+    .footer-logo .comm { font-family: 'Outfit', sans-serif; font-size: 6.5px; font-weight: 300; letter-spacing: 0.27em; text-transform: uppercase; color: #3A2478; }
+    .footer-section h3 { color: var(--purple-text); font-size: 0.85rem; margin-bottom: 1.5rem; font-family: 'Outfit', sans-serif; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .footer-section p { color: rgba(237,232,255,.4); font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
+    .footer-section a { display: block; color: rgba(237,232,255,.4); text-decoration: none; font-size: 0.9rem; margin-bottom: 0.75rem; transition: color 0.2s; font-weight: 300; }
+    .footer-section a:hover { color: var(--accent-light); }
+    .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(147,51,234,.15); color: rgba(237,232,255,.2); font-size: 0.85rem; font-weight: 300; }
 
     /* ══ MODALS ══ */
-    .overlay { position: fixed; inset: 0; background: rgba(13,13,18,.75); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .overlay { position: fixed; inset: 0; background: rgba(13,10,26,.8); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
     .overlay.open { display: flex; }
-    .modal { background: var(--paper); border-radius: 4px; padding: 38px 34px; max-width: 420px; width: 100%; position: relative; animation: rise .22s ease; }
+    .modal { background: var(--paper); border-radius: 6px; padding: 38px 34px; max-width: 420px; width: 100%; position: relative; animation: rise .22s ease; border: 1px solid var(--border); }
     @keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
     .modal-x { position: absolute; top: 13px; right: 15px; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--muted); line-height: 1; }
-    .modal h3 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
-    .modal-sub { font-size: 0.86rem; color: var(--muted); margin-bottom: 20px; line-height: 1.55; }
+    .modal h3 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; color: var(--text); }
+    .modal-sub { font-size: 0.86rem; color: var(--muted); margin-bottom: 20px; line-height: 1.55; font-weight: 400; }
     .field { margin-bottom: 13px; }
-    .field label { display: block; font-size: 0.77rem; font-weight: 600; margin-bottom: 5px; letter-spacing: .03em; color: var(--ink); }
-    .field input, .field textarea { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 2px; font-family: 'Manrope', sans-serif; font-size: 0.9rem; background: var(--card); color: var(--ink); transition: border-color .18s; resize: vertical; }
-    .field input:focus, .field textarea:focus { outline: none; border-color: var(--blue); }
-    .field input.err { border-color: var(--red); }
-    .modal-submit { width: 100%; padding: 13px; background: var(--red); color: #fff; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.93rem; border: none; border-radius: 2px; cursor: pointer; letter-spacing: .02em; transition: opacity .18s; margin-top: 4px; }
+    .field label { display: block; font-size: 0.77rem; font-weight: 600; margin-bottom: 5px; letter-spacing: .03em; color: var(--text); }
+    .field input, .field textarea { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 4px; font-family: 'Outfit', sans-serif; font-size: 0.9rem; background: var(--card); color: var(--text); transition: border-color .18s; resize: vertical; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+    .field input.err { border-color: #d97706; }
+    .modal-submit { width: 100%; padding: 13px; background: var(--accent); color: #fff; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.93rem; border: none; border-radius: 4px; cursor: pointer; letter-spacing: .02em; transition: opacity .18s; margin-top: 4px; }
     .modal-submit:hover { opacity: .88; }
     .modal-submit:disabled { opacity: .5; cursor: not-allowed; }
     .m-fine { font-size: 0.71rem; color: var(--muted); text-align: center; margin-top: 10px; }
-    .form-error { font-size: 0.8rem; color: var(--red); margin-top: 8px; text-align: center; display: none; }
+    .form-error { font-size: 0.8rem; color: #d97706; margin-top: 8px; text-align: center; display: none; }
     .success-view { text-align: center; padding: 8px 0; display: none; }
     .success-view .s-em { font-size: 2.6rem; margin-bottom: 10px; }
-    .success-view h3 { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 7px; color: var(--ink); }
+    .success-view h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 7px; color: var(--text); }
     .success-view p { font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
 
     @media (max-width: 768px) {
@@ -196,15 +221,18 @@
 <!-- ══ SITE HEADER ══ -->
 <header class="site-header">
   <nav class="nav-container" aria-label="Main navigation">
-    <a href="index.html" class="logo-link" aria-label="Mad Hat Communications">
-        <img src="logo.svg" alt="Mad Hat Communications" class="logo-svg">
-      </a>
+    <a href="index.html" class="logo" aria-label="Mad Hat Communications — homepage">
+      <div class="row1">
+        <span class="mad">Mad</span><span class="hat">Hat</span><span class="dot"></span>
+      </div>
+      <span class="comm">Communications</span>
+    </a>
     <ul class="nav-links">
       <li><a href="work.html">Work</a></li>
       <li><a href="index.html#analyzer">Analyzer</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html" class="active">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -216,7 +244,7 @@
   <li><a href="index.html#analyzer" onclick="closeMenu()">Analyzer</a></li>
   <li><a href="about.html" onclick="closeMenu()">About</a></li>
   <li><a href="blog.html" class="active" onclick="closeMenu()">Blog</a></li>
-  <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+  <li><a href="contact.html" onclick="closeMenu()">Get in touch</a></li>
 </ul>
 
 <!-- ══ BLOG HERO ══ -->
@@ -256,6 +284,7 @@
 
   <article class="prose" itemscope itemtype="https://schema.org/Article">
     <meta itemprop="datePublished" content="2026-03-12" />
+    <meta itemprop="dateModified" content="2026-03-23" />
     <meta itemprop="headline" content="GEO in 2026: How to Get Your Brand Cited by AI" />
 
     <section id="what">
@@ -295,7 +324,7 @@
     <section id="how">
       <h2>How LLMs Decide What to Cite</h2>
       <h3>Training data</h3>
-      <p>Models like GPT-4 and Claude are trained on vast text corpora. Content that defines terms clearly, makes verifiable claims, and reads like a reference source is disproportionately represented. Well-indexed, factually dense pages stand the best chance of making the next training run.</p>
+      <p>Models like GPT-4 and Claude are trained on vast text datasets. Content that defines terms clearly, makes verifiable claims, and reads like a reference source is disproportionately represented. Well-indexed, factually dense pages stand the best chance of making the next training run.</p>
       <h3>Retrieval-Augmented Generation (RAG)</h3>
       <p>AI products like Perplexity and ChatGPT Browse retrieve live documents before generating answers. For RAG, your content needs to be indexed, returned for the right queries, and answer the question more precisely than anything else out there.</p>
       <h3>Entity association</h3>
@@ -309,7 +338,8 @@
         <li class="step"><div class="sn">2</div><div class="sb"><h3>Write in citable units</h3><p>The ideal citable block is 2–4 sentences that answer exactly one question. Use H1→H2→H3 hierarchy, comparison tables, and definition blocks. LLMs learn from structured patterns.</p></div></li>
         <li class="step"><div class="sn">3</div><div class="sb"><h3>Deploy schema markup everywhere</h3><p>FAQPage, Article, and HowTo schema signal to AI crawlers exactly what information you're providing. FAQPage in particular — its Q&amp;A format maps directly to how LLMs retrieve and present answers.</p></div></li>
         <li class="step"><div class="sn">4</div><div class="sb"><h3>Publish original research</h3><p>When your brand publishes a study that gets picked up by others, hundreds of citations point back to you. LLMs trained on that web graph will associate your brand with authority on that topic.</p></div></li>
-        <li class="step"><div class="sn">5</div><div class="sb"><h3>Distribute to AI-native platforms</h3><p>Perplexity Pages, Substack, LinkedIn Articles, and Reddit all have strong AI crawl coverage. Cross-publishing multiplies the probability of your content being ingested into various LLMs' knowledge bases.</p></div></li>
+        <li class="step"><div class="sn">5</div><div class="sb"><h3>Distribute where AI models actually read</h3><p>Reddit (niche subreddits) and Quora are among the highest-cited sources across all major LLMs — brands with strong community presence are up to 4× more likely to be cited. Combine with Substack and LinkedIn Articles for owned-channel reach. Contribute genuinely; AI models pick up on community validation signals like upvotes and engagement, not just link presence.</p>
+        <div class="notice" style="margin-top:10px;"><b>⚠️ Platform update</b>Perplexity Pages is temporarily unavailable. Reddit and Quora are the recommended replacements for AI-native distribution while Pages is rebuilt.</div></div></li>
         <li class="step"><div class="sn">6</div><div class="sb"><h3>Monitor your citation rate — monthly</h3><p>Use citation tracking tools to watch how often your brand appears in AI answers. Track which queries you own, which competitors are displacing you, and refresh your top pages quarterly.</p></div></li>
       </ol>
       <div class="warn"><b>⚠️ Avoid</b>Keyword stuffing, thin content, and AI-generated filler. Shallow content doesn't just fail in GEO — it can actively damage your brand's authority signal with the model.</div>
@@ -328,11 +358,23 @@
       <h2>Essential GEO Tools in 2026</h2>
       <p class="tools-hint"><span class="tools-hint-icon">↗</span>Every card below is a live link — click any of them to open the tool in a new tab.</p>
       <div class="tools-grid">
-        <a class="tool-card" href="https://www.perplexity.ai/pages" target="_blank" rel="noopener noreferrer">
-          <div class="tc-top"><div class="tc-icon">🔍</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Perplexity Pages</div><div class="tc-url">perplexity.ai/pages</div>
-          <div class="tc-desc">Publish directly on one of the most AI-crawled platforms. Ideal for thought leadership and glossary content.</div>
-          <span class="tc-tag">Publishing</span>
+        <a class="tool-card unavailable" href="#" onclick="return false;">
+          <div class="tc-top"><div class="tc-icon">🔍</div><div class="tc-arrow" style="background:#fff3cd;color:#7c4800;">⏸</div></div>
+          <div class="tc-name">Perplexity Pages</div><div class="tc-url" style="color:#7c4800;text-decoration:none;">Temporarily unavailable</div>
+          <div class="tc-desc">Perplexity has temporarily retired the Pages feature. It is expected to return with enhanced capabilities. Use Reddit and Quora for AI-native distribution in the interim.</div>
+          <span class="tc-tag paused">Paused</span>
+        </a>
+        <a class="tool-card" href="https://www.reddit.com" target="_blank" rel="noopener noreferrer">
+          <div class="tc-top"><div class="tc-icon">💬</div><div class="tc-arrow">↗</div></div>
+          <div class="tc-name">Reddit</div><div class="tc-url">reddit.com</div>
+          <div class="tc-desc">Niche subreddit presence is one of the strongest GEO signals. Brands active in relevant communities are up to 4× more likely to be cited by major LLMs.</div>
+          <span class="tc-tag">Distribution</span>
+        </a>
+        <a class="tool-card" href="https://www.quora.com" target="_blank" rel="noopener noreferrer">
+          <div class="tc-top"><div class="tc-icon">❔</div><div class="tc-arrow">↗</div></div>
+          <div class="tc-name">Quora</div><div class="tc-url">quora.com</div>
+          <div class="tc-desc">High-quality Quora answers in your niche are heavily crawled and cited by AI models. Prioritise depth and specificity over volume.</div>
+          <span class="tc-tag">Distribution</span>
         </a>
         <a class="tool-card" href="https://www.athenahq.ai" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">📊</div><div class="tc-arrow">↗</div></div>
@@ -406,6 +448,12 @@
             <p class="fa" itemprop="text">Start with Perplexity AI — it shows its sources explicitly, making it the best platform for measuring GEO impact. Then prioritise ChatGPT Browse, Microsoft Copilot, and Google's AI Overviews. Secondary targets: Claude, Gemini Advanced, and Meta AI.</p>
           </div>
         </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <p class="fq" itemprop="name">Is Perplexity Pages still available for GEO distribution?</p>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p class="fa" itemprop="text">Perplexity Pages is temporarily unavailable — Perplexity has retired the feature while rebuilding it with enhanced capabilities. In the interim, use Reddit (niche subreddits) and Quora — both are among the most heavily cited platforms across all major LLMs. Note: Perplexity Spaces is a private workspace tool, not a public distribution channel, and does not serve as a GEO alternative.</p>
+          </div>
+        </div>
       </div>
     </section>
   </article>
@@ -423,7 +471,10 @@
 <footer class="site-footer">
   <div class="footer-content">
     <div class="footer-section">
-      <h3>Mad Hat Communications</h3>
+      <div class="footer-logo">
+        <div class="row1"><span class="mad">Mad</span><span class="hat">Hat</span><span class="dot"></span></div>
+        <span class="comm">Communications</span>
+      </div>
       <p>Performance-driven growth marketing for brands that want to scale without wasting budget.</p>
     </div>
     <div class="footer-section">
@@ -496,36 +547,23 @@
 </div>
 
 <script>
-  // ── HubSpot config ──
   const HS_PORTAL_ID = '245523464';
   const HS_GEO_FORM  = 'ec8a8199-0910-4841-a01a-43e59e0cb1c4';
 
   async function submitToHubSpot(formId, fields) {
     const res = await fetch(
       `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL_ID}/${formId}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fields,
-          context: {
-            pageUri: 'https://madhatcomm.in/geo-blog-2026.html',
-            pageName: 'GEO in 2026: How to Get Your Brand Cited by AI'
-          }
-        })
-      }
+      { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fields, context: { pageUri: 'https://madhatcomm.in/geo-blog-2026.html', pageName: 'GEO in 2026: How to Get Your Brand Cited by AI' } }) }
     );
     return res.ok;
   }
 
-  // ── Reading progress ──
   window.addEventListener('scroll', () => {
-    const d = document.documentElement;
-    const p = d.scrollHeight - d.clientHeight;
+    const d = document.documentElement, p = d.scrollHeight - d.clientHeight;
     document.getElementById('bar').style.width = (p > 0 ? (d.scrollTop / p) * 100 : 0) + '%';
   });
 
-  // ── Mobile nav ──
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   hamburger.addEventListener('click', () => {
@@ -539,73 +577,46 @@
     hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow = '';
   }
 
-  // ── Overlay helpers ──
   function openOverlay(id)  { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeOverlay(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
-  document.querySelectorAll('.overlay').forEach(o => {
-    o.addEventListener('click', e => { if (e.target === o) closeOverlay(o.id); });
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeOverlay('checklistOverlay'); closeOverlay('contactOverlay'); closeMenu(); }
-  });
+  document.querySelectorAll('.overlay').forEach(o => { o.addEventListener('click', e => { if (e.target === o) closeOverlay(o.id); }); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeOverlay('checklistOverlay'); closeOverlay('contactOverlay'); closeMenu(); } });
   function openChecklist()  { openOverlay('checklistOverlay'); }
   function closeChecklist() { closeOverlay('checklistOverlay'); }
   function openContact()    { openOverlay('contactOverlay'); }
   function closeContact()   { closeOverlay('contactOverlay'); }
 
-  // ── Checklist form → HubSpot ──
   async function submitChecklist() {
-    const name  = document.getElementById('cl-name').value.trim();
+    const name = document.getElementById('cl-name').value.trim();
     const email = document.getElementById('cl-email').value.trim();
     const errEl = document.getElementById('cl-error');
     errEl.style.display = 'none';
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.style.display = 'block'; return; }
     const btn = document.getElementById('cl-submit');
     btn.disabled = true; btn.textContent = 'Sending…';
-    const ok = await submitToHubSpot(HS_GEO_FORM, [
-      { name: 'firstname', value: name },
-      { name: 'email',     value: email },
-      { name: 'message',   value: 'GEO in 2026 Blog — Checklist Download Request' }
-    ]);
-    if (ok) {
-      document.getElementById('checklist-form').style.display = 'none';
-      document.getElementById('checklist-success').style.display = 'block';
-    } else {
-      btn.disabled = false; btn.textContent = 'Send Me the Checklist →';
-      errEl.textContent = 'Something went wrong — please try again.'; errEl.style.display = 'block';
-    }
+    const ok = await submitToHubSpot(HS_GEO_FORM, [{ name:'firstname', value:name }, { name:'email', value:email }, { name:'message', value:'GEO in 2026 Blog — Checklist Download Request' }]);
+    if (ok) { document.getElementById('checklist-form').style.display='none'; document.getElementById('checklist-success').style.display='block'; }
+    else { btn.disabled=false; btn.textContent='Send Me the Checklist →'; errEl.textContent='Something went wrong — please try again.'; errEl.style.display='block'; }
   }
 
-  // ── CTA contact form → HubSpot ──
   async function submitContact() {
-    const name  = document.getElementById('ct-name').value.trim();
+    const name = document.getElementById('ct-name').value.trim();
     const email = document.getElementById('ct-email').value.trim();
-    const msg   = document.getElementById('ct-msg').value.trim();
+    const msg = document.getElementById('ct-msg').value.trim();
     const errEl = document.getElementById('ct-error');
     errEl.style.display = 'none';
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.style.display = 'block'; return; }
     const btn = document.getElementById('ct-submit');
     btn.disabled = true; btn.textContent = 'Sending…';
-    const ok = await submitToHubSpot(HS_GEO_FORM, [
-      { name: 'firstname', value: name },
-      { name: 'email',     value: email },
-      { name: 'message',   value: msg || 'GEO in 2026 Blog — CTA Contact Form' }
-    ]);
-    if (ok) {
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('contact-success').style.display = 'block';
-    } else {
-      btn.disabled = false; btn.textContent = 'Send Message →';
-      errEl.textContent = 'Something went wrong — please try again.'; errEl.style.display = 'block';
-    }
+    const ok = await submitToHubSpot(HS_GEO_FORM, [{ name:'firstname', value:name }, { name:'email', value:email }, { name:'message', value:msg||'GEO in 2026 Blog — CTA Contact Form' }]);
+    if (ok) { document.getElementById('contact-form').style.display='none'; document.getElementById('contact-success').style.display='block'; }
+    else { btn.disabled=false; btn.textContent='Send Message →'; errEl.textContent='Something went wrong — please try again.'; errEl.style.display='block'; }
   }
 
-  // ── Checklist download ──
   function downloadChecklist() {
-    const txt = `GEO CHECKLIST 2026 — Get Your Brand Cited by AI\nmadhatcomm.in\n\nSTEP 1 — AUDIT\n  □ Query ChatGPT, Claude, Perplexity & Gemini with 20–30 niche questions\n  □ Record who gets cited and why\n  □ Identify your top 5 unclaimed question opportunities\n\nSTEP 2 — WRITE IN CITABLE UNITS\n  □ Define the key term in the first 200 words\n  □ H1 → H2 → H3 hierarchy\n  □ Comparison table on every pillar page\n  □ FAQ block with 5–8 Q&A pairs\n\nSTEP 3 — SCHEMA MARKUP\n  □ Article JSON-LD on every post\n  □ FAQPage JSON-LD on every FAQ section\n  □ Validate with Google Rich Results Test\n\nSTEP 4 — ORIGINAL RESEARCH\n  □ 2 data studies per quarter minimum\n  □ Pitch to 5+ publications\n\nSTEP 5 — AI-NATIVE DISTRIBUTION\n  □ Perplexity Pages  □ LinkedIn Articles  □ Substack\n\nSTEP 6 — MONITOR MONTHLY\n  □ Set up AthenaHQ or Profound\n  □ Refresh top 10 pages every quarter`;
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'}));
-    a.download = 'GEO-Checklist-2026-MadHat.txt';
+    a.href = 'pdf/GEO_Checklist_2026_MadHat.pdf';
+    a.download = 'GEO_Checklist_2026_MadHat.pdf';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
   }
 </script>
