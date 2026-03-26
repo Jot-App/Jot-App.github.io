@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversion Rate Optimisation (CRO) | Mad Hat Communications</title>
+  <meta name="description" content="Mad Hat Communications helps growth-stage brands reduce CAC and increase revenue without increasing ad spend — through systematic conversion rate optimisation across landing pages, funnels, and checkout flows.">
+  <meta property="og:title" content="Conversion Rate Optimisation | Mad Hat Communications">
+  <meta property="og:url" content="https://madhatcomm.in/cro.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Conversion Rate Optimisation","provider":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in","email":"amit@madhatcomm.in","telephone":"+919535015025"},"description":"Mad Hat Communications delivers systematic conversion rate optimisation for growth-stage brands — including landing page redesign, funnel analysis, A/B testing, and checkout flow optimisation.","serviceType":"Conversion Rate Optimisation","areaServed":"Worldwide","url":"https://madhatcomm.in/cro.html"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is conversion rate optimisation (CRO)?","acceptedAnswer":{"@type":"Answer","text":"Conversion rate optimisation (CRO) is the systematic process of increasing the percentage of website visitors who take a desired action — making a purchase, submitting a form, booking a demo, or any other goal. CRO uses data analysis, user research, and A/B testing to remove friction and improve outcomes without increasing traffic or ad spend."}},{"@type":"Question","name":"How much can CRO reduce customer acquisition cost (CAC)?","acceptedAnswer":{"@type":"Answer","text":"The impact varies by starting baseline, but brands with conversion rates below industry average typically see CAC reductions of 30–60% from CRO work alone. Mad Hat Communications achieved a 43% CAC reduction and 127% conversion lift for Alankari.com without any increase in media budget."}},{"@type":"Question","name":"What does a CRO engagement with Mad Hat Communications include?","acceptedAnswer":{"@type":"Answer","text":"A CRO engagement includes a full funnel audit, heatmap and session recording analysis, user research, hypothesis development, A/B test design and execution, landing page redesign, and ongoing performance reporting."}},{"@type":"Question","name":"How long does CRO take to show results?","acceptedAnswer":{"@type":"Answer","text":"Initial findings from a funnel audit are typically delivered within 2 weeks. A/B tests require sufficient traffic to reach statistical significance — usually 2–6 weeks per test. Most brands see measurable conversion improvement within 60–90 days of beginning a structured CRO programme."}},{"@type":"Question","name":"Does CRO work for B2B SaaS as well as e-commerce?","acceptedAnswer":{"@type":"Answer","text":"Yes. CRO principles apply to any conversion goal. For B2B SaaS, we optimise demo request flows, pricing page clarity, onboarding funnels, and trial-to-paid conversion paths. The methodology is the same; the metrics and friction points differ."}}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box }
+    :root { --primary: #0D0A1A; --accent: #9333EA; --secondary: #F7F4FF; --text: #2C2C2C; --text-light: #525252; --border: #E0E0E0 }
+    body { font-family: 'Outfit', sans-serif; background: var(--secondary); color: var(--text); line-height: 1.6; overflow-x: hidden }
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.1 }
+    .logo-link { display: inline-flex; align-items: center; text-decoration: none }
+    .logo-svg { height: 36px; width: auto; display: block }
+    .header { position: fixed; top: 0; left: 0; right: 0; background: rgba(13,10,26,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(147,51,234,0.2); z-index: 1000; padding: 1.5rem 0 }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none }
+    .nav-links a { color: rgba(200,185,240,0.75); text-decoration: none; font-weight: 400; font-size: 0.9rem; letter-spacing: 0.02em; transition: color 0.3s }
+    .nav-links a:hover { color: var(--accent) }
+    .page-hero { padding: 12rem 3rem 6rem; max-width: 1400px; margin: 0 auto }
+    .page-hero-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1.5rem }
+    .page-hero h1 { font-size: clamp(3rem,7vw,5.5rem); color: var(--primary); max-width: 800px; margin-bottom: 2rem }
+    .page-hero p { font-size: 1.3rem; color: var(--text-light); max-width: 600px; line-height: 1.8; margin-bottom: 3rem }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap }
+    .btn-primary { display: inline-block; background: var(--accent); color: white; padding: 1rem 2.5rem; text-decoration: none; font-weight: 700; border-radius: 2px; transition: transform 0.3s, box-shadow 0.3s }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(147,51,234,0.3) }
+    .btn-ghost { display: inline-block; color: var(--text-light); padding: 1rem 2.5rem; text-decoration: none; font-weight: 400; border-radius: 2px; border: 1px solid var(--border); transition: all 0.3s }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent) }
+    .stats-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 0 }
+    .stats-inner { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: repeat(4,1fr) }
+    .stat { padding: 0 2rem; border-right: 1px solid var(--border) }
+    .stat:last-child { border-right: none } .stat:first-child { padding-left: 0 }
+    .stat-num { font-size: 3rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.5rem }
+    .stat-num span { color: var(--accent) }
+    .stat-case { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem }
+    .stat-label { font-size: 0.875rem; color: var(--text-light); line-height: 1.5 }
+    .section-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1rem }
+    .light-section { padding: 6rem 3rem; max-width: 1400px; margin: 0 auto }
+    .light-section h2 { font-size: clamp(2rem,4vw,3rem); color: var(--primary); margin-bottom: 1rem }
+    .section-intro { color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; line-height: 1.8 }
+    .service-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem }
+    .service-card { border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; background: white; transition: transform 0.3s, box-shadow 0.3s }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08) }
+    .service-icon { font-size: 1.8rem; margin-bottom: 1.25rem; display: block }
+    .service-card h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem }
+    .service-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7 }
+    /* funnel + insight two-col */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start }
+    .funnel { display: flex; flex-direction: column; gap: 0.5rem }
+    .funnel-stage { border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; background: white; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s }
+    .funnel-stage:hover { border-color: var(--accent) }
+    .funnel-stage-label { font-size: 0.95rem; font-weight: 700; color: var(--primary) }
+    .funnel-stage-sub { font-size: 0.8rem; color: var(--text-light); margin-top: 2px }
+    .funnel-pct { font-family: 'DM Mono', monospace; font-size: 1.1rem; color: var(--accent); font-weight: 300; text-align: right }
+    .funnel-note { font-size: 0.75rem; color: var(--text-light); text-align: right; margin-top: 2px }
+    .funnel-arrow { text-align: center; color: var(--text-light); font-size: 0.8rem; padding: 2px 0 }
+    .insight-card { border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; background: white }
+    .insight-card h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 1rem }
+    .insight-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem }
+    .insight-list { display: flex; flex-direction: column; gap: 1rem }
+    .insight-item { display: flex; gap: 0.75rem; font-size: 0.875rem; color: var(--text-light); line-height: 1.6 }
+    .insight-item .arr { color: var(--accent); flex-shrink: 0; margin-top: 2px }
+    .insight-item strong { color: var(--text) }
+    .dark-section { background: var(--primary); padding: 6rem 3rem }
+    .dark-inner { max-width: 1400px; margin: 0 auto }
+    .dark-inner h2 { font-size: clamp(2rem,4vw,3rem); color: white; margin-bottom: 1rem }
+    .dark-intro { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 600px; margin-bottom: 4rem; line-height: 1.8 }
+    .process-list { display: flex; flex-direction: column }
+    .process-item { display: grid; grid-template-columns: 100px 1fr; gap: 2rem; padding: 2.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); align-items: start }
+    .process-item:last-child { border-bottom: none }
+    .process-num { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.1em; padding-top: 4px }
+    .process-content h3 { font-size: 1.2rem; color: white; margin-bottom: 0.5rem }
+    .process-content p { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem }
+    .tag { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--accent); border: 1px solid rgba(147,51,234,0.35); padding: 3px 10px; border-radius: 2px }
+    .faq-list { max-width: 800px }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 1.75rem 0 }
+    .faq-item:first-child { border-top: 1px solid var(--border) }
+    .faq-q { font-size: 1rem; font-weight: 700; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; align-items: start; gap: 1.5rem; user-select: none }
+    .faq-q .toggle { font-size: 1.4rem; color: var(--accent); flex-shrink: 0; transition: transform 0.3s; font-weight: 300; margin-top: -2px }
+    .faq-item.open .toggle { transform: rotate(45deg) }
+    .faq-a { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-top 0.3s }
+    .faq-item.open .faq-a { max-height: 300px; padding-top: 1rem }
+    .cta-strip { padding: 5rem 3rem; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); gap: 2rem }
+    .cta-strip h2 { font-size: clamp(1.8rem,3vw,2.5rem); color: var(--primary) }
+    .cta-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; flex-shrink: 0 }
+    .cta-note { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.08em }
+    .footer { background: #0a0a0a; padding: 3rem; text-align: center }
+    .footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem }
+    .footer a { color: rgba(255,255,255,0.3); text-decoration: none }
+    .footer a:hover { color: var(--accent) }
+    @media (max-width: 768px) {
+      .nav-container { padding: 0 1.5rem } .nav-links { display: none }
+      .page-hero { padding: 8rem 1.5rem 3rem }
+      .stats-inner { grid-template-columns: repeat(2,1fr); padding: 0 1.5rem; gap: 1.5rem }
+      .stat { border-right: none; padding: 0 0 1.5rem 0; border-bottom: 1px solid var(--border) }
+      .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none }
+      .light-section { padding: 4rem 1.5rem } .service-grid { grid-template-columns: 1fr }
+      .two-col { grid-template-columns: 1fr; gap: 2rem }
+      .dark-section { padding: 4rem 1.5rem }
+      .process-item { grid-template-columns: 60px 1fr; gap: 1rem }
+      .cta-strip { flex-direction: column; text-align: center; padding: 3rem 1.5rem } .cta-aside { align-items: center }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="index.html" class="logo-link" aria-label="Mad Hat Communications">
+        <img src="logo.svg" alt="Mad Hat Communications" class="logo-svg">
+      </a>
+      <ul class="nav-links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="page-hero">
+      <p class="page-hero-label">Service</p>
+      <h1>Conversion Rate Optimisation</h1>
+      <p>You're already paying to get people to your site. CRO makes sure more of them actually convert — without touching your ad budget.</p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn-primary">Get a free funnel audit →</a>
+        <a href="work.html" class="btn-ghost">See our results</a>
+      </div>
+    </section>
+    <div class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat"><div class="stat-case">Alankari.com</div><div class="stat-num">127<span>%</span></div><div class="stat-label">Conversion rate lift</div></div>
+        <div class="stat"><div class="stat-case">Alankari.com</div><div class="stat-num">43<span>%</span></div><div class="stat-label">CAC reduction</div></div>
+        <div class="stat"><div class="stat-case">B2B SaaS</div><div class="stat-num">71<span>%</span></div><div class="stat-label">Demo-to-close rate lift</div></div>
+        <div class="stat"><div class="stat-case">Methodology</div><div class="stat-num">0</div><div class="stat-label">Budget increase required</div></div>
+      </div>
+    </div>
+    <section class="light-section">
+      <p class="section-label">Where You're Losing Revenue</p>
+      <h2>Most brands lose customers after the click</h2>
+      <p class="section-intro">High ad spend with low conversion is a funnel problem — not a targeting problem. Here's where the leakage typically happens.</p>
+      <div class="two-col">
+        <div class="funnel">
+          <div class="funnel-stage"><div><div class="funnel-stage-label">Ad Click</div><div class="funnel-stage-sub">Paid traffic arrives</div></div><div><div class="funnel-pct">100%</div><div class="funnel-note">Starting point</div></div></div>
+          <div class="funnel-arrow">↓ avg. 60–70% drop</div>
+          <div class="funnel-stage"><div><div class="funnel-stage-label">Landing Page</div><div class="funnel-stage-sub">Message match &amp; clarity</div></div><div><div class="funnel-pct">30–40%</div><div class="funnel-note">Scroll past fold</div></div></div>
+          <div class="funnel-arrow">↓ avg. 50% drop</div>
+          <div class="funnel-stage"><div><div class="funnel-stage-label">Product / Offer</div><div class="funnel-stage-sub">Intent &amp; trust signals</div></div><div><div class="funnel-pct">15–20%</div><div class="funnel-note">Initiate checkout</div></div></div>
+          <div class="funnel-arrow">↓ avg. 70% cart abandon</div>
+          <div class="funnel-stage"><div><div class="funnel-stage-label">Checkout</div><div class="funnel-stage-sub">Friction &amp; payment</div></div><div><div class="funnel-pct">2–5%</div><div class="funnel-note">Actual purchase</div></div></div>
+        </div>
+        <div class="insight-card">
+          <h3>The CRO opportunity</h3>
+          <p>Moving from a 2% to a 4% conversion rate doubles your revenue from the same traffic. That's the lever CRO pulls — no extra spend required.</p>
+          <div class="insight-list">
+            <div class="insight-item"><span class="arr">→</span><span><strong>Message mismatch</strong> between ad and landing page accounts for up to 40% of bounce rate on average.</span></div>
+            <div class="insight-item"><span class="arr">→</span><span><strong>Checkout friction</strong> — unexpected costs, too many form fields, limited payment options — drives 70%+ cart abandonment rates.</span></div>
+            <div class="insight-item"><span class="arr">→</span><span><strong>Missing trust signals</strong> on product pages cause silent drop-offs that analytics rarely surface.</span></div>
+            <div class="insight-item"><span class="arr">→</span><span><strong>Mobile experience gaps</strong> — most traffic is mobile, but most pages are still designed desktop-first.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="light-section" style="padding-top:0">
+      <p class="section-label">What We Do</p>
+      <h2>Systematic CRO, every step of the funnel</h2>
+      <p class="section-intro">We don't guess — we test. Every recommendation is backed by data, and every test is designed to produce a definitive result you can act on.</p>
+      <div class="service-grid">
+        <div class="service-card"><span class="service-icon">◈</span><h3>Funnel Audit</h3><p>A complete diagnosis of where your funnel is leaking — session recordings, heatmaps, exit surveys, and funnel analytics combined into a prioritised opportunity map.</p></div>
+        <div class="service-card"><span class="service-icon">◎</span><h3>Landing Page Redesign</h3><p>Rebuild landing pages around the message hierarchy, trust signals, and CTA structure that actually convert your specific audience — not a generic best-practice template.</p></div>
+        <div class="service-card"><span class="service-icon">▦</span><h3>A/B Testing Programme</h3><p>Structured hypothesis-led testing across headlines, CTAs, page structure, pricing presentation, and social proof — with statistical rigour so every result is actionable.</p></div>
+        <div class="service-card"><span class="service-icon">⬡</span><h3>Checkout Optimisation</h3><p>Reduce cart abandonment by removing friction at every step of the checkout flow — form design, trust signals, payment options, and post-click messaging.</p></div>
+        <div class="service-card"><span class="service-icon">◉</span><h3>Pricing Page Strategy</h3><p>For SaaS and service brands, pricing page structure has an outsized effect on demo requests and trial signups. We test and iterate until conversion is consistently above benchmark.</p></div>
+        <div class="service-card"><span class="service-icon">⬟</span><h3>Mobile CRO</h3><p>Mobile-specific conversion issues — tap targets, scroll depth, form completion, and speed — are often invisible in desktop-centric analytics. We audit and fix them systematically.</p></div>
+      </div>
+    </section>
+    <section class="dark-section">
+      <div class="dark-inner">
+        <p class="section-label">How It Works</p>
+        <h2>Our CRO process</h2>
+        <p class="dark-intro">Data first, then design, then test. No guessing, no gut-feel redesigns — every decision is grounded in what your specific audience is actually doing.</p>
+        <div class="process-list">
+          <div class="process-item"><div class="process-num">01 —</div><div class="process-content"><h3>Data Collection &amp; Audit</h3><p>Two weeks of structured data collection — Google Analytics, heatmaps, session recordings, exit intent surveys, and funnel drop-off analysis. We map every point of friction before touching a single pixel.</p><div class="tag-row"><span class="tag">GA4 audit</span><span class="tag">Heatmaps</span><span class="tag">Session recordings</span><span class="tag">User surveys</span></div></div></div>
+          <div class="process-item"><div class="process-num">02 —</div><div class="process-content"><h3>Hypothesis Development</h3><p>From the data, we build a prioritised list of conversion hypotheses — ranked by potential impact, confidence level, and implementation effort. You see the full logic before anything is built.</p><div class="tag-row"><span class="tag">Opportunity mapping</span><span class="tag">ICE scoring</span><span class="tag">Test roadmap</span></div></div></div>
+          <div class="process-item"><div class="process-num">03 —</div><div class="process-content"><h3>Test Design &amp; Build</h3><p>We design and build the test variants — new landing page layouts, revised CTAs, restructured checkout flows — with enough visual rigour that the test is also a design improvement, win or lose.</p><div class="tag-row"><span class="tag">Variant design</span><span class="tag">A/B setup</span><span class="tag">QA testing</span></div></div></div>
+          <div class="process-item"><div class="process-num">04 —</div><div class="process-content"><h3>Run, Measure, Iterate</h3><p>Tests run until statistical significance. We report clearly — what won, what didn't, and why. Winners roll out. Losers teach us something. The cycle repeats every 4–6 weeks.</p><div class="tag-row"><span class="tag">Statistical significance</span><span class="tag">Winner rollout</span><span class="tag">Learning log</span><span class="tag">Iteration</span></div></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="light-section">
+      <p class="section-label">FAQ</p>
+      <h2>Common questions</h2>
+      <p class="section-intro">Answers to the questions we get asked before every CRO engagement.</p>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is conversion rate optimisation (CRO)?<span class="toggle">+</span></div><div class="faq-a">Conversion rate optimisation (CRO) is the systematic process of increasing the percentage of website visitors who take a desired action — making a purchase, submitting a form, booking a demo, or any other goal. CRO uses data analysis, user research, and A/B testing to remove friction and improve outcomes without increasing traffic or ad spend.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much can CRO reduce customer acquisition cost?<span class="toggle">+</span></div><div class="faq-a">The impact varies by starting baseline, but brands with conversion rates below industry average typically see CAC reductions of 30–60% from CRO work alone. Mad Hat Communications achieved a 43% CAC reduction and 127% conversion lift for Alankari.com without any increase in media budget.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What does a CRO engagement with Mad Hat Communications include?<span class="toggle">+</span></div><div class="faq-a">A CRO engagement includes a full funnel audit, heatmap and session recording analysis, user research, hypothesis development, A/B test design and execution, landing page redesign, and ongoing performance reporting. We focus on the highest-leverage parts of your funnel first.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does CRO take to show results?<span class="toggle">+</span></div><div class="faq-a">Initial findings from a funnel audit are typically delivered within 2 weeks. A/B tests require sufficient traffic to reach statistical significance — usually 2–6 weeks per test. Most brands see measurable conversion improvement within 60–90 days of beginning a structured CRO programme.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does CRO work for B2B SaaS as well as e-commerce?<span class="toggle">+</span></div><div class="faq-a">Yes. CRO principles apply to any conversion goal. For B2B SaaS, we optimise demo request flows, pricing page clarity, onboarding funnels, and trial-to-paid conversion paths. The methodology is the same; the metrics and friction points differ.</div></div>
+      </div>
+    </section>
+    <div class="cta-strip">
+      <h2>Stop losing customers you've already paid to acquire</h2>
+      <div class="cta-aside">
+        <a href="contact.html" class="btn-primary">Get a free funnel audit →</a>
+        <span class="cta-note">30 minutes · no commitment</span>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2026 Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="work.html">Work</a> &nbsp;|&nbsp; <a href="about.html">About</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></p>
+  </footer>
+  <script>document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){this.parentElement.classList.toggle('open')})});</script>
+</body>
+</html>
