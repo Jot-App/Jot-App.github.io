@@ -18,6 +18,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Font fallback — logo stays readable if Outfit doesn't load */
+    @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 800; font-display: swap; }
+  </style>
 
   <style>
     :root {
@@ -40,7 +45,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 16px; line-height: 1.8; font-weight: 400; -webkit-font-smoothing: antialiased; }
+    body { background: var(--paper); color: var(--text); font-family: 'Outfit', system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.8; font-weight: 400; -webkit-font-smoothing: antialiased; }
 
     #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 1001; transition: width .08s linear; }
 
@@ -51,10 +56,10 @@
     /* ── Stacked logo ── */
     .logo { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; gap: 4px; text-decoration: none; }
     .logo .row1 { display: flex; align-items: baseline; white-space: nowrap; }
-    .logo .mad { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 300; letter-spacing: 0.01em; color: #3D2880; }
-    .logo .hat { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #EDE8FF; }
+    .logo .mad { font-family: 'Outfit', system-ui, sans-serif; font-size: 22px; font-weight: 300; letter-spacing: 0.01em; color: #8B6FCC; }
+    .logo .hat { font-family: 'Outfit', system-ui, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #EDE8FF; }
     .logo .dot { width: 5px; height: 5px; border-radius: 50%; background: #9333EA; margin-left: 2px; margin-bottom: 3px; flex-shrink: 0; align-self: flex-end; }
-    .logo .comm { font-family: 'Outfit', sans-serif; font-size: 7px; font-weight: 300; letter-spacing: 0.27em; text-transform: uppercase; color: #3A2478; white-space: nowrap; }
+    .logo .comm { font-family: 'Outfit', sans-serif; font-size: 7px; font-weight: 300; letter-spacing: 0.27em; text-transform: uppercase; color: #6B5AAA; white-space: nowrap; }
 
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a { color: #3D2880; text-decoration: none; font-weight: 400; font-size: 0.9rem; letter-spacing: 0.04em; transition: color 0.2s; font-family: 'Outfit', sans-serif; }
@@ -356,7 +361,7 @@
 
     <section id="tools">
       <h2>Essential GEO Tools in 2026</h2>
-      <p class="tools-hint"><span class="tools-hint-icon">↗</span>Every card below is a live link — click any of them to open the tool in a new tab.</p>
+      <p class="tools-hint"><span class="tools-hint-icon">↗</span>All tools verified live. 5 free · 2 under $30/month. Every card is a live link.</p>
       <div class="tools-grid">
         <a class="tool-card unavailable" href="#" onclick="return false;">
           <div class="tc-top"><div class="tc-icon">🔍</div><div class="tc-arrow" style="background:#fff3cd;color:#7c4800;">⏸</div></div>
@@ -368,55 +373,43 @@
           <div class="tc-top"><div class="tc-icon">💬</div><div class="tc-arrow">↗</div></div>
           <div class="tc-name">Reddit</div><div class="tc-url">reddit.com</div>
           <div class="tc-desc">Niche subreddit presence is one of the strongest GEO signals. Brands active in relevant communities are up to 4× more likely to be cited by major LLMs.</div>
-          <span class="tc-tag">Distribution</span>
+          <span class="tc-tag">Free · Distribution</span>
         </a>
         <a class="tool-card" href="https://www.quora.com" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">❔</div><div class="tc-arrow">↗</div></div>
           <div class="tc-name">Quora</div><div class="tc-url">quora.com</div>
           <div class="tc-desc">High-quality Quora answers in your niche are heavily crawled and cited by AI models. Prioritise depth and specificity over volume.</div>
-          <span class="tc-tag">Distribution</span>
+          <span class="tc-tag">Free · Distribution</span>
         </a>
-        <a class="tool-card" href="https://www.athenahq.ai" target="_blank" rel="noopener noreferrer">
+        <a class="tool-card" href="https://www.hubspot.com/aeo-grader" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">📊</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">AthenaHQ</div><div class="tc-url">athenahq.ai</div>
-          <div class="tc-desc">Tracks how often your brand is cited across major LLMs. Benchmarks by industry and alerts on competitor movements.</div>
-          <span class="tc-tag">Monitoring</span>
+          <div class="tc-name">HubSpot AI Search Grader</div><div class="tc-url">hubspot.com/aeo-grader</div>
+          <div class="tc-desc">Free brand visibility audit across ChatGPT, Perplexity, and Gemini. Scores your sentiment, share of voice, brand recognition, and market position — no account needed.</div>
+          <span class="tc-tag">Free · Monitoring</span>
         </a>
-        <a class="tool-card" href="https://www.profound.io" target="_blank" rel="noopener noreferrer">
+        <a class="tool-card" href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">📈</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Profound</div><div class="tc-url">profound.io</div>
-          <div class="tc-desc">AI search analytics showing which AI-generated answers your brand appears in and how visibility compares to competitors.</div>
-          <span class="tc-tag">Analytics</span>
+          <div class="tc-name">Google Search Console</div><div class="tc-url">search.google.com/search-console</div>
+          <div class="tc-desc">Ensures your pages are indexed and crawlable — a prerequisite for AI models that use RAG. Monitor coverage, fix crawl errors, and track which pages are being discovered.</div>
+          <span class="tc-tag">Free · Technical</span>
+        </a>
+        <a class="tool-card" href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer">
+          <div class="tc-top"><div class="tc-icon">🏷️</div><div class="tc-arrow">↗</div></div>
+          <div class="tc-name">Google Rich Results Test</div><div class="tc-url">search.google.com/test/rich-results</div>
+          <div class="tc-desc">Validates your JSON-LD schema markup instantly. Broken schema silently removes you from AI crawl consideration — test every page after adding FAQPage or Article schema.</div>
+          <span class="tc-tag">Free · Technical</span>
         </a>
         <a class="tool-card" href="https://alsoasked.com" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">❓</div><div class="tc-arrow">↗</div></div>
           <div class="tc-name">AlsoAsked</div><div class="tc-url">alsoasked.com</div>
-          <div class="tc-desc">Maps the full question graph around any topic. Use it to build comprehensive FAQ content that LLMs consistently cite.</div>
-          <span class="tc-tag">Research</span>
+          <div class="tc-desc">Maps the full question graph around any topic using live Google PAA data. Use it to build FAQ blocks and content clusters that mirror how AI models retrieve answers.</div>
+          <span class="tc-tag">$12/mo · Research</span>
         </a>
-        <a class="tool-card" href="https://www.schemaapp.com" target="_blank" rel="noopener noreferrer">
-          <div class="tc-top"><div class="tc-icon">🏷️</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Schema App</div><div class="tc-url">schemaapp.com</div>
-          <div class="tc-desc">Enterprise-grade structured data for deploying JSON-LD schema at scale — FAQPage, HowTo, Article, and more.</div>
-          <span class="tc-tag">Technical</span>
-        </a>
-        <a class="tool-card" href="https://www.goodie.ai" target="_blank" rel="noopener noreferrer">
+        <a class="tool-card" href="https://www.otterly.ai" target="_blank" rel="noopener noreferrer">
           <div class="tc-top"><div class="tc-icon">🤖</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Goodie AI</div><div class="tc-url">goodie.ai</div>
-          <div class="tc-desc">GEO-specific content optimisation — analyses your pages against LLM citation patterns and recommends structural improvements.</div>
-          <span class="tc-tag">Optimisation</span>
-        </a>
-        <a class="tool-card" href="https://www.clearscope.io" target="_blank" rel="noopener noreferrer">
-          <div class="tc-top"><div class="tc-icon">✍️</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Clearscope</div><div class="tc-url">clearscope.io</div>
-          <div class="tc-desc">Semantic content optimisation ensuring full topical coverage. Comprehensive topic coverage correlates strongly with AI citation rates.</div>
-          <span class="tc-tag">Content</span>
-        </a>
-        <a class="tool-card" href="https://searchresponse.io" target="_blank" rel="noopener noreferrer">
-          <div class="tc-top"><div class="tc-icon">🗺️</div><div class="tc-arrow">↗</div></div>
-          <div class="tc-name">Search Response</div><div class="tc-url">searchresponse.io</div>
-          <div class="tc-desc">Real-time monitoring of branded AI-generated answers across Perplexity, ChatGPT Search, and Bing Copilot.</div>
-          <span class="tc-tag">Monitoring</span>
+          <div class="tc-name">Otterly.ai</div><div class="tc-url">otterly.ai</div>
+          <div class="tc-desc">Tracks your brand mentions across ChatGPT, Perplexity, Google AI Overviews, Gemini, and Copilot. Named a Gartner Cool Vendor 2025. Lite plan covers most small teams.</div>
+          <span class="tc-tag">$29/mo · Monitoring</span>
         </a>
       </div>
     </section>
