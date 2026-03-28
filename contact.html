@@ -48,6 +48,8 @@
     h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.1 }
 
 
+    /* ── HEADER (identical to index.html) ── */
+
         /* ── Mad Hat SVG logo ── */
     .logo-link { display: inline-flex; align-items: center; text-decoration: none; }
     .logo-svg  { height: 36px; width: auto; display: block; }
@@ -55,10 +57,9 @@
     .header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: rgba(245, 245, 240, 0.97);
+      background: rgba(13, 10, 26, 0.97);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(147, 51, 234, 0.2);
       z-index: 1000;
       padding: 1.5rem 0
     }
@@ -72,9 +73,12 @@
       align-items: center
     }
 
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none
+    }
 
-
-    .nav-links { display: flex; gap: 2.5rem; list-style: none }
     .nav-links a {
       color: rgba(200, 185, 240, 0.75);
       text-decoration: none;
@@ -83,11 +87,11 @@
       letter-spacing: 0.02em;
       transition: color 0.3s
     }
+
     .nav-links a:hover { color: #EDE8FF }
     .nav-links a.active {
       color: var(--accent);
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 2px
+
     }
 
     .hamburger {
@@ -403,9 +407,9 @@
       <ul class="nav-links">
         <li><a href="work.html">Work</a></li>
         <li><a href="growth-marketing.html">Services</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html" >About</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="active"> Contact</a></li>
       </ul>
     </nav>
   </header>

@@ -9,7 +9,7 @@
   <meta property="og:url" content="https://madhatcomm.in/growth-marketing.html">
   <meta property="og:type" content="website">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Growth Marketing","provider":{"@type":"Organization","name":"Mad Hat Communications","url":"https://madhatcomm.in","email":"amit@madhatcomm.in","telephone":"+919535015025"},"description":"Mad Hat Communications delivers full-stack growth marketing for ambitious brands — combining brand strategy, performance marketing, conversion rate optimisation, and GEO into a single integrated system.","serviceType":"Growth Marketing","areaServed":"Worldwide","url":"https://madhatcomm.in/growth-marketing.html"}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is growth marketing?","acceptedAnswer":{"@type":"Answer","text":"Growth marketing is a full-funnel approach to customer acquisition and retention that combines brand strategy, paid media, conversion optimisation, content, SEO, and data analytics into a single integrated system. Unlike channel-specific marketing, growth marketing treats every touchpoint as part of a connected system — where improvements in one area compound with improvements in others."}},{"@type":"Question","name":"How is growth marketing different from performance marketing?","acceptedAnswer":{"@type":"Answer","text":"Performance marketing focuses specifically on paid acquisition — optimising campaigns for measurable outcomes like ROAS, CAC, and conversion rates. Growth marketing is broader: it encompasses brand strategy, organic channels, conversion optimisation, retention loops, and paid media working together as a system."}},{"@type":"Question","name":"What does a full-stack growth marketing engagement with Mad Hat Communications include?","acceptedAnswer":{"@type":"Answer","text":"A full growth marketing engagement includes brand and messaging strategy, performance marketing across Meta and Google, conversion rate optimisation across the funnel, SEO and GEO strategy, content strategy, analytics infrastructure, and monthly performance reporting."}},{"@type":"Question","name":"How long does growth marketing take to produce results?","acceptedAnswer":{"@type":"Answer","text":"Paid media optimisation typically shows measurable improvement within 30–60 days. CRO improvements take 60–90 days to validate through A/B testing. Organic channels — SEO, content, and GEO — build over 90–180 days but compound over time. The full growth system typically delivers its strongest results at the 6–12 month mark."}},{"@type":"Question","name":"Does Mad Hat Communications work with B2B and B2C brands?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our portfolio includes both — from D2C e-commerce brands (Alankari.com) to B2B SaaS companies (DronaHQ) to enterprise brand partnerships (QSC/Q-SYS). The growth marketing framework applies across categories, with the channel mix and conversion metrics adjusted for each business model."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is growth marketing?","acceptedAnswer":{"@type":"Answer","text":"Growth marketing is a full-funnel approach to customer acquisition and retention that combines brand strategy, paid media, conversion optimisation, content, SEO, and data analytics into a single integrated system. Unlike channel-specific marketing, growth marketing treats every touchpoint as part of a connected system — where improvements in one area compound with improvements in others."}},{"@type":"Question","name":"How is growth marketing different from performance marketing?","acceptedAnswer":{"@type":"Answer","text":"Performance marketing focuses specifically on paid acquisition — optimising campaigns for measurable outcomes like ROAS, CAC, and conversion rates. Growth marketing is broader: it encompasses brand strategy, organic channels, conversion optimisation, retention loops, and paid media working together as a system. Performance marketing is one component of a growth marketing strategy."}},{"@type":"Question","name":"What does a full-stack growth marketing engagement include?","acceptedAnswer":{"@type":"Answer","text":"A full growth marketing engagement includes brand and messaging strategy, performance marketing across Meta and Google, conversion rate optimisation across the funnel, SEO and GEO strategy, content strategy, analytics infrastructure, and monthly performance reporting. We work as an embedded growth partner, not just an agency executing briefs."}},{"@type":"Question","name":"How long does growth marketing take to produce results?","acceptedAnswer":{"@type":"Answer","text":"Paid media optimisation typically shows measurable improvement within 30–60 days. CRO improvements take 60–90 days to validate through A/B testing. Organic channels — SEO, content, and GEO — build over 90–180 days but compound over time. The full growth system typically delivers its strongest results at the 6–12 month mark, when all channels are working together."}},{"@type":"Question","name":"Does Mad Hat Communications work with B2B and B2C brands?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our portfolio includes both — from D2C e-commerce brands (Alankari.com) to B2B SaaS companies (DronaHQ) to enterprise brand partnerships (QSC/Q-SYS). The growth marketing framework applies across categories, with the channel mix and conversion metrics adjusted for each business model."}}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
@@ -24,7 +24,10 @@
     .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center }
     .nav-links { display: flex; gap: 2.5rem; list-style: none }
     .nav-links a { color: rgba(200,185,240,0.75); text-decoration: none; font-weight: 400; font-size: 0.9rem; letter-spacing: 0.02em; transition: color 0.3s }
-    .nav-links a:hover { color: var(--accent) }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent) }
+    .nav-toggle { display: none; background: transparent; border:0; width:44px; height:44px; align-items:center; justify-content:center; cursor:pointer; color: rgba(255,255,255,0.9) }
+    .nav-toggle svg { width:20px; height:20px }
+    .nav-open .nav-links { display:flex !important; position:absolute; top:64px; right:1.5rem; background: rgba(13,10,26,0.98); padding:1rem; border-radius:6px; flex-direction:column; gap:1rem; box-shadow:0 10px 30px rgba(0,0,0,0.35); z-index:1100 }
     .page-hero { padding: 12rem 3rem 6rem; max-width: 1400px; margin: 0 auto }
     .page-hero-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 1.5rem }
     .page-hero h1 { font-size: clamp(3rem,7vw,5.5rem); color: var(--primary); max-width: 800px; margin-bottom: 2rem }
@@ -106,12 +109,52 @@
     .cta-strip h2 { font-size: clamp(1.8rem,3vw,2.5rem); color: var(--primary) }
     .cta-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; flex-shrink: 0 }
     .cta-note { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.08em }
-    .footer { background: #0a0a0a; padding: 3rem; text-align: center }
-    .footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem }
-    .footer a { color: rgba(255,255,255,0.3); text-decoration: none }
-    .footer a:hover { color: var(--accent) }
+  /* FOOTER */
+    .footer {
+      background: #0a0a0a;
+      padding: 4rem 3rem 2rem
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem
+    }
+
+    .footer-section h3 {
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Outfit', sans-serif
+    }
+
+    .footer-section p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.7 }
+
+    .footer-section a {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      transition: color 0.3s
+    }
+
+    .footer-section a:hover { color: var(--accent) }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem
+    }
+
     @media (max-width: 768px) {
-      .nav-container { padding: 0 1.5rem } .nav-links { display: none }
+      .nav-container { padding: 0 1.5rem } .nav-links { display: none } .nav-toggle { display: inline-flex }
       .page-hero { padding: 8rem 1.5rem 3rem }
       .light-section { padding: 4rem 1.5rem }
       .services-stack { grid-template-columns: 1fr }
@@ -130,6 +173,11 @@
       <a href="index.html" class="logo-link" aria-label="Mad Hat Communications">
         <img src="logo.svg" alt="Mad Hat Communications" class="logo-svg">
       </a>
+
+      <button class="nav-toggle" id="navToggle" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+      </button>
+
       <ul class="nav-links">
         <li><a href="work.html">Work</a></li>
         <li><a href="growth-marketing.html">Services</a></li>
@@ -238,8 +286,37 @@
       </div>
     </div>
   </main>
+  <!-- ── FOOTER ── -->
   <footer class="footer">
-    <p>&copy; 2026 Mad Hat Communications. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="work.html">Work</a> &nbsp;|&nbsp; <a href="about.html">About</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Mad Hat Communications</h3>
+        <p>Performance-driven growth marketing for brands that want to scale without wasting budget.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Services</h3>
+        <a href="growth-marketing.html">Growth Marketing</a>
+        <a href="brand-communications.html">Brand &amp; Communications</a>
+        <a href="performance-marketing.html">Performance Marketing</a>
+        <a href="cro.html">Conversion Optimisation</a>
+        <!-- <a href="geo-blog-2026.html">SEO &amp; GEO</a> -->
+      </div>
+      <div class="footer-section">
+        <h3>Company</h3>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <a href="mailto:amit@madhatcomm.in">amit@madhatcomm.in</a>
+        <a href="tel:+919535015025">+91 95350 15025</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Mad Hat Communications. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
