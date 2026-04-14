@@ -10,11 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
-  
+
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box }
-
+    /* ── ROOT VARIABLES ── */
     :root {
       --primary: #0D0A1A;
       --accent: #9333EA;
@@ -23,6 +24,9 @@
       --text-light: #525252;
       --border: #E0E0E0
     }
+
+    /* ── GLOBAL RESETS ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -36,52 +40,6 @@
       font-family: 'Outfit', sans-serif;
       font-weight: 800;
       line-height: 1.1
-    }
-
-    /* ── HEADER (identical to index.html) ── */
-
-        /* ── Mad Hat SVG logo ── */
-    .logo-link { display: inline-flex; align-items: center; text-decoration: none; }
-    .logo-svg  { height: 36px; width: auto; display: block; }
-
-    .header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(13, 10, 26, 0.97);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(147, 51, 234, 0.2);
-      z-index: 1000;
-      padding: 1.5rem 0
-    }
-
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none
-    }
-
-    .nav-links a {
-      color: rgba(200, 185, 240, 0.75);
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
-      transition: color 0.3s
-    }
-
-    .nav-links a:hover { color: #EDE8FF }
-    .nav-links a.active {
-      color: var(--accent);
-
     }
 
     /* ── PAGE HERO ── */
@@ -585,5 +543,7 @@
       document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
     }
   </script>
+  <script src="header-template.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', renderHeader);</script>
 </body>
 </html>

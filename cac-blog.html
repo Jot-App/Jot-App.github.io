@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+
   <style>
     :root {
       --primary: #0F0F0F; --accent: #9333EA; --secondary: #F5F5F0;
@@ -18,24 +22,6 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Outfit', sans-serif; background: var(--primary); color: var(--secondary); line-height: 1.6; }
-
-    /* ══ SITE HEADER ══ */
-    .site-header { position: fixed; top: 0; left: 0; right: 0; background: rgba(15,15,15,0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 1.5rem 0; }
-    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; }
-    
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: rgba(245,245,240,0.65); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--secondary); }
-    .nav-links a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1100; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--secondary); border-radius: 2px; transition: all 0.25s ease; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,15,15,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; list-style: none; }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a { color: var(--secondary); text-decoration: none; font-size: 1.6rem; font-family: 'Outfit', sans-serif; font-weight: 900; transition: color 0.2s; }
-    .mobile-nav a:hover, .mobile-nav a.active { color: var(--accent); }
 
     /* ── HERO ── */
     .hero { padding: 120px 40px 60px; max-width: 860px; margin: 0 auto; border-bottom: 1px solid var(--border); }
@@ -207,31 +193,7 @@
 </head>
 <body>
 
-<!-- ══ SITE HEADER ══ -->
-<header class="site-header">
-  <nav class="nav-container" aria-label="Main navigation">
-    <a href="index.html" class="logo-link" aria-label="Mad Hat Communications">
-        <img src="logo.svg" alt="Mad Hat Communications" class="logo-svg">
-      </a>
-    <ul class="nav-links">
-      <li><a href="work.html">Work</a></li>
-      <li><a href="index.html#analyzer">Analyzer</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="blog.html" class="active">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</header>
-<ul class="mobile-nav" id="mobileNav">
-  <li><a href="work.html" onclick="closeMenu()">Work</a></li>
-  <li><a href="index.html#analyzer" onclick="closeMenu()">Analyzer</a></li>
-  <li><a href="about.html" onclick="closeMenu()">About</a></li>
-  <li><a href="blog.html" class="active" onclick="closeMenu()">Blog</a></li>
-  <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-</ul>
+<div id="headerContainer"></div>
 
 <!-- ══ HERO ══ -->
 <div class="hero">
@@ -384,7 +346,7 @@
 </div>
 
 <!-- ══ SITE FOOTER ══ -->
-<footer class="site-footer">
+<footer class="footer">
   <div class="footer-content">
     <div class="footer-section">
       <h3>Mad Hat Communications</h3>
@@ -392,10 +354,10 @@
     </div>
     <div class="footer-section">
       <h3>Services</h3>
-      <a href="index.html">Market Expansion</a>
-      <a href="index.html">Conversion Optimisation</a>
-      <a href="index.html">Paid Media Strategy</a>
-      <a href="index.html">SEO &amp; GEO</a>
+      <a href="growth-marketing.html">Growth Marketing</a>
+      <a href="brand-communications.html">Brand &amp; Communications</a>
+      <a href="performance-marketing.html">Performance Marketing</a>
+      <a href="cro.html">Conversion Optimisation</a>
     </div>
     <div class="footer-section">
       <h3>Company</h3>
@@ -522,5 +484,8 @@
     }
   }
 </script>
+
+<script src="header-template.js"></script>
+<script>document.addEventListener('DOMContentLoaded', renderHeader);</script>
 </body>
 </html>

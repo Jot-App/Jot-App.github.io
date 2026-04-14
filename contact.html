@@ -23,11 +23,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
-  
+
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box }
-
+    /* ── GLOBAL VARIABLES ── */
     :root {
       --primary: #0D0A1A;
       --accent: #9333EA;
@@ -36,6 +37,9 @@
       --text-light: #525252;
       --border: #E0E0E0
     }
+
+    /* ── RESETS ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -662,5 +666,7 @@
       if (e.key === 'Escape') closeMenu();
     });
   </script>
+  <script src="header-template.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', renderHeader);</script>
 </body>
 </html>

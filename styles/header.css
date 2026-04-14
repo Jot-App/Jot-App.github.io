@@ -1,0 +1,195 @@
+/* ── SHARED HEADER & NAV STYLES (used on all pages) ── */
+
+:root {
+  --primary: #0D0A1A;
+  --accent: #9333EA;
+  --secondary: #F7F4FF;
+  --text: #2C2C2C;
+  --text-light: #525252;
+  --border: #E0E0E0
+}
+
+/* ── Logo ── */
+.logo-link { display: inline-flex; align-items: center; text-decoration: none; }
+.logo-svg { height: 36px; width: auto; display: block; }
+
+/* ── HEADER ── */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(13, 10, 26, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+  z-index: 1000;
+  padding: 1.5rem 0
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* ── Nav links ── */
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a,
+.nav-dropdown-toggle {
+  font-family: 'Outfit', sans-serif;
+  color: rgba(200, 185, 240, 0.75);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: color 0.25s;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: inherit;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle.active {
+  color: var(--accent);
+}
+
+/* ── Services dropdown ── */
+.has-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background: rgba(13, 10, 26, 0.98);
+  border: 1px solid rgba(147, 51, 234, 0.18);
+  border-radius: 6px;
+  padding: 0.4rem 0;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1200;
+  list-style: none;
+}
+
+.has-dropdown.open .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.55rem 1rem;
+  color: rgba(200, 185, 240, 0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a.active {
+  background: rgba(147, 51, 234, 0.1);
+  color: var(--accent);
+}
+
+/* ── Hamburger toggle ── */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+}
+.nav-toggle svg { width: 20px; height: 20px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links { display: none; }
+
+  .header.nav-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(13, 10, 26, 0.99);
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(147, 51, 234, 0.2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+  }
+
+  .header.nav-open .nav-links > li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 0;
+  }
+
+  .header.nav-open .nav-links > li:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-menu {
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0 0 1rem;
+    min-width: auto;
+    transform: none;
+    display: none;
+  }
+
+  .has-dropdown.open .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.4rem 0;
+    font-size: 0.82rem;
+  }
+
+  .dropdown-menu li a:hover,
+  .dropdown-menu li a.active {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .nav-container { padding: 0 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .nav-container { padding: 0 1.5rem; }
+}

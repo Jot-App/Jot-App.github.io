@@ -23,11 +23,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
-  
+
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box }
-
     :root {
       --primary: #0D0A1A;
       --accent: #9333EA;
@@ -36,6 +36,8 @@
       --text-light: #525252;
       --border: #E0E0E0
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -453,20 +455,8 @@
 </head>
 
 <body>
-  <header class="header">
-    <nav class="nav-container" aria-label="Main navigation">
-      <a href="index.html" class="logo-link" aria-label="Mad Hat Communications">
-        <img src="logo.svg" alt="Mad Hat Communications" class="logo-svg">
-      </a>
-      <ul class="nav-links">
-        <li><a href="work.html" class="active">Work</a></li>
-        <li><a href="growth-marketing.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div id="headerContainer"></div>
+
 
   <main>
     <!-- PAGE HERO -->
@@ -674,5 +664,8 @@
       <p>&copy; 2026 Mad Hat Communications. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="header-template.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', renderHeader);</script>
 </body>
 </html>

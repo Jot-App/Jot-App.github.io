@@ -14,9 +14,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box }
     :root { --primary: #0D0A1A; --accent: #9333EA; --secondary: #F7F4FF; --text: #2C2C2C; --text-light: #525252; --border: #E0E0E0 }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Outfit', sans-serif; background: var(--secondary); color: var(--text); line-height: 1.6; overflow-x: hidden }
     h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.1 }
     .logo-link { display: inline-flex; align-items: center; text-decoration: none }
@@ -311,5 +316,7 @@
   <script>
     document.querySelectorAll('.video-thumb').forEach(function(t){t.addEventListener('click',function(){var id=this.dataset.id;if(!id)return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;this.querySelector('img').style.display='none';this.querySelector('.play-btn').style.display='none';this.appendChild(f);this.style.cursor='default';});});
   </script>
+  <script src="header-template.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', renderHeader);</script>
 </body>
 </html>
