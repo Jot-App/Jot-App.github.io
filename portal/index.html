@@ -100,7 +100,7 @@ select.plain{border:1px solid var(--border);background:var(--white);border-radiu
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(13,10,26,.09)}
 .thumb{aspect-ratio:4/3;background:var(--secondary);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%}
 .thumb img,.thumb video{width:100%;height:100%;object-fit:cover;display:block}
-.thumb .ph{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:#fff;font-weight:600;font-size:.9rem;text-transform:capitalize}
+.thumb .ph{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:#fff;font-weight:600;font-size:.9rem}
 .thumb .ph svg{width:38px;height:38px;opacity:.95}
 .thumb .badge{position:absolute;top:.6rem;left:.6rem}
 .thumb .ver{position:absolute;top:.6rem;right:.6rem;font-family:var(--mono);font-size:.72rem;background:rgba(13,10,26,.75);color:#fff;border-radius:6px;padding:.1rem .45rem}
@@ -120,6 +120,8 @@ select.plain{border:1px solid var(--border);background:var(--white);border-radiu
 .s-approved{background:var(--green-bg);color:var(--green)}
 .s-scheduled{background:var(--blue-bg);color:var(--blue)}
 .s-published{background:var(--violet-bg);color:var(--violet)}
+.s-planned{background:#EEF2FF;color:#4338CA}
+.s-in_progress{background:var(--accent-soft);color:var(--accent)}
 
 .empty{background:var(--white);border:1px dashed var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;color:var(--text-light)}
 .empty h3{color:var(--primary);margin-bottom:.4rem;font-size:1.2rem}
@@ -145,6 +147,22 @@ select.plain{border:1px solid var(--border);background:var(--white);border-radiu
 .ev.sched{color:#fff}
 .ev.duefb{background:#fff;border:1.5px dashed var(--red);color:var(--red);font-weight:500}
 .ev.duefb.met{border-color:var(--border);color:var(--text-light);text-decoration:line-through}
+.ev{cursor:pointer}
+.ev[draggable=true]{cursor:grab}
+.ev.dragging{opacity:.4}
+.ev.sched.has-prop{outline:2px dashed var(--amber);outline-offset:1px}
+.ev.prop{background:repeating-linear-gradient(135deg,var(--amber-bg),var(--amber-bg) 6px,#fff 6px,#fff 12px);border:1.5px dashed var(--amber);color:var(--amber);font-weight:600}
+.cal-day.drop-ok{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)}
+.cal-hint{font-size:.82rem;color:var(--text-light);padding:.5rem 1.2rem;border-bottom:1px solid var(--border);background:#FBFAFE}
+.lg-prop{width:14px;height:10px;border-radius:3px;border:1.5px dashed var(--amber);background:var(--amber-bg)}
+.notice{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;background:var(--amber-bg);border:1px solid #FCD34D;color:#78350F;border-radius:var(--radius);padding:.75rem 1rem;margin-bottom:1.25rem;font-size:.92rem}
+.notice .btn{margin-left:auto}
+.prop-box{margin:1rem 0;padding:.9rem 1rem;border:1.5px dashed var(--amber);background:var(--amber-bg);border-radius:10px;color:#78350F;font-size:.92rem}
+.prop-box strong{color:#78350F}
+.prop-box .row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;align-items:center}
+.suggest{margin-top:1rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.88rem;color:var(--text-light)}
+.suggest input{border:1px solid var(--border);border-radius:8px;padding:.35rem .5rem}
+.card-prop{font-size:.78rem;font-weight:600;color:var(--amber)}
 .agenda{display:none}
 .ag-day{padding:.8rem 1rem;border-bottom:1px solid var(--border)}
 .ag-day h4{font-family:var(--mono);font-size:.78rem;color:var(--text-light);font-weight:400;margin-bottom:.4rem}
@@ -299,13 +317,18 @@ function errMsg(e){
 
 const STATUS = {
   draft:             {label:'Draft',             client:false},
+  planned:           {label:'Planned',           client:true},
+  in_progress:       {label:'In production',     client:true},
   in_review:         {label:'Awaiting feedback', client:true},
   changes_requested: {label:'Changes requested', client:true},
   approved:          {label:'Approved',          client:true},
   scheduled:         {label:'Scheduled',         client:true},
   published:         {label:'Live',              client:true}
 };
-const TYPES = ['creative','video','blog','document','social','email','other'];
+const TYPES = ['social','video','blog','website','case_study','investor','pr','research','sales','brief','creative','document','email','other'];
+const TYPE_LABEL = {social:'Social media', video:'Video', blog:'Blog', website:'Website update', case_study:'Case study', investor:'Investor relations',
+  pr:'PR', research:'Research', sales:'Sales collateral', brief:'Brief', creative:'Creative', document:'Document', email:'Email', other:'Other'};
+const typeLabel = t => TYPE_LABEL[t] || t;
 const TYPE_ICON = {
   creative:'<path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="1.8" fill="currentColor"/><path d="M5 18l5-5 3 3 2-2 4 4" fill="none" stroke="currentColor" stroke-width="1.8"/>',
   video:'<rect x="3" y="6" width="13" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 10l5-3v10l-5-3z" fill="none" stroke="currentColor" stroke-width="1.8"/>',
@@ -313,8 +336,14 @@ const TYPE_ICON = {
   document:'<path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.8"/>',
   social:'<circle cx="6" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" stroke="currentColor" stroke-width="1.8"/>',
   email:'<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.8"/>',
-  other:'<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8"/>'
+  other:'<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8"/>',
+  website:'<rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="6.5" r=".9" fill="currentColor"/><circle cx="9" cy="6.5" r=".9" fill="currentColor"/>',
+  investor:'<path d="M4 20V4M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  pr:'<path d="M3 10v4h4l6 4V6L7 10z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M17 9a4 4 0 010 6" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  research:'<circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.8"/>',
+  sales:'<rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5h6v2M3 12h18" fill="none" stroke="currentColor" stroke-width="1.8"/>'
 };
+TYPE_ICON.case_study = TYPE_ICON.document; TYPE_ICON.brief = TYPE_ICON.document;
 const AWAITING = s => s === 'in_review';
 const CAN_DECIDE = s => s === 'in_review' || s === 'changes_requested' || s === 'approved';
 
@@ -412,7 +441,18 @@ const demoApi = {
     const row = {id:uid(), item_id, author, body:note || null, kind:decision, from_agency, created_at:new Date().toISOString()};
     DEMO.comments.push(row); return row;
   },
-  async note(item_id, body){ const row = {id:uid(), item_id, author:CFG.agencyName, body, kind:'status', from_agency:true, created_at:new Date().toISOString()}; DEMO.comments.push(row); return row; },
+  async note(item_id, body, author, fromAgency = true){ const row = {id:uid(), item_id, author:author || CFG.agencyName, body, kind:'status', from_agency:fromAgency, created_at:new Date().toISOString()}; DEMO.comments.push(row); return row; },
+  async propose(item_id, author, date){
+    if (!author.trim()) throw new Error('name_required');
+    const it = DEMO.items.find(i => i.id === item_id);
+    if (!date || date === it.scheduled_for){
+      if (!it.proposed_date) return it;
+      Object.assign(it, {proposed_date:null, proposed_by:null, proposed_at:null});
+      await this.note(item_id, 'Withdrew the suggested date change.', author, false); return it;
+    }
+    Object.assign(it, {proposed_date:date, proposed_by:author, proposed_at:new Date().toISOString()});
+    await this.note(item_id, `Suggested moving the go-live date from ${fmtDLong(it.scheduled_for)} to ${fmtDLong(date)}.`, author, false); return it;
+  },
   async save(table, row){
     const list = DEMO[table];
     if (row.id){ const i = list.findIndex(r => r.id === row.id); list[i] = {...list[i], ...row}; return list[i]; }
@@ -468,12 +508,51 @@ const adminApi = {
 };
 
 const clientApi = {
+  async propose(item_id, author, date){ return chk(await sb.rpc('portal_propose_date', {p_token:S.token, p_item:item_id, p_author:author, p_date:date || null})); },
   async load(){ return chk(await sb.rpc('portal_get', {p_token:S.token})); },
   async comment(item_id, author, body){ return chk(await sb.rpc('portal_comment', {p_token:S.token, p_item:item_id, p_author:author, p_body:body})); },
   async decide(item_id, author, decision, note){ return chk(await sb.rpc('portal_decide', {p_token:S.token, p_item:item_id, p_author:author, p_decision:decision, p_note:note || null})); }
 };
 
 const api = () => S.mode === 'demo' ? demoApi : S.mode === 'admin' ? adminApi : clientApi;
+
+// Mad Hat side: move a date directly, or accept/decline a client's suggestion.
+async function adminMoveDate(it, field, date){
+  if (!date || it[field] === date) return;
+  const patch = {id:it.id, [field]:date};
+  if (field === 'scheduled_for' && it.proposed_date === date) Object.assign(patch, {proposed_date:null, proposed_by:null, proposed_at:null});
+  await api().save('items', patch);
+  await api().note(it.id, field === 'scheduled_for'
+    ? `Go-live moved from ${fmtDLong(it.scheduled_for)} to ${fmtDLong(date)}.` + (patch.proposed_date === null ? ' (Matches the suggested date.)' : '')
+    : `Feedback deadline moved to ${fmtDLong(date)}.`);
+}
+async function adminResolve(it, accept){
+  if (!it.proposed_date) return;
+  const patch = {id:it.id, proposed_date:null, proposed_by:null, proposed_at:null};
+  if (accept) patch.scheduled_for = it.proposed_date;
+  await api().save('items', patch);
+  await api().note(it.id, accept
+    ? `Accepted ${it.proposed_by || 'the client'}’s suggestion: go-live moved from ${fmtDLong(it.scheduled_for)} to ${fmtDLong(it.proposed_date)}.`
+    : `Kept go-live on ${fmtDLong(it.scheduled_for)}; the suggested ${fmtDLong(it.proposed_date)} was declined.`);
+}
+// Client side: ask for a name once, then suggest a date.
+function ensureName(){
+  const saved = (store.get('mh_portal_name') || '').trim();
+  if (saved) return Promise.resolve(saved);
+  return new Promise(resolve => {
+    modal('Your name', `<p class="hint" style="margin-bottom:.8rem">So Mad Hat knows who suggested the change.</p>
+      <div class="field"><label>Name</label><input name="who" required maxlength="80" placeholder="e.g. Priya, Marketing"></div>`, {
+      submitLabel:'Continue',
+      onSubmit: async fd => { const n = val(fd,'who'); store.set('mh_portal_name', n); resolve(n); }
+    });
+  });
+}
+async function clientPropose(it, date){
+  const who = await ensureName();
+  await api().propose(it.id, who, date);
+  await refresh(); render();
+  toast(date && date !== it.scheduled_for ? `Suggested ${fmtD(date)}. Mad Hat will confirm before it changes.` : 'Suggestion withdrawn.');
+}
 
 /* ───────────────────────── loading ───────────────────────── */
 async function refresh(){
@@ -617,6 +696,7 @@ function filtered(){
     if (S.quick === 'approved') return ['approved','scheduled','published'].includes(i.status);
     if (S.quick === 'changes') return i.status === 'changes_requested';
     if (S.quick === 'draft') return i.status === 'draft';
+    if (S.quick === 'proposals') return !!i.proposed_date;
     return true;
   });
 }
@@ -639,10 +719,15 @@ function render(){
   };
   const stat = (k, num, label, warn) => `<button class="stat ${S.quick===k?'active':''} ${warn && num ? 'warn':''}" data-quick="${k}"><div class="stat-num">${num}</div><div class="stat-label">${label}</div></button>`;
 
-  const statusOpts = [['all','All content'],['awaiting','Awaiting feedback'],['changes','Changes requested'],['approved','Approved & live'],['week','Feedback due this week'],['overdue','Overdue feedback']];
+  const statusOpts = [['all','All content'],['awaiting','Awaiting feedback'],['changes','Changes requested'],['approved','Approved & live'],['week','Feedback due this week'],['overdue','Overdue feedback'],['proposals','Suggested date changes']];
+  const nProp = scope.filter(i => i.proposed_date).length;
+  const notice = nProp ? `<div class="notice"><span>${isAdmin()
+      ? `<strong>${esc(S.client?.name || 'The client')} suggested ${nProp} date change${nProp===1?'':'s'}.</strong> Nothing moves until you accept.`
+      : `<strong>You've suggested ${nProp} date change${nProp===1?'':'s'}.</strong> They stay highlighted until Mad Hat confirms.`}</span>
+      <button class="btn btn-sm" id="seeProps">${S.quick === 'proposals' ? 'Show everything' : 'Review'}</button></div>` : '';
   if (isAdmin()) statusOpts.push(['draft','Drafts (hidden from client)']);
 
-  app.innerHTML = `
+  app.innerHTML = `${notice}
     <section class="stats">
       ${stat('awaiting', n.awaiting, isAdmin() ? 'Awaiting client feedback' : 'Awaiting your feedback')}
       ${stat('week', n.week, 'Feedback due in 7 days')}
@@ -668,6 +753,7 @@ function render(){
   app.querySelectorAll('[data-camp]').forEach(b => b.onclick = () => { S.camp = b.dataset.camp; render(); });
   app.querySelectorAll('[data-view]').forEach(b => b.onclick = () => { S.view = b.dataset.view; store.set('mh_portal_view', S.view); render(); });
   $('#quickSel').onchange = e => { S.quick = e.target.value; render(); };
+  if ($('#seeProps')) $('#seeProps').onclick = () => { S.quick = S.quick === 'proposals' ? 'all' : 'proposals'; render(); };
   if (isAdmin()){
     $('#newCamp').onclick = () => campaignForm();
     $('#newItem').onclick = () => itemForm();
@@ -700,7 +786,7 @@ function thumbHtml(it, big){
   let inner;
   if (p && isVideo(p)) inner = `<video src="${esc(p)}" ${big ? 'controls' : 'muted preload="metadata"'} playsinline></video>`;
   else if (p) inner = `<img src="${esc(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Preview unavailable'}))">`;
-  else inner = `<div class="ph"><svg viewBox="0 0 24 24">${TYPE_ICON[it.type] || TYPE_ICON.other}</svg>${esc(it.type)}</div>`;
+  else inner = `<div class="ph"><svg viewBox="0 0 24 24">${TYPE_ICON[it.type] || TYPE_ICON.other}</svg>${esc(typeLabel(it.type))}</div>`;
   const bg = p ? '' : `style="background:linear-gradient(135deg, ${esc(camp.color)}, ${esc(camp.color)}aa)"`;
   return `<div class="thumb" ${bg}>${inner}${big ? '' : `<span class="pill s-${esc(it.status)} badge">${esc(STATUS[it.status]?.label || it.status)}</span>`}${it.version > 1 && !big ? `<span class="ver">v${it.version}</span>` : ''}</div>`;
 }
@@ -711,7 +797,8 @@ function cardHtml(it){
     ${thumbHtml(it)}
     <div class="card-body">
       <div class="card-title">${esc(it.title)}</div>
-      <div class="card-meta"><span>${esc(it.type)}</span>${it.scheduled_for ? `<span>Goes live ${fmtD(it.scheduled_for)}</span>` : ''}</div>
+      <div class="card-meta"><span>${esc(typeLabel(it.type))}</span>${it.scheduled_for ? `<span>Goes live ${fmtD(it.scheduled_for)}</span>` : ''}</div>
+      ${it.proposed_date ? `<div class="card-prop">Date change suggested → ${fmtD(it.proposed_date)}</div>` : ''}
       <div class="card-foot">
         <span class="due ${d ? d.cls : ''}">${d ? esc(d.text) : ''}</span>
         <span class="ccount"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>${cc}</span>
@@ -758,25 +845,34 @@ function renderCalendar(){
   const last = new Date(y, mo + 1, 0);
   const end = new Date(last); end.setDate(last.getDate() + (6 - ((last.getDay() + 6) % 7)));
 
+  const admin = isAdmin();
   const eventsOn = ds => {
     const out = [];
     items.forEach(i => {
-      if (i.scheduled_for === ds) out.push({i, kind:'sched'});
       if (i.feedback_due === ds && ['in_review','changes_requested','approved','scheduled','published'].includes(i.status)) out.push({i, kind:'due'});
+      if (i.scheduled_for === ds) out.push({i, kind:'sched'});
+      if (i.proposed_date === ds) out.push({i, kind:'prop'});
     });
-    return out.sort((a,b) => (a.kind === 'due' ? 0 : 1) - (b.kind === 'due' ? 0 : 1));
+    const rank = {due:0, prop:1, sched:2};
+    return out.sort((a,b) => rank[a.kind] - rank[b.kind]);
   };
+  // Who may drag what: Mad Hat moves go-live and feedback dates directly;
+  // the client drags go-live (or their own suggestion) to suggest a new date.
+  const canDrag = (i, kind) => i.status !== 'published' && (admin ? kind !== 'prop' : kind !== 'due');
   const evHtml = ({i, kind}) => {
     const c = campOf(i.campaign_id);
-    if (kind === 'sched') return `<button class="ev sched" data-open="${esc(i.id)}" style="background:${esc(c.color)}" title="${esc(i.title)} — goes live">${esc(i.title)}</button>`;
+    const drag = canDrag(i, kind) ? `draggable="true" data-drag="${esc(i.id)}" data-kind="${kind}"` : '';
+    const attrs = `role="button" tabindex="0" data-open="${esc(i.id)}" ${drag}`;
+    if (kind === 'sched') return `<div class="ev sched ${i.proposed_date ? 'has-prop' : ''}" ${attrs} style="background:${esc(c.color)}" title="${esc(typeLabel(i.type))}: ${esc(i.title)} (goes live)${i.proposed_date ? ' · move to ' + fmtD(i.proposed_date) + ' suggested' : ''}">${esc(i.title)}</div>`;
+    if (kind === 'prop') return `<div class="ev prop" ${attrs} title="Suggested by ${esc(i.proposed_by || 'client')}: move from ${fmtD(i.scheduled_for)} to here">Suggested: ${esc(i.title)}</div>`;
     const met = !AWAITING(i.status);
-    return `<button class="ev duefb ${met ? 'met' : ''}" data-open="${esc(i.id)}" title="Feedback due: ${esc(i.title)}">Feedback: ${esc(i.title)}</button>`;
+    return `<div class="ev duefb ${met ? 'met' : ''}" ${attrs} title="Feedback due: ${esc(i.title)}">Feedback: ${esc(i.title)}</div>`;
   };
 
   let cells = '', agenda = '';
   for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)){
     const ds = ymd(d), evs = eventsOn(ds), out = d.getMonth() !== mo;
-    cells += `<div class="cal-day ${out?'out':''} ${ds===t?'today':''}"><span class="dnum">${d.getDate()}</span>${evs.map(evHtml).join('')}</div>`;
+    cells += `<div class="cal-day ${out?'out':''} ${ds===t?'today':''}" data-day="${ds}"><span class="dnum">${d.getDate()}</span>${evs.map(evHtml).join('')}</div>`;
     if (!out && evs.length) agenda += `<div class="ag-day"><h4 class="${ds===t?'today':''}">${fmtDLong(ds)}${ds===t?' · Today':''}</h4>${evs.map(evHtml).join('')}</div>`;
   }
   $('#view').innerHTML = `<div class="cal">
@@ -785,15 +881,56 @@ function renderCalendar(){
       <button class="btn btn-sm" id="prevM" aria-label="Previous month">‹</button>
       <button class="btn btn-sm" id="todayM">Today</button>
       <button class="btn btn-sm" id="nextM" aria-label="Next month">›</button>
-      <div class="legend"><span><i class="lg-sched"></i>Goes live</span><span><i class="lg-due"></i>Feedback due</span></div>
+      <div class="legend"><span><i class="lg-sched"></i>Goes live</span><span><i class="lg-due"></i>Feedback due</span><span><i class="lg-prop"></i>Suggested new date</span></div>
     </div>
+    <div class="cal-hint">${admin
+      ? 'Drag a piece to move its go-live date, or a feedback box to move the deadline. Suggestions from the client show striped. Open one to accept or decline it.'
+      : 'Drag a piece to another day to suggest a new go-live date. It shows striped until Mad Hat confirms; nothing moves until then.'}</div>
     <div class="cal-grid">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x => `<div class="cal-dow">${x}</div>`).join('')}${cells}</div>
     <div class="agenda">${agenda || '<div class="ag-day">Nothing scheduled this month.</div>'}</div>
   </div>`;
   $('#prevM').onclick = () => { S.month = new Date(y, mo - 1, 1); renderCalendar(); };
   $('#nextM').onclick = () => { S.month = new Date(y, mo + 1, 1); renderCalendar(); };
   $('#todayM').onclick = () => { S.month = null; renderCalendar(); };
-  $('#view').querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+  const view = $('#view');
+  view.querySelectorAll('[data-open]').forEach(b => {
+    b.onclick = () => openDrawer(b.dataset.open);
+    b.onkeydown = e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openDrawer(b.dataset.open); } };
+  });
+  let dragged = null;
+  view.querySelectorAll('[data-drag]').forEach(el => {
+    el.addEventListener('dragstart', e => {
+      dragged = {id:el.dataset.drag, kind:el.dataset.kind};
+      e.dataTransfer.effectAllowed = 'move';
+      try { e.dataTransfer.setData('text/plain', el.dataset.drag); } catch(_){}
+      setTimeout(() => el.classList.add('dragging'), 0);
+    });
+    el.addEventListener('dragend', () => { el.classList.remove('dragging'); dragged = null; view.querySelectorAll('.drop-ok').forEach(x => x.classList.remove('drop-ok')); });
+  });
+  view.querySelectorAll('.cal-day[data-day]').forEach(cell => {
+    cell.addEventListener('dragover', e => { if (!dragged) return; e.preventDefault(); e.dataTransfer.dropEffect = 'move'; cell.classList.add('drop-ok'); });
+    cell.addEventListener('dragleave', e => { if (!cell.contains(e.relatedTarget)) cell.classList.remove('drop-ok'); });
+    cell.addEventListener('drop', async e => {
+      e.preventDefault(); cell.classList.remove('drop-ok');
+      if (!dragged) return;
+      const {id, kind} = dragged; dragged = null;
+      const it = S.items.find(i => i.id === id); const day = cell.dataset.day;
+      await new Promise(r => setTimeout(r, 60)); // let the browser finish the drag before the calendar redraws
+      if (!it) return;
+      try {
+        if (admin){
+          const field = kind === 'due' ? 'feedback_due' : 'scheduled_for';
+          if (it[field] === day) return;
+          await adminMoveDate(it, field, day);
+          await refresh(); render();
+          toast(kind === 'due' ? `Feedback deadline moved to ${fmtD(day)}` : `Go-live moved to ${fmtD(day)}`);
+        } else {
+          if (day === (kind === 'prop' ? it.proposed_date : it.scheduled_for)) return;
+          await clientPropose(it, day);
+        }
+      } catch(err){ toast(errMsg(err)); }
+    });
+  });
 }
 
 /* ───────────────────────── item drawer ───────────────────────── */
@@ -836,11 +973,19 @@ function renderDrawer(){
       <div class="dr-main">
         <h2>${esc(it.title)}</h2>
         <div class="facts">
-          <div class="fact"><small>Type</small><div style="text-transform:capitalize">${esc(it.type)}</div></div>
+          <div class="fact"><small>Type</small><div>${esc(typeLabel(it.type))}</div></div>
           <div class="fact"><small>Goes live</small><div>${it.scheduled_for ? fmtD(it.scheduled_for) : 'TBC'}</div></div>
           <div class="fact"><small>Feedback by</small><div class="${d && d.cls === 'overdue' ? 'overdue' : ''}">${it.feedback_due ? fmtD(it.feedback_due) : '—'}${d && d.cls === 'overdue' ? ' · overdue' : ''}</div></div>
         </div>
-        ${it.description ? `<div class="desc">${esc(it.description)}</div>` : ''}
+        ${it.proposed_date ? `<div class="prop-box">
+            <strong>${esc(it.proposed_by || 'The client')}</strong> suggested moving go-live from <strong>${fmtDLong(it.scheduled_for)}</strong> to <strong>${fmtDLong(it.proposed_date)}</strong>.
+            <div class="row">${isAdmin()
+              ? '<button class="btn btn-approve btn-sm" id="propAccept">Accept new date</button><button class="btn btn-sm" id="propDecline">Keep current date</button>'
+              : '<span>Waiting for Mad Hat to confirm.</span><button class="btn btn-sm" id="propWithdraw">Withdraw suggestion</button>'}</div>
+          </div>` : ''}
+        ${!isAdmin() && it.status !== 'published' ? `<div class="suggest"><label for="propDate">Suggest a different go-live date</label>
+            <input type="date" id="propDate" value="${esc(it.proposed_date || it.scheduled_for || '')}"><button class="btn btn-sm" id="propSend">Suggest</button></div>` : ''}
+        ${it.description ? `<div class="desc" style="margin-top:1rem">${esc(it.description)}</div>` : ''}
         ${link ? `<div class="open-link"><a class="btn btn-dark" href="${esc(link)}" target="_blank" rel="noopener">Open file ↗</a></div>` : ''}
         ${isAdmin() ? `<div class="dr-admin">
             <button class="btn btn-sm" id="drEdit">Edit</button>
@@ -897,6 +1042,16 @@ function renderDrawer(){
     if (!note) { $('#cmpText').focus(); throw new Error('note_required'); }
     await api().decide(it.id, a, 'changes_requested', note, false);
     toast('Changes requested — we’re on it.');
+  });
+  const guard = fn => async e => { const b = e.currentTarget; b.disabled = true; try { await fn(); } catch(err){ toast(errMsg(err)); b.disabled = false; } };
+  if ($('#propAccept')) $('#propAccept').onclick = guard(async () => { await adminResolve(it, true); await refresh(); render(); toast('New date accepted'); });
+  if ($('#propDecline')) $('#propDecline').onclick = guard(async () => { await adminResolve(it, false); await refresh(); render(); toast('Kept the current date'); });
+  if ($('#propWithdraw')) $('#propWithdraw').onclick = guard(() => clientPropose(it, null));
+  if ($('#propSend')) $('#propSend').onclick = guard(async () => {
+    const v = $('#propDate').value;
+    if (!v) throw new Error('Pick a date first.');
+    if (v === (it.proposed_date || it.scheduled_for)) throw new Error('That\u2019s already the date.');
+    await clientPropose(it, v);
   });
   if (isAdmin()){
     $('#drEdit').onclick = () => itemForm(it);
@@ -1037,7 +1192,7 @@ function itemForm(it){
     <div class="field"><label>Title *</label><input name="title" required value="${esc(it?.title)}" placeholder="e.g. Hero carousel — Instagram"></div>
     <div class="row2">
       <div class="field"><label>Campaign *</label><select name="campaign_id" required>${S.campaigns.map(c => `<option value="${esc(c.id)}" ${c.id===campDefault?'selected':''}>${esc(c.name)}</option>`).join('')}</select></div>
-      <div class="field"><label>Type</label><select name="type">${TYPES.map(t => `<option ${t===(it?.type||'creative')?'selected':''}>${t}</option>`).join('')}</select></div>
+      <div class="field"><label>Type</label><select name="type">${TYPES.map(t => `<option value="${t}" ${t===(it?.type||'social')?'selected':''}>${typeLabel(t)}</option>`).join('')}</select></div>
     </div>
     <div class="field"><label>Link to the file</label><input type="url" name="link_url" value="${esc(it?.link_url)}" placeholder="Google Drive / Docs / Figma / YouTube link">
       <div class="help">Drive files shared as "anyone with the link" and YouTube links get a preview automatically.</div></div>
