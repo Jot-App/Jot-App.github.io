@@ -4,7 +4,8 @@ Lives at **madhatcomm.in/portal/**. It has three modes:
 
 | URL | Who | What they can do |
 |---|---|---|
-| `/portal/?c=<secret>` | A client's team | See their campaigns (not drafts), comment, approve or request changes |
+| `/portal/<link-name>` (e.g. `/portal/sunfan`) | A client's team | Enter the passcode once per device, then see their campaigns (not drafts), comment, approve or request changes |
+| `/portal/?c=<secret>` | A client's team | Older-style private link, still works, no passcode |
 | `/portal/` | You | Sign in; add clients, campaigns and content; reply; change status; copy client links |
 | `/portal/?demo` | Anyone | Sample data in the browser only. Use it to try the portal or show it to a client |
 
@@ -43,7 +44,8 @@ Commit `portal/` to the `Jot-App.github.io` repo. GitHub Pages serves it at madh
 
 ## Day-to-day
 
-1. **+ Client**: creates the client and shows their private link. Send that link to the client's team.
+1. **+ Client**: set the name, link name (e.g. `sunfan`) and passcode. It then shows a ready-to-send message with the link and passcode. To cut off access, use **Edit client → New code**: everyone using the old passcode is signed out.
+   - Friendly links work through the site's `404.html`, which forwards `/portal/<name>` to the portal. After 10 wrong passcodes in 15 minutes, that link pauses for 15 minutes.
 2. **+ Campaign**: add a name, dates and a colour. The colour is used on cards and the calendar.
 3. **+ Content**: add a title, type and a link (Drive, Docs, Figma or YouTube).
    - Upload an image or video as a preview, or let Drive/YouTube links preview automatically. For Drive, the file must be shared as "anyone with the link".

@@ -289,7 +289,9 @@ function errMsg(e){
     not_allowed: 'This item is no longer available on your link.',
     note_required: 'Please write what needs to change before requesting changes.',
     name_required: 'Please add your name first.',
-    name_and_comment_required: 'Please add your name and a comment.'
+    name_and_comment_required: 'Please add your name and a comment.',
+    portal_clients_slug_key: 'That link name is already used by another client.',
+    portal_clients_slug_format: 'Link names can only use lowercase letters, numbers and hyphens.'
   };
   for (const k in map) if (m.includes(k)) return map[k];
   return m;
@@ -342,8 +344,9 @@ function dueInfo(it){
 const params = new URLSearchParams(location.search);
 const configured = /^https:\/\//.test(CFG.supabaseUrl) && CFG.supabaseAnonKey && !CFG.supabaseAnonKey.startsWith('YOUR_');
 const S = {
-  mode: (!configured || params.has('demo')) ? 'demo' : (params.get('c') ? 'client' : 'admin'),
+  mode: (!configured || params.has('demo')) ? 'demo' : ((params.get('c') || params.get('s')) ? 'client' : 'admin'),
   token: params.get('c'),
+  slug: (params.get('s') || '').toLowerCase().replace(/[^a-z0-9-]/g, ''),
   demoRole: 'admin',
   clients: [], clientId: null, client: null,
   campaigns: [], items: [], comments: [],
@@ -358,7 +361,7 @@ let sb = null;
 const DEMO = (() => {
   const t = todayStr(), c1 = uid(), k1 = uid(), k2 = uid();
   const db = {
-    clients: [{id:c1, name:'Demo Brand Co.', token:'demo-token'}],
+    clients: [{id:c1, name:'Demo Brand Co.', token:'demo-token', slug:'demo-brand', passcode:'DEMO42'}],
     campaigns: [
       {id:k1, client_id:c1, name:'Festive Gifting', description:'Gift-box push across Instagram, Amazon and email.', color:'#9333EA', start_date:addDays(t,-6), end_date:addDays(t,14)},
       {id:k2, client_id:c1, name:'Winter Range Launch', description:'Launch of the winter range — hero film, blog and performance creatives.', color:'#0EA5E9', start_date:addDays(t,10), end_date:addDays(t,40)}
@@ -496,8 +499,17 @@ async function boot(){
   await loadSupabase();
   sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
   if (S.mode === 'client'){
+    if (S.slug){
+      // Show the friendly address (madhatcomm.in/portal/<slug>) in the browser bar.
+      try { history.replaceState(null, '', location.pathname.replace(/[^/]*$/, '') + S.slug); } catch(e){}
+      S.token = store.get('mh_portal_key_' + S.slug);
+      if (!S.token) return renderUnlock();
+    }
     try { await refresh(); render(); }
-    catch(e){ showMessage('Link not recognised', errMsg(e)); }
+    catch(e){
+      if (S.slug){ store.set('mh_portal_key_' + S.slug, ''); S.token = null; return renderUnlock(true); }
+      showMessage('Link not recognised', errMsg(e));
+    }
     return;
   }
   const {data:{session}} = await sb.auth.getSession();
@@ -531,6 +543,35 @@ function showMessage(title, text, withSignOut){
   $('#topActions').innerHTML = withSignOut ? '<button class="btn-ghost" id="signOut">Sign out</button>' : '';
   if (withSignOut) $('#signOut').onclick = signOut;
   $('#app').innerHTML = `<div class="center"><h2>${esc(title)}</h2><p>${esc(text)}</p></div>`;
+}
+
+function renderUnlock(expired){
+  $('#clientName').textContent = '';
+  $('#topActions').innerHTML = '';
+  $('#app').innerHTML = `
+    <form class="center" id="unlockForm">
+      <h2>Content review</h2>
+      <p>${expired ? 'Your access has changed. ' : ''}Enter the passcode Mad Hat shared with you. You'll only need it once on this device.</p>
+      <div class="field"><label>Passcode</label><input name="code" required autocomplete="off" autocapitalize="characters" spellcheck="false" style="font-family:var(--mono);letter-spacing:.15em;text-transform:uppercase"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center">Open</button>
+      <div class="err" id="unlockErr"></div>
+    </form>`;
+  const form = $('#unlockForm'); form.code.focus();
+  form.onsubmit = async e => {
+    e.preventDefault();
+    const btn = form.querySelector('button'); btn.disabled = true; $('#unlockErr').textContent = '';
+    try {
+      const res = chk(await sb.rpc('portal_unlock', {p_slug:S.slug, p_code:form.code.value}));
+      if (!res.ok){
+        $('#unlockErr').textContent = res.error === 'locked'
+          ? 'Too many wrong attempts. Please try again in 15 minutes.'
+          : 'That passcode doesn\u2019t match. Check the message from Mad Hat.';
+        btn.disabled = false; return;
+      }
+      S.token = res.token; store.set('mh_portal_key_' + S.slug, res.token);
+      await refresh(); render();
+    } catch(err){ $('#unlockErr').textContent = errMsg(err); btn.disabled = false; }
+  };
 }
 
 function renderLogin(){
@@ -908,13 +949,29 @@ function modal(title, bodyHtml, {onSubmit, onDelete, submitLabel='Save'} = {}){
   return form;
 }
 const val = (fd, k) => { const v = (fd.get(k) || '').toString().trim(); return v || null; };
-const clientLink = c => `${location.origin}${location.pathname}?c=${encodeURIComponent(c.token)}`;
+const portalBase = () => location.origin + location.pathname.replace(/[^/]*$/, '');
+const clientLink = c => c.slug ? portalBase() + c.slug : `${portalBase()}?c=${encodeURIComponent(c.token)}`;
+const slugify = s => String(s || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+function newPasscode(){
+  const abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789', a = new Uint32Array(6);
+  crypto.getRandomValues(a); return [...a].map(n => abc[n % abc.length]).join('');
+}
 
 function clientForm(c){
-  modal(c ? 'Edit client' : 'New client', `
-    <div class="field"><label>Client name *</label><input name="name" required value="${esc(c?.name)}" placeholder="e.g. Empressa"></div>`, {
+  const f = modal(c ? 'Edit client' : 'New client', `
+    <div class="field"><label>Client name *</label><input name="name" required value="${esc(c?.name)}" placeholder="e.g. Empressa"></div>
+    <div class="field"><label>Link name *</label><input name="slug" required value="${esc(c?.slug || '')}" placeholder="e.g. empressa" style="font-family:var(--mono)">
+      <div class="help" data-slughelp></div></div>
+    <div class="field"><label>Passcode *</label>
+      <div class="linkbox"><input name="passcode" required value="${esc(c?.passcode || newPasscode())}" style="font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase" maxlength="40"><button type="button" class="btn" data-regen>New code</button></div>
+      <div class="help">${c ? 'Changing the passcode signs out everyone using the old one.' : 'The client enters this once per device.'}</div></div>`, {
     onSubmit: async fd => {
-      const row = await api().save('clients', {...(c ? {id:c.id} : {}), name:val(fd,'name')});
+      const slug = slugify(val(fd,'slug'));
+      if (!slug) throw new Error('portal_clients_slug_format');
+      const passcode = (val(fd,'passcode') || '').toUpperCase().replace(/\s+/g, '');
+      if (passcode.length < 6) throw new Error('Passcode must be at least 6 characters.');
+      const row = await api().save('clients', {...(c ? {id:c.id} : {}), name:val(fd,'name'), slug, passcode});
       S.clientId = row.id; store.set('mh_portal_client', row.id);
       await loadClients(); await refresh(); render();
       if (!c) shareDialog();
@@ -924,19 +981,36 @@ function clientForm(c){
       await loadClients(); if (S.clientId) await refresh(); render(); toast('Client deleted');
     } : null
   });
+  const nameIn = f.querySelector('[name=name]'), slugIn = f.querySelector('[name=slug]'), help = f.querySelector('[data-slughelp]');
+  let slugTouched = !!c?.slug;
+  const showSlug = () => { help.textContent = portalBase() + (slugify(slugIn.value) || '…'); };
+  if (!slugTouched) slugIn.value = slugify(nameIn.value);
+  nameIn.addEventListener('input', () => { if (!slugTouched){ slugIn.value = slugify(nameIn.value); showSlug(); } });
+  slugIn.addEventListener('input', () => { slugTouched = true; showSlug(); });
+  slugIn.addEventListener('blur', () => { slugIn.value = slugify(slugIn.value); showSlug(); });
+  f.querySelector('[data-regen]').onclick = () => { f.querySelector('[name=passcode]').value = newPasscode(); };
+  showSlug();
 }
 
 function shareDialog(){
   const c = S.clients.find(x => x.id === S.clientId); if (!c) return;
-  const url = clientLink(c);
-  const f = modal(`Review link for ${c.name}`, `
-    <p class="hint" style="margin-bottom:.8rem;font-size:.9rem">Anyone with this link can view this client's content (not drafts), comment and approve. Share it only with the client's team.</p>
-    <div class="linkbox"><input readonly value="${esc(url)}" id="shareUrl"><button type="button" class="btn btn-primary" id="copyUrl">Copy</button></div>
-    <p class="hint" style="margin-top:.6rem"><a href="${esc(url)}" target="_blank" rel="noopener">Open as the client sees it ↗</a></p>`);
-  f.querySelector('#copyUrl').onclick = async () => {
-    const inp = f.querySelector('#shareUrl'); inp.select();
-    try { await navigator.clipboard.writeText(url); toast('Link copied'); }
-    catch(e){ try { document.execCommand('copy'); toast('Link copied'); } catch(_){ toast('Select the link and copy it'); } }
+  const url = clientLink(c), code = c.passcode || '';
+  const message = c.slug && code
+    ? `Here's where you can review and approve our work for ${c.name}:\n${url}\nPasscode: ${code}`
+    : url;
+  const f = modal(`Review link for ${c.name}`, c.slug && code ? `
+    <p class="hint" style="margin-bottom:.8rem;font-size:.9rem">Send both to the client's team. With them, anyone can view this client's content (not drafts), comment and approve.</p>
+    <div class="field"><label>Link</label><div class="linkbox"><input readonly value="${esc(url)}"></div></div>
+    <div class="field"><label>Passcode</label><div class="linkbox"><input readonly value="${esc(code)}" style="letter-spacing:.12em"></div></div>
+    <div class="field"><label>Message to send</label><textarea readonly id="shareMsg" style="min-height:90px;font-size:.88rem">${esc(message)}</textarea></div>
+    <button type="button" class="btn btn-primary" id="copyMsg">Copy message</button>
+    <p class="hint" style="margin-top:.8rem"><a href="${esc(url)}" target="_blank" rel="noopener">Open as the client sees it ↗</a> (use a private window to see the passcode screen)</p>` : `
+    <p class="hint" style="margin-bottom:.8rem;font-size:.9rem">This client has no link name and passcode yet. Use <strong>Edit client</strong> to set them. Meanwhile, this private link works on its own:</p>
+    <div class="linkbox"><input readonly value="${esc(url)}" id="shareMsg"></div>
+    <button type="button" class="btn btn-primary" id="copyMsg" style="margin-top:.6rem">Copy link</button>`);
+  f.querySelector('#copyMsg').onclick = async () => {
+    try { await navigator.clipboard.writeText(message); toast('Copied'); }
+    catch(e){ const t = f.querySelector('#shareMsg'); t.select(); try { document.execCommand('copy'); toast('Copied'); } catch(_){ toast('Select the text and copy it'); } }
   };
 }
 

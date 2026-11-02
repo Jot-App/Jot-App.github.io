@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Page not found · Mad Hat Communications</title>
+<script>
+  // Client review links: madhatcomm.in/portal/<name> → open the review portal for that client.
+  (function(){
+    var m = location.pathname.match(/^\/portal\/([a-z0-9-]+)\/?$/i);
+    if (m) location.replace('/portal/?s=' + m[1].toLowerCase());
+  })();
+</script>
+<link rel="icon" href="/logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Outfit',system-ui,sans-serif;background:#0D0A1A;color:#EDE8FF;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
+  img{height:40px;margin-bottom:3rem}
+  h1{font-size:clamp(3rem,10vw,6rem);font-weight:800;line-height:1;color:#9333EA}
+  p{margin:1rem 0 2rem;font-weight:300;font-size:1.2rem;color:rgba(200,185,240,.8)}
+  a.btn{display:inline-block;background:#9333EA;color:#fff;text-decoration:none;padding:.8rem 1.6rem;border-radius:8px;font-weight:800}
+  a.btn:hover{background:#7E22CE}
+</style>
+</head>
+<body>
+  <a href="/"><img src="/logo.svg" alt="Mad Hat Communications"></a>
+  <h1>404</h1>
+  <p>This page wandered off.</p>
+  <a class="btn" href="/">Back to the homepage</a>
+</body>
+</html>
