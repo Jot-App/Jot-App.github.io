@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Content Review · Mad Hat Communications</title>
+<link rel="icon" href="../logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script>
+  // ── CONFIG ────────────────────────────────────────────────
+  // Paste these from Supabase → Project Settings → API.
+  // The anon key is safe to publish: the database only lets it
+  // read a client's content through their secret link.
+  window.PORTAL_CONFIG = {
+    supabaseUrl: 'https://oioxszvxvkarzeafpljy.supabase.co',
+    supabaseAnonKey: 'sb_publishable_LloQFIVpRpwjSR_3ROslMg_huievQyh',
+    agencyName: 'Mad Hat Team'               // how your replies are signed
+  };
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#0D0A1A;--accent:#9333EA;--accent-soft:#F1E7FD;--secondary:#F7F4FF;
+  --text:#2C2C2C;--text-light:#5f5a6e;--border:#E4E0EE;--white:#fff;
+  --amber:#B45309;--amber-bg:#FEF3C7;--red:#B91C1C;--red-bg:#FEE2E2;
+  --green:#15803D;--green-bg:#DCFCE7;--blue:#1D4ED8;--blue-bg:#DBEAFE;
+  --gray:#57534E;--gray-bg:#EEECEA;--violet:#7E22CE;--violet-bg:#F3E8FF;
+  --radius:12px;--mono:'DM Mono',ui-monospace,monospace
+}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--secondary);color:var(--text);line-height:1.5;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+.hidden{display:none!important}
+
+/* header */
+.top{background:var(--primary);color:#EDE8FF;border-bottom:1px solid rgba(147,51,234,.25);position:sticky;top:0;z-index:50}
+.top-inner{max-width:1400px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.top-logo{height:30px;display:block}
+.top-sep{width:1px;height:26px;background:rgba(255,255,255,.18)}
+.top-title{display:flex;flex-direction:column;line-height:1.15}
+.top-title small{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(200,185,240,.7)}
+.top-title strong{font-size:1.15rem;font-weight:600}
+.top-actions{margin-left:auto;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.top select,.top .btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#EDE8FF;border-radius:8px;padding:.45rem .7rem;font-size:.85rem}
+.top select option{color:#111}
+.top .btn-ghost:hover{background:rgba(255,255,255,.16)}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;font-size:.82rem;padding:.4rem 1rem}
+.demo-bar button{background:#fff;color:var(--accent);border:0;border-radius:6px;padding:.15rem .6rem;margin-left:.5rem;font-weight:600;font-size:.8rem}
+
+main{max-width:1400px;margin:0 auto;padding:2rem}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.75rem}
+.stat{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;cursor:pointer;transition:border-color .2s,transform .2s;text-align:left}
+.stat:hover{border-color:var(--accent);transform:translateY(-2px)}
+.stat.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.stat-num{font-size:2rem;font-weight:800;line-height:1;color:var(--primary)}
+.stat-label{font-size:.85rem;color:var(--text-light);margin-top:.35rem}
+.stat.warn .stat-num{color:var(--red)}
+
+/* toolbar */
+.toolbar{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chip{border:1px solid var(--border);background:var(--white);border-radius:999px;padding:.35rem .85rem;font-size:.85rem;display:inline-flex;align-items:center;gap:.45rem}
+.chip .dot{width:9px;height:9px;border-radius:50%}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.toolbar .spacer{flex:1}
+.seg{display:inline-flex;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:3px}
+.seg button{border:0;background:transparent;padding:.4rem .9rem;border-radius:7px;font-size:.88rem;color:var(--text-light)}
+.seg button.active{background:var(--accent);color:#fff}
+select.plain{border:1px solid var(--border);background:var(--white);border-radius:10px;padding:.45rem .7rem;font-size:.88rem}
+
+.btn{border:1px solid var(--border);background:var(--white);border-radius:10px;padding:.5rem .95rem;font-size:.9rem;font-weight:500;display:inline-flex;align-items:center;gap:.4rem;transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--accent)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{background:#7E22CE}
+.btn-dark{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn-approve{background:var(--green);border-color:var(--green);color:#fff}
+.btn-approve:hover{background:#166534;border-color:#166534}
+.btn-changes{background:var(--white);border-color:var(--red);color:var(--red)}
+.btn-changes:hover{background:var(--red-bg);border-color:var(--red)}
+.btn-danger{color:var(--red)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-sm{padding:.3rem .65rem;font-size:.8rem;border-radius:8px}
+
+/* campaign groups */
+.campaign{margin-bottom:2.5rem}
+.camp-head{display:flex;align-items:flex-start;gap:.9rem;margin-bottom:1rem}
+.camp-bar{width:6px;align-self:stretch;border-radius:3px;min-height:38px}
+.camp-head h2{font-size:1.45rem;color:var(--primary);font-weight:800}
+.camp-meta{font-family:var(--mono);font-size:.78rem;color:var(--text-light);margin-top:.15rem}
+.camp-desc{color:var(--text-light);font-size:.92rem;margin-top:.3rem;max-width:760px}
+.camp-head .btn{margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;text-align:left;padding:0}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(13,10,26,.09)}
+.thumb{aspect-ratio:4/3;background:var(--secondary);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%}
+.thumb img,.thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .ph{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:#fff;font-weight:600;font-size:.9rem;text-transform:capitalize}
+.thumb .ph svg{width:38px;height:38px;opacity:.95}
+.thumb .badge{position:absolute;top:.6rem;left:.6rem}
+.thumb .ver{position:absolute;top:.6rem;right:.6rem;font-family:var(--mono);font-size:.72rem;background:rgba(13,10,26,.75);color:#fff;border-radius:6px;padding:.1rem .45rem}
+.card-body{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.card-title{font-weight:600;color:var(--primary);font-size:1.02rem;line-height:1.3}
+.card-meta{display:flex;flex-wrap:wrap;gap:.35rem .8rem;font-family:var(--mono);font-size:.75rem;color:var(--text-light)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.35rem}
+.due{font-size:.8rem;font-weight:500}
+.due.overdue{color:var(--red)}
+.due.soon{color:var(--amber)}
+.ccount{font-size:.8rem;color:var(--text-light);display:inline-flex;align-items:center;gap:.25rem}
+
+.pill{display:inline-flex;align-items:center;gap:.3rem;border-radius:999px;padding:.18rem .6rem;font-size:.74rem;font-weight:600;white-space:nowrap}
+.s-draft{background:var(--gray-bg);color:var(--gray)}
+.s-in_review{background:var(--amber-bg);color:var(--amber)}
+.s-changes_requested{background:var(--red-bg);color:var(--red)}
+.s-approved{background:var(--green-bg);color:var(--green)}
+.s-scheduled{background:var(--blue-bg);color:var(--blue)}
+.s-published{background:var(--violet-bg);color:var(--violet)}
+
+.empty{background:var(--white);border:1px dashed var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;color:var(--text-light)}
+.empty h3{color:var(--primary);margin-bottom:.4rem;font-size:1.2rem}
+.empty .btn{margin-top:1rem}
+
+/* calendar */
+.cal{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.cal-head{display:flex;align-items:center;gap:.6rem;padding:1rem 1.2rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.cal-head h2{font-size:1.3rem;color:var(--primary);margin-right:.5rem;min-width:170px}
+.legend{margin-left:auto;display:flex;gap:1rem;font-size:.8rem;color:var(--text-light);flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:.35rem}
+.lg-sched{width:14px;height:10px;border-radius:3px;background:var(--accent)}
+.lg-due{width:14px;height:10px;border-radius:3px;border:1.5px dashed var(--red)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal-dow{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-light);padding:.5rem .6rem;border-bottom:1px solid var(--border);background:#FBFAFE}
+.cal-day{min-height:118px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:.4rem;display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.cal-day:nth-child(7n){border-right:0}
+.cal-day.out{background:#FBFAFE}
+.cal-day.out .dnum{opacity:.4}
+.dnum{font-family:var(--mono);font-size:.78rem;color:var(--text-light);align-self:flex-end;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.cal-day.today .dnum{background:var(--accent);color:#fff}
+.ev{border:0;text-align:left;font-size:.74rem;line-height:1.25;padding:.22rem .4rem;border-radius:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;display:block}
+.ev.sched{color:#fff}
+.ev.duefb{background:#fff;border:1.5px dashed var(--red);color:var(--red);font-weight:500}
+.ev.duefb.met{border-color:var(--border);color:var(--text-light);text-decoration:line-through}
+.agenda{display:none}
+.ag-day{padding:.8rem 1rem;border-bottom:1px solid var(--border)}
+.ag-day h4{font-family:var(--mono);font-size:.78rem;color:var(--text-light);font-weight:400;margin-bottom:.4rem}
+.ag-day h4.today{color:var(--accent)}
+.ag-day .ev{white-space:normal;font-size:.85rem;padding:.4rem .6rem;margin-bottom:.3rem}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(13,10,26,.45);z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(620px,100%);background:var(--white);z-index:90;transform:translateX(100%);transition:transform .25s ease,box-shadow .25s,visibility .25s;display:flex;flex-direction:column;visibility:hidden}
+.drawer.open{transform:none;box-shadow:-20px 0 60px rgba(13,10,26,.2);visibility:visible}
+.dr-head{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+.dr-head .camp-tag{font-size:.8rem;color:var(--text-light);display:inline-flex;align-items:center;gap:.4rem}
+.dr-head .x{margin-left:auto;border:0;background:transparent;font-size:1.5rem;line-height:1;color:var(--text-light);width:36px;height:36px;border-radius:8px}
+.dr-head .x:hover{background:var(--secondary)}
+.dr-body{overflow-y:auto;flex:1}
+.dr-preview{background:var(--primary);display:flex;align-items:center;justify-content:center;max-height:420px;overflow:hidden}
+.dr-preview img,.dr-preview video{max-width:100%;max-height:420px;display:block}
+.dr-preview .thumb{aspect-ratio:16/7}
+.dr-main{padding:1.25rem}
+.dr-main h2{font-size:1.5rem;color:var(--primary);line-height:1.2;margin-bottom:.6rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1rem 0;padding:.9rem;background:var(--secondary);border-radius:10px}
+.fact small{display:block;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-light)}
+.fact div{font-weight:500;font-size:.92rem;color:var(--primary)}
+.fact .overdue{color:var(--red)}
+.desc{white-space:pre-wrap;color:var(--text);font-size:.95rem}
+.open-link{margin:1rem 0 .25rem}
+.dr-admin{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.thread{padding:1.25rem;border-top:1px solid var(--border);background:#FCFBFF}
+.thread h3{font-size:1rem;color:var(--primary);margin-bottom:.8rem}
+.msg{display:flex;gap:.65rem;margin-bottom:.9rem}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.msg.agency .avatar{background:var(--primary);color:#fff}
+.msg-body{flex:1;min-width:0}
+.msg-top{font-size:.85rem;display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.msg-top strong{color:var(--primary)}
+.msg-top time{font-family:var(--mono);font-size:.72rem;color:var(--text-light)}
+.tag-agency{font-size:.68rem;background:var(--primary);color:#fff;border-radius:4px;padding:0 .35rem}
+.msg-text{white-space:pre-wrap;font-size:.93rem;margin-top:.15rem;word-wrap:break-word}
+.msg.event .msg-text{font-weight:500}
+.msg.approved .msg-text::before{content:'✓ Approved';color:var(--green);display:block}
+.msg.changes_requested .msg-text::before{content:'Changes requested';color:var(--red);display:block}
+.msg.status .msg-text{color:var(--text-light);font-style:italic}
+.msg-text:empty{display:none}
+.msg.approved .msg-text:empty,.msg.changes_requested .msg-text:empty{display:block}
+.no-msgs{color:var(--text-light);font-size:.9rem;margin-bottom:1rem}
+.compose{border-top:1px solid var(--border);padding:1rem 1.25rem;background:var(--white)}
+.compose .who{display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)}
+.compose .who input{border:1px solid var(--border);border-radius:8px;padding:.35rem .6rem;font-size:.88rem;flex:1;max-width:240px}
+.compose textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:.65rem .8rem;min-height:78px;resize:vertical;font-size:.93rem}
+.compose textarea:focus,.compose input:focus,.field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.compose-actions{display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap;align-items:center}
+.compose-actions .grow{flex:1}
+.hint{font-size:.78rem;color:var(--text-light)}
+.err{color:var(--red);font-size:.85rem;margin-top:.4rem}
+
+/* modal */
+.modal-wrap{position:fixed;inset:0;background:rgba(13,10,26,.5);z-index:120;display:flex;align-items:flex-start;justify-content:center;padding:4vh 1rem;overflow-y:auto}
+.modal{background:var(--white);border-radius:16px;width:min(560px,100%);padding:1.5rem;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.modal h3{font-size:1.3rem;color:var(--primary);margin-bottom:1rem}
+.field{margin-bottom:.85rem}
+.field label{display:block;font-size:.82rem;font-weight:500;color:var(--text-light);margin-bottom:.25rem}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--border);border-radius:9px;padding:.55rem .7rem;font-size:.93rem;background:#fff}
+.field input[type=color]{height:42px;padding:.2rem;width:80px}
+.field input[type=checkbox]{width:auto;margin-right:.4rem}
+.field textarea{min-height:80px;resize:vertical}
+.field .help{font-size:.76rem;color:var(--text-light);margin-top:.2rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.modal-actions{display:flex;gap:.5rem;justify-content:flex-end;margin-top:1.2rem}
+.modal-actions .left{margin-right:auto}
+.linkbox{display:flex;gap:.5rem}
+.linkbox input{flex:1;font-family:var(--mono);font-size:.8rem}
+
+/* login / message screens */
+.center{max-width:420px;margin:12vh auto;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem}
+.center h2{color:var(--primary);margin-bottom:.4rem}
+.center p{color:var(--text-light);margin-bottom:1.2rem}
+.loading{text-align:center;color:var(--text-light);padding:4rem}
+
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;padding:.7rem 1.2rem;border-radius:10px;z-index:200;font-size:.9rem;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:90vw}
+
+@media (max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){
+  main{padding:1.2rem}
+  .top-inner{padding:.8rem 1.2rem}
+  .top-sep{display:none}
+  .cal-grid{display:none}
+  .agenda{display:block}
+  .facts{grid-template-columns:1fr 1fr}
+  .row2{grid-template-columns:1fr}
+  .legend{margin-left:0}
+  .cal-head h2{width:100%}
+}
+</style>
+</head>
+<body>
+<div id="demoBar" class="demo-bar hidden"></div>
+<header class="top">
+  <div class="top-inner">
+    <a href="../index.html" aria-label="Mad Hat Communications"><img src="../logo.svg" alt="Mad Hat" class="top-logo"></a>
+    <div class="top-sep"></div>
+    <div class="top-title"><small>Content review</small><strong id="clientName">&nbsp;</strong></div>
+    <div class="top-actions" id="topActions"></div>
+  </div>
+</header>
+<main id="app"><div class="loading">Loading…</div></main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-label="Content item"></aside>
+
+<script>
+(function(){
+'use strict';
+
+/* ───────────────────────── helpers ───────────────────────── */
+const CFG = window.PORTAL_CONFIG;
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => /^https?:\/\//i.test(String(u||'').trim()) ? String(u).trim() : '';
+const uid = () => (crypto.randomUUID ? crypto.randomUUID() : 'id-' + Math.random().toString(36).slice(2) + Date.now());
+const pad = n => String(n).padStart(2,'0');
+const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseD = s => { if(!s) return null; const [y,m,d] = s.slice(0,10).split('-').map(Number); return new Date(y, m-1, d); };
+const todayStr = () => ymd(new Date());
+const addDays = (s, n) => { const d = parseD(s); d.setDate(d.getDate()+n); return ymd(d); };
+const fmtD = s => s ? parseD(s).toLocaleDateString('en-IN', {day:'numeric', month:'short'}) : '—';
+const fmtDLong = s => s ? parseD(s).toLocaleDateString('en-IN', {weekday:'short', day:'numeric', month:'short', year:'numeric'}) : '—';
+const fmtTime = iso => { const d = new Date(iso); return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'}) + ', ' + d.toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'}); };
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+};
+function toast(msg, ms=2600){
+  document.querySelectorAll('.toast').forEach(x => x.remove());
+  const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), ms);
+}
+function errMsg(e){
+  const m = (e && (e.message || e.error_description || e.msg)) || String(e);
+  const map = {
+    invalid_link: 'This review link is not valid. Please check with Mad Hat for a fresh link.',
+    not_allowed: 'This item is no longer available on your link.',
+    note_required: 'Please write what needs to change before requesting changes.',
+    name_required: 'Please add your name first.',
+    name_and_comment_required: 'Please add your name and a comment.'
+  };
+  for (const k in map) if (m.includes(k)) return map[k];
+  return m;
+}
+
+const STATUS = {
+  draft:             {label:'Draft',             client:false},
+  in_review:         {label:'Awaiting feedback', client:true},
+  changes_requested: {label:'Changes requested', client:true},
+  approved:          {label:'Approved',          client:true},
+  scheduled:         {label:'Scheduled',         client:true},
+  published:         {label:'Live',              client:true}
+};
+const TYPES = ['creative','video','blog','document','social','email','other'];
+const TYPE_ICON = {
+  creative:'<path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="1.8" fill="currentColor"/><path d="M5 18l5-5 3 3 2-2 4 4" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  video:'<rect x="3" y="6" width="13" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 10l5-3v10l-5-3z" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  blog:'<path d="M5 4h10l4 4v12H5z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11h8M8 14h8M8 17h5" stroke="currentColor" stroke-width="1.8"/>',
+  document:'<path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  social:'<circle cx="6" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" stroke="currentColor" stroke-width="1.8"/>',
+  email:'<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  other:'<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8"/>'
+};
+const AWAITING = s => s === 'in_review';
+const CAN_DECIDE = s => s === 'in_review' || s === 'changes_requested' || s === 'approved';
+
+function previewOf(it){
+  const p = safeUrl(it.preview_url); if (p) return p;
+  const u = safeUrl(it.link_url); if (!u) return '';
+  let m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+  if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
+  m = u.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([\w-]{11})/);
+  if (m) return `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`;
+  if (/\.(png|jpe?g|gif|webp|avif|svg)(\?|$)/i.test(u)) return u;
+  if (/\.(mp4|webm|mov)(\?|$)/i.test(u)) return u;
+  return '';
+}
+const isVideo = u => /\.(mp4|webm|mov)(\?|$)/i.test(u);
+
+function dueInfo(it){
+  if (!it.feedback_due || !AWAITING(it.status)) return null;
+  const t = todayStr();
+  if (it.feedback_due < t) return {cls:'overdue', text:`Overdue · was due ${fmtD(it.feedback_due)}`};
+  if (it.feedback_due === t) return {cls:'overdue', text:'Feedback due today'};
+  if (it.feedback_due <= addDays(t, 3)) return {cls:'soon', text:`Feedback by ${fmtD(it.feedback_due)}`};
+  return {cls:'', text:`Feedback by ${fmtD(it.feedback_due)}`};
+}
+
+/* ───────────────────────── state ───────────────────────── */
+const params = new URLSearchParams(location.search);
+const configured = /^https:\/\//.test(CFG.supabaseUrl) && CFG.supabaseAnonKey && !CFG.supabaseAnonKey.startsWith('YOUR_');
+const S = {
+  mode: (!configured || params.has('demo')) ? 'demo' : (params.get('c') ? 'client' : 'admin'),
+  token: params.get('c'),
+  demoRole: 'admin',
+  clients: [], clientId: null, client: null,
+  campaigns: [], items: [], comments: [],
+  view: store.get('mh_portal_view') || 'list',
+  camp: 'all', quick: 'all', month: null, openId: null
+};
+const isAdmin = () => S.mode === 'admin' || (S.mode === 'demo' && S.demoRole === 'admin');
+let sb = null;
+
+/* ───────────────────────── backends ───────────────────────── */
+// Demo: in-memory sample data so the page can be tried before Supabase is set up.
+const DEMO = (() => {
+  const t = todayStr(), c1 = uid(), k1 = uid(), k2 = uid();
+  const db = {
+    clients: [{id:c1, name:'Demo Brand Co.', token:'demo-token'}],
+    campaigns: [
+      {id:k1, client_id:c1, name:'Festive Gifting', description:'Gift-box push across Instagram, Amazon and email.', color:'#9333EA', start_date:addDays(t,-6), end_date:addDays(t,14)},
+      {id:k2, client_id:c1, name:'Winter Range Launch', description:'Launch of the winter range — hero film, blog and performance creatives.', color:'#0EA5E9', start_date:addDays(t,10), end_date:addDays(t,40)}
+    ],
+    items: [], comments: []
+  };
+  const it = (campaign_id, title, type, status, scheduled, due, extra={}) => {
+    const row = {id:uid(), campaign_id, title, type, status, scheduled_for: scheduled==null?null:addDays(t,scheduled), feedback_due: due==null?null:addDays(t,due), link_url:'', preview_url:'', description:'', version:1, created_at:new Date().toISOString(), ...extra};
+    db.items.push(row); return row;
+  };
+  const a = it(k1,'Gift box hero — Instagram carousel (5 frames)','creative','in_review',3,1,{description:'Five-frame carousel introducing the three gift boxes. Copy on frame 5 has the offer code.'});
+  const b = it(k1,'Gifting guide — blog post','blog','changes_requested',6,-1,{description:'1,400-word guide targeting "festive gift ideas for her". Draft is in the linked doc.', link_url:'https://docs.google.com/document/d/example'});
+  it(k1,'Reels cut — unboxing (15s)','video','approved',2,-2);
+  it(k1,'Email: early-access announcement','email','scheduled',1,null);
+  it(k1,'Amazon A+ banner refresh','creative','in_review',8,-1);
+  it(k1,'Story set — countdown stickers','social','draft',9,5);
+  it(k2,'Winter hero film — rough cut v1','video','in_review',14,4,{description:'60s rough cut. Music is temp; colour grade not final.'});
+  it(k2,'Launch blog: caring for wool','blog','in_review',16,7);
+  it(k2,'Meta ads — 6 static variants','creative','draft',12,6);
+  const now = Date.now(), ago = h => new Date(now - h*3600e3).toISOString();
+  db.comments.push(
+    {id:uid(), item_id:b.id, author:'Mad Hat Team', body:'First draft is up — keen on your take on the intro.', kind:'comment', from_agency:true, created_at:ago(50)},
+    {id:uid(), item_id:b.id, author:'Priya (Brand)', body:'Intro is too long. Can we lead with the three picks and move the story lower?', kind:'changes_requested', from_agency:false, created_at:ago(20)},
+    {id:uid(), item_id:a.id, author:'Mad Hat Team', body:'Frames 1–4 final; frame 5 offer code is a placeholder.', kind:'comment', from_agency:true, created_at:ago(5)}
+  );
+  return db;
+})();
+
+const demoApi = {
+  async listClients(){ return DEMO.clients.map(c => ({...c})); },
+  async load(clientId){
+    const client = DEMO.clients.find(c => c.id === clientId) || DEMO.clients[0];
+    const campaigns = DEMO.campaigns.filter(c => c.client_id === client.id);
+    const ids = new Set(campaigns.map(c => c.id));
+    const items = DEMO.items.filter(i => ids.has(i.campaign_id));
+    const iids = new Set(items.map(i => i.id));
+    return {client, campaigns:campaigns.map(c=>({...c})), items:items.map(i=>({...i})), comments:DEMO.comments.filter(m => iids.has(m.item_id)).map(m=>({...m}))};
+  },
+  async comment(item_id, author, body, from_agency){
+    if (!author.trim() || !body.trim()) throw new Error('name_and_comment_required');
+    const row = {id:uid(), item_id, author, body, kind:'comment', from_agency, created_at:new Date().toISOString()};
+    DEMO.comments.push(row); return row;
+  },
+  async decide(item_id, author, decision, note, from_agency){
+    if (!author.trim()) throw new Error('name_required');
+    if (decision === 'changes_requested' && !note.trim()) throw new Error('note_required');
+    DEMO.items.find(i => i.id === item_id).status = decision;
+    const row = {id:uid(), item_id, author, body:note || null, kind:decision, from_agency, created_at:new Date().toISOString()};
+    DEMO.comments.push(row); return row;
+  },
+  async note(item_id, body){ const row = {id:uid(), item_id, author:CFG.agencyName, body, kind:'status', from_agency:true, created_at:new Date().toISOString()}; DEMO.comments.push(row); return row; },
+  async save(table, row){
+    const list = DEMO[table];
+    if (row.id){ const i = list.findIndex(r => r.id === row.id); list[i] = {...list[i], ...row}; return list[i]; }
+    const n = {id:uid(), created_at:new Date().toISOString(), ...row};
+    if (table === 'clients') n.token = Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2);
+    if (table === 'items') n.version = n.version || 1;
+    list.push(n); return n;
+  },
+  async remove(table, id){
+    DEMO[table] = DEMO[table].filter(r => r.id !== id);
+    if (table === 'campaigns') DEMO.items = DEMO.items.filter(i => i.campaign_id !== id);
+    if (table === 'clients') DEMO.campaigns = DEMO.campaigns.filter(c => c.client_id !== id);
+  },
+  async upload(file){ return URL.createObjectURL(file); }
+};
+
+const T = n => 'portal_' + n;
+const chk = ({data, error}) => { if (error) throw error; return data; };
+const adminApi = {
+  async listClients(){ return chk(await sb.from(T('clients')).select('*').order('name')); },
+  async load(clientId){
+    const client = chk(await sb.from(T('clients')).select('*').eq('id', clientId).single());
+    const campaigns = chk(await sb.from(T('campaigns')).select('*').eq('client_id', clientId).order('start_date', {nullsFirst:false}));
+    const cids = campaigns.map(c => c.id);
+    const items = cids.length ? chk(await sb.from(T('items')).select('*').in('campaign_id', cids).order('scheduled_for', {nullsFirst:false})) : [];
+    const iids = items.map(i => i.id);
+    const comments = iids.length ? chk(await sb.from(T('comments')).select('*').in('item_id', iids).order('created_at')) : [];
+    return {client, campaigns, items, comments};
+  },
+  async comment(item_id, author, body){
+    return chk(await sb.from(T('comments')).insert({item_id, author, body, kind:'comment', from_agency:true}).select().single());
+  },
+  async decide(item_id, author, decision, note){
+    if (decision === 'changes_requested' && !note.trim()) throw new Error('note_required');
+    chk(await sb.from(T('items')).update({status:decision}).eq('id', item_id));
+    return chk(await sb.from(T('comments')).insert({item_id, author, body:note || null, kind:decision, from_agency:true}).select().single());
+  },
+  async note(item_id, body){
+    return chk(await sb.from(T('comments')).insert({item_id, author:CFG.agencyName, body, kind:'status', from_agency:true}).select().single());
+  },
+  async save(table, row){
+    const {id, created_at, updated_at, token, ...rest} = row;
+    if (id) return chk(await sb.from(T(table)).update(rest).eq('id', id).select().single());
+    return chk(await sb.from(T(table)).insert(rest).select().single());
+  },
+  async remove(table, id){ chk(await sb.from(T(table)).delete().eq('id', id)); },
+  async upload(file){
+    const ext = (file.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g,'');
+    const path = `${S.clientId}/${uid()}.${ext}`;
+    chk(await sb.storage.from('portal-assets').upload(path, file, {cacheControl:'3600', upsert:false, contentType:file.type}));
+    return sb.storage.from('portal-assets').getPublicUrl(path).data.publicUrl;
+  }
+};
+
+const clientApi = {
+  async load(){ return chk(await sb.rpc('portal_get', {p_token:S.token})); },
+  async comment(item_id, author, body){ return chk(await sb.rpc('portal_comment', {p_token:S.token, p_item:item_id, p_author:author, p_body:body})); },
+  async decide(item_id, author, decision, note){ return chk(await sb.rpc('portal_decide', {p_token:S.token, p_item:item_id, p_author:author, p_decision:decision, p_note:note || null})); }
+};
+
+const api = () => S.mode === 'demo' ? demoApi : S.mode === 'admin' ? adminApi : clientApi;
+
+/* ───────────────────────── loading ───────────────────────── */
+async function refresh(){
+  let data;
+  if (S.mode === 'client') data = await clientApi.load();
+  else data = await api().load(S.clientId);
+  S.client = data.client; S.campaigns = data.campaigns || []; S.items = data.items || []; S.comments = data.comments || [];
+  if (!isAdmin()) S.items = S.items.filter(i => i.status !== 'draft');
+  if (S.camp !== 'all' && !S.campaigns.some(c => c.id === S.camp)) S.camp = 'all';
+}
+
+async function loadClients(){
+  S.clients = await api().listClients();
+  const saved = store.get('mh_portal_client');
+  if (!S.clients.some(c => c.id === S.clientId)) S.clientId = (S.clients.find(c => c.id === saved) || S.clients[0] || {}).id || null;
+}
+
+async function boot(){
+  if (S.mode === 'demo'){
+    const bar = $('#demoBar'); bar.classList.remove('hidden'); renderDemoBar();
+    await loadClients(); await refresh(); render(); return;
+  }
+  await loadSupabase();
+  sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
+  if (S.mode === 'client'){
+    try { await refresh(); render(); }
+    catch(e){ showMessage('Link not recognised', errMsg(e)); }
+    return;
+  }
+  const {data:{session}} = await sb.auth.getSession();
+  if (!session) return renderLogin();
+  await enterAdmin();
+}
+
+async function enterAdmin(){
+  try {
+    await loadClients();
+    if (S.clientId) await refresh(); else { S.client = null; S.campaigns = S.items = S.comments = []; }
+    render();
+  } catch(e){
+    showMessage('Could not load', errMsg(e) + ' — is your email listed in portal_admins?', true);
+  }
+}
+
+function loadSupabase(){
+  return new Promise((res, rej) => {
+    if (window.supabase) return res();
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    s.onload = res; s.onerror = () => rej(new Error('Could not load Supabase library'));
+    document.head.appendChild(s);
+  });
+}
+
+/* ───────────────────────── screens ───────────────────────── */
+function showMessage(title, text, withSignOut){
+  $('#clientName').textContent = '';
+  $('#topActions').innerHTML = withSignOut ? '<button class="btn-ghost" id="signOut">Sign out</button>' : '';
+  if (withSignOut) $('#signOut').onclick = signOut;
+  $('#app').innerHTML = `<div class="center"><h2>${esc(title)}</h2><p>${esc(text)}</p></div>`;
+}
+
+function renderLogin(){
+  $('#clientName').textContent = 'Agency sign-in';
+  $('#topActions').innerHTML = '';
+  $('#app').innerHTML = `
+    <form class="center" id="loginForm">
+      <h2>Sign in</h2>
+      <p>For the Mad Hat team. Clients use the review link they were sent.</p>
+      <div class="field"><label>Email</label><input type="email" name="email" required autocomplete="email"></div>
+      <div class="field"><label>Password</label><input type="password" name="password" required autocomplete="current-password"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center">Sign in</button>
+      <div class="err" id="loginErr"></div>
+    </form>`;
+  $('#loginForm').onsubmit = async e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    $('#loginErr').textContent = '';
+    const {error} = await sb.auth.signInWithPassword({email:f.get('email'), password:f.get('password')});
+    if (error) { $('#loginErr').textContent = error.message; return; }
+    await enterAdmin();
+  };
+}
+async function signOut(){ await sb.auth.signOut(); renderLogin(); }
+
+function renderDemoBar(){
+  $('#demoBar').innerHTML = `Demo mode — sample data, nothing is saved. Viewing as <strong>${S.demoRole === 'admin' ? 'Mad Hat (admin)' : 'client'}</strong>
+    <button id="demoSwap">Switch to ${S.demoRole === 'admin' ? 'client' : 'admin'} view</button>`;
+  $('#demoSwap').onclick = async () => { S.demoRole = S.demoRole === 'admin' ? 'client' : 'admin'; closeDrawer(); renderDemoBar(); await refresh(); render(); };
+}
+
+/* ───────────────────────── main render ───────────────────────── */
+function campOf(id){ return S.campaigns.find(c => c.id === id) || {name:'—', color:'#9333EA'}; }
+function commentsOf(id){ return S.comments.filter(m => m.item_id === id); }
+
+function filtered(){
+  const t = todayStr();
+  return S.items.filter(i => {
+    if (S.camp !== 'all' && i.campaign_id !== S.camp) return false;
+    if (S.quick === 'awaiting') return AWAITING(i.status);
+    if (S.quick === 'week') return AWAITING(i.status) && i.feedback_due && i.feedback_due >= t && i.feedback_due <= addDays(t, 7);
+    if (S.quick === 'overdue') return AWAITING(i.status) && i.feedback_due && i.feedback_due < t;
+    if (S.quick === 'approved') return ['approved','scheduled','published'].includes(i.status);
+    if (S.quick === 'changes') return i.status === 'changes_requested';
+    if (S.quick === 'draft') return i.status === 'draft';
+    return true;
+  });
+}
+
+function render(){
+  renderTop();
+  const app = $('#app');
+  if (isAdmin() && !S.clientId){
+    app.innerHTML = `<div class="empty"><h3>No clients yet</h3><p>Add your first client to get their private review link.</p><button class="btn btn-primary" id="e1">+ New client</button></div>`;
+    $('#e1').onclick = () => clientForm();
+    return;
+  }
+  const scope = S.items.filter(i => S.camp === 'all' || i.campaign_id === S.camp);
+  const t = todayStr();
+  const n = {
+    awaiting: scope.filter(i => AWAITING(i.status)).length,
+    week: scope.filter(i => AWAITING(i.status) && i.feedback_due && i.feedback_due >= t && i.feedback_due <= addDays(t,7)).length,
+    overdue: scope.filter(i => AWAITING(i.status) && i.feedback_due && i.feedback_due < t).length,
+    approved: scope.filter(i => ['approved','scheduled','published'].includes(i.status)).length
+  };
+  const stat = (k, num, label, warn) => `<button class="stat ${S.quick===k?'active':''} ${warn && num ? 'warn':''}" data-quick="${k}"><div class="stat-num">${num}</div><div class="stat-label">${label}</div></button>`;
+
+  const statusOpts = [['all','All content'],['awaiting','Awaiting feedback'],['changes','Changes requested'],['approved','Approved & live'],['week','Feedback due this week'],['overdue','Overdue feedback']];
+  if (isAdmin()) statusOpts.push(['draft','Drafts (hidden from client)']);
+
+  app.innerHTML = `
+    <section class="stats">
+      ${stat('awaiting', n.awaiting, isAdmin() ? 'Awaiting client feedback' : 'Awaiting your feedback')}
+      ${stat('week', n.week, 'Feedback due in 7 days')}
+      ${stat('overdue', n.overdue, 'Feedback overdue', true)}
+      ${stat('approved', n.approved, 'Approved')}
+    </section>
+    <section class="toolbar">
+      <div class="chips">
+        <button class="chip ${S.camp==='all'?'active':''}" data-camp="all">All campaigns</button>
+        ${S.campaigns.map(c => `<button class="chip ${S.camp===c.id?'active':''}" data-camp="${esc(c.id)}"><span class="dot" style="background:${esc(c.color)}"></span>${esc(c.name)}</button>`).join('')}
+      </div>
+      <div class="spacer"></div>
+      <select class="plain" id="quickSel" aria-label="Filter">${statusOpts.map(([v,l]) => `<option value="${v}" ${S.quick===v?'selected':''}>${l}</option>`).join('')}</select>
+      <div class="seg" role="tablist">
+        <button data-view="list" class="${S.view==='list'?'active':''}">Content</button>
+        <button data-view="calendar" class="${S.view==='calendar'?'active':''}">Calendar</button>
+      </div>
+      ${isAdmin() ? `<button class="btn" id="newCamp">+ Campaign</button><button class="btn btn-primary" id="newItem" ${S.campaigns.length?'':'disabled'}>+ Content</button>` : ''}
+    </section>
+    <section id="view"></section>`;
+
+  app.querySelectorAll('[data-quick]').forEach(b => b.onclick = () => { S.quick = S.quick === b.dataset.quick ? 'all' : b.dataset.quick; render(); });
+  app.querySelectorAll('[data-camp]').forEach(b => b.onclick = () => { S.camp = b.dataset.camp; render(); });
+  app.querySelectorAll('[data-view]').forEach(b => b.onclick = () => { S.view = b.dataset.view; store.set('mh_portal_view', S.view); render(); });
+  $('#quickSel').onchange = e => { S.quick = e.target.value; render(); };
+  if (isAdmin()){
+    $('#newCamp').onclick = () => campaignForm();
+    $('#newItem').onclick = () => itemForm();
+  }
+  S.view === 'calendar' ? renderCalendar() : renderList();
+  if (S.openId) renderDrawer();
+}
+
+function renderTop(){
+  $('#clientName').textContent = S.client ? S.client.name : (isAdmin() ? 'All clients' : '');
+  document.title = (S.client ? S.client.name + ' · ' : '') + 'Content Review · Mad Hat';
+  const box = $('#topActions');
+  if (!isAdmin()){ box.innerHTML = ''; return; }
+  box.innerHTML = `
+    ${S.clients.length ? `<select id="clientSel" aria-label="Client">${S.clients.map(c => `<option value="${esc(c.id)}" ${c.id===S.clientId?'selected':''}>${esc(c.name)}</option>`).join('')}</select>` : ''}
+    ${S.clientId ? '<button class="btn-ghost" id="shareBtn">Client link</button><button class="btn-ghost" id="editClient">Edit client</button>' : ''}
+    <button class="btn-ghost" id="addClient">+ Client</button>
+    ${S.mode === 'admin' ? '<button class="btn-ghost" id="signOut">Sign out</button>' : ''}`;
+  const sel = $('#clientSel');
+  if (sel) sel.onchange = async e => { S.clientId = e.target.value; store.set('mh_portal_client', S.clientId); S.camp = 'all'; S.quick = 'all'; closeDrawer(); await refresh(); render(); };
+  if ($('#shareBtn')) $('#shareBtn').onclick = shareDialog;
+  if ($('#editClient')) $('#editClient').onclick = () => clientForm(S.clients.find(c => c.id === S.clientId));
+  $('#addClient').onclick = () => clientForm();
+  if ($('#signOut')) $('#signOut').onclick = signOut;
+}
+
+/* ── list view ── */
+function thumbHtml(it, big){
+  const camp = campOf(it.campaign_id), p = previewOf(it);
+  let inner;
+  if (p && isVideo(p)) inner = `<video src="${esc(p)}" ${big ? 'controls' : 'muted preload="metadata"'} playsinline></video>`;
+  else if (p) inner = `<img src="${esc(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Preview unavailable'}))">`;
+  else inner = `<div class="ph"><svg viewBox="0 0 24 24">${TYPE_ICON[it.type] || TYPE_ICON.other}</svg>${esc(it.type)}</div>`;
+  const bg = p ? '' : `style="background:linear-gradient(135deg, ${esc(camp.color)}, ${esc(camp.color)}aa)"`;
+  return `<div class="thumb" ${bg}>${inner}${big ? '' : `<span class="pill s-${esc(it.status)} badge">${esc(STATUS[it.status]?.label || it.status)}</span>`}${it.version > 1 && !big ? `<span class="ver">v${it.version}</span>` : ''}</div>`;
+}
+
+function cardHtml(it){
+  const d = dueInfo(it), cc = commentsOf(it.id).filter(m => m.kind !== 'status').length;
+  return `<button class="card" data-open="${esc(it.id)}">
+    ${thumbHtml(it)}
+    <div class="card-body">
+      <div class="card-title">${esc(it.title)}</div>
+      <div class="card-meta"><span>${esc(it.type)}</span>${it.scheduled_for ? `<span>Goes live ${fmtD(it.scheduled_for)}</span>` : ''}</div>
+      <div class="card-foot">
+        <span class="due ${d ? d.cls : ''}">${d ? esc(d.text) : ''}</span>
+        <span class="ccount"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>${cc}</span>
+      </div>
+    </div>
+  </button>`;
+}
+
+function renderList(){
+  const view = $('#view'), items = filtered();
+  if (!S.campaigns.length){
+    view.innerHTML = `<div class="empty"><h3>No campaigns yet</h3><p>${isAdmin() ? 'Create a campaign, then add content to it for review.' : 'Content for review will appear here.'}</p>${isAdmin() ? '<button class="btn btn-primary" id="e2">+ Campaign</button>' : ''}</div>`;
+    if ($('#e2')) $('#e2').onclick = () => campaignForm();
+    return;
+  }
+  const camps = S.campaigns.filter(c => S.camp === 'all' || c.id === S.camp);
+  const html = camps.map(c => {
+    const list = items.filter(i => i.campaign_id === c.id);
+    if (!list.length && S.quick !== 'all') return '';
+    const dates = c.start_date || c.end_date ? `${fmtD(c.start_date)} – ${fmtD(c.end_date)}` : '';
+    return `<div class="campaign">
+      <div class="camp-head">
+        <div class="camp-bar" style="background:${esc(c.color)}"></div>
+        <div><h2>${esc(c.name)}</h2>
+          <div class="camp-meta">${dates ? esc(dates) + ' · ' : ''}${list.length} item${list.length===1?'':'s'}</div>
+          ${c.description ? `<div class="camp-desc">${esc(c.description)}</div>` : ''}</div>
+        ${isAdmin() ? `<button class="btn btn-sm" data-editcamp="${esc(c.id)}">Edit</button>` : ''}
+      </div>
+      ${list.length ? `<div class="grid">${list.map(cardHtml).join('')}</div>` : `<div class="empty" style="padding:1.5rem">Nothing here yet.</div>`}
+    </div>`;
+  }).join('');
+  view.innerHTML = html || `<div class="empty"><h3>Nothing matches this filter</h3><button class="btn" id="clr">Show everything</button></div>`;
+  if ($('#clr')) $('#clr').onclick = () => { S.quick = 'all'; render(); };
+  view.querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+  view.querySelectorAll('[data-editcamp]').forEach(b => b.onclick = () => campaignForm(S.campaigns.find(c => c.id === b.dataset.editcamp)));
+}
+
+/* ── calendar view ── */
+function renderCalendar(){
+  if (!S.month){ const d = new Date(); S.month = new Date(d.getFullYear(), d.getMonth(), 1); }
+  const m = S.month, y = m.getFullYear(), mo = m.getMonth(), t = todayStr();
+  const items = filtered();
+  const start = new Date(y, mo, 1); start.setDate(1 - ((start.getDay() + 6) % 7)); // Monday start
+  const last = new Date(y, mo + 1, 0);
+  const end = new Date(last); end.setDate(last.getDate() + (6 - ((last.getDay() + 6) % 7)));
+
+  const eventsOn = ds => {
+    const out = [];
+    items.forEach(i => {
+      if (i.scheduled_for === ds) out.push({i, kind:'sched'});
+      if (i.feedback_due === ds && ['in_review','changes_requested','approved','scheduled','published'].includes(i.status)) out.push({i, kind:'due'});
+    });
+    return out.sort((a,b) => (a.kind === 'due' ? 0 : 1) - (b.kind === 'due' ? 0 : 1));
+  };
+  const evHtml = ({i, kind}) => {
+    const c = campOf(i.campaign_id);
+    if (kind === 'sched') return `<button class="ev sched" data-open="${esc(i.id)}" style="background:${esc(c.color)}" title="${esc(i.title)} — goes live">${esc(i.title)}</button>`;
+    const met = !AWAITING(i.status);
+    return `<button class="ev duefb ${met ? 'met' : ''}" data-open="${esc(i.id)}" title="Feedback due: ${esc(i.title)}">Feedback: ${esc(i.title)}</button>`;
+  };
+
+  let cells = '', agenda = '';
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)){
+    const ds = ymd(d), evs = eventsOn(ds), out = d.getMonth() !== mo;
+    cells += `<div class="cal-day ${out?'out':''} ${ds===t?'today':''}"><span class="dnum">${d.getDate()}</span>${evs.map(evHtml).join('')}</div>`;
+    if (!out && evs.length) agenda += `<div class="ag-day"><h4 class="${ds===t?'today':''}">${fmtDLong(ds)}${ds===t?' · Today':''}</h4>${evs.map(evHtml).join('')}</div>`;
+  }
+  $('#view').innerHTML = `<div class="cal">
+    <div class="cal-head">
+      <h2>${m.toLocaleDateString('en-IN', {month:'long', year:'numeric'})}</h2>
+      <button class="btn btn-sm" id="prevM" aria-label="Previous month">‹</button>
+      <button class="btn btn-sm" id="todayM">Today</button>
+      <button class="btn btn-sm" id="nextM" aria-label="Next month">›</button>
+      <div class="legend"><span><i class="lg-sched"></i>Goes live</span><span><i class="lg-due"></i>Feedback due</span></div>
+    </div>
+    <div class="cal-grid">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x => `<div class="cal-dow">${x}</div>`).join('')}${cells}</div>
+    <div class="agenda">${agenda || '<div class="ag-day">Nothing scheduled this month.</div>'}</div>
+  </div>`;
+  $('#prevM').onclick = () => { S.month = new Date(y, mo - 1, 1); renderCalendar(); };
+  $('#nextM').onclick = () => { S.month = new Date(y, mo + 1, 1); renderCalendar(); };
+  $('#todayM').onclick = () => { S.month = null; renderCalendar(); };
+  $('#view').querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+}
+
+/* ───────────────────────── item drawer ───────────────────────── */
+function openDrawer(id){ S.openId = id; renderDrawer(); }
+function closeDrawer(){
+  S.openId = null;
+  $('#drawer').classList.remove('open'); $('#drawer').setAttribute('aria-hidden','true');
+  $('#scrim').classList.remove('open');
+}
+$('#scrim').onclick = closeDrawer;
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.querySelector('.modal-wrap')) closeDrawer(); });
+
+function msgHtml(m){
+  const initial = esc((m.author || '?').trim().charAt(0).toUpperCase());
+  return `<div class="msg ${m.from_agency ? 'agency' : ''} ${esc(m.kind)} ${m.kind !== 'comment' ? 'event' : ''}">
+    <div class="avatar">${initial}</div>
+    <div class="msg-body">
+      <div class="msg-top"><strong>${esc(m.author)}</strong>${m.from_agency ? '<span class="tag-agency">Mad Hat</span>' : ''}<time>${fmtTime(m.created_at)}</time></div>
+      <div class="msg-text">${esc(m.body || '')}</div>
+    </div></div>`;
+}
+
+function renderDrawer(){
+  const it = S.items.find(i => i.id === S.openId);
+  if (!it) return closeDrawer();
+  const c = campOf(it.campaign_id), d = dueInfo(it), link = safeUrl(it.link_url);
+  const msgs = commentsOf(it.id);
+  const myName = isAdmin() ? CFG.agencyName : (store.get('mh_portal_name') || '');
+  const dr = $('#drawer');
+  const draft = $('#cmpText') && $('#cmpText').value; // keep typed text across re-renders
+  dr.innerHTML = `
+    <div class="dr-head">
+      <span class="camp-tag"><span class="dot" style="width:9px;height:9px;border-radius:50%;background:${esc(c.color)}"></span>${esc(c.name)}</span>
+      <span class="pill s-${esc(it.status)}">${esc(STATUS[it.status]?.label || it.status)}</span>
+      ${it.version > 1 ? `<span class="pill s-draft">v${it.version}</span>` : ''}
+      <button class="x" id="drClose" aria-label="Close">×</button>
+    </div>
+    <div class="dr-body">
+      <div class="dr-preview">${thumbHtml(it, true)}</div>
+      <div class="dr-main">
+        <h2>${esc(it.title)}</h2>
+        <div class="facts">
+          <div class="fact"><small>Type</small><div style="text-transform:capitalize">${esc(it.type)}</div></div>
+          <div class="fact"><small>Goes live</small><div>${it.scheduled_for ? fmtD(it.scheduled_for) : 'TBC'}</div></div>
+          <div class="fact"><small>Feedback by</small><div class="${d && d.cls === 'overdue' ? 'overdue' : ''}">${it.feedback_due ? fmtD(it.feedback_due) : '—'}${d && d.cls === 'overdue' ? ' · overdue' : ''}</div></div>
+        </div>
+        ${it.description ? `<div class="desc">${esc(it.description)}</div>` : ''}
+        ${link ? `<div class="open-link"><a class="btn btn-dark" href="${esc(link)}" target="_blank" rel="noopener">Open file ↗</a></div>` : ''}
+        ${isAdmin() ? `<div class="dr-admin">
+            <button class="btn btn-sm" id="drEdit">Edit</button>
+            <select class="plain" id="drStatus" style="padding:.3rem .5rem;font-size:.82rem">${Object.entries(STATUS).map(([k,v]) => `<option value="${k}" ${k===it.status?'selected':''}>${v.label}${k==='draft'?' (hidden)':''}</option>`).join('')}</select>
+            <button class="btn btn-sm" id="drVersion">New version uploaded</button>
+          </div>` : ''}
+      </div>
+      <div class="thread">
+        <h3>Feedback &amp; approvals</h3>
+        ${msgs.length ? msgs.map(msgHtml).join('') : '<p class="no-msgs">No feedback yet.</p>'}
+      </div>
+    </div>
+    <div class="compose">
+      ${isAdmin() ? '' : `<div class="who">Your name <input id="cmpName" value="${esc(myName)}" placeholder="e.g. Priya, Marketing" maxlength="80"></div>`}
+      <textarea id="cmpText" placeholder="${isAdmin() ? 'Reply to the client…' : 'Write feedback, or add a note with your approval…'}" maxlength="5000"></textarea>
+      <div class="compose-actions">
+        <button class="btn" id="cmpSend">Comment</button>
+        <span class="grow"></span>
+        ${CAN_DECIDE(it.status) && !isAdmin() ? `
+          <button class="btn btn-changes" id="cmpChanges" ${it.status==='changes_requested'?'disabled':''}>Request changes</button>
+          <button class="btn btn-approve" id="cmpApprove" ${it.status==='approved'?'disabled':''}>✓ Approve</button>` : ''}
+      </div>
+      ${CAN_DECIDE(it.status) && !isAdmin() ? '<div class="hint" style="margin-top:.4rem">To request changes, describe them in the box first.</div>' : ''}
+      <div class="err" id="cmpErr"></div>
+    </div>`;
+  if (draft) $('#cmpText').value = draft;
+  dr.classList.add('open'); dr.setAttribute('aria-hidden','false'); $('#scrim').classList.add('open');
+  const th = dr.querySelector('.dr-body'); th.scrollTop = th.scrollHeight > 900 && msgs.length > 3 ? th.scrollHeight : 0;
+  $('#drClose').onclick = closeDrawer;
+
+  const author = () => {
+    if (isAdmin()) return CFG.agencyName;
+    const n = $('#cmpName').value.trim(); if (n) store.set('mh_portal_name', n); return n;
+  };
+  const run = async (btn, fn) => {
+    $('#cmpErr').textContent = ''; btn.disabled = true;
+    try { await fn(); $('#cmpText').value = ''; await refresh(); render(); }
+    catch(e){ $('#cmpErr').textContent = errMsg(e); btn.disabled = false; }
+  };
+  $('#cmpSend').onclick = e => run(e.currentTarget, async () => {
+    const body = $('#cmpText').value.trim(), a = author();
+    if (!a) throw new Error('name_required');
+    if (!body) throw new Error('Write a comment first.');
+    await api().comment(it.id, a, body, isAdmin());
+  });
+  if ($('#cmpApprove')) $('#cmpApprove').onclick = e => run(e.currentTarget, async () => {
+    const a = author(); if (!a) throw new Error('name_required');
+    await api().decide(it.id, a, 'approved', $('#cmpText').value.trim(), false);
+    toast('Approved — thank you!');
+  });
+  if ($('#cmpChanges')) $('#cmpChanges').onclick = e => run(e.currentTarget, async () => {
+    const a = author(); if (!a) throw new Error('name_required');
+    const note = $('#cmpText').value.trim();
+    if (!note) { $('#cmpText').focus(); throw new Error('note_required'); }
+    await api().decide(it.id, a, 'changes_requested', note, false);
+    toast('Changes requested — we’re on it.');
+  });
+  if (isAdmin()){
+    $('#drEdit').onclick = () => itemForm(it);
+    $('#drStatus').onchange = async e => {
+      const s = e.target.value;
+      try { await api().save('items', {id:it.id, status:s}); await api().note(it.id, `Status set to “${STATUS[s].label}”.`); await refresh(); render(); }
+      catch(err){ toast(errMsg(err)); }
+    };
+    $('#drVersion').onclick = async () => {
+      try {
+        const v = (it.version || 1) + 1;
+        await api().save('items', {id:it.id, version:v, status:'in_review'});
+        await api().note(it.id, `Version ${v} uploaded — ready for review.`);
+        await refresh(); render(); toast(`Marked as v${v}, awaiting feedback`);
+      } catch(err){ toast(errMsg(err)); }
+    };
+  }
+}
+
+/* ───────────────────────── admin forms ───────────────────────── */
+function modal(title, bodyHtml, {onSubmit, onDelete, submitLabel='Save'} = {}){
+  const wrap = document.createElement('div'); wrap.className = 'modal-wrap';
+  wrap.innerHTML = `<form class="modal" novalidate><h3>${esc(title)}</h3>${bodyHtml}
+    <div class="err" data-err></div>
+    <div class="modal-actions">
+      ${onDelete ? '<button type="button" class="btn btn-danger left" data-del>Delete</button>' : ''}
+      <button type="button" class="btn" data-cancel>Cancel</button>
+      ${onSubmit ? `<button class="btn btn-primary" data-submit>${esc(submitLabel)}</button>` : ''}
+    </div></form>`;
+  document.body.appendChild(wrap);
+  const form = wrap.querySelector('form'), close = () => wrap.remove();
+  wrap.addEventListener('mousedown', e => { if (e.target === wrap) close(); });
+  wrap.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  form.querySelector('[data-cancel]').onclick = close;
+  let armed = false;
+  if (onDelete) form.querySelector('[data-del]').onclick = async e => {
+    const b = e.currentTarget;
+    if (!armed){ armed = true; b.textContent = 'Click again to delete'; return; }
+    try { await onDelete(); close(); } catch(err){ form.querySelector('[data-err]').textContent = errMsg(err); }
+  };
+  form.onsubmit = async e => {
+    e.preventDefault();
+    const req = [...form.querySelectorAll('[required]')].find(x => !x.value.trim());
+    if (req){ form.querySelector('[data-err]').textContent = 'Please fill in the required fields.'; req.focus(); return; }
+    const btn = form.querySelector('[data-submit]'); btn.disabled = true;
+    try { await onSubmit(new FormData(form), form); close(); }
+    catch(err){ form.querySelector('[data-err]').textContent = errMsg(err); btn.disabled = false; }
+  };
+  const first = form.querySelector('input,select,textarea'); if (first) first.focus();
+  return form;
+}
+const val = (fd, k) => { const v = (fd.get(k) || '').toString().trim(); return v || null; };
+const clientLink = c => `${location.origin}${location.pathname}?c=${encodeURIComponent(c.token)}`;
+
+function clientForm(c){
+  modal(c ? 'Edit client' : 'New client', `
+    <div class="field"><label>Client name *</label><input name="name" required value="${esc(c?.name)}" placeholder="e.g. Empressa"></div>`, {
+    onSubmit: async fd => {
+      const row = await api().save('clients', {...(c ? {id:c.id} : {}), name:val(fd,'name')});
+      S.clientId = row.id; store.set('mh_portal_client', row.id);
+      await loadClients(); await refresh(); render();
+      if (!c) shareDialog();
+    },
+    onDelete: c ? async () => {
+      await api().remove('clients', c.id); S.clientId = null; closeDrawer();
+      await loadClients(); if (S.clientId) await refresh(); render(); toast('Client deleted');
+    } : null
+  });
+}
+
+function shareDialog(){
+  const c = S.clients.find(x => x.id === S.clientId); if (!c) return;
+  const url = clientLink(c);
+  const f = modal(`Review link for ${c.name}`, `
+    <p class="hint" style="margin-bottom:.8rem;font-size:.9rem">Anyone with this link can view this client's content (not drafts), comment and approve. Share it only with the client's team.</p>
+    <div class="linkbox"><input readonly value="${esc(url)}" id="shareUrl"><button type="button" class="btn btn-primary" id="copyUrl">Copy</button></div>
+    <p class="hint" style="margin-top:.6rem"><a href="${esc(url)}" target="_blank" rel="noopener">Open as the client sees it ↗</a></p>`);
+  f.querySelector('#copyUrl').onclick = async () => {
+    const inp = f.querySelector('#shareUrl'); inp.select();
+    try { await navigator.clipboard.writeText(url); toast('Link copied'); }
+    catch(e){ try { document.execCommand('copy'); toast('Link copied'); } catch(_){ toast('Select the link and copy it'); } }
+  };
+}
+
+function campaignForm(c){
+  modal(c ? 'Edit campaign' : 'New campaign', `
+    <div class="field"><label>Campaign name *</label><input name="name" required value="${esc(c?.name)}" placeholder="e.g. Festive Gifting 2026"></div>
+    <div class="field"><label>Description</label><textarea name="description" placeholder="Goal, channels, key message">${esc(c?.description)}</textarea></div>
+    <div class="row2">
+      <div class="field"><label>Starts</label><input type="date" name="start_date" value="${esc(c?.start_date)}"></div>
+      <div class="field"><label>Ends</label><input type="date" name="end_date" value="${esc(c?.end_date)}"></div>
+    </div>
+    <div class="field"><label>Colour (used on cards and the calendar)</label><input type="color" name="color" value="${esc(c?.color || '#9333EA')}"></div>`, {
+    onSubmit: async fd => {
+      await api().save('campaigns', {...(c ? {id:c.id} : {client_id:S.clientId}), name:val(fd,'name'), description:val(fd,'description'), start_date:val(fd,'start_date'), end_date:val(fd,'end_date'), color:val(fd,'color') || '#9333EA'});
+      await refresh(); render();
+    },
+    onDelete: c ? async () => { await api().remove('campaigns', c.id); closeDrawer(); await refresh(); render(); toast('Campaign deleted'); } : null
+  });
+}
+
+function itemForm(it){
+  const campDefault = it?.campaign_id || (S.camp !== 'all' ? S.camp : S.campaigns[0]?.id);
+  const f = modal(it ? 'Edit content' : 'Add content for review', `
+    <div class="field"><label>Title *</label><input name="title" required value="${esc(it?.title)}" placeholder="e.g. Hero carousel — Instagram"></div>
+    <div class="row2">
+      <div class="field"><label>Campaign *</label><select name="campaign_id" required>${S.campaigns.map(c => `<option value="${esc(c.id)}" ${c.id===campDefault?'selected':''}>${esc(c.name)}</option>`).join('')}</select></div>
+      <div class="field"><label>Type</label><select name="type">${TYPES.map(t => `<option ${t===(it?.type||'creative')?'selected':''}>${t}</option>`).join('')}</select></div>
+    </div>
+    <div class="field"><label>Link to the file</label><input type="url" name="link_url" value="${esc(it?.link_url)}" placeholder="Google Drive / Docs / Figma / YouTube link">
+      <div class="help">Drive files shared as "anyone with the link" and YouTube links get a preview automatically.</div></div>
+    <div class="field"><label>Preview image or video</label>
+      <input type="file" name="file" accept="image/*,video/mp4,video/webm,video/quicktime">
+      <input type="url" name="preview_url" value="${esc(it?.preview_url)}" placeholder="…or paste an image URL" style="margin-top:.4rem">
+      <div class="help" data-up></div></div>
+    <div class="field"><label>Notes for the client</label><textarea name="description" placeholder="What to look at, what's final, what's placeholder">${esc(it?.description)}</textarea></div>
+    <div class="row2">
+      <div class="field"><label>Goes live on</label><input type="date" name="scheduled_for" value="${esc(it?.scheduled_for)}"></div>
+      <div class="field"><label>Feedback needed by</label><input type="date" name="feedback_due" value="${esc(it?.feedback_due)}"></div>
+    </div>
+    <div class="field"><label>Status</label><select name="status">${Object.entries(STATUS).map(([k,v]) => `<option value="${k}" ${k===(it?.status||'in_review')?'selected':''}>${v.label}${k==='draft'?' (hidden from client)':''}</option>`).join('')}</select></div>`, {
+    submitLabel: it ? 'Save' : 'Add',
+    onSubmit: async (fd, form) => {
+      let preview = val(fd,'preview_url');
+      const file = form.querySelector('[name=file]').files[0];
+      if (file){
+        if (file.size > 50 * 1024 * 1024) throw new Error('File is over 50 MB — link it from Drive instead.');
+        form.querySelector('[data-up]').textContent = 'Uploading…';
+        preview = await api().upload(file);
+      }
+      const link = val(fd,'link_url');
+      if (link && !safeUrl(link)) throw new Error('Links must start with https://');
+      if (preview && !safeUrl(preview) && !preview.startsWith('blob:')) throw new Error('Preview URL must start with https://');
+      const status = val(fd,'status');
+      const row = await api().save('items', {...(it ? {id:it.id} : {}), title:val(fd,'title'), campaign_id:val(fd,'campaign_id'), type:val(fd,'type'), link_url:link, preview_url:preview, description:val(fd,'description'), scheduled_for:val(fd,'scheduled_for'), feedback_due:val(fd,'feedback_due'), status});
+      if (it && it.status !== status) await api().note(it.id, `Status set to “${STATUS[status].label}”.`);
+      await refresh(); render();
+      if (!it) toast(status === 'draft' ? 'Added as a draft (client can’t see it yet)' : 'Added — the client can see it now');
+      return row;
+    },
+    onDelete: it ? async () => { await api().remove('items', it.id); closeDrawer(); await refresh(); render(); toast('Deleted'); } : null
+  });
+}
+
+boot().catch(e => showMessage('Something went wrong', errMsg(e)));
+})();
+</script>
+</body>
+</html>
