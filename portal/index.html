@@ -69,6 +69,39 @@ main{max-width:1400px;margin:0 auto;padding:2rem}
 .chip .dot{width:9px;height:9px;border-radius:50%}
 .chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .toolbar .spacer{flex:1}
+/* hub-style tabs */
+.tabs{display:flex;gap:.25rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;overflow-x:auto}
+.tab{border:0;background:transparent;padding:.7rem 1.1rem;font-size:1rem;font-weight:600;color:var(--text-light);border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;display:inline-flex;align-items:center;gap:.45rem}
+.tab:hover{color:var(--primary)}
+.tab.active{color:var(--primary);border-bottom-color:var(--accent)}
+.tab .n{font-size:.75rem;font-weight:700;background:var(--amber-bg);color:var(--amber);border-radius:999px;padding:.05rem .5rem}
+.tab.manage{margin-left:auto;background:var(--accent);color:#fff;border-radius:10px 10px 0 0}
+.tab.manage.active{background:var(--primary);border-bottom-color:var(--primary)}
+.tab.manage .n{background:#fff;color:var(--accent)}
+.preview-strip{background:var(--primary);color:#EDE8FF;font-size:.9rem;padding:.55rem 1rem;display:flex;gap:.8rem;align-items:center;justify-content:center;flex-wrap:wrap}
+.preview-strip button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:.3rem .8rem;font-weight:600}
+.subtabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.sec{margin-bottom:2.2rem}
+.sec-head{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.8rem}
+.sec-head h3{font-size:1.15rem;color:var(--primary)}
+.sec-head .btn{margin-left:auto}
+.rows{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.r{display:flex;gap:1rem;align-items:center;padding:.8rem 1rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.r:last-child{border-bottom:0}
+.r .main{flex:1;min-width:220px}
+.r .sub{font-size:.8rem;color:var(--text-light);margin-top:.15rem}
+.r .q{font-size:.88rem;margin-top:.3rem;white-space:pre-wrap}
+.r .acts{display:flex;gap:.4rem;flex-wrap:wrap}
+.lnk{border:0;background:none;padding:0;color:var(--primary);font-weight:600;text-align:left}
+.lnk:hover{color:var(--accent);text-decoration:underline}
+.tblwrap{overflow-x:auto;background:var(--white);border:1px solid var(--border);border-radius:var(--radius)}
+table.mt{width:100%;border-collapse:collapse;font-size:.88rem;min-width:760px}
+table.mt th{text-align:left;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-light);padding:.65rem .8rem;border-bottom:1px solid var(--border);background:#FBFAFE}
+table.mt td{padding:.6rem .8rem;border-bottom:1px solid var(--border);vertical-align:middle}
+table.mt tr:last-child td{border-bottom:0}
+table.mt td.d{font-family:var(--mono);font-size:.78rem;color:var(--text-light);white-space:nowrap}
+.cdot{display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap}
+.cdot i{width:9px;height:9px;border-radius:50%;display:inline-block}
 .seg{display:inline-flex;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:3px}
 .seg button{border:0;background:transparent;padding:.4rem .9rem;border-radius:7px;font-size:.88rem;color:var(--text-light)}
 .seg button.active{background:var(--accent);color:#fff}
@@ -260,6 +293,7 @@ select.plain{border:1px solid var(--border);background:var(--white);border-radiu
 </head>
 <body>
 <div id="demoBar" class="demo-bar hidden"></div>
+<div id="previewStrip" class="preview-strip hidden"></div>
 <header class="top">
   <div class="top-inner">
     <a href="../index.html" aria-label="Mad Hat Communications"><img src="../logo.svg" alt="Mad Hat" class="top-logo"></a>
@@ -379,7 +413,7 @@ const S = {
   demoRole: 'admin',
   clients: [], clientId: null, client: null,
   campaigns: [], items: [], comments: [],
-  view: store.get('mh_portal_view') || 'list',
+  view: ['calendar','list','approvals','manage'].includes(store.get('mh_portal_view')) ? store.get('mh_portal_view') : 'calendar', atab: 'review', canManage: false, preview: false,
   camp: 'all', quick: 'all', month: null, openId: null
 };
 const isAdmin = () => S.mode === 'admin' || (S.mode === 'demo' && S.demoRole === 'admin');
@@ -519,21 +553,23 @@ const api = () => S.mode === 'demo' ? demoApi : S.mode === 'admin' ? adminApi : 
 // Mad Hat side: move a date directly, or accept/decline a client's suggestion.
 async function adminMoveDate(it, field, date){
   if (!date || it[field] === date) return;
+  const prev = it[field];
   const patch = {id:it.id, [field]:date};
   if (field === 'scheduled_for' && it.proposed_date === date) Object.assign(patch, {proposed_date:null, proposed_by:null, proposed_at:null});
   await api().save('items', patch);
   await api().note(it.id, field === 'scheduled_for'
-    ? `Go-live moved from ${fmtDLong(it.scheduled_for)} to ${fmtDLong(date)}.` + (patch.proposed_date === null ? ' (Matches the suggested date.)' : '')
+    ? `Go-live moved from ${fmtDLong(prev)} to ${fmtDLong(date)}.` + (patch.proposed_date === null ? ' (Matches the suggested date.)' : '')
     : `Feedback deadline moved to ${fmtDLong(date)}.`);
 }
 async function adminResolve(it, accept){
   if (!it.proposed_date) return;
+  const from = it.scheduled_for, to = it.proposed_date, who = it.proposed_by || 'the client';
   const patch = {id:it.id, proposed_date:null, proposed_by:null, proposed_at:null};
-  if (accept) patch.scheduled_for = it.proposed_date;
+  if (accept) patch.scheduled_for = to;
   await api().save('items', patch);
   await api().note(it.id, accept
-    ? `Accepted ${it.proposed_by || 'the client'}’s suggestion: go-live moved from ${fmtDLong(it.scheduled_for)} to ${fmtDLong(it.proposed_date)}.`
-    : `Kept go-live on ${fmtDLong(it.scheduled_for)}; the suggested ${fmtDLong(it.proposed_date)} was declined.`);
+    ? `Accepted ${who}’s suggestion: go-live moved from ${fmtDLong(from)} to ${fmtDLong(to)}.`
+    : `Kept go-live on ${fmtDLong(from)}; ${who}’s suggested ${fmtDLong(to)} was declined.`);
 }
 // Client side: ask for a name once, then suggest a date.
 function ensureName(){
@@ -581,6 +617,12 @@ async function boot(){
     if (S.slug){
       // Show the friendly address (madhatcomm.in/portal/<slug>) in the browser bar.
       try { history.replaceState(null, '', location.pathname.replace(/[^/]*$/, '') + S.slug); } catch(e){}
+      // Signed in as Mad Hat in this browser? Open the admin view for this client.
+      const {data:{session}} = await sb.auth.getSession();
+      if (session){
+        const {data:own} = await sb.from(T('clients')).select('*').eq('slug', S.slug).maybeSingle();
+        if (own){ S.canManage = true; S.mode = 'admin'; S.clientId = own.id; store.set('mh_portal_client', own.id); return enterAdmin(); }
+      }
       S.token = store.get('mh_portal_key_' + S.slug);
       if (!S.token) return renderUnlock();
     }
@@ -597,6 +639,7 @@ async function boot(){
 }
 
 async function enterAdmin(){
+  S.canManage = true;
   try {
     await loadClients();
     if (S.clientId) await refresh(); else { S.client = null; S.campaigns = S.items = S.comments = []; }
@@ -679,8 +722,27 @@ async function signOut(){ await sb.auth.signOut(); renderLogin(); }
 function renderDemoBar(){
   $('#demoBar').innerHTML = `Demo mode — sample data, nothing is saved. Viewing as <strong>${S.demoRole === 'admin' ? 'Mad Hat (admin)' : 'client'}</strong>
     <button id="demoSwap">Switch to ${S.demoRole === 'admin' ? 'client' : 'admin'} view</button>`;
-  $('#demoSwap').onclick = async () => { S.demoRole = S.demoRole === 'admin' ? 'client' : 'admin'; closeDrawer(); renderDemoBar(); await refresh(); render(); };
+  $('#demoSwap').onclick = () => S.demoRole === 'admin' ? viewAsClient() : backToAdmin();
 }
+
+/* ───────────────────────── admin ⇄ client switch ───────────────────────── */
+function slugPath(slug){ return location.pathname.replace(/[^/]*$/, '') + (slug || ''); }
+async function viewAsClient(){
+  const c = S.clients.find(x => x.id === S.clientId); if (!c) return;
+  closeDrawer();
+  if (S.mode === 'demo'){ S.demoRole = 'client'; renderDemoBar(); }
+  else { S.mode = 'client'; S.token = c.token; S.slug = c.slug || ''; }
+  S.preview = true; if (S.view === 'manage') S.view = 'calendar';
+  await refresh(); render(); window.scrollTo(0, 0);
+}
+async function backToAdmin(){
+  closeDrawer();
+  if (S.mode === 'demo'){ S.demoRole = 'admin'; renderDemoBar(); }
+  else { S.mode = 'admin'; }
+  S.preview = false;
+  await loadClients(); await refresh(); render(); window.scrollTo(0, 0);
+}
+function go(view){ S.view = view; store.set('mh_portal_view', view); render(); window.scrollTo(0, 0); }
 
 /* ───────────────────────── main render ───────────────────────── */
 function campOf(id){ return S.campaigns.find(c => c.id === id) || {name:'—', color:'#9333EA'}; }
@@ -709,6 +771,8 @@ function render(){
     $('#e1').onclick = () => clientForm();
     return;
   }
+  if (S.view === 'manage' && !isAdmin()) S.view = 'calendar';
+  const admin = isAdmin();
   const scope = S.items.filter(i => S.camp === 'all' || i.campaign_id === S.camp);
   const t = todayStr();
   const n = {
@@ -717,19 +781,26 @@ function render(){
     overdue: scope.filter(i => AWAITING(i.status) && i.feedback_due && i.feedback_due < t).length,
     approved: scope.filter(i => ['approved','scheduled','published'].includes(i.status)).length
   };
+  const nReview = S.items.filter(i => AWAITING(i.status)).length;
+  const nAction = S.items.filter(i => i.proposed_date || i.status === 'changes_requested').length;
   const stat = (k, num, label, warn) => `<button class="stat ${S.quick===k?'active':''} ${warn && num ? 'warn':''}" data-quick="${k}"><div class="stat-num">${num}</div><div class="stat-label">${label}</div></button>`;
 
   const statusOpts = [['all','All content'],['awaiting','Awaiting feedback'],['changes','Changes requested'],['approved','Approved & live'],['week','Feedback due this week'],['overdue','Overdue feedback'],['proposals','Suggested date changes']];
+  if (admin) statusOpts.push(['draft','Drafts (hidden from client)']);
   const nProp = scope.filter(i => i.proposed_date).length;
-  const notice = nProp ? `<div class="notice"><span>${isAdmin()
+  const notice = nProp && S.view !== 'manage' ? `<div class="notice"><span>${admin
       ? `<strong>${esc(S.client?.name || 'The client')} suggested ${nProp} date change${nProp===1?'':'s'}.</strong> Nothing moves until you accept.`
       : `<strong>You've suggested ${nProp} date change${nProp===1?'':'s'}.</strong> They stay highlighted until Mad Hat confirms.`}</span>
-      <button class="btn btn-sm" id="seeProps">${S.quick === 'proposals' ? 'Show everything' : 'Review'}</button></div>` : '';
-  if (isAdmin()) statusOpts.push(['draft','Drafts (hidden from client)']);
+      <button class="btn btn-sm" id="seeProps">${admin ? 'Review in Manage' : (S.quick === 'proposals' ? 'Show everything' : 'Review')}</button></div>` : '';
 
-  app.innerHTML = `${notice}
+  const tab = (v, label, extra = '') => `<button class="tab ${v==='manage'?'manage':''} ${S.view===v?'active':''}" data-tab="${v}">${label}${extra}</button>`;
+  const tabs = `<nav class="tabs" aria-label="Views">
+      ${tab('calendar','Calendar')}${tab('list','Campaigns')}${tab('approvals','Approvals', nReview ? `<span class="n">${nReview}</span>` : '')}
+      ${admin ? tab('manage','Manage', nAction ? `<span class="n">${nAction}</span>` : '') : ''}
+    </nav>`;
+  const filters = S.view === 'manage' ? '' : `
     <section class="stats">
-      ${stat('awaiting', n.awaiting, isAdmin() ? 'Awaiting client feedback' : 'Awaiting your feedback')}
+      ${stat('awaiting', n.awaiting, admin ? 'Awaiting client feedback' : 'Awaiting your feedback')}
       ${stat('week', n.week, 'Feedback due in 7 days')}
       ${stat('overdue', n.overdue, 'Feedback overdue', true)}
       ${stat('approved', n.approved, 'Approved')}
@@ -740,32 +811,152 @@ function render(){
         ${S.campaigns.map(c => `<button class="chip ${S.camp===c.id?'active':''}" data-camp="${esc(c.id)}"><span class="dot" style="background:${esc(c.color)}"></span>${esc(c.name)}</button>`).join('')}
       </div>
       <div class="spacer"></div>
-      <select class="plain" id="quickSel" aria-label="Filter">${statusOpts.map(([v,l]) => `<option value="${v}" ${S.quick===v?'selected':''}>${l}</option>`).join('')}</select>
-      <div class="seg" role="tablist">
-        <button data-view="list" class="${S.view==='list'?'active':''}">Content</button>
-        <button data-view="calendar" class="${S.view==='calendar'?'active':''}">Calendar</button>
-      </div>
-      ${isAdmin() ? `<button class="btn" id="newCamp">+ Campaign</button><button class="btn btn-primary" id="newItem" ${S.campaigns.length?'':'disabled'}>+ Content</button>` : ''}
-    </section>
-    <section id="view"></section>`;
+      ${S.view === 'approvals' ? '' : `<select class="plain" id="quickSel" aria-label="Filter">${statusOpts.map(([v,l]) => `<option value="${v}" ${S.quick===v?'selected':''}>${l}</option>`).join('')}</select>`}
+    </section>`;
 
-  app.querySelectorAll('[data-quick]').forEach(b => b.onclick = () => { S.quick = S.quick === b.dataset.quick ? 'all' : b.dataset.quick; render(); });
+  app.innerHTML = `${tabs}${notice}${filters}<section id="view"></section>`;
+
+  app.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => go(b.dataset.tab));
+  app.querySelectorAll('[data-quick]').forEach(b => b.onclick = () => {
+    const k = b.dataset.quick; S.quick = S.quick === k ? 'all' : k;
+    if (S.view === 'approvals') S.view = 'list';
+    render();
+  });
   app.querySelectorAll('[data-camp]').forEach(b => b.onclick = () => { S.camp = b.dataset.camp; render(); });
-  app.querySelectorAll('[data-view]').forEach(b => b.onclick = () => { S.view = b.dataset.view; store.set('mh_portal_view', S.view); render(); });
-  $('#quickSel').onchange = e => { S.quick = e.target.value; render(); };
-  if ($('#seeProps')) $('#seeProps').onclick = () => { S.quick = S.quick === 'proposals' ? 'all' : 'proposals'; render(); };
-  if (isAdmin()){
-    $('#newCamp').onclick = () => campaignForm();
-    $('#newItem').onclick = () => itemForm();
-  }
-  S.view === 'calendar' ? renderCalendar() : renderList();
+  if ($('#quickSel')) $('#quickSel').onchange = e => { S.quick = e.target.value; render(); };
+  if ($('#seeProps')) $('#seeProps').onclick = () => {
+    if (admin) return go('manage');
+    S.quick = S.quick === 'proposals' ? 'all' : 'proposals'; render();
+  };
+  ({calendar:renderCalendar, list:renderList, approvals:renderApprovals, manage:renderManage}[S.view] || renderCalendar)();
   if (S.openId) renderDrawer();
+}
+
+/* ── approvals view ── */
+function renderApprovals(){
+  const base = S.items.filter(i => S.camp === 'all' || i.campaign_id === S.camp);
+  const tabsDef = [
+    ['review', 'Waiting for review', i => AWAITING(i.status)],
+    ['changes', 'Changes requested', i => i.status === 'changes_requested'],
+    ['approved', 'Approved', i => ['approved','scheduled','published'].includes(i.status)],
+    ['all', 'All content', () => true]
+  ];
+  const cur = tabsDef.find(x => x[0] === S.atab) || tabsDef[0];
+  const list = base.filter(cur[2]).sort((a,b) => (a.feedback_due || a.scheduled_for || '9').localeCompare(b.feedback_due || b.scheduled_for || '9'));
+  const empty = {review:'Nothing is waiting for review right now.', changes:'No open change requests.', approved:'Nothing approved yet.', all:'No content yet.'}[cur[0]];
+  $('#view').innerHTML = `
+    <div class="subtabs">${tabsDef.map(([k,l,f]) => `<button class="chip ${S.atab===k?'active':''}" data-atab="${k}">${l} (${base.filter(f).length})</button>`).join('')}</div>
+    ${list.length ? `<div class="grid">${list.map(cardHtml).join('')}</div>` : `<div class="empty">${empty}</div>`}`;
+  $('#view').querySelectorAll('[data-atab]').forEach(b => b.onclick = () => { S.atab = b.dataset.atab; renderApprovals(); });
+  $('#view').querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+}
+
+/* ── manage view (Mad Hat only) ── */
+function renderManage(){
+  const view = $('#view');
+  const clientName = S.client?.name || 'the client';
+  const props = S.items.filter(i => i.proposed_date).sort((a,b) => (a.proposed_at || '').localeCompare(b.proposed_at || ''));
+  const changes = S.items.filter(i => i.status === 'changes_requested').sort((a,b) => (a.scheduled_for || '').localeCompare(b.scheduled_for || ''));
+  const lastNote = id => S.comments.filter(m => m.item_id === id && !m.from_agency && m.body).slice(-1)[0];
+  const recent = S.comments.filter(m => !m.from_agency).slice().sort((a,b) => (b.created_at || '').localeCompare(a.created_at || '')).slice(0, 12);
+  const itemOf = id => S.items.find(i => i.id === id);
+  const all = S.items.filter(i => S.camp === 'all' || i.campaign_id === S.camp)
+    .slice().sort((a,b) => (a.scheduled_for || '9').localeCompare(b.scheduled_for || '9'));
+  const campDot = c => `<span class="cdot"><i style="background:${esc(c.color)}"></i>${esc(c.name)}</span>`;
+  const kindLabel = {comment:'commented on', approved:'approved', changes_requested:'asked for changes on', status:'updated'};
+
+  view.innerHTML = `
+    <div class="sec-head" style="margin-bottom:1.5rem">
+      <div><h2 style="font-size:1.6rem;color:var(--primary)">Manage ${esc(clientName)}</h2>
+        <div class="hint" style="font-size:.9rem">Only Mad Hat sees this tab. Accept date changes, follow up on feedback, and add or edit content.</div></div>
+      <div style="margin-left:auto;display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="btn btn-primary" id="mNewItem" ${S.campaigns.length ? '' : 'disabled'}>+ Content</button>
+        <button class="btn" id="mNewCamp">+ Campaign</button>
+        <button class="btn" id="mShare">Client link</button>
+        <button class="btn btn-dark" id="mPreview">View as client</button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h3>Date changes to confirm (${props.length})</h3></div>
+      ${props.length ? `<div class="rows">${props.map(i => `<div class="r">
+          <div class="main"><button class="lnk" data-open="${esc(i.id)}">${esc(i.title)}</button>
+            <div class="sub">${campDot(campOf(i.campaign_id))} · ${esc(i.proposed_by || 'Client')} suggested <strong>${fmtDLong(i.proposed_date)}</strong> instead of ${fmtDLong(i.scheduled_for)}</div></div>
+          <div class="acts"><button class="btn btn-approve btn-sm" data-accept="${esc(i.id)}">Accept new date</button><button class="btn btn-sm" data-decline="${esc(i.id)}">Keep current date</button></div>
+        </div>`).join('')}</div>` : '<div class="empty" style="padding:1.2rem">No date changes waiting.</div>'}
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h3>Changes requested (${changes.length})</h3></div>
+      ${changes.length ? `<div class="rows">${changes.map(i => { const nt = lastNote(i.id); return `<div class="r">
+          <div class="main"><button class="lnk" data-open="${esc(i.id)}">${esc(i.title)}</button>
+            <div class="sub">${campDot(campOf(i.campaign_id))} · goes live ${fmtD(i.scheduled_for)}</div>
+            ${nt ? `<div class="q"><strong>${esc(nt.author)}:</strong> ${esc(nt.body)}</div>` : ''}</div>
+          <div class="acts"><button class="btn btn-sm" data-edit="${esc(i.id)}">Edit</button><button class="btn btn-primary btn-sm" data-newver="${esc(i.id)}">New version uploaded</button></div>
+        </div>`; }).join('')}</div>` : '<div class="empty" style="padding:1.2rem">No open change requests.</div>'}
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h3>Latest from ${esc(clientName)}</h3></div>
+      ${recent.length ? `<div class="rows">${recent.map(m => { const it = itemOf(m.item_id); return `<div class="r">
+          <div class="main"><strong>${esc(m.author)}</strong> ${kindLabel[m.kind] || 'commented on'} ${it ? `<button class="lnk" data-open="${esc(it.id)}">${esc(it.title)}</button>` : 'a removed piece'}
+            ${m.body ? `<div class="q">${esc(m.body)}</div>` : ''}</div>
+          <div class="sub">${fmtTime(m.created_at)}</div>
+        </div>`; }).join('')}</div>` : '<div class="empty" style="padding:1.2rem">No feedback yet.</div>'}
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h3>Campaigns (${S.campaigns.length})</h3></div>
+      ${S.campaigns.length ? `<div class="rows">${S.campaigns.map(c => { const k = S.items.filter(i => i.campaign_id === c.id).length; return `<div class="r">
+          <div class="main">${campDot(c)}<div class="sub">${fmtD(c.start_date)} – ${fmtD(c.end_date)} · ${k} piece${k===1?'':'s'}</div></div>
+          <div class="acts"><button class="btn btn-sm" data-editcamp="${esc(c.id)}">Edit</button></div></div>`; }).join('')}</div>`
+        : '<div class="empty" style="padding:1.2rem">No campaigns yet.</div>'}
+    </div>
+
+    <div class="sec">
+      <div class="sec-head"><h3>All content (${all.length})</h3>
+        <select class="plain" id="mCamp" style="margin-left:auto"><option value="all">All campaigns</option>${S.campaigns.map(c => `<option value="${esc(c.id)}" ${S.camp===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select></div>
+      ${all.length ? `<div class="tblwrap"><table class="mt">
+        <thead><tr><th>Goes live</th><th>Content</th><th>Campaign</th><th>Feedback by</th><th>Status</th><th></th></tr></thead>
+        <tbody>${all.map(i => `<tr>
+          <td class="d">${fmtD(i.scheduled_for)}${i.proposed_date ? ` → <span style="color:var(--amber)">${fmtD(i.proposed_date)}?</span>` : ''}</td>
+          <td><button class="lnk" data-open="${esc(i.id)}">${esc(i.title)}</button><div class="sub" style="font-size:.76rem;color:var(--text-light)">${esc(typeLabel(i.type))}</div></td>
+          <td>${campDot(campOf(i.campaign_id))}</td>
+          <td class="d">${i.feedback_due ? fmtD(i.feedback_due) : '—'}</td>
+          <td><span class="pill s-${esc(i.status)}">${esc(STATUS[i.status]?.label || i.status)}</span></td>
+          <td><button class="btn btn-sm" data-edit="${esc(i.id)}">Edit</button></td></tr>`).join('')}</tbody></table></div>`
+        : '<div class="empty" style="padding:1.2rem">No content yet.</div>'}
+    </div>`;
+
+  const guard = fn => async e => { const b = e.currentTarget; b.disabled = true; try { await fn(); } catch(err){ toast(errMsg(err)); b.disabled = false; } };
+  view.querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+  view.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => itemForm(itemOf(b.dataset.edit)));
+  view.querySelectorAll('[data-editcamp]').forEach(b => b.onclick = () => campaignForm(S.campaigns.find(c => c.id === b.dataset.editcamp)));
+  view.querySelectorAll('[data-accept]').forEach(b => b.onclick = guard(async () => { await adminResolve(itemOf(b.dataset.accept), true); await refresh(); render(); toast('New date accepted'); }));
+  view.querySelectorAll('[data-decline]').forEach(b => b.onclick = guard(async () => { await adminResolve(itemOf(b.dataset.decline), false); await refresh(); render(); toast('Kept the current date'); }));
+  view.querySelectorAll('[data-newver]').forEach(b => b.onclick = guard(async () => {
+    const it = itemOf(b.dataset.newver), v = (it.version || 1) + 1;
+    await api().save('items', {id:it.id, version:v, status:'in_review'});
+    await api().note(it.id, `Version ${v} uploaded — ready for review.`);
+    await refresh(); render(); toast(`Sent back for review as v${v}`);
+  }));
+  $('#mNewItem').onclick = () => itemForm();
+  $('#mNewCamp').onclick = () => campaignForm();
+  $('#mShare').onclick = shareDialog;
+  $('#mPreview').onclick = viewAsClient;
+  $('#mCamp').onchange = e => { S.camp = e.target.value; renderManage(); };
 }
 
 function renderTop(){
   $('#clientName').textContent = S.client ? S.client.name : (isAdmin() ? 'All clients' : '');
   document.title = (S.client ? S.client.name + ' · ' : '') + 'Content Review · Mad Hat';
   const box = $('#topActions');
+  const strip = $('#previewStrip');
+  if (S.preview && !isAdmin()){
+    strip.classList.remove('hidden');
+    strip.innerHTML = `<span><strong>Viewing as ${esc(S.client?.name || 'the client')}.</strong> This is exactly what they see. Anything you do here is saved as the client.</span><button id="backAdmin">Back to admin view</button>`;
+    $('#backAdmin').onclick = backToAdmin;
+  } else strip.classList.add('hidden');
   if (!isAdmin()){ box.innerHTML = ''; return; }
   box.innerHTML = `
     ${S.clients.length ? `<select id="clientSel" aria-label="Client">${S.clients.map(c => `<option value="${esc(c.id)}" ${c.id===S.clientId?'selected':''}>${esc(c.name)}</option>`).join('')}</select>` : ''}
@@ -773,7 +964,12 @@ function renderTop(){
     <button class="btn-ghost" id="addClient">+ Client</button>
     ${S.mode === 'admin' ? '<button class="btn-ghost" id="signOut">Sign out</button>' : ''}`;
   const sel = $('#clientSel');
-  if (sel) sel.onchange = async e => { S.clientId = e.target.value; store.set('mh_portal_client', S.clientId); S.camp = 'all'; S.quick = 'all'; closeDrawer(); await refresh(); render(); };
+  if (sel) sel.onchange = async e => {
+    S.clientId = e.target.value; store.set('mh_portal_client', S.clientId); S.camp = 'all'; S.quick = 'all'; closeDrawer();
+    const c = S.clients.find(x => x.id === S.clientId);
+    if (S.mode === 'admin'){ try { history.replaceState(null, '', slugPath(c && c.slug)); } catch(_){} }
+    await refresh(); render();
+  };
   if ($('#shareBtn')) $('#shareBtn').onclick = shareDialog;
   if ($('#editClient')) $('#editClient').onclick = () => clientForm(S.clients.find(c => c.id === S.clientId));
   $('#addClient').onclick = () => clientForm();
