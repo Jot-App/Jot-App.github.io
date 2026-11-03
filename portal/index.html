@@ -214,6 +214,28 @@ select.plain{border:1px solid var(--border);background:var(--white);border-radiu
 .dr-body{overflow-y:auto;flex:1}
 .dr-preview{background:var(--primary);display:flex;align-items:center;justify-content:center;max-height:420px;overflow:hidden}
 .dr-preview img,.dr-preview video{max-width:100%;max-height:420px;display:block}
+.viewer{background:var(--primary)}
+.vmain{display:flex;align-items:center;justify-content:center;min-height:200px}
+.vmain img{max-width:100%;max-height:540px;display:block}
+.vmain video{max-width:100%;max-height:540px;display:block}
+.pdfv{width:100%;height:min(480px,60vh);border:0;background:#fff;display:block}
+.vbar{display:flex;gap:.6rem;align-items:center;padding:.5rem .9rem;background:#1a1530;color:#EDE8FF;font-size:.85rem;flex-wrap:wrap}
+.vbar .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vbar a,.vbar button{color:#EDE8FF;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:.2rem .6rem;text-decoration:none;font-size:.8rem}
+.vbar button.rm{color:#FCA5A5}
+.vstrip{display:flex;gap:.45rem;padding:.55rem .9rem;overflow-x:auto;background:#1a1530;border-top:1px solid rgba(255,255,255,.08)}
+.vthumb{flex:0 0 auto;width:68px;height:68px;border-radius:7px;border:2px solid transparent;background:#2a2346;color:#EDE8FF;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.62rem;overflow:hidden;padding:0}
+.vthumb img{width:100%;height:100%;object-fit:cover}
+.vthumb.on{border-color:var(--accent)}
+.vthumb b{font-size:.78rem}
+.older{margin-top:1rem;font-size:.88rem}
+.older summary{cursor:pointer;color:var(--text-light)}
+.older ul{margin:.5rem 0 0 1.2rem}
+.dropzone{border:2px dashed var(--border);border-radius:10px;padding:1rem;text-align:center;color:var(--text-light);font-size:.9rem;margin-top:1rem;transition:background .15s,border-color .15s}
+.dropzone.on{border-color:var(--accent);background:var(--accent-soft)}
+.dropzone .lnk{color:var(--accent)}
+.dropzone label{display:inline-flex;gap:.35rem;align-items:center;margin-top:.5rem;font-size:.82rem}
+.fcount{font-size:.8rem;color:var(--text-light);display:inline-flex;align-items:center;gap:.25rem;margin-right:.6rem}
 .dr-preview .thumb{aspect-ratio:16/7}
 .dr-main{padding:1.25rem}
 .dr-main h2{font-size:1.5rem;color:var(--primary);line-height:1.2;margin-bottom:.6rem}
@@ -383,6 +405,7 @@ const CAN_DECIDE = s => s === 'in_review' || s === 'changes_requested' || s === 
 
 function previewOf(it){
   const p = safeUrl(it.preview_url); if (p) return p;
+  const img = currentFiles(it).find(isImgF); if (img) return fileUrl(img.url);
   const u = safeUrl(it.link_url); if (!u) return '';
   let m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
   if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
@@ -393,6 +416,20 @@ function previewOf(it){
   return '';
 }
 const isVideo = u => /\.(mp4|webm|mov)(\?|$)/i.test(u);
+// ── Uploaded files (images, PDFs, videos) attached to a content piece ──
+const MAX_FILE = 50 * 1024 * 1024;
+const fileUrl = u => /^(https:\/\/|blob:)/i.test(String(u || '')) ? String(u) : '';
+const isPdfF = a => /pdf/i.test(a.type || '') || /\.pdf(\?|$)/i.test(a.name || a.url || '');
+const isImgF = a => /^image\//i.test(a.type || '') || /\.(png|jpe?g|gif|webp|avif|svg)(\?|$)/i.test(a.name || a.url || '');
+const isVidF = a => /^video\//i.test(a.type || '') || /\.(mp4|webm|mov)(\?|$)/i.test(a.name || a.url || '');
+const filesOf = it => Array.isArray(it.attachments) ? it.attachments.filter(a => fileUrl(a.url)) : [];
+function currentFiles(it){
+  const f = filesOf(it); if (!f.length) return [];
+  const v = Math.max(...f.map(a => a.version || 1));
+  return f.filter(a => (a.version || 1) === v);
+}
+const fmtSize = b => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
+const PDF_ICON = '<path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.8"/><text x="12" y="17" text-anchor="middle" font-size="5.5" font-weight="700" fill="currentColor" font-family="sans-serif">PDF</text>';
 
 function dueInfo(it){
   if (!it.feedback_due || !AWAITING(it.status)) return null;
@@ -500,7 +537,8 @@ const demoApi = {
     if (table === 'campaigns') DEMO.items = DEMO.items.filter(i => i.campaign_id !== id);
     if (table === 'clients') DEMO.campaigns = DEMO.campaigns.filter(c => c.client_id !== id);
   },
-  async upload(file){ return URL.createObjectURL(file); }
+  async upload(file){ return URL.createObjectURL(file); },
+  async unlink(url){}
 };
 
 const T = n => 'portal_' + n;
@@ -536,8 +574,13 @@ const adminApi = {
   async upload(file){
     const ext = (file.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g,'');
     const path = `${S.clientId}/${uid()}.${ext}`;
-    chk(await sb.storage.from('portal-assets').upload(path, file, {cacheControl:'3600', upsert:false, contentType:file.type}));
+    const type = file.type || (ext === 'pdf' ? 'application/pdf' : 'application/octet-stream');
+    chk(await sb.storage.from('portal-assets').upload(path, file, {cacheControl:'3600', upsert:false, contentType:type}));
     return sb.storage.from('portal-assets').getPublicUrl(path).data.publicUrl;
+  },
+  async unlink(url){
+    const m = String(url).match(/\/portal-assets\/(.+)$/);
+    if (m) await sb.storage.from('portal-assets').remove([decodeURIComponent(m[1])]);
   }
 };
 
@@ -571,6 +614,37 @@ async function adminResolve(it, accept){
     ? `Accepted ${who}’s suggestion: go-live moved from ${fmtDLong(from)} to ${fmtDLong(to)}.`
     : `Kept go-live on ${fmtDLong(from)}; ${who}’s suggested ${fmtDLong(to)} was declined.`);
 }
+// Mad Hat side: attach images / PDFs / videos to a piece (optionally as a new version).
+async function uploadFiles(it, fileList, newVersion){
+  const ok = f => /^image\//.test(f.type) || /^video\//.test(f.type) || f.type === 'application/pdf' || /\.pdf$/i.test(f.name);
+  const list = [...fileList].filter(ok);
+  if (!list.length) throw new Error('Only images, PDFs and videos can be uploaded.');
+  const big = list.find(f => f.size > MAX_FILE);
+  if (big) throw new Error(`${big.name} is over 50 MB. Share it as a Drive link instead.`);
+  const version = newVersion ? (it.version || 1) + 1 : (it.version || 1);
+  const added = [];
+  for (let k = 0; k < list.length; k++){
+    const f = list[k];
+    toast(`Uploading ${k + 1} of ${list.length}: ${f.name}`, 120000);
+    const url = await api().upload(f);
+    added.push({url, name:f.name, type:f.type || (/\.pdf$/i.test(f.name) ? 'application/pdf' : ''), size:f.size, version, uploaded_at:new Date().toISOString()});
+  }
+  const patch = {id:it.id, attachments:[...filesOf(it), ...added]};
+  if (newVersion) Object.assign(patch, {version, status:'in_review'});
+  await api().save('items', patch);
+  const names = added.map(a => a.name).join(', ');
+  await api().note(it.id, newVersion
+    ? `Version ${version} uploaded for review: ${names}.`
+    : `Added ${added.length} file${added.length === 1 ? '' : 's'} for review: ${names}.`);
+  toast(newVersion ? `Uploaded as v${version} and sent for review` : `${added.length} file${added.length === 1 ? '' : 's'} uploaded`);
+}
+async function removeFile(it, url){
+  const f = filesOf(it).find(a => a.url === url); if (!f) return;
+  await api().save('items', {id:it.id, attachments:filesOf(it).filter(a => a.url !== url)});
+  await api().note(it.id, `Removed file: ${f.name}.`);
+  try { await api().unlink(url); } catch(_){}
+}
+
 // Client side: ask for a name once, then suggest a date.
 function ensureName(){
   const saved = (store.get('mh_portal_name') || '').trim();
@@ -982,6 +1056,7 @@ function thumbHtml(it, big){
   let inner;
   if (p && isVideo(p)) inner = `<video src="${esc(p)}" ${big ? 'controls' : 'muted preload="metadata"'} playsinline></video>`;
   else if (p) inner = `<img src="${esc(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Preview unavailable'}))">`;
+  else if (currentFiles(it).some(isPdfF)){ const n = currentFiles(it).filter(isPdfF).length; inner = `<div class="ph"><svg viewBox="0 0 24 24">${PDF_ICON}</svg>${n} PDF${n===1?'':'s'} to review</div>`; }
   else inner = `<div class="ph"><svg viewBox="0 0 24 24">${TYPE_ICON[it.type] || TYPE_ICON.other}</svg>${esc(typeLabel(it.type))}</div>`;
   const bg = p ? '' : `style="background:linear-gradient(135deg, ${esc(camp.color)}, ${esc(camp.color)}aa)"`;
   return `<div class="thumb" ${bg}>${inner}${big ? '' : `<span class="pill s-${esc(it.status)} badge">${esc(STATUS[it.status]?.label || it.status)}</span>`}${it.version > 1 && !big ? `<span class="ver">v${it.version}</span>` : ''}</div>`;
@@ -997,7 +1072,7 @@ function cardHtml(it){
       ${it.proposed_date ? `<div class="card-prop">Date change suggested → ${fmtD(it.proposed_date)}</div>` : ''}
       <div class="card-foot">
         <span class="due ${d ? d.cls : ''}">${d ? esc(d.text) : ''}</span>
-        <span class="ccount"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>${cc}</span>
+        <span>${currentFiles(it).length ? `<span class="fcount" title="Files to review"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M16 7l-7.5 7.5a2.5 2.5 0 003.5 3.5L19.5 10a4.5 4.5 0 00-6.4-6.4L5.6 11.2a6.5 6.5 0 009.2 9.2L20 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>${currentFiles(it).length}</span>` : ''}<span class="ccount"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2"/></svg>${cc}</span></span>
       </div>
     </div>
   </button>`;
@@ -1130,7 +1205,7 @@ function renderCalendar(){
 }
 
 /* ───────────────────────── item drawer ───────────────────────── */
-function openDrawer(id){ S.openId = id; renderDrawer(); }
+function openDrawer(id){ if (S.openId !== id) S.fileIdx = 0; S.openId = id; renderDrawer(); }
 function closeDrawer(){
   S.openId = null;
   $('#drawer').classList.remove('open'); $('#drawer').setAttribute('aria-hidden','true');
@@ -1149,6 +1224,30 @@ function msgHtml(m){
     </div></div>`;
 }
 
+function viewerHtml(it){
+  S._older = '';
+  const files = currentFiles(it);
+  if (!files.length) return `<div class="dr-preview">${thumbHtml(it, true)}</div>`;
+  const idx = Math.min(S.fileIdx || 0, files.length - 1), f = files[idx], u = esc(fileUrl(f.url));
+  const main = isPdfF(f) ? `<iframe class="pdfv" src="${u}#view=FitH" title="${esc(f.name)}"></iframe>`
+    : isVidF(f) ? `<video src="${u}" controls playsinline></video>`
+    : isImgF(f) ? `<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="${esc(f.name)}"></a>`
+    : `<div class="ph" style="color:#fff;padding:2rem">${esc(f.name)}</div>`;
+  const strip = files.length > 1 ? `<div class="vstrip">${files.map((a, k) => `<button class="vthumb ${k===idx?'on':''}" data-fidx="${k}" title="${esc(a.name)}">${
+      isImgF(a) ? `<img src="${esc(fileUrl(a.url))}" alt="">` : `<b>${isPdfF(a) ? 'PDF' : isVidF(a) ? 'VIDEO' : 'FILE'}</b><span>${k + 1}</span>`}</button>`).join('')}</div>` : '';
+  const older = filesOf(it).filter(a => !files.includes(a));
+  const olderHtml = older.length ? `<details class="older"><summary>Earlier versions (${older.length} file${older.length===1?'':'s'})</summary><ul>${
+      older.slice().sort((a,b) => (b.version||1) - (a.version||1)).map(a => `<li>v${a.version || 1}: <a href="${esc(fileUrl(a.url))}" target="_blank" rel="noopener">${esc(a.name)}</a></li>`).join('')}</ul></details>` : '';
+  S._older = olderHtml;
+  return `<div class="viewer">
+      <div class="vmain">${main}</div>
+      <div class="vbar"><span class="nm">${files.length > 1 ? `${idx + 1} of ${files.length} · ` : ''}${esc(f.name)}${f.size ? ` · ${fmtSize(f.size)}` : ''}${(it.version || 1) > 1 ? ` · v${f.version || 1}` : ''}</span>
+        <a href="${u}" target="_blank" rel="noopener">Open ↗</a>
+        ${isAdmin() ? `<button class="rm" data-rmfile="${u}">Remove</button>` : ''}</div>
+      ${strip}
+    </div>`;
+}
+
 function renderDrawer(){
   const it = S.items.find(i => i.id === S.openId);
   if (!it) return closeDrawer();
@@ -1165,7 +1264,7 @@ function renderDrawer(){
       <button class="x" id="drClose" aria-label="Close">×</button>
     </div>
     <div class="dr-body">
-      <div class="dr-preview">${thumbHtml(it, true)}</div>
+      ${viewerHtml(it)}
       <div class="dr-main">
         <h2>${esc(it.title)}</h2>
         <div class="facts">
@@ -1183,10 +1282,16 @@ function renderDrawer(){
             <input type="date" id="propDate" value="${esc(it.proposed_date || it.scheduled_for || '')}"><button class="btn btn-sm" id="propSend">Suggest</button></div>` : ''}
         ${it.description ? `<div class="desc" style="margin-top:1rem">${esc(it.description)}</div>` : ''}
         ${link ? `<div class="open-link"><a class="btn btn-dark" href="${esc(link)}" target="_blank" rel="noopener">Open file ↗</a></div>` : ''}
+        ${S._older || ''}
         ${isAdmin() ? `<div class="dr-admin">
             <button class="btn btn-sm" id="drEdit">Edit</button>
             <select class="plain" id="drStatus" style="padding:.3rem .5rem;font-size:.82rem">${Object.entries(STATUS).map(([k,v]) => `<option value="${k}" ${k===it.status?'selected':''}>${v.label}${k==='draft'?' (hidden)':''}</option>`).join('')}</select>
-            <button class="btn btn-sm" id="drVersion">New version uploaded</button>
+            <button class="btn btn-sm" id="drVersion">Mark as new version</button>
+          </div>
+          <div class="dropzone" id="drDrop">
+            <strong>Drop images or PDFs here</strong> or <button class="lnk" id="drBrowse">browse</button> · up to 50 MB each
+            <div><label><input type="checkbox" id="drNewVer"> Upload as a new version (v${(it.version || 1) + 1}) and send it for review</label></div>
+            <input type="file" id="drFiles" multiple accept="image/*,application/pdf,video/mp4,video/quicktime,video/webm" hidden>
           </div>` : ''}
       </div>
       <div class="thread">
@@ -1249,7 +1354,23 @@ function renderDrawer(){
     if (v === (it.proposed_date || it.scheduled_for)) throw new Error('That\u2019s already the date.');
     await clientPropose(it, v);
   });
+  dr.querySelectorAll('[data-fidx]').forEach(b => b.onclick = () => { S.fileIdx = +b.dataset.fidx; renderDrawer(); });
+  dr.querySelectorAll('[data-rmfile]').forEach(b => b.onclick = guard(async () => {
+    if (b.dataset.armed !== '1'){ b.dataset.armed = '1'; b.textContent = 'Click again to remove'; b.disabled = false; return; }
+    await removeFile(it, b.dataset.rmfile); S.fileIdx = 0; await refresh(); render(); toast('File removed');
+  }));
   if (isAdmin()){
+    const zone = $('#drDrop'), inp = $('#drFiles');
+    const send = async files => {
+      zone.classList.remove('on');
+      try { await uploadFiles(it, files, $('#drNewVer').checked); S.fileIdx = 0; await refresh(); render(); }
+      catch(err){ toast(errMsg(err), 5000); }
+    };
+    $('#drBrowse').onclick = () => inp.click();
+    inp.onchange = () => { if (inp.files.length) send(inp.files); };
+    zone.addEventListener('dragover', e => { if ([...e.dataTransfer.types].includes('Files')){ e.preventDefault(); zone.classList.add('on'); } });
+    zone.addEventListener('dragleave', () => zone.classList.remove('on'));
+    zone.addEventListener('drop', e => { e.preventDefault(); if (e.dataTransfer.files.length) send(e.dataTransfer.files); });
     $('#drEdit').onclick = () => itemForm(it);
     $('#drStatus').onchange = async e => {
       const s = e.target.value;
@@ -1392,10 +1513,10 @@ function itemForm(it){
     </div>
     <div class="field"><label>Link to the file</label><input type="url" name="link_url" value="${esc(it?.link_url)}" placeholder="Google Drive / Docs / Figma / YouTube link">
       <div class="help">Drive files shared as "anyone with the link" and YouTube links get a preview automatically.</div></div>
-    <div class="field"><label>Preview image or video</label>
-      <input type="file" name="file" accept="image/*,video/mp4,video/webm,video/quicktime">
-      <input type="url" name="preview_url" value="${esc(it?.preview_url)}" placeholder="…or paste an image URL" style="margin-top:.4rem">
-      <div class="help" data-up></div></div>
+    <div class="field"><label>Images or PDFs for review</label>
+      <input type="file" name="files" multiple accept="image/*,application/pdf,video/mp4,video/quicktime,video/webm">
+      <div class="help" data-up>${it && filesOf(it).length ? `${currentFiles(it).length} file${currentFiles(it).length===1?'':'s'} attached now. New files are added to them; open the piece to remove or replace files.` : 'Up to 50 MB each. You can add more later from the piece itself.'}</div>
+      <input type="url" name="preview_url" value="${esc(it?.preview_url)}" placeholder="Cover image URL (optional)" style="margin-top:.4rem"></div>
     <div class="field"><label>Notes for the client</label><textarea name="description" placeholder="What to look at, what's final, what's placeholder">${esc(it?.description)}</textarea></div>
     <div class="row2">
       <div class="field"><label>Goes live on</label><input type="date" name="scheduled_for" value="${esc(it?.scheduled_for)}"></div>
@@ -1404,19 +1525,17 @@ function itemForm(it){
     <div class="field"><label>Status</label><select name="status">${Object.entries(STATUS).map(([k,v]) => `<option value="${k}" ${k===(it?.status||'in_review')?'selected':''}>${v.label}${k==='draft'?' (hidden from client)':''}</option>`).join('')}</select></div>`, {
     submitLabel: it ? 'Save' : 'Add',
     onSubmit: async (fd, form) => {
-      let preview = val(fd,'preview_url');
-      const file = form.querySelector('[name=file]').files[0];
-      if (file){
-        if (file.size > 50 * 1024 * 1024) throw new Error('File is over 50 MB — link it from Drive instead.');
-        form.querySelector('[data-up]').textContent = 'Uploading…';
-        preview = await api().upload(file);
-      }
+      const preview = val(fd,'preview_url');
+      const files = form.querySelector('[name=files]').files;
+      const big = [...files].find(f => f.size > MAX_FILE);
+      if (big) throw new Error(`${big.name} is over 50 MB. Share it as a Drive link instead.`);
       const link = val(fd,'link_url');
       if (link && !safeUrl(link)) throw new Error('Links must start with https://');
       if (preview && !safeUrl(preview) && !preview.startsWith('blob:')) throw new Error('Preview URL must start with https://');
       const status = val(fd,'status');
       const row = await api().save('items', {...(it ? {id:it.id} : {}), title:val(fd,'title'), campaign_id:val(fd,'campaign_id'), type:val(fd,'type'), link_url:link, preview_url:preview, description:val(fd,'description'), scheduled_for:val(fd,'scheduled_for'), feedback_due:val(fd,'feedback_due'), status});
       if (it && it.status !== status) await api().note(it.id, `Status set to “${STATUS[status].label}”.`);
+      if (files.length){ form.querySelector('[data-up]').textContent = 'Uploading…'; await uploadFiles({...row, attachments: it ? filesOf(it) : []}, files, false); }
       await refresh(); render();
       if (!it) toast(status === 'draft' ? 'Added as a draft (client can’t see it yet)' : 'Added — the client can see it now');
       return row;
